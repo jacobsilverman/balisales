@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
-import MockData from '../../Data/Mocks/Posts.json';
+// import MockData from '../../Data/Mocks/Posts.json';
+import BuildMocks from '../../Data/Mocks/BuildMocks.js'
 
 import Post from './Post';
 import Filter from './Filter';
@@ -13,6 +14,7 @@ function Body() {
     const [min, setMin] = useState(0);
     const [max, setMax] = useState(10000000000000);
     const [brand, setBrand] = useState('none');
+    const MockData = BuildMocks();
 
     const parseData = () => {
         var partition = [];

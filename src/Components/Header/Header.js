@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+
 
 import './Header.css';
 
@@ -12,8 +12,19 @@ function Header() {
                     <Col xs={1}>
                         <a href='/'><i className="material-icons home">home</i></a>
                     </Col>
-                    <Col xs={11} className="title">
+                    <Col xs={11} className="center title">
                         Sales
+                    </Col>
+                </Row>
+                <Row className="center nav-bar">
+                    <Col xs={4}>
+                        Post
+                    </Col>
+                    <Col xs={4}>
+                        Search
+                    </Col>
+                    <Col xs={4}>
+                        Account
                     </Col>
                 </Row>
             </Container>

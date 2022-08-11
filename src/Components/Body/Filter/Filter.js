@@ -1,10 +1,17 @@
 import { Fragment } from 'react';
 
+import { brands } from '../../../Data/Constants';
+
 import { Col, Row } from 'react-bootstrap';
 
 import './Filter.css';
 
 function Filter({setBrand, setMax, setMin}) {
+
+    const allBrandOptions = brands.map((name, key) => {
+        return <option key={key} value={name}>{name}</option>;
+    });
+
     return (
         <Fragment>
             <Row className='filter-title'>
@@ -33,9 +40,7 @@ function Filter({setBrand, setMax, setMin}) {
                     <label>Brand:</label>
                     <select onChange={(event) => setBrand(event.target.value)}>
                         <option value="none">select</option>
-                        <option value="brs">brs</option>
-                        <option value="mw">mw</option>
-                        <option value="squid">squid</option>
+                        {allBrandOptions}
                     </select>
                 </Col>
             </Row>
