@@ -5,7 +5,7 @@ import { Col, Row } from 'react-bootstrap';
 function SelectPost() {
     const urlSearchParams = new URLSearchParams(window.location.search);
     const params = Object.fromEntries(urlSearchParams.entries());
-    console.log(params);
+    const user = JSON.parse(params.item);
 
     const allInfo = Object.entries(params).map(([prop, value], key) => {
         return (
@@ -16,7 +16,7 @@ function SelectPost() {
         );
     });
 
-    const image = `select-container ${params.brand}`;
+    const image = `select-container ${user.brand}`;
 
     return (
         <Row>

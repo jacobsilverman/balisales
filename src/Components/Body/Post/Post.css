@@ -61,10 +61,10 @@
 
 .post-container.kershaw {
     background-image: url('../../../Data/Constants/images/kershaw.jpg');
-    color: white;
+    color: black;
 }
 
 .post-container.bradley {
     background-image: url('../../../Data/Constants/images/bradley.jpg');
-    color: white;
+    color: black;
 }
