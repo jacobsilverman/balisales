@@ -7,6 +7,11 @@ import { Link } from 'react-router-dom';
 import { Col } from 'react-bootstrap';
 
 function Post({item, title, price, username, condition}) {
+    const data = Object.entries(item);
+    const queryParam = data?.reduce((acc, [prop, value]) => {
+        return acc + `${prop}=${value}${(prop!=='key')?'&':''}`;
+    }, '');
+
     const background = `post-container ${item.brand}`;
 
     return (
@@ -23,13 +28,10 @@ function Post({item, title, price, username, condition}) {
             <div>
                 condition: {condition}
             </div>
-
-            <Link
-                    to={{pathname: '/singlePost', search: `title=${item.title}&price=${price}`, state: 'test'}}>
-                    See
+            <Link to={{pathname: '/singlePost', search: queryParam}}>
+                view
             </Link>
- 
-        </Col>
+        </Col> 
     );
 }
 

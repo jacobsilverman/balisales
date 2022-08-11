@@ -1,0 +1,61 @@
+.info-container{
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.select-container {
+    text-align: center;
+    margin-left: 15px;
+    margin-right: auto;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    border: 1px solid black;
+    border-radius: 20px;
+    height: 400px;
+    background-repeat: none;
+    background-size: 100% 100%;
+}
+
+.select-container.bm {
+    background-image: url('../../Data/Constants/images/bm.jpg');
+}
+
+.select-container.brs {
+    background-image: url('../../Data/Constants/images/brs.jpg');
+}
+
+.select-container.mw {
+    background-image: url('../../Data/Constants/images/mw.jpg');
+}
+
+.select-container.jk {
+    background-image: url('../../Data/Constants/images/jk.png');
+}
+
+.select-container.hom {
+    background-image: url('../../Data/Constants/images/hom.jpg');
+}
+
+.select-container.bs {
+    background-image: url('../../Data/Constants/images/bs.jpg');
+}
+
+.select-container.squid {
+    background-image: url('../../Data/Constants/images/squid.jpg');
+}
+
+.select-container.bbb {
+    background-image: url('../../Data/Constants/images/bbb.jpg');
+}
+
+.select-container.nrb {
+    background-image: url('../../Data/Constants/images/nrb.jpg');
+}
+
+.select-container.kershaw {
+    background-image: url('../../Data/Constants/images/kershaw.jpg');
+}
+
+.select-container.bradley {
+    background-image: url('../../Data/Constants/images/bradley.jpg');
+}

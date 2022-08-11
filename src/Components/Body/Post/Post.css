@@ -58,3 +58,13 @@
     background-image: url('../../../Data/Constants/images/nrb.jpg');
     color: white;
 }
+
+.post-container.kershaw {
+    background-image: url('../../../Data/Constants/images/kershaw.jpg');
+    color: white;
+}
+
+.post-container.bradley {
+    background-image: url('../../../Data/Constants/images/bradley.jpg');
+    color: white;
+}

@@ -17,9 +17,9 @@ function BuildMocks() {
         randomItem.brand = brands[getRandomIntInclusive(0, brands.length-1)];
         randomItem.type = type[getRandomIntInclusive(0, type.length-1)];
         randomItem.price = getRandomIntInclusive(100, 1000);
-        randomItem.key = i;
         randomItem.condition = getRandomIntInclusive(4, 10);
         randomItem.title = `${randomItem.type} ${randomItem.brand}`
+        randomItem.key = i;
         result.push(randomItem);
     }
 
