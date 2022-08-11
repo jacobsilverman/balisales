@@ -2,9 +2,11 @@ import React from 'react';
 
 import './Post.css';
 
+import { Col } from 'react-bootstrap';
+
 function Post({title, price, username, condition}) {
     return (
-        <div className='post-container'>
+        <Col xs={3} className='post-container'>
             <div>
                 title: {title}
             </div>
@@ -17,7 +19,7 @@ function Post({title, price, username, condition}) {
             <div>
                 condition: {condition}
             </div>
-        </div>
+        </Col>
     );
 }
 

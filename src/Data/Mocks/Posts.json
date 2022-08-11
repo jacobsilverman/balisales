@@ -1,38 +1,44 @@
-{
-    "0": {
+[
+    {
         "title": "kraken",
         "price": 250,
         "username": "flipwrists",
-        "condition": 8
+        "condition": 8,
+        "key": 0
     },
-    "1": {
+    {
         "title": "rep",
         "price": 300,
         "username": "flipwrists",
-        "condition": 7
+        "condition": 7,
+        "key": 1
     },
-    "2": {
+    {
         "title": "rep",
         "price": 290,
         "username": "flipwrists",
-        "condition": 6
+        "condition": 6,
+        "key": 2
     },
-    "3": {
+    {
         "title": "rep",
         "price": 250,
         "username": "flipwrists",
-        "condition": 5
+        "condition": 5,
+        "key": 3
     },
-    "4": {
+    {
         "title": "rep",
         "price": 320,
         "username": "flipwrists",
-        "condition": 9
+        "condition": 9,
+        "key": 4
     },
-    "5": {
+    {
         "title": "rep",
         "price": 350,
         "username": "flipwrists",
-        "condition": 10
+        "condition": 10,
+        "key": 5
     }
-}
+]

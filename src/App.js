@@ -1,17 +1,15 @@
-import { Fragment } from 'react';
-
-import Body from './Body';
+import Body from './Components/Body';
 
 import './App.css';
 
 function App() {
   return (
-    <Fragment>
+    <div>
       <header className="App-header">
         Balisong Sales
       </header>
       <Body />
-    </Fragment>
+    </div>
   );
 }
 
