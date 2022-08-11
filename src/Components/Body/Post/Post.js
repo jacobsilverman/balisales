@@ -7,8 +7,10 @@ import { Link } from 'react-router-dom';
 import { Col } from 'react-bootstrap';
 
 function Post({item, title, price, username, condition}) {
+    const background = `post-container ${item.brand}`;
+
     return (
-        <Col xs={3} className='post-container'>
+        <Col xs={3} className={background}>
             <div>
                 title: {title}
             </div>

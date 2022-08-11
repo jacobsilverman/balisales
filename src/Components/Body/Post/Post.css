@@ -6,4 +6,55 @@
     margin-bottom: 15px;
     border: 1px solid black;
     border-radius: 20px;
+    max-height: 300px;
+    background-size: 100% 120px;
+}
+
+.post-container:hover {
+    opacity: .3;
+}
+
+.post-container.bm {
+    background-image: url('../../../Data/Constants/images/bm.jpg');
+    color: white;
+}
+
+.post-container.brs {
+    background-image: url('../../../Data/Constants/images/brs.jpg');
+    color: white;
+}
+
+.post-container.mw {
+    background-image: url('../../../Data/Constants/images/mw.jpg');
+    color: white;
+}
+
+.post-container.jk {
+    background-image: url('../../../Data/Constants/images/jk.png');
+    color: white;
+}
+
+.post-container.hom {
+    background-image: url('../../../Data/Constants/images/hom.jpg');
+    color: white;
+}
+
+.post-container.bs {
+    background-image: url('../../../Data/Constants/images/bs.jpg');
+    color: black;
+}
+
+.post-container.squid {
+    background-image: url('../../../Data/Constants/images/squid.jpg');
+    color: black;
+}
+
+.post-container.bbb {
+    background-image: url('../../../Data/Constants/images/bbb.jpg');
+    color: white;
+}
+
+.post-container.nrb {
+    background-image: url('../../../Data/Constants/images/nrb.jpg');
+    color: white;
 }
