@@ -1,6 +1,7 @@
 [
     {
         "title": "kraken",
+        "brand": "squid",
         "price": 250,
         "username": "flipwrists",
         "condition": 8,
@@ -8,6 +9,7 @@
     },
     {
         "title": "rep",
+        "brand": "brs",
         "price": 300,
         "username": "flipwrists",
         "condition": 7,
@@ -15,6 +17,7 @@
     },
     {
         "title": "rep",
+        "brand": "brs",
         "price": 290,
         "username": "flipwrists",
         "condition": 6,
@@ -22,6 +25,7 @@
     },
     {
         "title": "rep",
+        "brand": "brs",
         "price": 250,
         "username": "flipwrists",
         "condition": 5,
@@ -29,13 +33,15 @@
     },
     {
         "title": "rep",
+        "brand": "brs",
         "price": 320,
         "username": "flipwrists",
         "condition": 9,
         "key": 4
     },
     {
-        "title": "rep",
+        "title": "myrn lite",
+        "brand": "mw",
         "price": 350,
         "username": "flipwrists",
         "condition": 10,

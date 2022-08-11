@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import MockData from '../../Data/Mocks/Posts.json';
 
@@ -10,45 +10,53 @@ import { Col, Container, Row } from 'react-bootstrap';
 import './Body.css';
 
 function Body() {
+    const [min, setMin] = useState(0);
+    const [max, setMax] = useState(10000000000000);
+    const [brand, setBrand] = useState('none');
 
-    const displayData = () => {
+    const parseData = () => {
         var partition = [];
         var parsedData = [];
         for (var i=0; i<=MockData.length; i++){
-            if (i%3 === 0 && i !== 0) {
+            if (partition.length === 3 || i === MockData.length) {
                 parsedData.push(partition);
                 partition = [];
             }
-            partition.push(MockData[i]);
+            validFilter(MockData[i]) && partition.push(MockData[i]);
         }
 
-        return parsedData.map((array, k) => {
-            return (
-                <Row key={k}>
-                    {array.map((item) => {
-                        return <Post
-                            key={item.key} 
-                            title={item.title} 
-                            price={item.price} 
-                            username={item.username} 
-                            condition={item.condition} />
-                    })}
+        return parsedData;
+    };
 
-                </Row>
-            )
-        });
-    }
+    const validFilter = (post) => {
 
+        return post?.price >= min && post?.price <= max && (brand === post.brand || brand === 'none');
+    };
 
     return (
         <Container className='body-container'>
             <Row>
-                <Col xs={1}>
-                    <Filter />
+                <Col xs={1} className='filter-container'>
+                    <Filter setBrand={setBrand} setMax={setMax} setMin={setMin} />
                 </Col>
                 <Col xs={11}>
                     <Row>
-                        {displayData()}
+                        {parseData().map((array, k) => {
+                            return (
+                                <Row key={k}>
+                                    {array.map((item) => {
+                                        return (
+                                            <Post
+                                                key={item.key} 
+                                                title={item.title} 
+                                                price={item.price} 
+                                                username={item.username} 
+                                                condition={item.condition} />
+                                        )
+                                    })}
+                                </Row>
+                            )
+                        })}
                     </Row>
                 </Col>
             </Row>
