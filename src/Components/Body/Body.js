@@ -29,7 +29,6 @@ function Body() {
     };
 
     const validFilter = (post) => {
-
         return post?.price >= min && post?.price <= max && (brand === post.brand || brand === 'none');
     };
 
@@ -47,6 +46,7 @@ function Body() {
                                     {array.map((item) => {
                                         return (
                                             <Post
+                                                item={item}
                                                 key={item.key} 
                                                 title={item.title} 
                                                 price={item.price} 

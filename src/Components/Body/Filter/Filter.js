@@ -29,10 +29,8 @@ function Filter({setBrand, setMax, setMin}) {
                 </Col>
             </Row>
             <Row  className='filter-item'>
-                <Col xs={4}>
+                <Col xs={12}>
                     <label>Brand:</label>
-                </Col>
-                <Col xs={8}>
                     <select onChange={(event) => setBrand(event.target.value)}>
                         <option value="none">select</option>
                         <option value="brs">brs</option>

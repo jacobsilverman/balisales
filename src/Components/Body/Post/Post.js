@@ -2,9 +2,11 @@ import React from 'react';
 
 import './Post.css';
 
+import { Link } from 'react-router-dom';
+
 import { Col } from 'react-bootstrap';
 
-function Post({title, price, username, condition}) {
+function Post({item, title, price, username, condition}) {
     return (
         <Col xs={3} className='post-container'>
             <div>
@@ -19,6 +21,12 @@ function Post({title, price, username, condition}) {
             <div>
                 condition: {condition}
             </div>
+
+            <Link
+                    to={{pathname: '/singlePost', search: `title=${item.title}&price=${price}`, state: 'test'}}>
+                    See
+            </Link>
+ 
         </Col>
     );
 }

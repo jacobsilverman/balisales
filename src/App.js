@@ -1,14 +1,11 @@
-import Body from './Components/Body';
-
-import './App.css';
+import Header from './Components/Header';
+import Routing from './Routing';
 
 function App() {
   return (
     <div>
-      <header className="App-header">
-        Balisong Sales
-      </header>
-      <Body />
+      <Header />
+      <Routing />
     </div>
   );
 }
