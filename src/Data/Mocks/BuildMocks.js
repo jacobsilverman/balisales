@@ -10,7 +10,6 @@ function BuildMocks() {
         return Math.floor(Math.random() * (max - min + 1) + min); //The maximum is inclusive and the minimum is inclusive
     }
 
-
     for (var i=0; i< 100;i++) {
         let randomItem = {};
         randomItem.username = usernames[getRandomIntInclusive(0, usernames.length-1)];

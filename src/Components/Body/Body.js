@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 // import MockData from '../../Data/Mocks/Posts.json';
-import BuildMocks from '../../Data/Mocks/BuildMocks.js'
+// import BuildMocks from '../../Data/Mocks/BuildMocks.js'
 
 import Post from './Post';
 import Filter from './Filter';
@@ -10,16 +10,15 @@ import { Button, Col, Container, Row } from 'react-bootstrap';
 
 import './Body.css';
 
-function Body() {
+function Body({ Data }) {
     const [min, setMin] = useState(0);
     const [max, setMax] = useState(10000000000000);
     const [brand, setBrand] = useState('select');
     const [type, setType] = useState('select');
     const [filter, setFilter] = useState(true); // whether the filter is open or not
-    
-    const [windowScroll, setWindowScroll] = useState(0);
+    const [windowScroll, setWindowScroll] = useState(0); 
 
-    const MockData = BuildMocks();
+    let MockData = Data;
 
     const parseData = () => {
         var partition = [];
@@ -43,17 +42,22 @@ function Body() {
     };
 
     document.addEventListener('scroll', () => {
-        setWindowScroll(window.pageYOffset);
+        setWindowScroll(window.pageYOffset > 99);
     });
 
     const data = parseData();
+    const topFix = (windowScroll) ? 'fixed-top' : '';
+    const openFilterButton = (<Button className={topFix} onClick={() => {setFilter(true)}}>FILTER</Button>);
+    const displayFilter = (
+        <Col xs={3} sm={2} className={'filter-container fixed-left ' + topFix}>
+            <Filter setBrand={setBrand} setMax={setMax} setMin={setMin} setType={setType} setFilter={setFilter} />
+        </Col>
+        );
 
     return (
         <Container className='body-container'>
-            <Row>
-                {filter && <Col xs={3} sm={2} className='filter-container'>
-                    <Filter setBrand={setBrand} setMax={setMax} setMin={setMin} setType={setType} setFilter={setFilter} />
-                </Col> || <Button className={(windowScroll > 100) ? 'fixed': ''} onClick={() => {setFilter(true)}}>FILTER</Button>}
+            <Row className='right'>
+                {(filter && displayFilter) || openFilterButton}
                 <Col xs={filter ? 9 : 12} sm={filter ? 10 : 12}>
                     <Row id="center-post">
                         {data.map((array, k) => {
