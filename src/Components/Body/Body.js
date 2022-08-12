@@ -6,7 +6,7 @@ import BuildMocks from '../../Data/Mocks/BuildMocks.js'
 import Post from './Post';
 import Filter from './Filter';
 
-import { Col, Container, Row } from 'react-bootstrap';
+import { Button, Col, Container, Row } from 'react-bootstrap';
 
 import './Body.css';
 
@@ -15,6 +15,10 @@ function Body() {
     const [max, setMax] = useState(10000000000000);
     const [brand, setBrand] = useState('select');
     const [type, setType] = useState('select');
+    const [filter, setFilter] = useState(true); // whether the filter is open or not
+    
+    const [windowScroll, setWindowScroll] = useState(0);
+
     const MockData = BuildMocks();
 
     const parseData = () => {
@@ -38,16 +42,20 @@ function Body() {
             && (post.type === type || type === 'select');
     };
 
+    document.addEventListener('scroll', () => {
+        setWindowScroll(window.pageYOffset);
+    });
+
     const data = parseData();
 
     return (
         <Container className='body-container'>
             <Row>
-                <Col xs={3} sm={2} className='filter-container'>
-                    <Filter setBrand={setBrand} setMax={setMax} setMin={setMin} setType={setType} />
-                </Col>
-                <Col xs={9} sm={10}>
-                    <Row>
+                {filter && <Col xs={3} sm={2} className='filter-container'>
+                    <Filter setBrand={setBrand} setMax={setMax} setMin={setMin} setType={setType} setFilter={setFilter} />
+                </Col> || <Button className={(windowScroll > 100) ? 'fixed': ''} onClick={() => {setFilter(true)}}>FILTER</Button>}
+                <Col xs={filter ? 9 : 12} sm={filter ? 10 : 12}>
+                    <Row id="center-post">
                         {data.map((array, k) => {
                             return (
                                 <Row key={k}>

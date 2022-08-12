@@ -1,12 +1,12 @@
-import { Fragment } from 'react';
+import { Fragment, useState } from 'react';
 
 import { brands } from '../../../Data/Constants';
 
-import { Col, Row } from 'react-bootstrap';
+import { Button, Col, Row } from 'react-bootstrap';
 
 import './Filter.css';
 
-function Filter({setBrand, setMax, setMin, setType}) {
+function Filter({setBrand, setMax, setMin, setType, setFilter}) {
 
     const allBrandOptions = brands.map((name, key) => {
         return <option key={key} value={name}>{name}</option>;
@@ -17,6 +17,9 @@ function Filter({setBrand, setMax, setMin, setType}) {
             <Row className='filter-title'>
                 <Col>
                     Filter
+                </Col>
+                <Col className='align-right'>
+                    <Button onClick={() => {setFilter(false)}}>x</Button>
                 </Col>
             </Row>
             <Row  className='filter-item'>
@@ -29,7 +32,7 @@ function Filter({setBrand, setMax, setMin, setType}) {
             </Row>
             <Row  className='filter-item'>
                 <Col xs={4}>
-                    Mox:
+                    Max:
                 </Col>
                 <Col xs={8}>
                     <input className='price-input' onChange={(event) => {setMax(event.target.value || 100000000)}} />
