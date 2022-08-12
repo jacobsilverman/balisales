@@ -37,10 +37,10 @@ function Body() {
     return (
         <Container className='body-container'>
             <Row>
-                <Col xs={1} className='filter-container'>
+                <Col xs={3} sm={2} className='filter-container'>
                     <Filter setBrand={setBrand} setMax={setMax} setMin={setMin} />
                 </Col>
-                <Col xs={11}>
+                <Col xs={9} sm={10}>
                     <Row>
                         {parseData().map((array, k) => {
                             return (
@@ -49,7 +49,7 @@ function Body() {
                                         return (
                                             <Post
                                                 item={item}
-                                                key={item.key} 
+                                                key={item.key}
                                                 title={item.title} 
                                                 price={item.price} 
                                                 username={item.username} 

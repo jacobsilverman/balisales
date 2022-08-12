@@ -9,22 +9,22 @@ function Header() {
         <header className="App-header">
             <Container>
                 <Row>
-                    <Col xs={1}>
+                    <Col xs={3} sm={2} className="white-background remove-right-padding">
                         <a href='/'><i className="material-icons home">home</i></a>
                     </Col>
-                    <Col xs={11} className="center title">
-                        Sales
-                    </Col>
-                </Row>
-                <Row className="center nav-bar">
-                    <Col xs={4}>
-                        Post
-                    </Col>
-                    <Col xs={4}>
-                        Search
-                    </Col>
-                    <Col xs={4}>
-                        Account
+                    <Col xs={9} sm={10} className="center title">
+                        Sales 
+                        <Row className="center nav-bar">
+                            <Col xs={4}>
+                                Post
+                            </Col>
+                            <Col xs={4}>
+                                Search
+                            </Col>
+                            <Col xs={4}>
+                                Account
+                            </Col>
+                        </Row>
                     </Col>
                 </Row>
             </Container>
