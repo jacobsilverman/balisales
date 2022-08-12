@@ -16,6 +16,12 @@
     left: 0px;
 
 }
+
+.padding {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
 .right {
     display: flex;
     justify-content: right;

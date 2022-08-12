@@ -58,26 +58,24 @@ function Body({ Data }) {
         <Container className='body-container'>
             <Row className='right'>
                 {(filter && displayFilter) || openFilterButton}
-                <Col xs={filter ? 9 : 12} sm={filter ? 10 : 12}>
-                    <Row id="center-post">
-                        {data.map((array, k) => {
-                            return (
-                                <Row key={k}>
-                                    {array.map((item) => {
-                                        return (
-                                            <Post
-                                                item={item}
-                                                key={item.key}
-                                                title={item.title} 
-                                                price={item.price} 
-                                                username={item.username} 
-                                                condition={item.condition} />
-                                        )
-                                    })}
-                                </Row>
-                            )
-                        })}
-                    </Row>
+                <Col xs={filter ? 9 : 12} sm={filter ? 10 : 12} className='padding'>
+                    {data.map((array, k) => {
+                        return (
+                            <Row key={k}>
+                                {array.map((item) => {
+                                    return (
+                                        <Post
+                                            item={item}
+                                            key={item.key}
+                                            title={item.title} 
+                                            price={item.price} 
+                                            username={item.username} 
+                                            condition={item.condition} />
+                                    )
+                                })}
+                            </Row>
+                        )
+                    })}
                 </Col>
             </Row>
         </Container>
