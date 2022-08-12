@@ -16,9 +16,19 @@ function Body({ Data }) {
     const [brand, setBrand] = useState('select');
     const [type, setType] = useState('select');
     const [filter, setFilter] = useState(true); // whether the filter is open or not
+    const [sort, setSort] = useState('default');
     const [windowScroll, setWindowScroll] = useState(0); 
 
-    let MockData = Data;
+    const sortData = (data) => {
+        if (sort === 'default') return Data;
+        return [...data].sort((prev, next) => {
+            console.log(prev.price, next.price);
+            if (sort === 'max') return (prev.price <= next.price) ? 1 : -1;
+            return (prev.price >= next.price) ? 1 : -1;
+        })
+    }
+
+    let MockData = sortData(Data);
 
     const parseData = () => {
         var partition = [];
@@ -45,12 +55,16 @@ function Body({ Data }) {
         setWindowScroll(window.pageYOffset > 99);
     });
 
+
+
     const data = parseData();
+
+
     const topFix = (windowScroll) ? 'fixed-top' : '';
     const openFilterButton = (<Button className={topFix} onClick={() => {setFilter(true)}}>FILTER</Button>);
     const displayFilter = (
         <Col xs={3} sm={2} className={'filter-container fixed-left ' + topFix}>
-            <Filter setBrand={setBrand} setMax={setMax} setMin={setMin} setType={setType} setFilter={setFilter} />
+            <Filter setBrand={setBrand} setMax={setMax} setMin={setMin} setType={setType} setFilter={setFilter} setSort={setSort} />
         </Col>
         );
 
@@ -59,7 +73,7 @@ function Body({ Data }) {
             <Row className='right'>
                 {(filter && displayFilter) || openFilterButton}
                 <Col xs={filter ? 9 : 12} sm={filter ? 10 : 12} className='padding'>
-                    {data.map((array, k) => {
+                    {data?.map((array, k) => {
                         return (
                             <Row key={k}>
                                 {array.map((item) => {
