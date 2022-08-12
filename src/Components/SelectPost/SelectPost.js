@@ -8,21 +8,75 @@ function SelectPost() {
     const user = JSON.parse(params.item);
 
     const allInfo = Object.entries(user).map(([prop, value], key) => {
+        console.log(prop, value);
         return (
-            <div key={key}>
-                <span>{prop}:&nbsp;</span>
-                <span>{value}</span>
-            </div>
+            <Row key={key}>
+                <Col xs={6}>{prop}:&nbsp;</Col>
+                <Col xs={6}>{value}</Col>
+            </Row>
         );
     });
 
-    const image = `select-container ${user.brand}`;
+    const imageCls = `image-container ${user.brand}`;
 
     return (
-        <Row>
-            <Col className={image} />
-            <Col className="info-container">{allInfo}</Col>
-        </Row>
+        <>
+            <Row>
+                <Col xs={6} className={imageCls} />
+            </Row>
+            <Row>
+                <Col xs={6} className="info-container">
+                    <Row>
+                        <Col xs={2} className="info-label">
+                            title:&nbsp;
+                        </Col>
+                        <Col xs={2} className="info-value">
+                            {user.title}
+                        </Col>
+                        <Col xs={2} className="info-label">
+                            price:&nbsp;
+                        </Col>
+                        <Col xs={2} className="info-value">
+                            {user.price}
+                        </Col>
+                        <Col xs={2} className="info-label">
+                            condition:&nbsp;
+                        </Col>
+                        <Col xs={2} className="info-value">
+                            {user.condition}
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col xs={2} className="info-label">
+                            brand:&nbsp;
+                        </Col>
+                        <Col xs={2} className="info-value">
+                            {user.brand}
+                        </Col>
+                        <Col xs={2} className="info-label">
+                            type:&nbsp;
+                        </Col>
+                        <Col xs={2} className="info-value">
+                            {user.type}
+                        </Col>
+                        <Col xs={2} className="info-label">
+                            username:&nbsp;
+                        </Col>
+                        <Col xs={2} className="info-value">
+                            {user.username}
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col xs={6} className="info-label">
+                            key:&nbsp;
+                        </Col>
+                        <Col xs={6} className="info-value">
+                            {user.key}
+                        </Col>
+                    </Row>
+                </Col>
+            </Row>
+        </>
     );
 }
 

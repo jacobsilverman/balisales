@@ -17,6 +17,7 @@ function Body({ Data }) {
     const [type, setType] = useState('select');
     const [filter, setFilter] = useState(true); // whether the filter is open or not
     const [sort, setSort] = useState('default');
+    const [viewCount, setViewCount] = useState('default');
     const [windowScroll, setWindowScroll] = useState(0); 
 
     const sortData = (data) => {
@@ -34,7 +35,7 @@ function Body({ Data }) {
         var partition = [];
         var parsedData = [];
         for (var i=0; i<=MockData.length; i++){
-            if (partition.length === 3 || i === MockData.length) {
+            if (partition.length === 12 || i === MockData.length) {
                 parsedData.push(partition);
                 partition = [];
             }
@@ -55,16 +56,20 @@ function Body({ Data }) {
         setWindowScroll(window.pageYOffset > 99);
     });
 
-
-
     const data = parseData();
-
 
     const topFix = (windowScroll) ? 'fixed-top' : '';
     const openFilterButton = (<Button className={topFix} onClick={() => {setFilter(true)}}>FILTER</Button>);
     const displayFilter = (
-        <Col xs={3} sm={2} className={'filter-container fixed-left ' + topFix}>
-            <Filter setBrand={setBrand} setMax={setMax} setMin={setMin} setType={setType} setFilter={setFilter} setSort={setSort} />
+        <Col xs={3} sm={2} className={'filter-container ' + topFix}>
+            <Filter 
+                brand={brand} setBrand={setBrand} 
+                type={type} setMax={setMax} 
+                min={min} setMin={setMin} 
+                max={max} setType={setType} 
+                filter={filter} setFilter={setFilter} 
+                sort={sort} setSort={setSort} 
+                viewCount={viewCount} setViewCount={setViewCount} />
         </Col>
         );
 
@@ -78,13 +83,7 @@ function Body({ Data }) {
                             <Row key={k}>
                                 {array.map((item) => {
                                     return (
-                                        <Post
-                                            item={item}
-                                            key={item.key}
-                                            title={item.title} 
-                                            price={item.price} 
-                                            username={item.username} 
-                                            condition={item.condition} />
+                                        <Post item={item} viewCount={viewCount} key={item.key} />
                                     )
                                 })}
                             </Row>

@@ -1,11 +1,21 @@
 .info-container{
-    margin-top: 15px;
-    margin-bottom: 15px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.select-container {
+.info-label {
+    text-align: right;
+    padding-right: 0px;
+}
+
+.info-value {
+    text-align: left;
+    padding-left: 0px;
+}
+
+.image-container {
     text-align: center;
-    margin-left: 15px;
+    margin-left: auto;
     margin-right: auto;
     margin-top: 15px;
     margin-bottom: 15px;
@@ -16,46 +26,46 @@
     background-size: 100% 100%;
 }
 
-.select-container.bm {
+.bm {
     background-image: url('../../Data/Constants/images/bm.jpg');
 }
 
-.select-container.brs {
+.brs {
     background-image: url('../../Data/Constants/images/brs.jpg');
 }
 
-.select-container.mw {
+.mw {
     background-image: url('../../Data/Constants/images/mw.jpg');
 }
 
-.select-container.jk {
+.jk {
     background-image: url('../../Data/Constants/images/jk.png');
 }
 
-.select-container.hom {
+.hom {
     background-image: url('../../Data/Constants/images/hom.jpg');
 }
 
-.select-container.bs {
+.bs {
     background-image: url('../../Data/Constants/images/bs.jpg');
 }
 
-.select-container.squid {
+.squid {
     background-image: url('../../Data/Constants/images/squid.jpg');
 }
 
-.select-container.bbb {
+.bbb {
     background-image: url('../../Data/Constants/images/bbb.jpg');
 }
 
-.select-container.nrb {
+.nrb {
     background-image: url('../../Data/Constants/images/nrb.jpg');
 }
 
-.select-container.kershaw {
+.kershaw {
     background-image: url('../../Data/Constants/images/kershaw.jpg');
 }
 
-.select-container.bradley {
+.bradley {
     background-image: url('../../Data/Constants/images/bradley.jpg');
 }

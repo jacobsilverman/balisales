@@ -1,4 +1,4 @@
-import { brands, usernames, type } from '../Constants';
+import { brands, usernames, types } from '../Constants';
 
 function BuildMocks() {
     let result = [];
@@ -11,12 +11,12 @@ function BuildMocks() {
 
     for (var i=0; i< 100;i++) {
         let randomItem = {};
-        randomItem.username = usernames[getRandomIntInclusive(0, usernames.length-1)];
+        randomItem.type = types[getRandomIntInclusive(0, types.length-1)];
         randomItem.brand = brands[getRandomIntInclusive(0, brands.length-1)];
-        randomItem.type = type[getRandomIntInclusive(0, type.length-1)];
-        randomItem.price = getRandomIntInclusive(100, 1000);
         randomItem.condition = getRandomIntInclusive(4, 10);
         randomItem.title = `${randomItem.type} ${randomItem.brand}`
+        randomItem.price = getRandomIntInclusive(100, 1000);
+        randomItem.username = usernames[getRandomIntInclusive(0, usernames.length-1)];
         randomItem.key = i;
         result.push(randomItem);
     }
