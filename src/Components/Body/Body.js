@@ -13,7 +13,8 @@ import './Body.css';
 function Body() {
     const [min, setMin] = useState(0);
     const [max, setMax] = useState(10000000000000);
-    const [brand, setBrand] = useState('none');
+    const [brand, setBrand] = useState('select');
+    const [type, setType] = useState('select');
     const MockData = BuildMocks();
 
     const parseData = () => {
@@ -31,18 +32,23 @@ function Body() {
     };
 
     const validFilter = (post) => {
-        return post?.price >= min && post?.price <= max && (brand === post.brand || brand === 'none');
+        return post?.price >= min 
+            && post?.price <= max 
+            && (brand === post.brand || brand === 'select') 
+            && (post.type === type || type === 'select');
     };
+
+    const data = parseData();
 
     return (
         <Container className='body-container'>
             <Row>
                 <Col xs={3} sm={2} className='filter-container'>
-                    <Filter setBrand={setBrand} setMax={setMax} setMin={setMin} />
+                    <Filter setBrand={setBrand} setMax={setMax} setMin={setMin} setType={setType} />
                 </Col>
                 <Col xs={9} sm={10}>
                     <Row>
-                        {parseData().map((array, k) => {
+                        {data.map((array, k) => {
                             return (
                                 <Row key={k}>
                                     {array.map((item) => {
