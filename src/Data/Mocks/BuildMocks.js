@@ -3,7 +3,6 @@ import { brands, usernames, type } from '../Constants';
 function BuildMocks() {
     let result = [];
 
-
     function getRandomIntInclusive(min, max) {
         min = Math.ceil(min);
         max = Math.floor(max);
