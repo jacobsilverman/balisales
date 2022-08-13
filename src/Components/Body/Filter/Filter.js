@@ -6,13 +6,10 @@ import { Button, Col, Row } from 'react-bootstrap';
 
 import './Filter.css';
 
-function Filter({brand, setBrand, max, setMax, min, setMin, type, setType, filter, setFilter, sort, setSort, viewCount, setViewCount}) {
+function Filter({brand, setBrand, max, setMax, min, setMin, type, setType, setFilter, resetFilter, sort, setSort, viewCount, setViewCount}) {
 
     const getOptions = (options, prevSelection) => {
         return options.map((name, key) => {
-            console.log('prevSelection: ', prevSelection);
-            console.log('name: ', name);
-            console.log(name==prevSelection);
             return <option key={key} value={name} selected={name == prevSelection}>{name}</option>;
         });
     };
@@ -49,7 +46,7 @@ function Filter({brand, setBrand, max, setMax, min, setMin, type, setType, filte
                 </Col>
                 <Col xs={12} md={8}>
                     <select className="select-width" onChange={(event) => setBrand(event.target.value)}>
-                        <option value="select">default</option>
+                        <option value="default">default</option>
                         {getOptions(brands, brand)}
                     </select>
                 </Col>
@@ -60,7 +57,7 @@ function Filter({brand, setBrand, max, setMax, min, setMin, type, setType, filte
                 </Col>
                 <Col xs={12} md={8}>
                     <select className="select-width" onChange={(event) => setType(event.target.value)}>
-                        <option value="select">default</option>
+                        <option value="default">default</option>
                         {getOptions(types, type)}
                     </select>
                 </Col>
@@ -85,6 +82,11 @@ function Filter({brand, setBrand, max, setMax, min, setMin, type, setType, filte
                         <option value="default">default</option>
                         {getOptions(viewCounts, viewCount)}
                     </select>
+                </Col>
+            </Row>
+            <Row className='filter-item'>
+                <Col xs={12}>
+                    <Button onClick={() => {resetFilter()}}>reset</Button>
                 </Col>
             </Row>
         </Fragment>

@@ -13,12 +13,21 @@ import './Body.css';
 function Body({ Data }) {
     const [min, setMin] = useState(0);
     const [max, setMax] = useState(10000000000000);
-    const [brand, setBrand] = useState('select');
-    const [type, setType] = useState('select');
+    const [brand, setBrand] = useState('default');
+    const [type, setType] = useState('default');
     const [filter, setFilter] = useState(true); // whether the filter is open or not
     const [sort, setSort] = useState('default');
     const [viewCount, setViewCount] = useState('default');
     const [windowScroll, setWindowScroll] = useState(0); 
+
+    const resetFilter = () => {
+        setMin(0);
+        setMax(10000000000000);
+        setBrand('default');
+        setType('default');
+        setSort('default');
+        setViewCount('default');
+    };
 
     const sortData = (data) => {
         if (sort === 'default') return Data;
@@ -48,8 +57,8 @@ function Body({ Data }) {
     const validFilter = (post) => {
         return post?.price >= min 
             && post?.price <= max 
-            && (brand === post.brand || brand === 'select') 
-            && (post.type === type || type === 'select');
+            && (brand === post.brand || brand === 'default') 
+            && (post.type === type || type === 'default');
     };
 
     document.addEventListener('scroll', () => {
@@ -67,7 +76,8 @@ function Body({ Data }) {
                 type={type} setMax={setMax} 
                 min={min} setMin={setMin} 
                 max={max} setType={setType} 
-                filter={filter} setFilter={setFilter} 
+                setFilter={setFilter} 
+                resetFilter={resetFilter}
                 sort={sort} setSort={setSort} 
                 viewCount={viewCount} setViewCount={setViewCount} />
         </Col>
