@@ -32,7 +32,6 @@ function Body({ Data }) {
     const sortData = (data) => {
         if (sort === 'default') return Data;
         return [...data].sort((prev, next) => {
-            console.log(prev.price, next.price);
             if (sort === 'max') return (prev.price <= next.price) ? 1 : -1;
             return (prev.price >= next.price) ? 1 : -1;
         })

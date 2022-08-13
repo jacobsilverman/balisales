@@ -22,7 +22,7 @@ a {
 
 .link {
     text-decoration: none !important;
-    font-size: 1em;;
+    font-size: 1em;
     color: lightgray;
     display:grid;
 }

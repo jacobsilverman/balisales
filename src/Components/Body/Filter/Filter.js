@@ -10,7 +10,7 @@ function Filter({brand, setBrand, max, setMax, min, setMin, type, setType, setFi
 
     const getOptions = (options, prevSelection) => {
         return options.map((name, key) => {
-            return <option key={key} value={name} selected={name == prevSelection}>{name}</option>;
+            return <option key={key} value={name}>{name}</option>;
         });
     };
 
@@ -46,7 +46,7 @@ function Filter({brand, setBrand, max, setMax, min, setMin, type, setType, setFi
                     <label>Brand:</label>
                 </Col>
                 <Col xs={12} md={8}>
-                    <select className="select-width" onChange={(event) => setBrand(event.target.value)}>
+                    <select value={brand} className="select-width" onChange={(event) => setBrand(event.target.value)}>
                         <option value="default">default</option>
                         {getOptions(brands, brand)}
                     </select>
@@ -57,7 +57,7 @@ function Filter({brand, setBrand, max, setMax, min, setMin, type, setType, setFi
                     <label>Type:</label>
                 </Col>
                 <Col xs={12} md={8}>
-                    <select className="select-width" onChange={(event) => setType(event.target.value)}>
+                    <select value={type} className="select-width" onChange={(event) => setType(event.target.value)}>
                         <option value="default">default</option>
                         {getOptions(types, type)}
                     </select>
@@ -68,7 +68,7 @@ function Filter({brand, setBrand, max, setMax, min, setMin, type, setType, setFi
                     <label>Sort:</label>
                 </Col>
                 <Col xs={12} md={8}>
-                    <select className="select-width" onChange={(event) => setSort(event.target.value)}>
+                    <select value={sort} className="select-width" onChange={(event) => setSort(event.target.value)}>
                         <option value="default">default</option>
                         {getOptions(sorts, sort)}
                     </select>
@@ -79,7 +79,7 @@ function Filter({brand, setBrand, max, setMax, min, setMin, type, setType, setFi
                     <label>Show:</label>
                 </Col>
                 <Col xs={12} md={8}>
-                    <select className="select-width" onChange={(event) => setViewCount(event.target.value)} selected={viewCount}>
+                    <select value={viewCount} className="select-width" onChange={(event) => setViewCount(event.target.value)} selected={viewCount}>
                         <option value="default">default</option>
                         {getOptions(viewCounts, viewCount)}
                     </select>

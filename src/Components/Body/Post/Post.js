@@ -12,7 +12,6 @@ function Post({item, viewCount}) {
     //     return acc + `${prop}=${value}${(prop!=='key')?'&':''}`;
     // }, '');
 
-    console.log(viewCount);
     const queryParam = 'item='+JSON.stringify(item);
 
     const backgroundCls = `post-container ${item.brand}`;
