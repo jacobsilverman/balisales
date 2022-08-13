@@ -17,12 +17,13 @@ function Filter({brand, setBrand, max, setMax, min, setMin, type, setType, setFi
     return (
         <Fragment>
             <Row className='filter-title'>
-                <Col>
-                    Filter
-                </Col>
-                <Col className='align-right'>
+                <Col  className='align-left'>
                     <Button onClick={() => {setFilter(false)}}>x</Button>
                 </Col>
+                <Col className='align-left'>
+                    Filter
+                </Col>
+
             </Row>
             <Row  className='filter-item'>
                 <Col xs={12} md={4}>

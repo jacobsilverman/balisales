@@ -13,11 +13,6 @@
     opacity: .3;
 }
 
-.post-container.bm {
-    background-image: url('../../../Data/Constants/images/bm.jpg');
-    color: white !important;
-}
-
 a {
     text-decoration: none;
     display: block;
@@ -27,7 +22,7 @@ a {
 
 .link {
     text-decoration: none !important;
-    font-size: 2em;;
+    font-size: 1em;;
     color: lightgray;
     display:grid;
 }
@@ -49,6 +44,11 @@ a {
 
 .color-green {
     color: lightgreen !important;
+}
+
+.post-container.bm {
+    background-image: url('../../../Data/Constants/images/bm.jpg');
+    color: white;
 }
 
 .post-container.brs {
