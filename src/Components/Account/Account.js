@@ -1,5 +1,12 @@
+import Header from '../Header';
+
 function Account() {
-	return 'Account';
+	return (
+		<>
+			<Header />
+			<div>test</div>
+		</>
+		);
 }
 
 export default Account;

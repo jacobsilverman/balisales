@@ -14,7 +14,6 @@ function Routing({ Data }) {
             </Routes>
         </BrowserRouter>
     );
-
 }
 
 export default Routing;

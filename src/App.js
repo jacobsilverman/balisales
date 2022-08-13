@@ -1,6 +1,5 @@
 import React from 'react';
 
-import Header from './Components/Header';
 import Routing from './Routing';
 import BuildMocks from './Data/Mocks/BuildMocks.js'
 
@@ -9,7 +8,6 @@ function App() {
 
   return (
     <div>
-      <Header />
       <Routing Data={MockData} />
     </div>
   );

@@ -1,14 +1,10 @@
-// import React, { useCallback } from 'react';
-// import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import './Header.css';
 
 import { Col, Container, Row } from 'react-bootstrap';
 
 function Header() {
-    // const navigate = useNavigate();
-    // const handleOnClick = useCallback(() => navigate('/account', {replace: true}), [navigate]);
-
     return (
         <header className="App-header">
             <Container>
@@ -26,7 +22,7 @@ function Header() {
                                 Search
                             </Col>
                             <Col xs={4}>
-                                <a className="white" href="/account">Account</a>
+                                <Link className="white" to={{pathname: '/account'}}>Account</Link>
                             </Col>
                         </Row>
                     </Col>

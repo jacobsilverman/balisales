@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { Fragment, useState } from 'react';
 
 // import MockData from '../../Data/Mocks/Posts.json';
 // import BuildMocks from '../../Data/Mocks/BuildMocks.js'
 
 import Post from './Post';
 import Filter from './Filter';
+import Header from '../Header';
 
 import { Button, Col, Container, Row } from 'react-bootstrap';
 
@@ -83,24 +84,27 @@ function Body({ Data }) {
         );
 
     return (
-        <Container className='body-container'>
-            <Row className='right'>
-                {(filter && displayFilter) || openFilterButton}
-                <Col xs={filter ? 9 : 12} sm={filter ? 10 : 12} className='padding'>
-                    {data?.map((array, k) => {
-                        return (
-                            <Row key={k}>
-                                {array.map((item) => {
-                                    return (
-                                        <Post item={item} viewCount={viewCount} key={item.key} />
-                                    )
-                                })}
-                            </Row>
-                        )
-                    })}
-                </Col>
-            </Row>
-        </Container>
+        <Fragment>
+            <Header />
+            <Container className='body-container'>
+                <Row className='right'>
+                    {(filter && displayFilter) || openFilterButton}
+                    <Col xs={filter ? 9 : 12} sm={filter ? 10 : 12} className='padding'>
+                        {data?.map((array, k) => {
+                            return (
+                                <Row key={k}>
+                                    {array.map((item) => {
+                                        return (
+                                            <Post item={item} viewCount={viewCount} key={item.key} />
+                                        )
+                                    })}
+                                </Row>
+                            )
+                        })}
+                    </Col>
+                </Row>
+            </Container>
+        </Fragment>
     );
 }
 

@@ -1,5 +1,7 @@
 import './SelectPost.css';
 
+import Header from '../Header';
+
 import { Col, Row } from 'react-bootstrap';
 
 function SelectPost() {
@@ -7,20 +9,11 @@ function SelectPost() {
     const params = Object.fromEntries(urlSearchParams.entries());
     const user = JSON.parse(params.item);
 
-    // const allInfo = Object.entries(user).map(([prop, value], key) => {
-    //     console.log(prop, value);
-    //     return (
-    //         <Row key={key}>
-    //             <Col xs={6}>{prop}:&nbsp;</Col>
-    //             <Col xs={6}>{value}</Col>
-    //         </Row>
-    //     );
-    // });
-
     const imageCls = `image-container ${user.brand}`;
 
     return (
         <>
+            <Header />
             <Row>
                 <Col xs={11} sm={11} md={6} className={imageCls} />
             </Row>
