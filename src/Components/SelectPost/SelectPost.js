@@ -7,25 +7,25 @@ function SelectPost() {
     const params = Object.fromEntries(urlSearchParams.entries());
     const user = JSON.parse(params.item);
 
-    const allInfo = Object.entries(user).map(([prop, value], key) => {
-        console.log(prop, value);
-        return (
-            <Row key={key}>
-                <Col xs={6}>{prop}:&nbsp;</Col>
-                <Col xs={6}>{value}</Col>
-            </Row>
-        );
-    });
+    // const allInfo = Object.entries(user).map(([prop, value], key) => {
+    //     console.log(prop, value);
+    //     return (
+    //         <Row key={key}>
+    //             <Col xs={6}>{prop}:&nbsp;</Col>
+    //             <Col xs={6}>{value}</Col>
+    //         </Row>
+    //     );
+    // });
 
     const imageCls = `image-container ${user.brand}`;
 
     return (
         <>
             <Row>
-                <Col xs={6} className={imageCls} />
+                <Col xs={11} sm={11} md={6} className={imageCls} />
             </Row>
             <Row>
-                <Col xs={6} className="info-container">
+                <Col xs={11} sm={11} md={6} className="info-container">
                     <Row>
                         <Col xs={2} className="info-label">
                             title:&nbsp;
