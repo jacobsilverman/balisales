@@ -44,7 +44,7 @@ function Body({ Data }) {
         var partition = [];
         var parsedData = [];
         for (var i=0; i<=MockData.length; i++){
-            if (partition.length === 12 || i === MockData.length) {
+            if (partition.length === viewCount || i === MockData.length) {
                 parsedData.push(partition);
                 partition = [];
             }

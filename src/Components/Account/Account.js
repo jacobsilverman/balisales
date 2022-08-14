@@ -1,11 +1,13 @@
+import { Fragment } from 'react';
+
 import Header from '../Header';
 
 function Account() {
 	return (
-		<>
+		<Fragment>
 			<Header />
-			<div>test</div>
-		</>
+			<div>Account</div>
+		</Fragment>
 		);
 }
 

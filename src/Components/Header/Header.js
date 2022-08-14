@@ -13,10 +13,10 @@ function Header() {
                         <a href='/'><i className="material-icons home">home</i></a>
                     </Col>
                     <Col xs={9} sm={10} className="center title">
-                        Sales 
+                        Balisong Sales 
                         <Row className="center nav-bar">
                             <Col xs={4}>
-                                Post
+                                <Link className="white" to={{pathname: '/createPost'}}>Post</Link>
                             </Col>
                             <Col xs={4}>
                                 Search

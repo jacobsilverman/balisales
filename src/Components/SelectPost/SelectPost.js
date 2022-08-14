@@ -1,4 +1,4 @@
-import './SelectPost.css';
+import './SelectPost.scss';
 
 import Header from '../Header';
 

@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 
-import './Post.css';
+import './Post.scss';
 
 import { Link } from 'react-router-dom';
 
@@ -25,6 +25,16 @@ function Post({item, viewCount}) {
                 <Row> 
                     <Col xs={11} className="title-text">
                         {item.title.toUpperCase()}
+                    </Col>
+                </Row>
+                <Row className="hidden-text show-onhover left-align">
+                    <Col >
+                        seller: {item.username}
+                    </Col>
+                </Row>
+                <Row className="hidden-text show-onhover left-align">
+                    <Col >
+                        codition: {item.condition}
                     </Col>
                 </Row>
                 <Row> 

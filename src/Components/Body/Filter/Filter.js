@@ -8,7 +8,7 @@ import './Filter.css';
 
 function Filter({brand, setBrand, max, setMax, min, setMin, type, setType, setFilter, resetFilter, sort, setSort, viewCount, setViewCount}) {
 
-    const getOptions = (options, prevSelection) => {
+    const getOptions = (options) => {
         return options.map((name, key) => {
             return <option key={key} value={name}>{name}</option>;
         });
