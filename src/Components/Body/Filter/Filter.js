@@ -23,7 +23,6 @@ function Filter({brand, setBrand, max, setMax, min, setMin, type, setType, setFi
                 <Col className='align-left'>
                     Filter
                 </Col>
-
             </Row>
             <Row  className='filter-item'>
                 <Col xs={12} md={4}>

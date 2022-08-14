@@ -16,24 +16,22 @@
         color: black;
         opacity: 1;
         visibility:  visible;
-
     }
 }
 
 .hidden-text {
     visibility: hidden;
     opacity: 0;
-    &:hover{
-        color: black;
-        opacity: 1;
-        visibility:  visible;
-        z-index: 10;
+}
+
+.fake-background {
+    height: 100%;
+    &:hover {
+        border-radius: 20px;
+        background-color: rgb(white, .8);
     }
 }
-.fake-background:hover {
-    border-radius: 20px;
-    background-color: rgb(white, .8);
-}
+
 
 a {
     text-decoration: none;
@@ -48,20 +46,22 @@ a {
 
 .link {
     text-decoration: none !important;
-    font-size: 1em;
-    color: darkgray;
+    
+    color: darkorange;
     display:grid;
-    padding-left:50px;
-    padding-right:50px;
+    padding-left:5%;
+    padding-right:5%;
 }
 
 .price {
+    font-size: 1em;
     grid-column: 2;
     margin-top: 45%;
     text-align: right;
 }
 
 .title-text {
+    font-size: 1.5em;
     grid-column: 2;
     text-align: left;
 }
@@ -71,7 +71,7 @@ a {
 }
 
 .color-green {
-    color: green !important;
+    color: greenyellow !important;
 }
 
 $tags: squid, kershaw, bradley, brs, mw, bbb, hom, bm, bs, jk, nrb;
