@@ -19,11 +19,6 @@
     }
 }
 
-.hidden-text {
-    visibility: hidden;
-    opacity: 0;
-}
-
 .fake-background {
     height: 100%;
     &:hover {
@@ -46,24 +41,27 @@ a {
 
 .link {
     text-decoration: none !important;
-    
     color: darkorange;
-    display:grid;
-    padding-left:5%;
-    padding-right:5%;
+    display: grid;
+    padding-left: 5%;
+    padding-right: 5%;
 }
 
 .price {
-    font-size: 1em;
-    grid-column: 2;
-    margin-top: 45%;
+    font-size: 3vmax;
     text-align: right;
 }
 
 .title-text {
-    font-size: 1.5em;
-    grid-column: 2;
+    font-size: 3vmax;
     text-align: left;
+}
+
+.hidden-text {
+    font-size: 3vmax ;
+    text-align: left;
+    visibility: hidden;
+    opacity: 0;
 }
 
 .color-red {
