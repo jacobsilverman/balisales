@@ -7,9 +7,7 @@ function App() {
   const MockData = BuildMocks();
 
   return (
-    <div>
-      <Routing Data={MockData} />
-    </div>
+    <Routing Data={MockData} />
   );
 }
 

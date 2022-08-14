@@ -1,6 +1,6 @@
-import './SelectPost.scss';
+import { Fragment } from 'react';
 
-import Header from '../Header';
+import './SelectPost.scss';
 
 import { Col, Row } from 'react-bootstrap';
 
@@ -12,8 +12,7 @@ function SelectPost() {
     const imageCls = `image-container ${user.brand}`;
 
     return (
-        <>
-            <Header />
+        <Fragment>
             <Row>
                 <Col xs={11} sm={11} md={6} className={imageCls} />
             </Row>
@@ -69,7 +68,7 @@ function SelectPost() {
                     </Row>
                 </Col>
             </Row>
-        </>
+        </Fragment>
     );
 }
 

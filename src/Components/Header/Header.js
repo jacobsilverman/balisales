@@ -4,13 +4,27 @@ import './Header.css';
 
 import { Col, Container, Row } from 'react-bootstrap';
 
-function Header() {
+import { auth } from '../../firebase-config';
+import { signOut } from 'firebase/auth';
+import { useNavigate }   from 'react-router-dom';
+
+function Header({isAuth, setIsAuth}) {
+    let navigate = useNavigate();
+    const signUserOut = () => {
+        signOut(auth).then(() => {
+            navigate("/login");
+            setIsAuth(false);
+        });
+    }
+
     return (
         <header className="App-header">
             <Container>
                 <Row>
                     <Col xs={3} sm={2} className="white-background remove-right-padding">
-                        <a href='/'><i className="material-icons home">home</i></a>
+                        <Link className="white" to={{pathname: '/'}}>
+                            <i className="material-icons home">home</i>
+                        </Link>
                     </Col>
                     <Col xs={9} sm={10} className="center title">
                         Balisong Sales 
@@ -19,7 +33,9 @@ function Header() {
                                 <Link className="white" to={{pathname: '/createPost'}}>Post</Link>
                             </Col>
                             <Col xs={4}>
-                                Search
+                                {!isAuth 
+                                ? <Link className="white" to={{pathname: '/login'}}>Login</Link>
+                                : <a onClick={signUserOut}>Logout</a>}
                             </Col>
                             <Col xs={4}>
                                 <Link className="white" to={{pathname: '/account'}}>Account</Link>
