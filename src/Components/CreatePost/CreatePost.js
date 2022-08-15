@@ -31,14 +31,6 @@ function CreatePost() {
         navigate("/");
     }
 
-    // randomItem.type = types[getRandomIntInclusive(0, types.length-1)];
-    // randomItem.brand = brands[getRandomIntInclusive(0, brands.length-1)];
-    // randomItem.condition = getRandomIntInclusive(4, 10);
-    // randomItem.title = `${randomItem.type} ${randomItem.brand}`
-    // randomItem.price = getRandomIntInclusive(100, 1000);
-    // randomItem.username = usernames[getRandomIntInclusive(0, usernames.length-1)];
-    // randomItem.key = i;
-
     const getOptions = (options) => {
         return options.map((name, key) => {
             return <option key={key} value={name}>{name}</option>;

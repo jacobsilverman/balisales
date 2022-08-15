@@ -11,7 +11,7 @@ function Account({posts}) {
 
 	return (
 		<Row>
-			{filterPosts?.map((item) => { return <Post item={item} />})}
+			{filterPosts?.map((item) => { return <Post item={item} key={item.id} />})}
 		</Row>
 	);
 	

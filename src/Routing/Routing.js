@@ -4,15 +4,15 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import Body from '../Components/Body';
 import SelectPost from '../Components/SelectPost';
-import Login from '../Components/Login';
 import Account from '../Components/Account';
 import CreatePost from '../Components/CreatePost';
 import Header from '../Components/Header';
 
 function Routing({ Data, posts }) {
-    const [isAuth, setIsAuth] = useState(false);
 
-    console.log(isAuth);
+    console.log("atuh: ",localStorage.getItem("isAuth"));
+
+    const [isAuth, setIsAuth] = useState(localStorage.getItem("isAuth"));
 
     return (
         <BrowserRouter>
@@ -21,10 +21,9 @@ function Routing({ Data, posts }) {
             </nav>
             <Routes>
                 <Route path='/' element={<Body Data={Data} />} />
-                <Route path='/singlePost'  element={<SelectPost Data={Data} />} />
-                <Route path='/login'  element={<Login setIsAuth={setIsAuth} />} />
-                <Route path='/account'  element={<Account posts={posts} />} />
-                <Route path='/createPost'  element={<CreatePost />} />
+                <Route path='/singlePost' element={<SelectPost Data={Data} />} />
+                <Route path='/account' element={<Account posts={posts} />} />
+                <Route path='/createPost' element={<CreatePost />} />
             </Routes>
         </BrowserRouter>
     );

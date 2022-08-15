@@ -20,7 +20,7 @@ function Post({item, viewCount}) {
     const showViewCount = isNaN(12/viewCount);
 
     return (
-        <Col  className={backgroundCls} xs={showViewCount ? 12 : 12/viewCount} sm={showViewCount ? 12 : 12/viewCount} md={showViewCount ? 4 : 12/viewCount} onClick={()=>{return <Link to={{pathname: '/singlePost', search: queryParam}}></Link>}}>
+        <Col className={backgroundCls} xs={showViewCount ? 12 : 12/viewCount} sm={showViewCount ? 12 : 12/viewCount} md={showViewCount ? 4 : 12/viewCount} onClick={()=>{return <Link to={{pathname: '/singlePost', search: queryParam}}></Link>}}>
             <div className='fake-background'>
                 <Link className="link" to={{pathname: '/singlePost', search: queryParam}}>
                     <Row> 
@@ -30,7 +30,7 @@ function Post({item, viewCount}) {
                     </Row>
                     <Row className="hidden-text show-onhover left-align">
                         <Col >
-                            seller: {item.username}
+                            seller: {item.author.name}
                         </Col>
                     </Row>
                     <Row className="hidden-text show-onhover left-align">

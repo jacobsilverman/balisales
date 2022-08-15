@@ -13,17 +13,21 @@ function Header({isAuth, setIsAuth}) {
 
     const signUserOut = () => {
         signOut(auth).then(() => {
-            navigate("/");
             setIsAuth(false);
-        });
+            navigate("/");
+            localStorage.setItem("isAuth", false);
+        })
     }
 
     const signInWithGoogle = () => {
         signInWithPopup(auth, provider).then((result) => {
+            console.log(result);
             setIsAuth(true);
-            navigate("/");
-        });
+            localStorage.setItem("isAuth", true);
+        })
     }
+
+    console.log(isAuth);
 
     return (
         <header className="App-header">
