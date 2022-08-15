@@ -4,16 +4,24 @@ import './Header.css';
 
 import { Col, Container, Row } from 'react-bootstrap';
 
-import { auth } from '../../firebase-config';
-import { signOut } from 'firebase/auth';
+import { auth, provider } from '../../firebase-config';
+import { signInWithPopup, signOut } from 'firebase/auth';
 import { useNavigate }   from 'react-router-dom';
 
 function Header({isAuth, setIsAuth}) {
     let navigate = useNavigate();
+
     const signUserOut = () => {
         signOut(auth).then(() => {
-            navigate("/login");
+            navigate("/");
             setIsAuth(false);
+        });
+    }
+
+    const signInWithGoogle = () => {
+        signInWithPopup(auth, provider).then((result) => {
+            setIsAuth(true);
+            navigate("/");
         });
     }
 
@@ -33,12 +41,12 @@ function Header({isAuth, setIsAuth}) {
                                 <Link className="white" to={{pathname: '/createPost'}}>Post</Link>
                             </Col>
                             <Col xs={4}>
-                                {!isAuth 
-                                ? <Link className="white" to={{pathname: '/login'}}>Login</Link>
-                                : <a onClick={signUserOut}>Logout</a>}
+                                <Link className="white" to={{pathname: '/account'}}>Account</Link>
                             </Col>
                             <Col xs={4}>
-                                <Link className="white" to={{pathname: '/account'}}>Account</Link>
+                                {!isAuth 
+                                ? <a onClick={signInWithGoogle}>Login</a>
+                                : <a onClick={signUserOut}>Logout</a>}
                             </Col>
                         </Row>
                     </Col>

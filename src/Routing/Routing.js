@@ -9,7 +9,7 @@ import Account from '../Components/Account';
 import CreatePost from '../Components/CreatePost';
 import Header from '../Components/Header';
 
-function Routing({ Data }) {
+function Routing({ Data, posts }) {
     const [isAuth, setIsAuth] = useState(false);
 
     console.log(isAuth);
@@ -23,7 +23,7 @@ function Routing({ Data }) {
                 <Route path='/' element={<Body Data={Data} />} />
                 <Route path='/singlePost'  element={<SelectPost Data={Data} />} />
                 <Route path='/login'  element={<Login setIsAuth={setIsAuth} />} />
-                <Route path='/account'  element={<Account />} />
+                <Route path='/account'  element={<Account posts={posts} />} />
                 <Route path='/createPost'  element={<CreatePost />} />
             </Routes>
         </BrowserRouter>
