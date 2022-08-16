@@ -9,9 +9,6 @@ import CreatePost from '../Components/CreatePost';
 import Header from '../Components/Header';
 
 function Routing({ Data, posts }) {
-
-    console.log("atuh: ",localStorage.getItem("isAuth"));
-
     const [isAuth, setIsAuth] = useState(localStorage.getItem("isAuth"));
 
     return (

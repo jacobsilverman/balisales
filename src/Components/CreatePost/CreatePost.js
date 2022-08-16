@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { Button, Col, Container, Row } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
 
 import { brands, types } from '../../Data/Constants';
 
@@ -14,7 +13,6 @@ function CreatePost() {
     const [brand, setBrand] = useState("");
     const [condition, setCondition] = useState("");
     const [price, setPrice] = useState("");
-    const navigate = useNavigate();
 
 
     const postsCollectionRef = collection(db, "posts");
@@ -28,7 +26,7 @@ function CreatePost() {
             description,
             author: {name: auth.currentUser.displayName, id: auth.currentUser.uid }
         });
-        navigate("/");
+        window.location.pathname = "/";
     }
 
     const getOptions = (options) => {

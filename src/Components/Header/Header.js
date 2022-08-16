@@ -12,31 +12,28 @@ function Header({isAuth, setIsAuth}) {
     let navigate = useNavigate();
 
     const signUserOut = () => {
-        signOut(auth).then(() => {
+        signOut(auth, provider).then((result) => {
             setIsAuth(false);
             navigate("/");
-            localStorage.setItem("isAuth", false);
+            localStorage.clear();
         })
     }
 
     const signInWithGoogle = () => {
         signInWithPopup(auth, provider).then((result) => {
-            console.log(result);
             setIsAuth(true);
             localStorage.setItem("isAuth", true);
         })
     }
-
-    console.log(isAuth);
 
     return (
         <header className="App-header">
             <Container>
                 <Row>
                     <Col xs={3} sm={2} className="white-background remove-right-padding">
-                        <Link className="white" to={{pathname: '/'}}>
+                        <a href="/">
                             <i className="material-icons home">home</i>
-                        </Link>
+                        </a>
                     </Col>
                     <Col xs={9} sm={10} className="center title">
                         Balisong Sales 
@@ -48,7 +45,7 @@ function Header({isAuth, setIsAuth}) {
                                 <Link className="white" to={{pathname: '/account'}}>Account</Link>
                             </Col>
                             <Col xs={4}>
-                                {!isAuth 
+                                {!isAuth
                                 ? <a onClick={signInWithGoogle}>Login</a>
                                 : <a onClick={signUserOut}>Logout</a>}
                             </Col>
