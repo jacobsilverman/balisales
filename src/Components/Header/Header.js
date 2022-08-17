@@ -39,11 +39,10 @@ function Header({isAuth, setIsAuth}) {
                         <Link className="white" to={{pathname: '/createPost'}}><i className="material-icons home">add</i></Link>
                         
                     </Col>
-                    <Col xs={5} sm={5} md={5} className="center title">
+                    <Col xs={4} sm={4} md={4} className="center title">
                         Sales 
-            
                     </Col>
-                    <Col xs={3} sm={3} md={3} className="vertical-bottom">
+                    <Col xs={4} sm={4} md={4} className="vertical-bottom">
                         <Row>
                             <Col className="center pointer">
                                 {!isAuth
