@@ -13,7 +13,10 @@ function App() {
   useEffect(() => {
     const getPosts = async () => {
       const data = await getDocs(postsCollectionRef);
-      setPosts([...data.docs.map((doc) => ({ ...doc.data(), id: doc.id})), ...posts]);
+      const allData = data.docs.map((doc) => ({ ...doc.data(), id: doc.id})).sort((prev, next) => {
+        return (prev.timeStamp <= next.timeStamp) ? 1 : -1;
+      });;
+      setPosts(allData);
     }
     getPosts();
   }, []);

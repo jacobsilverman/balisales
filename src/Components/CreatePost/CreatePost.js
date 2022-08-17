@@ -24,6 +24,7 @@ function CreatePost() {
             condition,
             price,
             description,
+            timeStamp: Date.now(),
             author: {name: auth.currentUser.displayName, id: auth.currentUser.uid }
         });
         window.location.pathname = "/";
