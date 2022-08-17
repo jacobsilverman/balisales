@@ -6,6 +6,8 @@ import { brands, types } from '../../Data/Constants';
 import { addDoc, collection } from 'firebase/firestore';
 import { auth, db } from '../../firebase-config';
 
+import './CreatePost.scss';
+
 function CreatePost() {
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
@@ -37,7 +39,7 @@ function CreatePost() {
     };
 
     return (
-        <Container>
+        <Container className="create-container">
             <Row>
                 <Col>
                     <h3>Create Post</h3>
@@ -45,54 +47,51 @@ function CreatePost() {
             </Row>
             <Row>
                 <Col>
-                    <label>Title: </label>
                     <input onChange={(event) => setTitle(event.target.value)} />
-                </Col>
-                <Col>
-                    <label>Price: </label>
-                    <input onChange={(event) => setPrice(event.target.value)} />
+                    <label>:Title</label>
                 </Col>
             </Row>
             <Row>
-                <Col xs={12} md={4}>
-                    <label>Brand:</label>
+                <Col>
+                    <input onChange={(event) => setPrice(event.target.value)} />
+                    <label>:Price</label>
                 </Col>
-                <Col xs={12} md={8}>
+            </Row>
+            <Row>
+                <Col>
                     <select value={brand} onChange={(event) => setBrand(event.target.value)}>
                         <option value="default">default</option>
                         {getOptions(brands, brand)}
                     </select>
-                </Col>
-            </Row>
-            <Row>
-                <Col xs={12} md={4}>
-                    <label>Condition:</label>
-                </Col>
-                <Col xs={12} md={8}>
-                    <select value={condition} onChange={(event) => setCondition(event.target.value)}>
-                        <option value="default">default</option>
-                        {getOptions([1,2,3,4,5,6,7,8,9,10], condition)}
-                    </select>
-                </Col>
-            </Row>
-            <Row>
-                <Col xs={12} md={4}>
-                    <label>Type:</label>
-                </Col>
-                <Col xs={12} md={8}>
-                    <select value={type} onChange={(event) => setType(event.target.value)}>
-                        <option value="default">default</option>
-                        {getOptions(types, type)}
-                    </select>
+                    <label>:Brand</label>
                 </Col>
             </Row>
             <Row>
                 <Col>
-                    <label>Description: </label>
-                    <input onChange={(event) => setDescription(event.target.value)} />
+                    <select value={condition} onChange={(event) => setCondition(event.target.value)}>
+                        <option value="default">default</option>
+                        {getOptions([1,2,3,4,5,6,7,8,9,10], condition)}
+                    </select>
+                    <label>:Condition</label>
                 </Col>
             </Row>
-        
+            <Row>
+                <Col>
+                    
+                    <select value={type} onChange={(event) => setType(event.target.value)}>
+                        <option value="default">default</option>
+                        {getOptions(types, type)}
+                    </select>
+                    <label>:Type</label>
+                </Col>
+            </Row>
+            <Row>
+                <Col>
+                    
+                    <input onChange={(event) => setDescription(event.target.value)} />
+                    <label>:Description</label>
+                </Col>
+            </Row>
             <Row>
                 <Col>
                     <Button onClick={createPost}>Submit</Button>

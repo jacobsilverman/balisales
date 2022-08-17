@@ -12,7 +12,7 @@ function Header({isAuth, setIsAuth}) {
     let navigate = useNavigate();
 
     const signUserOut = () => {
-        signOut(auth, provider).then((result) => {
+        signOut(auth, provider).then(() => {
             setIsAuth(false);
             navigate("/");
             localStorage.clear();
@@ -20,7 +20,7 @@ function Header({isAuth, setIsAuth}) {
     }
 
     const signInWithGoogle = () => {
-        signInWithPopup(auth, provider).then((result) => {
+        signInWithPopup(auth, provider).then(() => {
             setIsAuth(true);
             localStorage.setItem("isAuth", true);
         })
@@ -42,7 +42,7 @@ function Header({isAuth, setIsAuth}) {
                                 <Link className="white" to={{pathname: '/createPost'}}>Post</Link>
                             </Col>
                             <Col xs={4}>
-                                <Link className="white" to={{pathname: '/account'}}>Account</Link>
+                                {isAuth && <Link className="white" to={{pathname: '/account'}}>Account</Link>}
                             </Col>
                             <Col xs={4}>
                                 {!isAuth
