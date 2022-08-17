@@ -27,7 +27,7 @@ function CreatePost() {
             price,
             description,
             timeStamp: Date.now(),
-            author: {name: auth.currentUser.displayName, id: auth.currentUser.uid }
+            author: {name: auth?.currentUser?.displayName || 'anonymous', id: auth?.currentUser?.uid || 'none' }
         });
         window.location.pathname = "/";
     }
