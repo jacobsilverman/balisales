@@ -1,6 +1,6 @@
 
 import { auth } from '../../firebase-config';
-import { Container, Row } from 'react-bootstrap';
+import { Container, Col, Row } from 'react-bootstrap';
 
 import Post from '../Body/Post';
 import './Account.scss';
@@ -12,8 +12,10 @@ function Account({posts}) {
 
 	return (
 		<Container>
-			<Row className="account-container">
-				{filterPosts?.map((item) => { return <Post item={item} key={item.id} />})}
+			<Row className="account-container center">
+				<Col>
+					{filterPosts.length > 0 ? filterPosts?.map((item) => { return <Post item={item} key={item.id} />}) : "no posts available"}
+				</Col>
 			</Row>
 		</Container>
 	);
