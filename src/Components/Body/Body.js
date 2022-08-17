@@ -80,7 +80,7 @@ function Body({ Data }) {
                 sort={sort} setSort={setSort} 
                 viewCount={viewCount} setViewCount={setViewCount} />
         </Col>
-        );
+    );
 
     return (
         <Container className='body-container'>

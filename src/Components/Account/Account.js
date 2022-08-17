@@ -1,8 +1,9 @@
 
 import { auth } from '../../firebase-config';
-import { Row } from 'react-bootstrap';
+import { Container, Row } from 'react-bootstrap';
 
 import Post from '../Body/Post';
+import './Account.scss';
 
 function Account({posts}) {
 	const filterPosts = posts?.filter((ele) => {
@@ -10,9 +11,11 @@ function Account({posts}) {
 	});
 
 	return (
-		<Row>
-			{filterPosts?.map((item) => { return <Post item={item} key={item.id} />})}
-		</Row>
+		<Container>
+			<Row className="account-container">
+				{filterPosts?.map((item) => { return <Post item={item} key={item.id} />})}
+			</Row>
+		</Container>
 	);
 	
 }
