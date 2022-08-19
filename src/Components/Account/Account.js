@@ -1,5 +1,5 @@
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import { auth } from '../../firebase-config';
 import { Container, Col, Row } from 'react-bootstrap';
@@ -26,10 +26,6 @@ function Account({posts}) {
 			})
 		)
     }
-
-	useEffect(() => {
-		console.log(filterPosts);
-	}, [filterPosts])
 
 	return (
 		<Container>
