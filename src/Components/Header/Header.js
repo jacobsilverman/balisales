@@ -42,16 +42,16 @@ function Header({isAuth, setIsAuth}) {
                     <Col xs={4} sm={4} md={4} className="center title">
                         Sales 
                     </Col>
-                    <Col xs={4} sm={4} md={4} className="vertical-bottom">
+                    <Col xs={4} sm={4} md={4} className="login-padding">
                         <Row>
-                            <Col className="center pointer">
+                            <Col className="right pointer">
                                 {!isAuth
                                 ? <a onClick={signInWithGoogle}>Login</a>
                                 : <a onClick={signUserOut}>Logout</a>}
                             </Col>
                         </Row>
                         <Row>
-                            <Col  className="center">
+                            <Col  className="right">
                                 {isAuth && <Link className="white" to={{pathname: '/account'}}>Account</Link>}
                             </Col>
                         </Row>

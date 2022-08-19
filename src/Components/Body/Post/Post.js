@@ -1,31 +1,48 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 
 import './Post.scss';
 
 import { Link } from 'react-router-dom';
+ 
+import { Modal } from '@mui/material';
+import { Button, Col, Row } from 'react-bootstrap';
 
-import { Col, Row } from 'react-bootstrap';
 
-function Post({item, viewCount}) {
-    // const data = Object.entries(item);
-    // const queryParam = data?.reduce((acc, [prop, value]) => {
-    //     return acc + `${prop}=${value}${(prop!=='key')?'&':''}`;
-    // }, '');
+function Post({item, viewCount, accountView, deletePost}) {
+    const [openModal, setOpenModal] = useState(false);
 
     const queryParam = 'item='+JSON.stringify(item);
 
     const backgroundCls = `post-container ${item.brand}`;
     const priceCls = `price color-${useMemo(() => {return (item.type==='wts')?'red':(item.type==='wtb')?'green':''}, [item.type])}`;
-
     const showViewCount = isNaN(12/viewCount);
 
     return (
-        <Col className={backgroundCls} xs={showViewCount ? 12 : 12/viewCount} sm={showViewCount ? 12 : 12/viewCount} md={showViewCount ? 4 : 12/viewCount} onClick={()=>{return <Link to={{pathname: '/singlePost', search: queryParam}}></Link>}}>
-            <div className='fake-background'>
+        <>
+        <Modal open={openModal}>
+            <Row className="delete-modal">
+                <Col xs={2} className="background center">
+                    <div className="modal-title">Do you want to delete this post?</div>
+                    <Row>
+                        <Col>
+                            <Button onClick={() => {deletePost(item.id);setOpenModal(false)}}>yes</Button>
+                        </Col>
+                        <Col>
+                            <Button onClick={() => setOpenModal(false)}>no</Button>
+                        </Col>
+                    </Row>
+                </Col>
+            </Row>
+        </Modal>
+        <Col className={backgroundCls} xs={showViewCount ? 12 : 12/viewCount} sm={showViewCount ? 12 : 12/viewCount} md={showViewCount ? 4 : 12/viewCount}>
+            <div className="fake-background">
                 <Link className="link" to={{pathname: '/singlePost', search: queryParam}}>
                     <Row> 
-                        <Col xs={11} className="title-text">
+                        <Col xs={10} className="title-text">
                             {item.title.toUpperCase()}
+                        </Col>
+                        <Col xs={2}>
+                            {accountView && <div className="color-red delete-post" onClick={(e) => {e.preventDefault();e.stopPropagation();setOpenModal(true);}}>x</div>}
                         </Col>
                     </Row>
                     <Row className="hidden-text show-onhover left-align">
@@ -46,6 +63,7 @@ function Post({item, viewCount}) {
                 </Link>
             </div>
         </Col> 
+        </>
     );
 }
 

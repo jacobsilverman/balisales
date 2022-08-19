@@ -27,12 +27,27 @@
     }
 }
 
-
 a {
     text-decoration: none;
     display: block;
     width: 100%;
     height: 100%;
+}
+
+.delete-modal {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .background {
+        border: 2px solid black;
+        background-color: white;
+        height: 20%;
+    }
+    .modal-title {
+        padding-bottom: 20px;
+    }
 }
 
 .left-align {
@@ -58,10 +73,14 @@ a {
 }
 
 .hidden-text {
-    font-size: 3vmax ;
+    font-size: 3vmax;
     text-align: left;
     visibility: hidden;
     opacity: 0;
+}
+
+.delete-post {
+    font-size: 2.5vmax;
 }
 
 .color-red {
