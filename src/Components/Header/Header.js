@@ -30,12 +30,12 @@ function Header({isAuth, setIsAuth}) {
         <header className="App-header">
             <Container>
                 <Row>
-                    <Col xs={2} sm={2} md={2} className="remove-right-padding">
+                    <Col xs={2} sm={2} md={2} className="remove-right-padding icon-padding">
                         <a href="/">
                             <i className="material-icons home">home</i>
                         </a>
                     </Col>
-                    <Col  xs={2} sm={2} md={2} >
+                    <Col  xs={2} sm={2} md={2} className="icon-padding">
                         <Link className="white" to={{pathname: '/createPost'}}><i className="material-icons home">add</i></Link>
                         
                     </Col>

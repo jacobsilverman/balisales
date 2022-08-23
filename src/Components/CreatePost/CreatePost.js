@@ -6,6 +6,8 @@ import { brands, types } from '../../Data/Constants';
 import { addDoc, collection } from 'firebase/firestore';
 import { auth, db } from '../../firebase-config';
 
+import Upload from '../Upload';
+
 import './CreatePost.scss';
 
 function CreatePost() {
@@ -41,64 +43,78 @@ function CreatePost() {
     return (
         <Container className="create-container">
             <Row>
-                <Col>
-                    <h3>Create Post</h3>
+                <Col xs={12} className="center">
+                    <h2>Create Post</h2>
                 </Col>
             </Row>
             <Row>
-                <Col>
-                    <input onChange={(event) => setTitle(event.target.value)} />
-                    <label>:Title</label>
+                <Col xs={4} md={5} className="right">
+                    <label>Title:</label>
+                    
+                </Col>
+                <Col xs={8} md={7} className="left">
+                    <input className="input-width" onChange={(event) => setTitle(event.target.value)} />
                 </Col>
             </Row>
             <Row>
-                <Col>
-                    <input onChange={(event) => setPrice(event.target.value)} />
-                    <label>:Price</label>
+                <Col xs={4} md={5} className="right">
+                    <label>Price:</label>
+                </Col>
+                <Col xs={8} md={7} className="left">
+                    <input className="input-width" onChange={(event) => setPrice(event.target.value)} />
                 </Col>
             </Row>
             <Row>
-                <Col>
-                    <select value={brand} onChange={(event) => setBrand(event.target.value)}>
+                <Col xs={4} md={5} className="right">
+                    <label>Brand:</label>
+                </Col>
+                <Col xs={8} md={7} className="left">
+                    <select className="input-width" value={brand} onChange={(event) => setBrand(event.target.value)}>
                         <option value="default">default</option>
                         {getOptions(brands, brand)}
                     </select>
-                    <label>:Brand</label>
                 </Col>
             </Row>
             <Row>
-                <Col>
-                    <select value={condition} onChange={(event) => setCondition(event.target.value)}>
+                <Col xs={4} md={5} className="right">
+                    <label>Condition:</label>
+                </Col>
+                <Col xs={8} md={7} className="left">
+                    <select className="input-width" value={condition} onChange={(event) => setCondition(event.target.value)}>
                         <option value="default">default</option>
                         {getOptions([1,2,3,4,5,6,7,8,9,10], condition)}
                     </select>
-                    <label>:Condition</label>
                 </Col>
             </Row>
             <Row>
-                <Col>
-                    
-                    <select value={type} onChange={(event) => setType(event.target.value)}>
+                <Col xs={4} md={5} className="right">
+                    <label>Type:</label>
+                </Col>
+                <Col xs={8} md={7} className="left">
+                    <select className="input-width" value={type} onChange={(event) => setType(event.target.value)}>
                         <option value="default">default</option>
                         {getOptions(types, type)}
                     </select>
-                    <label>:Type</label>
                 </Col>
             </Row>
             <Row>
-                <Col>
-                    
-                    <input onChange={(event) => setDescription(event.target.value)} />
-                    <label>:Description</label>
+                <Col xs={4} md={5} className="right">
+                    <label>Description:</label>
+                </Col>
+                <Col xs={8} md={7} className="left">
+                    <input className="input-width" onChange={(event) => setDescription(event.target.value)} />
                 </Col>
             </Row>
             <Row>
-                <Col>
-                    <Button onClick={createPost}>Submit</Button>
+                <Upload />
+            </Row>
+            <Row>
+                <Col xs={12} className="center">
+                    <Button className="submit-button" onClick={createPost}>Submit</Button>
                 </Col>
             </Row>
         </Container>
-        );
+    );
 }
 
 export default CreatePost;
