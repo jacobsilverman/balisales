@@ -24,13 +24,14 @@ function CreatePost() {
         await addDoc(postsCollectionRef, {
             title,
             type,
-            brand,
+            brand, 
             condition,
             price,
             description,
             timeStamp: Date.now(),
             author: {name: auth?.currentUser?.displayName || 'anonymous', id: auth?.currentUser?.uid || 'none' }
         });
+
         window.location.pathname = "/";
     }
 
@@ -106,7 +107,9 @@ function CreatePost() {
                 </Col>
             </Row>
             <Row>
-                <Upload />
+                <Col className="center">
+                    <Upload />
+                </Col>
             </Row>
             <Row>
                 <Col xs={12} className="center">

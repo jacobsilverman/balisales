@@ -4,6 +4,7 @@ import Routing from './Routing';
 
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from './firebase-config';
+import { confirmPasswordReset } from 'firebase/auth';
 // import BuildMocks from './Data/Mocks/BuildMocks.js'
 
 function App() {
@@ -16,6 +17,8 @@ function App() {
       const allData = data.docs.map((doc) => ({ ...doc.data(), id: doc.id})).sort((prev, next) => {
         return (prev.timeStamp <= next.timeStamp) ? 1 : -1;
       });
+
+      console.log("allData: ", allData);
       setPosts(allData);
     }
     getPosts();

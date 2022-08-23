@@ -2,6 +2,8 @@ import { useState } from "react";
 import { storage } from "../../firebase-config.js";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 
+import { Button } from 'react-bootstrap';
+
 function Upload() {
     // State to store uploaded file
     const [file, setFile] = useState("");
@@ -37,6 +39,7 @@ function Upload() {
             },
             (err) => console.log(err),
             () => {
+                console.log("uploadTask.snapshot.ref: ", uploadTask.snapshot.ref);
                 // download url
                 getDownloadURL(uploadTask.snapshot.ref).then((url) => {
                     console.log(url);
@@ -48,8 +51,8 @@ function Upload() {
     return (
         <div>
             <input type="file" onChange={handleChange} accept="/image/*" />
-            <button onClick={handleUpload}>Upload to Firebase</button>
-            <p>{percent} "% done"</p>
+            <Button onClick={handleUpload}>Upload</Button>
+            <p>{percent}% done</p>
         </div>
     );
 }
