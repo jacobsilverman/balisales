@@ -29,11 +29,12 @@ function App() {
             console.error(error.code);
           });
         return parsedItem;
-      }).sort((prev, next) => {
-        return (prev.timeStamp <= next.timeStamp) ? 1 : -1;
       });
+      
       Promise.all(allData).then((result) => {
-        setPosts(result);
+        setPosts(result.sort((prev, next) => {
+          return (prev.timeStamp <= next.timeStamp) ? 1 : -1;
+        }));
       })
       
     })();

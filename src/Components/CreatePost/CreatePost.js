@@ -20,6 +20,8 @@ function CreatePost() {
     const [condition, setCondition] = useState("");
     const [price, setPrice] = useState("");
 
+    const [disableSubmit, setDisableSubmit] = useState(false);
+
     // State to store uploaded file
     const [file, setFile] = useState("");
 
@@ -33,6 +35,7 @@ function CreatePost() {
 
     const postsCollectionRef = collection(db, "posts");
     const createPost = async () => {
+        setDisableSubmit(true);
         await addDoc(postsCollectionRef, {
             title,
             type,
@@ -66,11 +69,7 @@ function CreatePost() {
                 },
                 (err) => console.log(err),
                 () => {
-                    console.log("uploadTask.snapshot.ref: ", uploadTask.snapshot.ref);
-                    // download url
-                    getDownloadURL(uploadTask.snapshot.ref).then((url) => {
-                        console.log(url);
-                    });
+                    window.location.pathname = "/";
                 }
             );
         });
@@ -159,7 +158,7 @@ function CreatePost() {
             </Row>
             <Row>
                 <Col xs={12} className="center">
-                    <Button className="submit-button" onClick={createPost}>Submit</Button>
+                    <Button disabled={disableSubmit} className="submit-button" onClick={createPost}>Submit</Button>
                 </Col>
             </Row>
         </Container>
