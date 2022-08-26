@@ -90,11 +90,3 @@ a {
 .color-green {
     color: greenyellow !important;
 }
-
-$tags: squid, kershaw, bradley, brs, mw, bbb, hom, bm, bs, jk, nrb;
-
-@each $tag in $tags {
-  .post-container.#{$tag} {
-    background-image: url('../../../Data/Constants/images/'+$tag+'.jpg');
-  }
-}

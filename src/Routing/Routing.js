@@ -8,7 +8,7 @@ import Account from '../Components/Account';
 import CreatePost from '../Components/CreatePost';
 import Header from '../Components/Header';
 
-function Routing({ Data, posts }) {
+function Routing({ posts }) {
     const [isAuth, setIsAuth] = useState(localStorage.getItem("isAuth"));
 
     return (
@@ -17,8 +17,8 @@ function Routing({ Data, posts }) {
                 <Header isAuth={isAuth} setIsAuth={setIsAuth} />
             </nav>
             <Routes>
-                <Route path='/' element={<Body Data={Data} />} />
-                <Route path='/singlePost' element={<SelectPost Data={Data} />} />
+                <Route path='/' element={<Body posts={posts} />} />
+                <Route path='/singlePost' element={<SelectPost />} />
                 <Route path='/account' element={<Account posts={posts} />} />
                 <Route path='/createPost' element={<CreatePost />} />
             </Routes>

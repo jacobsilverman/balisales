@@ -30,9 +30,7 @@ function Account({posts}) {
 	return (
 		<Container>
 			<Row className="account-container center">
-				<Col>
-					{filterPosts.length > 0 ? filterPosts?.map((item) => { return <Post item={item} key={item.id} accountView={true} deletePost={deletePost} />}) : "no posts available"}
-				</Col>
+				{filterPosts.length > 0 ? filterPosts?.map((item) => { return <Post item={item} key={item.id} accountView={true} deletePost={deletePost} />}) : "no posts available"}
 			</Row>
 		</Container>
 	);

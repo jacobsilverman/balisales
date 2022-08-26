@@ -13,7 +13,6 @@ function Post({item, viewCount, accountView, deletePost}) {
 
     const queryParam = 'item='+JSON.stringify(item);
 
-    const backgroundCls = `post-container ${item.brand}`;
     const priceCls = `price color-${useMemo(() => {return (item.type==='wts')?'red':(item.type==='wtb')?'green':''}, [item.type])}`;
     const showViewCount = isNaN(12/viewCount);
 
@@ -34,7 +33,7 @@ function Post({item, viewCount, accountView, deletePost}) {
                 </Col>
             </Row>
         </Modal>
-        <Col className={backgroundCls} xs={showViewCount ? 12 : 12/viewCount} sm={showViewCount ? 12 : 12/viewCount} md={showViewCount ? 4 : 12/viewCount}>
+        <Col className="post-container" style={{backgroundImage: `url(${item?.url})`}} id={item.id} xs={showViewCount ? 12 : 12/viewCount} sm={showViewCount ? 12 : 12/viewCount} md={showViewCount ? 4 : 12/viewCount}>
             <div className="fake-background">
                 <Link className="link" to={{pathname: '/singlePost', search: queryParam}}>
                     <Row> 

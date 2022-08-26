@@ -10,7 +10,7 @@ import { Button, Col, Container, Row } from 'react-bootstrap';
 
 import './Body.css';
 
-function Body({ Data }) {
+function Body({ posts }) {
     const [min, setMin] = useState(0);
     const [max, setMax] = useState(10000000000000);
     const [brand, setBrand] = useState('default');
@@ -37,7 +37,7 @@ function Body({ Data }) {
         })
     }
 
-    let MockData = sortData(Data);
+    let MockData = sortData(posts);
 
     const parseData = () => {
         var partition = [];
@@ -64,8 +64,6 @@ function Body({ Data }) {
         setWindowScroll(window.pageYOffset > 99);
     });
 
-    const data = parseData();
-
     const topFix = (windowScroll) ? 'fixed-top' : '';
     const openFilterButton = (<Button className={topFix} onClick={() => {setFilter(true)}}>FILTER</Button>);
     const displayFilter = (
@@ -87,12 +85,12 @@ function Body({ Data }) {
             <Row className='right'>
                 {(filter && displayFilter) || openFilterButton}
                 <Col xs={filter ? 9 : 12} sm={filter ? 10 : 12} className='padding'>
-                    {data?.map((array, k) => {
+                    {parseData()?.map((array, k) => {
                         return (
                             <Row key={k}>
                                 {array.map((item) => {
                                     return (
-                                        <Post item={item} viewCount={viewCount} key={item.key} />
+                                        <Post item={item} viewCount={viewCount} key={item.id} />
                                     )
                                 })}
                             </Row>

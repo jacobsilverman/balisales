@@ -6,7 +6,9 @@ import { brands, types } from '../../Data/Constants';
 import { addDoc, collection } from 'firebase/firestore';
 import { auth, db } from '../../firebase-config';
 
-import Upload from '../Upload';
+// import Upload from '../Upload';
+import { storage } from "../../firebase-config.js";
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 
 import './CreatePost.scss';
 
@@ -18,6 +20,16 @@ function CreatePost() {
     const [condition, setCondition] = useState("");
     const [price, setPrice] = useState("");
 
+    // State to store uploaded file
+    const [file, setFile] = useState("");
+
+    // progress
+    const [percent, setPercent] = useState(0);
+    
+    // Handle file upload event and update state
+    function handleChange(event) {
+        setFile(event.target.files[0]);
+    }
 
     const postsCollectionRef = collection(db, "posts");
     const createPost = async () => {
@@ -30,9 +42,40 @@ function CreatePost() {
             description,
             timeStamp: Date.now(),
             author: {name: auth?.currentUser?.displayName || 'anonymous', id: auth?.currentUser?.uid || 'none' }
+        }).then((result) => {
+            if (!file) {
+                alert("Please upload an image first!");
+            }
+        
+            const storageRef = ref(storage, `/files/${result.id}`);
+        
+            // progress can be paused and resumed. It also exposes progress updates.
+            // Receives the storage reference and the file to upload.
+            const uploadTask = uploadBytesResumable(storageRef, file);
+        
+            uploadTask.on(
+                "state_changed",
+                (snapshot) => {
+                    const percent = Math.round(
+                        (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+                    );
+                    console.log("percent");
+        
+                    // update progress
+                    setPercent(percent);
+                },
+                (err) => console.log(err),
+                () => {
+                    console.log("uploadTask.snapshot.ref: ", uploadTask.snapshot.ref);
+                    // download url
+                    getDownloadURL(uploadTask.snapshot.ref).then((url) => {
+                        console.log(url);
+                    });
+                }
+            );
         });
 
-        window.location.pathname = "/";
+        // window.location.pathname = "/";
     }
 
     const getOptions = (options) => {
@@ -108,7 +151,10 @@ function CreatePost() {
             </Row>
             <Row>
                 <Col className="center">
-                    <Upload />
+                <div>
+                    <input type="file" onChange={handleChange} accept="/image/*" />
+                    <span>{percent}% done</span>
+                </div>
                 </Col>
             </Row>
             <Row>
