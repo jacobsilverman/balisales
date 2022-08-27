@@ -25,11 +25,3 @@
     background-repeat: none;
     background-size: 100% 100%;
 }
-
-$tags: squid, kershaw, bradley, brs, mw, bbb, hom, bm, bs, jk, nrb;
-
-@each $tag in $tags {
-  .#{$tag} {
-    background-image: url('../../Data/Constants/images/'+$tag+'.jpg');
-  }
-}

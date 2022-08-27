@@ -40,7 +40,7 @@ function Header({isAuth, setIsAuth}) {
                         
                     </Col>
                     <Col xs={4} sm={4} md={4} className="center title">
-                        Sales 
+                        <h1 style={{fontSize:"50px"}}>Sales</h1>
                     </Col>
                     <Col xs={4} sm={4} md={4} className="login-padding">
                         <Row>

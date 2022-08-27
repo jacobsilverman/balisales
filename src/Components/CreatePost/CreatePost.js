@@ -113,8 +113,19 @@ function CreatePost() {
                 </Col>
                 <Col xs={8} md={7} className="left">
                     <select className="input-width" value={brand} onChange={(event) => setBrand(event.target.value)}>
-                        <option value="default">default</option>
+                        <option value="default">select</option>
                         {getOptions(brands, brand)}
+                    </select>
+                </Col>
+            </Row>
+            <Row>
+                <Col xs={4} md={5} className="right">
+                    <label>Business:</label>
+                </Col>
+                <Col xs={8} md={7} className="left">
+                    <select className="input-width" value={type} onChange={(event) => setType(event.target.value)}>
+                        <option value="default">select</option>
+                        {getOptions(types, type)}
                     </select>
                 </Col>
             </Row>
@@ -124,19 +135,8 @@ function CreatePost() {
                 </Col>
                 <Col xs={8} md={7} className="left">
                     <select className="input-width" value={condition} onChange={(event) => setCondition(event.target.value)}>
-                        <option value="default">default</option>
+                        <option value="default">select</option>
                         {getOptions([1,2,3,4,5,6,7,8,9,10], condition)}
-                    </select>
-                </Col>
-            </Row>
-            <Row>
-                <Col xs={4} md={5} className="right">
-                    <label>Type:</label>
-                </Col>
-                <Col xs={8} md={7} className="left">
-                    <select className="input-width" value={type} onChange={(event) => setType(event.target.value)}>
-                        <option value="default">default</option>
-                        {getOptions(types, type)}
                     </select>
                 </Col>
             </Row>

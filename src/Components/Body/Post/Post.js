@@ -11,7 +11,7 @@ import { Button, Col, Row } from 'react-bootstrap';
 function Post({item, viewCount, accountView, deletePost}) {
     const [openModal, setOpenModal] = useState(false);
 
-    const queryParam = 'item='+JSON.stringify(item);
+    const queryParam = 'id='+item.id;
 
     const priceCls = `price color-${useMemo(() => {return (item.type==='wts')?'red':(item.type==='wtb')?'green':''}, [item.type])}`;
     const showViewCount = isNaN(12/viewCount);
@@ -20,13 +20,15 @@ function Post({item, viewCount, accountView, deletePost}) {
         <>
         <Modal open={openModal}>
             <Row className="delete-modal">
-                <Col xs={2} className="background center">
-                    <div className="modal-title">Do you want to delete this post?</div>
+                <Col xs={5} sm={5} md={2} className="background center">
                     <Row>
-                        <Col>
+                        <Col className="modal-title">Do you want to delete this post?</Col>
+                    </Row>
+                    <Row>
+                        <Col xs={6}>
                             <Button onClick={() => {deletePost(item.id);setOpenModal(false)}}>yes</Button>
                         </Col>
-                        <Col>
+                        <Col xs={6}>
                             <Button onClick={() => setOpenModal(false)}>no</Button>
                         </Col>
                     </Row>

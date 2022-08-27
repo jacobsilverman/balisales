@@ -18,7 +18,7 @@ function Routing({ posts }) {
             </nav>
             <Routes>
                 <Route path='/' element={<Body posts={posts} />} />
-                <Route path='/singlePost' element={<SelectPost />} />
+                <Route path='/singlePost' element={<SelectPost posts={posts} />} />
                 <Route path='/account' element={<Account posts={posts} />} />
                 <Route path='/createPost' element={<CreatePost />} />
             </Routes>

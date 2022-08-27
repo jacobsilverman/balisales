@@ -4,17 +4,17 @@ import './SelectPost.scss';
 
 import { Col, Row } from 'react-bootstrap';
 
-function SelectPost() {
+function SelectPost({posts}) {
     const urlSearchParams = new URLSearchParams(window.location.search);
     const params = Object.fromEntries(urlSearchParams.entries());
-    const user = JSON.parse(params.item);
-
-    const imageCls = `image-container ${user.brand}`;
+    
+    const user = posts.find((ele) => ele.id === params.id);
+    console.log(user);
 
     return (
         <Fragment>
             <Row>
-                <Col xs={11} sm={11} md={6} className={imageCls} />
+                <Col xs={11} sm={11} md={6} className="image-container" style={{backgroundImage: `url(${user?.url})`}}/>
             </Row>
             <Row>
                 <Col xs={11} sm={11} md={6} className="info-container">
