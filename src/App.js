@@ -32,9 +32,10 @@ function App() {
       });
       
       Promise.all(allData).then((result) => {
-        setPosts(result.sort((prev, next) => {
+        const sortedData = result.sort((prev, next) => {
           return (prev.timeStamp <= next.timeStamp) ? 1 : -1;
-        }));
+        });
+        setPosts(sortedData);
       })
       
     })();
