@@ -70,3 +70,22 @@
 .white {
     color: white;
 }
+
+.account-dropdown {
+    right: 0px;
+    position: relative;
+    background-color: blue;
+    color: black;
+}
+
+.visible {
+    opacity: 1;
+    visibility: visible;
+    display: block;
+}
+
+.hidden {
+    opacity: 0;
+    visibility: hidden;
+    display: block;
+}

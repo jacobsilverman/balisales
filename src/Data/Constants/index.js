@@ -1,4 +1,4 @@
-export const brands = ['squid', 'kershaw', 'bradley', 'brs', 'mw', 'bbb', 'hom', 'bm', 'bs', 'jk', 'nrb'];
+export const brands = ['baliplus', 'squid', 'kershaw', 'bradley', 'brs', 'mw', 'bbbarfly', 'hom', 'bm', 'bs', 'jk', 'nrb', 'svix', 'heibel', 'hypex', 'glidrco', 'mantis', 'theone', 'fellowship', 'biegler', 'flytanium', 'misc'];
 
 export const usernames = ['flipwrists', 'drigk', 'santa', 'gregg', 'sammy', 'retail'];
 

@@ -94,7 +94,7 @@ function Body({ posts }) {
                                     )
                                 })}
                             </Row>
-                        )
+                        );
                     })}
                 </Col>
             </Row>
