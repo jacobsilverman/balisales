@@ -13,6 +13,7 @@
     margin-left: 0px;
     margin-right: 0px;
     min-width: 100%;
+    min-height: 75px;
 }
 
 .home {
@@ -72,9 +73,10 @@
 }
 
 .account-dropdown {
+    border: .5px solid black;
     right: 0px;
     position: relative;
-    background-color: blue;
+    background-color: white;
     color: black;
 }
 
@@ -87,5 +89,22 @@
 .hidden {
     opacity: 0;
     visibility: hidden;
-    display: block;
+    display: none;
+}
+
+.account-profile {
+    background-size: 100px;
+    width: 100px;
+    height: 70px;
+    border: 1px solid;
+    text-shadow: white 0px 0px 2px;
+    font-size: 16px;
+}
+
+.popover-container {
+    left: -20px !important;
+}
+
+.popover-item {
+    border: .2px solid black;
 }
