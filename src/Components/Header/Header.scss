@@ -73,7 +73,7 @@
 }
 
 .account-dropdown {
-    border: .5px solid black;
+    box-shadow: pink -5px 5px;
     right: 0px;
     position: relative;
     background-color: white;
@@ -93,18 +93,16 @@
 }
 
 .account-profile {
-    background-size: 100px;
-    width: 100px;
-    height: 70px;
-    border: 1px solid;
-    text-shadow: white 0px 0px 2px;
-    font-size: 16px;
+    background-size: 60px;
+    width: 60px;
+    height: 60px;
+    border-radius: 35px;
 }
 
 .popover-container {
-    left: -20px !important;
+    left: -10px !important;
 }
 
 .popover-item {
-    border: .2px solid black;
+    border: 1px solid black;
 }

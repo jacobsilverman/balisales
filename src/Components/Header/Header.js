@@ -9,10 +9,15 @@ import { auth, provider } from '../../firebase-config';
 import { signInWithPopup, signOut } from 'firebase/auth';
 import { useNavigate }   from 'react-router-dom';
 
+import { doc, setDoc, collection, getDocs } from 'firebase/firestore';
+import { db } from '../../firebase-config';
+
 import Button from '@mui/material/Button';
 
 function Header({isAuth, setIsAuth}) {
     let navigate = useNavigate();
+    
+    const [showAccount, setShowAccount] = useState(false);
 
     const signUserOut = () => {
         signOut(auth, provider).then(() => {
@@ -24,13 +29,31 @@ function Header({isAuth, setIsAuth}) {
     }
 
     const signInWithGoogle = () => {
-        signInWithPopup(auth, provider).then(() => {
+        signInWithPopup(auth, provider).then((result) => {
             setIsAuth(true);
             localStorage.setItem("isAuth", true);
+            console.log(result);
+            createUser(result.user);
+            localStorage.setItem("uid", result?.user?.uid);
         })
     }
 
-    const [showAccount, setShowAccount] = useState(false);
+    // const postsCollectionRef = collection(db, "accounts");
+
+    const createUser = async (user) => {
+        // console.log(user);
+        // const data = await getDocs(postsCollectionRef);
+        const currentUserDoc = doc(db, "accounts", user?.uid);
+        try {
+            await setDoc(currentUserDoc, {
+                id: user?.uid
+            });
+        }
+        catch{
+            console.log("new");
+        }
+        
+    }
 
     const accountVisibilityCls = `account-dropdown ${showAccount ? "visible" : 'hidden'}`;
 
@@ -51,7 +74,9 @@ function Header({isAuth, setIsAuth}) {
                         <Col xs={4} className="popover-item">
                             <div className="center">Profile</div>
                             <Button>
-                                <svg className="" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="AttributionIcon" tabIndex="-1" title="Attribution"><path d="M12 8.5c-.91 0-2.75.46-2.75 1.38v4.62h1.5V19h2.5v-4.5h1.5V9.88c0-.91-1.84-1.38-2.75-1.38z"></path><path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"></path><circle cx="12" cy="6.5" r="1.5"></circle></svg>
+                                <Link className="white" to={{pathname: '/profile'}}>
+                                    <svg className="" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="AttributionIcon" tabIndex="-1" title="Attribution"><path d="M12 8.5c-.91 0-2.75.46-2.75 1.38v4.62h1.5V19h2.5v-4.5h1.5V9.88c0-.91-1.84-1.38-2.75-1.38z"></path><path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"></path><circle cx="12" cy="6.5" r="1.5"></circle></svg>
+                                </Link>
                             </Button>
                             
                         </Col>
@@ -59,13 +84,14 @@ function Header({isAuth, setIsAuth}) {
                             
                             <div className="center">Settings</div>
                             <Button>
-                                <svg className="" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="SettingsIcon" tabIndex="-1" title="Settings"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"></path></svg>
-                               
+                                <Link className="white" to={{pathname: '/settings'}}>
+                                    <svg className="" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="SettingsIcon" tabIndex="-1" title="Settings"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"></path></svg>
+                                </Link>
                             </Button>
                         </Col>
                     </Row>
                     
-                    <Row>
+                    <Row  className="popover-item">
                         <Button onClick={signUserOut}>
                             <Col className="right" xs={10}>
                                 <span>Logout</span>
@@ -104,7 +130,7 @@ function Header({isAuth, setIsAuth}) {
                                     : 
                                     <OverlayTrigger trigger="click" placement="bottom" overlay={popover}>
                                         <Button onClick={() => setShowAccount(!showAccount)}>
-                                            <div className="right account-profile" style={{backgroundImage: `url("https://firebasestorage.googleapis.com/v0/b/balisongsales.appspot.com/o/files%2Fz01Eer1ynS5ePoKpWPqj?alt=media&token=78503e7e-6700-440f-b0b6-6f579cba0552")`}} />
+                                            <div className="account-profile" style={{backgroundImage: `url("https://lh3.googleusercontent.com/a/AItbvmn7nRSKesEzx-apbPQ5-oeSIWjACpXkxPbkCSJ7=s96-c")`}} />
                                         </Button>
                                     </OverlayTrigger>}
                                 </Col>
