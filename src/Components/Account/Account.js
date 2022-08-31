@@ -7,6 +7,7 @@ import { Container, Col, Row } from 'react-bootstrap';
 import Post from '../Body/Post';
 import './Account.scss';
 
+import { getStorage, ref, deleteObject } from "firebase/storage";
 import { doc, deleteDoc } from 'firebase/firestore';
 import { db } from '../../firebase-config';
 
@@ -22,8 +23,12 @@ function Account({ posts }) {
 	}, [posts]);
 	
     const deletePost = async (id) => {
+		const storage = getStorage();
         const postDoc = doc(db, "posts", id);
+		const pictureRef = ref(storage, 'files/' + id);
+
         await deleteDoc(postDoc);
+		await deleteObject(pictureRef);
 		setFilterPosts(
 			filterPosts?.filter((ele) => {
 				return ele.id !== id;

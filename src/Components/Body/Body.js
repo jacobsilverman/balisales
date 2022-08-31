@@ -37,17 +37,17 @@ function Body({ posts }) {
         })
     }
 
-    let MockData = sortData(posts);
+    let allPosts = sortData(posts);
 
     const parseData = () => {
         var partition = [];
         var parsedData = [];
-        for (var i=0; i<=MockData.length; i++){
-            if (partition.length === viewCount || i === MockData.length) {
+        for (var i=0; i<=allPosts.length; i++){
+            if (partition.length === viewCount || i === allPosts.length) {
                 parsedData.push(partition);
                 partition = [];
             }
-            validFilter(MockData[i]) && partition.push(MockData[i]);
+            validFilter(allPosts[i]) && partition.push(allPosts[i]);
         }
 
         return parsedData;
