@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 
 import { getUserInfo, setUserInfo } from '../../Data/Services/userInfo.js';
@@ -6,6 +6,7 @@ import { getUserInfo, setUserInfo } from '../../Data/Services/userInfo.js';
 import Button from '@mui/material/Button';
 
 function Settings() {
+    const [id, setId] = useState('');
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [displayName, setDisplayName] = useState('');
@@ -13,11 +14,17 @@ function Settings() {
     const [instagram, setInstagram] = useState('');
     const [facebook, setFacebook] = useState('');
     
-    const setUser = (payload) => {
+    useEffect(() => {
         getUserInfo().then((result) => {
-            setUserInfo({ ...result, ...payload });
+            setId(result.id);
+            setFirstName(result.firstName);
+            setLastName(result.lastName);
+            setDisplayName(result.displayName);
+            setPhoneNumber(result.phoneNumber);
+            setInstagram(result.instagram);
+            setFacebook(result.facebook);
         });
-    }
+    }, []);
 
     return (
         <Container>
@@ -28,7 +35,7 @@ function Settings() {
                             <label>First name</label>
                         </Col>
                         <Col xs={12}>
-                            <input onChange={(event) => setFirstName(event.target.value)} />
+                            <input value={firstName} onChange={(event) => setFirstName(event.target.value)} />
                         </Col>
                     </Row>
                     <Row>
@@ -36,7 +43,7 @@ function Settings() {
                             <label>Last name</label>
                         </Col>
                         <Col xs={12}>
-                            <input onChange={(event) => setLastName(event.target.value)} />
+                            <input value={lastName} onChange={(event) => setLastName(event.target.value)} />
                         </Col>
                     </Row>
                     <Row>
@@ -44,7 +51,7 @@ function Settings() {
                             <label>Display name</label>
                         </Col>
                         <Col xs={12}>
-                            <input onChange={(event) => setDisplayName(event.target.value)} />
+                            <input value={displayName} onChange={(event) => setDisplayName(event.target.value)} />
                         </Col>
                     </Row>
                     <Row>
@@ -52,7 +59,7 @@ function Settings() {
                             <label>Phone number</label>
                         </Col>
                         <Col xs={12}>
-                            <input onChange={(event) => setPhoneNumber(event.target.value)} />
+                            <input value={phoneNumber} onChange={(event) => setPhoneNumber(event.target.value)} />
                         </Col>
                     </Row>
                     <Row>
@@ -68,7 +75,7 @@ function Settings() {
                             <label>Instagram Url</label>
                         </Col>
                         <Col xs={12}>
-                            <input onChange={(event) => setInstagram(event.target.value)} />
+                            <input value={instagram} onChange={(event) => setInstagram(event.target.value)} />
                         </Col>
                     </Row>
                     <Row>
@@ -76,12 +83,12 @@ function Settings() {
                             <label>Facebook Url</label>
                         </Col>
                         <Col xs={12}>
-                            <input onChange={(event) => setFacebook(event.target.value)} />
+                            <input value={facebook} onChange={(event) => setFacebook(event.target.value)} />
                         </Col>
                     </Row>
                     <Row>
                         <Col xs={12}>
-                            <Button onClick={() => setUser({firstName, lastName, displayName, phoneNumber, instagram, facebook})}>
+                            <Button onClick={() => setUserInfo({id, firstName, lastName, displayName, phoneNumber, instagram, facebook})}>
                                 Submit
                             </Button>
                         </Col>
