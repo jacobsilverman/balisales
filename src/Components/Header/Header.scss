@@ -73,7 +73,8 @@
 }
 
 .account-dropdown {
-    box-shadow: pink -5px 5px;
+    box-shadow: grey -5px 5px;
+    border-radius: 10px;
     right: 0px;
     position: relative;
     background-color: white;
@@ -97,10 +98,6 @@
     width: 60px;
     height: 60px;
     border-radius: 35px;
-}
-
-.popover-container {
-    left: -10px !important;
 }
 
 .popover-item {

@@ -2,15 +2,13 @@ import { Fragment, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import './Header.scss';
+import { setUserLogin } from '../../Data/Services/userInfo.js';
 
 import { Col, Container, OverlayTrigger, Popover, Row } from 'react-bootstrap';
 
 import { auth, provider } from '../../firebase-config';
 import { signInWithPopup, signOut } from 'firebase/auth';
 import { useNavigate }   from 'react-router-dom';
-
-import { doc, setDoc, collection, getDocs } from 'firebase/firestore';
-import { db } from '../../firebase-config';
 
 import Button from '@mui/material/Button';
 
@@ -25,6 +23,8 @@ function Header({isAuth, setIsAuth}) {
             setShowAccount(false);
             navigate("/");
             localStorage.clear();
+            localStorage.setItem("uid", "");
+            console.log("user id: ",localStorage.getItem("uid"));
         })
     }
 
@@ -33,26 +33,10 @@ function Header({isAuth, setIsAuth}) {
             setIsAuth(true);
             localStorage.setItem("isAuth", true);
             console.log(result);
-            createUser(result.user);
+            setUserLogin(result.user);
             localStorage.setItem("uid", result?.user?.uid);
+            console.log("user id: ",localStorage.getItem("uid"));
         })
-    }
-
-    // const postsCollectionRef = collection(db, "accounts");
-
-    const createUser = async (user) => {
-        // console.log(user);
-        // const data = await getDocs(postsCollectionRef);
-        const currentUserDoc = doc(db, "accounts", user?.uid);
-        try {
-            await setDoc(currentUserDoc, {
-                id: user?.uid
-            });
-        }
-        catch{
-            console.log("new");
-        }
-        
     }
 
     const accountVisibilityCls = `account-dropdown ${showAccount ? "visible" : 'hidden'}`;
@@ -78,10 +62,8 @@ function Header({isAuth, setIsAuth}) {
                                     <svg className="" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="AttributionIcon" tabIndex="-1" title="Attribution"><path d="M12 8.5c-.91 0-2.75.46-2.75 1.38v4.62h1.5V19h2.5v-4.5h1.5V9.88c0-.91-1.84-1.38-2.75-1.38z"></path><path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"></path><circle cx="12" cy="6.5" r="1.5"></circle></svg>
                                 </Link>
                             </Button>
-                            
                         </Col>
                         <Col xs={4} className="popover-item">
-                            
                             <div className="center">Settings</div>
                             <Button>
                                 <Link className="white" to={{pathname: '/settings'}}>
@@ -90,7 +72,6 @@ function Header({isAuth, setIsAuth}) {
                             </Button>
                         </Col>
                     </Row>
-                    
                     <Row  className="popover-item">
                         <Button onClick={signUserOut}>
                             <Col className="right" xs={10}>
@@ -124,10 +105,10 @@ function Header({isAuth, setIsAuth}) {
                         </Col>
                         <Col xs={4} sm={4} md={4} className="login-padding">
                             <Row>
-                                <Col xs={12} className="right pointer">
+                                <Col xs={12} className="right">
                                     {!isAuth
                                     ? <Button onClick={signInWithGoogle}>Login</Button>
-                                    : 
+                                    :
                                     <OverlayTrigger trigger="click" placement="bottom" overlay={popover}>
                                         <Button onClick={() => setShowAccount(!showAccount)}>
                                             <div className="account-profile" style={{backgroundImage: `url("https://lh3.googleusercontent.com/a/AItbvmn7nRSKesEzx-apbPQ5-oeSIWjACpXkxPbkCSJ7=s96-c")`}} />
