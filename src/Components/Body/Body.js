@@ -8,7 +8,7 @@ import Filter from './Filter';
 
 import { Button, Col, Container, Row } from 'react-bootstrap';
 
-import './Body.css';
+import './Body.scss';
 
 function Body({ posts }) {
     const [min, setMin] = useState(0);
