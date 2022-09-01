@@ -28,7 +28,7 @@ export const getUserInfo = async () => {
 export const setUserInfo = async (payload, file) => {
     const pictureRef = ref(storage, `/profiles/${uid}`);
     const currentUserDoc = doc(db, "accounts", uid);
-    uploadBytesResumable(pictureRef, file);
+    await uploadBytesResumable(pictureRef, file);
     await setDoc(currentUserDoc, payload);
     window.location.reload(false);
 }
