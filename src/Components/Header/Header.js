@@ -1,8 +1,8 @@
-import { Fragment, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import './Header.scss';
-import { setUserLogin } from '../../Data/Services/userInfo.js';
+import { setUserLogin, getProfilePicture } from '../../Data/Services/userInfo.js';
 
 import { Col, Container, OverlayTrigger, Popover, Row } from 'react-bootstrap';
 
@@ -10,14 +10,19 @@ import { auth, provider } from '../../firebase-config';
 import { signInWithPopup, signOut } from 'firebase/auth';
 import { useNavigate }   from 'react-router-dom';
 
-import profileImage from '../../Data/Images/background.jpg';
-
 import Button from '@mui/material/Button';
 
 function Header({isAuth, setIsAuth}) {
     let navigate = useNavigate();
     
     const [showAccount, setShowAccount] = useState(false);
+    const [profilePic, setProfilePic] = useState('');
+
+    useEffect(() => {
+        getProfilePicture().then((result ) => {
+            setProfilePic(result);
+        });
+    }, []);
 
     const signUserOut = () => {
         signOut(auth, provider).then(() => {
@@ -87,7 +92,7 @@ function Header({isAuth, setIsAuth}) {
                 </Col>
             </Row>
         </Popover>
-      );
+    );
 
     return (
         <Fragment>
@@ -105,7 +110,7 @@ function Header({isAuth, setIsAuth}) {
                         <Col xs={4} sm={4} md={4} className="center title">
                             <h1 style={{fontSize:"40px",fontFamily:"roboto",paddingTop:"10px"}}>Sales</h1>
                         </Col>
-                        <Col xs={4} sm={4} md={4} className="login-padding">
+                        <Col xs={4} sm={4} md={4} className="login-container">
                             <Row>
                                 <Col xs={12} className="right">
                                     {!isAuth
@@ -113,7 +118,7 @@ function Header({isAuth, setIsAuth}) {
                                     :
                                     <OverlayTrigger trigger="click" placement="bottom" overlay={popover}>
                                         <Button onClick={() => setShowAccount(!showAccount)}>
-                                            <div className="account-profile" style={{backgroundImage: `url(${profileImage})`}} />
+                                            <div className="account-profile" style={{backgroundImage: `url(${profilePic})`}} />
                                         </Button>
                                     </OverlayTrigger>}
                                 </Col>

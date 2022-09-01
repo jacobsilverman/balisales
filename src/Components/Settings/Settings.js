@@ -13,6 +13,7 @@ function Settings() {
     const [phoneNumber, setPhoneNumber] = useState('');
     const [instagram, setInstagram] = useState('');
     const [facebook, setFacebook] = useState('');
+    const [file, setFile] = useState('');
     
     useEffect(() => {
         getUserInfo().then((result) => {
@@ -25,6 +26,10 @@ function Settings() {
             setFacebook(result.facebook);
         });
     }, []);
+
+    function handleChange(event) {
+        setFile(event.target.files[0]);
+    }
 
     return (
         <Container>
@@ -67,7 +72,7 @@ function Settings() {
                             <label>Profile Picture</label>
                         </Col>
                         <Col xs={12}>
-                            <input />
+                            <input type="file" onChange={handleChange} accept="/image/*" />
                         </Col>
                     </Row>
                     <Row>
@@ -88,7 +93,7 @@ function Settings() {
                     </Row>
                     <Row>
                         <Col xs={12}>
-                            <Button onClick={() => setUserInfo({id, firstName, lastName, displayName, phoneNumber, instagram, facebook})}>
+                            <Button onClick={() => setUserInfo({id, firstName, lastName, displayName, phoneNumber, instagram, facebook}, file)}>
                                 Submit
                             </Button>
                         </Col>

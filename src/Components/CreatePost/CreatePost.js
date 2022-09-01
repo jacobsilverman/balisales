@@ -8,7 +8,7 @@ import { auth, db } from '../../firebase-config';
 
 // import Upload from '../Upload';
 import { storage } from "../../firebase-config.js";
-import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { ref, uploadBytesResumable } from "firebase/storage";
 
 import './CreatePost.scss';
 
@@ -51,9 +51,6 @@ function CreatePost() {
             }
         
             const storageRef = ref(storage, `/files/${result.id}`);
-        
-            // progress can be paused and resumed. It also exposes progress updates.
-            // Receives the storage reference and the file to upload.
             const uploadTask = uploadBytesResumable(storageRef, file);
         
             uploadTask.on(
@@ -62,9 +59,6 @@ function CreatePost() {
                     const percent = Math.round(
                         (snapshot.bytesTransferred / snapshot.totalBytes) * 100
                     );
-                    console.log("percent");
-        
-                    // update progress
                     setPercent(percent);
                 },
                 (err) => console.log(err),
@@ -73,8 +67,6 @@ function CreatePost() {
                 }
             );
         });
-
-        // window.location.pathname = "/";
     }
 
     const getOptions = (options) => {
@@ -150,10 +142,10 @@ function CreatePost() {
             </Row>
             <Row>
                 <Col className="center">
-                <div>
-                    <input type="file" onChange={handleChange} accept="/image/*" />
-                    <span>{percent}% done</span>
-                </div>
+                    <div>
+                        <input type="file" onChange={handleChange} accept="/image/*" />
+                        <span>{percent}% done</span>
+                    </div>
                 </Col>
             </Row>
             <Row>

@@ -50,10 +50,6 @@
     padding-top: 5px;
 }
 
-.login-padding {
-    padding-right: 25px;
-}
-
 .right {
     text-align: right;
 }
@@ -94,11 +90,16 @@
     display: none;
 }
 
+.login-container {
+    padding-right: 25px;
+}
+
 .account-profile {
     background-size: 60px;
     width: 60px;
     height: 60px;
     border-radius: 35px;
+    object-fit: contain;
 }
 
 .popover-item {

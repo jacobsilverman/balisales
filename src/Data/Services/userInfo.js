@@ -1,5 +1,6 @@
 import { doc, getDoc, setDoc } from 'firebase/firestore';
-import { db } from '../../firebase-config';
+import { db, storage } from '../../firebase-config';
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 
 const uid = localStorage.getItem("uid");
 
@@ -11,7 +12,6 @@ export const setUserLogin = async (user) => {
             await setDoc(currentUserDoc, {
                 id: user?.uid
             });
-            console.log("hit");
         }
     }
     catch{
@@ -25,7 +25,15 @@ export const getUserInfo = async () => {
     return docSnap.data();
 }
 
-export const setUserInfo = async (payload) => {
+export const setUserInfo = async (payload, file) => {
+    const pictureRef = ref(storage, `/profiles/${uid}`);
     const currentUserDoc = doc(db, "accounts", uid);
-    return await setDoc(currentUserDoc, payload);
+    uploadBytesResumable(pictureRef, file);
+    await setDoc(currentUserDoc, payload);
+    window.location.reload(false);
+}
+
+export const getProfilePicture = async () => {
+    const pictureRef = ref(storage, `/profiles/${uid}`);
+    return await getDownloadURL(pictureRef);
 }

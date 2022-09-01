@@ -9,7 +9,6 @@ function SelectPost({posts}) {
     const params = Object.fromEntries(urlSearchParams.entries());
     
     const user = posts.find((ele) => ele.id === params.id);
-    console.log(user);
 
     return (
         <Fragment>

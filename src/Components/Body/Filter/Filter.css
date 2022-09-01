@@ -38,4 +38,5 @@
     padding: 0px;
     background-color: white;
     border-radius: 0 10px 10px 0;
+    max-height: 300px;
 }
