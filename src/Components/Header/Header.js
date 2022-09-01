@@ -10,6 +10,8 @@ import { auth, provider } from '../../firebase-config';
 import { signInWithPopup, signOut } from 'firebase/auth';
 import { useNavigate }   from 'react-router-dom';
 
+import profileImage from '../../Data/Images/background.jpg';
+
 import Button from '@mui/material/Button';
 
 function Header({isAuth, setIsAuth}) {
@@ -101,7 +103,7 @@ function Header({isAuth, setIsAuth}) {
                             <Link className="white" to={{pathname: '/createPost'}}><i className="material-icons home">add</i></Link>
                         </Col>
                         <Col xs={4} sm={4} md={4} className="center title">
-                            <h1 style={{fontSize:"50px"}}>Sales</h1>
+                            <h1 style={{fontSize:"40px",fontFamily:"roboto",paddingTop:"10px"}}>Sales</h1>
                         </Col>
                         <Col xs={4} sm={4} md={4} className="login-padding">
                             <Row>
@@ -111,7 +113,7 @@ function Header({isAuth, setIsAuth}) {
                                     :
                                     <OverlayTrigger trigger="click" placement="bottom" overlay={popover}>
                                         <Button onClick={() => setShowAccount(!showAccount)}>
-                                            <div className="account-profile" style={{backgroundImage: `url("https://lh3.googleusercontent.com/a/AItbvmn7nRSKesEzx-apbPQ5-oeSIWjACpXkxPbkCSJ7=s96-c")`}} />
+                                            <div className="account-profile" style={{backgroundImage: `url(${profileImage})`}} />
                                         </Button>
                                     </OverlayTrigger>}
                                 </Col>

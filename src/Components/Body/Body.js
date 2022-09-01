@@ -12,7 +12,7 @@ import './Body.scss';
 
 function Body({ posts }) {
     const [min, setMin] = useState(0);
-    const [max, setMax] = useState(10000000000000);
+    const [max, setMax] = useState(10000);
     const [brand, setBrand] = useState('default');
     const [type, setType] = useState('default');
     const [filter, setFilter] = useState(true); // whether the filter is open or not
@@ -22,7 +22,7 @@ function Body({ posts }) {
 
     const resetFilter = () => {
         setMin(0);
-        setMax(10000000000000);
+        setMax(10000);
         setBrand('default');
         setType('default');
         setSort('default');
@@ -65,7 +65,7 @@ function Body({ posts }) {
     });
 
     const topFix = (windowScroll) ? 'fixed-top' : '';
-    const openFilterButton = (<Button className={topFix} onClick={() => {setFilter(true)}}>FILTER</Button>);
+    const openFilterButton = (<span className="filter-button-containter"><Button className={'filter-button ' + topFix} onClick={() => {setFilter(true)}}><b>FILTER</b></Button></span>);
     const displayFilter = (
         <Col xs={3} sm={2} className={'filter-container ' + topFix}>
             <Filter 

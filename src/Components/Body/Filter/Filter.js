@@ -2,7 +2,8 @@ import { Fragment } from 'react';
 
 import { brands, viewCounts, sorts, types } from '../../../Data/Constants';
 
-import { Button, Col, Row } from 'react-bootstrap';
+import { Col, Row } from 'react-bootstrap';
+import Button from '@mui/material/Button';
 
 import './Filter.css';
 
@@ -17,11 +18,8 @@ function Filter({brand, setBrand, max, setMax, min, setMin, type, setType, setFi
     return (
         <Fragment>
             <Row className='filter-title'>
-                <Col  className='align-left'>
-                    <Button onClick={() => {setFilter(false)}}>x</Button>
-                </Col>
-                <Col className='align-left'>
-                    Filter
+                <Col xs={5} className='align-left'>
+                    <Button variant="outlined" color="error" size="small" onClick={() => {setFilter(false)}}>x</Button>
                 </Col>
             </Row>
             <Row  className='filter-item'>
@@ -86,7 +84,7 @@ function Filter({brand, setBrand, max, setMax, min, setMin, type, setType, setFi
             </Row>
             <Row className='filter-item'>
                 <Col xs={12}>
-                    <Button onClick={() => {resetFilter()}}>reset</Button>
+                    <Button className="reset-button" variant="outlined" onClick={() => {resetFilter()}}>reset</Button>
                 </Col>
             </Row>
         </Fragment>
