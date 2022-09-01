@@ -5,7 +5,7 @@ import './Header.scss';
 import { setUserLogin, getProfilePicture } from '../../Data/Services/userInfo.js';
 
 import { Col, Container, OverlayTrigger, Popover, Row } from 'react-bootstrap';
-import defaultProfile from '../../Data/Images/default-profile.png';
+import defaultProfile from '../../Data/Images/default-profile.jpg';
 
 import { auth, provider } from '../../firebase-config';
 import { signInWithPopup, signOut } from 'firebase/auth';
@@ -116,7 +116,7 @@ function Header({isAuth, setIsAuth}) {
                         <Col xs={4} sm={4} md={4} className="center title">
                             <h1 style={{fontSize:"40px",fontFamily:"roboto",paddingTop:"10px"}}>Sales</h1>
                         </Col>
-                        <Col xs={4} sm={4} md={4} className="login-padding">
+                        <Col xs={4} sm={4} md={4} className="login-container">
                             <Row>
                                 <Col xs={12} className="right">
                                     {!isAuth

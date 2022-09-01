@@ -96,9 +96,11 @@
 
 .account-profile {
     background-size: 100%;
-    width: 98px;
-    height: 54px;
+    width: 100px;
+    height: 60px;
     border: 1px solid black;
+    background-repeat: no-repeat;
+    background-position: center;
     box-shadow: -2px 2px grey;
 }
 
