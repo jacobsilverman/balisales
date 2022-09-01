@@ -95,11 +95,11 @@
 }
 
 .account-profile {
-    background-size: 60px;
-    width: 60px;
+    background-size: 100%;
+    width: 98px;
     height: 60px;
-    border-radius: 35px;
-    object-fit: contain;
+    border: 1px solid black;
+    box-shadow: -2px 2px grey;
 }
 
 .popover-item {
