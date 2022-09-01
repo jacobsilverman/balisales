@@ -5,6 +5,7 @@ import './Header.scss';
 import { setUserLogin, getProfilePicture } from '../../Data/Services/userInfo.js';
 
 import { Col, Container, OverlayTrigger, Popover, Row } from 'react-bootstrap';
+import defaultProfile from '../../Data/Images/default-profile.png';
 
 import { auth, provider } from '../../firebase-config';
 import { signInWithPopup, signOut } from 'firebase/auth';
@@ -17,13 +18,13 @@ function Header({isAuth, setIsAuth}) {
     
     const [showAccount, setShowAccount] = useState(false);
     const [profilePic, setProfilePic] = useState('');
-    const [uid, setUid] = useState("");
+    const [uid, setUid] = useState(localStorage.getItem("uid"));
 
     useEffect(() => {
         getProfilePicture(uid).then((result) => {
             setProfilePic(result);
         }).catch(() => {
-            setProfilePic("");
+            setProfilePic(defaultProfile);
         });
     }, [uid]);
 
