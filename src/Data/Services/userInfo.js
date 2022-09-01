@@ -33,7 +33,7 @@ export const setUserInfo = async (payload, file) => {
     window.location.reload(false);
 }
 
-export const getProfilePicture = async () => {
-    const pictureRef = ref(storage, `/profiles/${uid}`);
+export const getProfilePicture = async (id) => {
+    const pictureRef = ref(storage, `/profiles/${id}`);
     return await getDownloadURL(pictureRef);
 }

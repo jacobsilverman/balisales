@@ -17,12 +17,15 @@ function Header({isAuth, setIsAuth}) {
     
     const [showAccount, setShowAccount] = useState(false);
     const [profilePic, setProfilePic] = useState('');
+    const [uid, setUid] = useState("");
 
     useEffect(() => {
-        getProfilePicture().then((result ) => {
+        getProfilePicture(uid).then((result) => {
             setProfilePic(result);
+        }).catch(() => {
+            setProfilePic("");
         });
-    }, []);
+    }, [uid]);
 
     const signUserOut = () => {
         signOut(auth, provider).then(() => {
@@ -32,6 +35,7 @@ function Header({isAuth, setIsAuth}) {
             localStorage.clear();
             localStorage.setItem("uid", "");
             console.log("user id: ",localStorage.getItem("uid"));
+            setUid("");
         })
     }
 
@@ -43,6 +47,7 @@ function Header({isAuth, setIsAuth}) {
             setUserLogin(result.user);
             localStorage.setItem("uid", result?.user?.uid);
             console.log("user id: ",localStorage.getItem("uid"));
+            setUid(result?.user?.uid);
         })
     }
 
