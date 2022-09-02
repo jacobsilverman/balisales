@@ -2,6 +2,9 @@
     min-height: 90vh;
     width: 100%;
     background-image: url(../../Data/Images/background.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 };
 
 .fixed-top {
@@ -14,8 +17,8 @@
 }
 
 .padding {
-    padding-left: 30px;
-    padding-right: 30px;
+    padding-left: 7vw;
+    padding-right: 7vw;
 }
 
 .right {

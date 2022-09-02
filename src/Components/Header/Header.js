@@ -109,7 +109,7 @@ function Header({isAuth, setIsAuth}) {
                         <Col xs={4} sm={4} md={4} className="center title">
                             <h1 style={{fontSize:"40px",fontFamily:"roboto",paddingTop:"10px"}}>Sales</h1>
                         </Col>
-                        <Col xs={4} sm={4} md={4} className="login-container">
+                        <Col xs={4} sm={4} md={4}>
                             <Row>
                                 <Col xs={12} className="right">
                                     {!isAuth
