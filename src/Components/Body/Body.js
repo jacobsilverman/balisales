@@ -15,7 +15,7 @@ function Body({ posts }) {
     const [max, setMax] = useState(10000);
     const [brand, setBrand] = useState('default');
     const [type, setType] = useState('default');
-    const [displayFilter, setDisplayFilter] = useState(true); // whether the filter is open or not
+    const [displayFilter, setDisplayFilter] = useState(false); // whether the filter is open or not
     const [sort, setSort] = useState('default');
     const [viewCount, setViewCount] = useState('default');
     const [windowScroll, setWindowScroll] = useState(0); 

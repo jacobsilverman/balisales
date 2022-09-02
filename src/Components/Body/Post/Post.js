@@ -35,7 +35,7 @@ function Post({item, viewCount, accountView, deletePost}) {
                     </Col>
                 </Row>
             </Modal>
-            <Col className="post-container" style={{backgroundImage: `url(${item?.url})`}} id={item.id} xs={showViewCount ? 12 : 12/viewCount} sm={showViewCount ? 12 : 12/viewCount} md={showViewCount ? 4 : 12/viewCount}>
+            <Col className="post-container" style={{backgroundImage: `url(${item?.url})`}} id={item.id} xs={showViewCount ? 5 : 12/viewCount} sm={showViewCount ? 5 : 12/viewCount} md={showViewCount ? 3 : 12/viewCount}>
                 <div className="fake-background">
                     <Link className="link" to={{pathname: '/singlePost', search: queryParam}}>
                         <Row> 
