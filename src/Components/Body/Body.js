@@ -15,7 +15,7 @@ function Body({ posts }) {
     const [max, setMax] = useState(10000);
     const [brand, setBrand] = useState('default');
     const [type, setType] = useState('default');
-    const [filter, setFilter] = useState(true); // whether the filter is open or not
+    const [displayFilter, setDisplayFilter] = useState(true); // whether the filter is open or not
     const [sort, setSort] = useState('default');
     const [viewCount, setViewCount] = useState('default');
     const [windowScroll, setWindowScroll] = useState(0); 
@@ -65,26 +65,29 @@ function Body({ posts }) {
     });
 
     const topFix = (windowScroll) ? 'fixed-top' : '';
-    const openFilterButton = (<span className="filter-button-containter"><Button className={'filter-button ' + topFix} onClick={() => {setFilter(true)}}><b>FILTER</b></Button></span>);
-    const displayFilter = (
-        <Col xs={3} sm={2} className={'filter-container ' + topFix}>
-            <Filter 
-                brand={brand} setBrand={setBrand} 
-                type={type} setMax={setMax} 
-                min={min} setMin={setMin} 
-                max={max} setType={setType} 
-                setFilter={setFilter} 
-                resetFilter={resetFilter}
-                sort={sort} setSort={setSort} 
-                viewCount={viewCount} setViewCount={setViewCount} />
-        </Col>
+    const topMargin = (windowScroll && displayFilter) ? 'padding post-margin' : 'padding';
+    const openFilterButton = (<span className="filter-button-containter"><Button className={'filter-button ' + topFix} onClick={() => {setDisplayFilter(true)}}><b>FILTER</b></Button></span>);
+    const filter = (
+        <Row className='filter-container'>
+            <Col xs={12} className={topFix}>
+                <Filter 
+                    brand={brand} setBrand={setBrand} 
+                    type={type} setMax={setMax} 
+                    min={min} setMin={setMin} 
+                    max={max} setType={setType} 
+                    setDisplayFilter={setDisplayFilter} 
+                    resetFilter={resetFilter}
+                    sort={sort} setSort={setSort} 
+                    viewCount={viewCount} setViewCount={setViewCount} />
+            </Col>
+        </Row>
     );
 
     return (
         <Container className='body-container'>
-            <Row className='right'>
-                {(filter && displayFilter) || openFilterButton}
-                <Col xs={filter ? 9 : 12} sm={filter ? 10 : 12} className='padding'>
+            <Row>
+                {(displayFilter && filter) || openFilterButton}
+                <Col xs={12} className={topMargin}>
                     {parseData()?.map((array, k) => {
                         return (
                             <Row key={k}>

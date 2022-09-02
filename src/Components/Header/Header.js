@@ -120,7 +120,7 @@ function Header({isAuth, setIsAuth}) {
                             <Row>
                                 <Col xs={12} className="right">
                                     {!isAuth
-                                    ? <Button onClick={signInWithGoogle}>Login</Button>
+                                    ? <Button size="large" onClick={signInWithGoogle}>Login</Button>
                                     :
                                     <OverlayTrigger trigger="click" placement="bottom" overlay={popover}>
                                         <Button onClick={() => setShowAccount(!showAccount)}>
