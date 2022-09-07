@@ -109,19 +109,15 @@ function Header({isAuth, setIsAuth}) {
                         <Col xs={4} sm={4} md={4} className="center title">
                             <h1 style={{fontSize:"40px",fontFamily:"roboto",paddingTop:"10px"}}>Sales</h1>
                         </Col>
-                        <Col xs={4} sm={4} md={4}>
-                            <Row>
-                                <Col xs={12} className="right">
-                                    {!isAuth
-                                    ? <Button size="large" onClick={signInWithGoogle}>Login</Button>
-                                    :
-                                    <OverlayTrigger trigger="click" placement="bottom-end" overlay={popover}>
-                                        <Button onClick={() => setShowAccount(!showAccount)}>
-                                            <div className="account-profile" style={{backgroundImage: `url(${profilePic})`}} />
-                                        </Button>
-                                    </OverlayTrigger>}
-                                </Col>
-                            </Row>
+                        <Col xs={4} sm={4} md={4} className="login-container">
+                            {!isAuth
+                            ? <Button size="large" onClick={signInWithGoogle}>Login</Button>
+                            :
+                            <OverlayTrigger trigger="click" placement="bottom-end" overlay={popover}>
+                                <Button onClick={() => setShowAccount(!showAccount)}>
+                                    <div className="account-profile" style={{backgroundImage: `url(${profilePic})`}} />
+                                </Button>
+                            </OverlayTrigger>}
                         </Col>
                     </Row>
                 </Container>

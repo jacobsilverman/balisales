@@ -12,11 +12,6 @@ function ContactUs() {
     const assignText = (event, setter) => {
         setter(event.target.value);
     };
-    
-    const resetForm = () => {
-        setTitle('');
-        setMessage('');
-    }
 
     return (
         <Container className="contact-container">
