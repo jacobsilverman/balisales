@@ -114,7 +114,7 @@ function Header({isAuth, setIsAuth}) {
                                     <li>
                                         <Link className="white" to={{pathname: '/createPost'}}>
                                             <span className="menu__item">
-                                                Create Post
+                                                Create
                                                 <i className="material-icons">add</i>
                                             </span>
                                         </Link>
@@ -122,7 +122,7 @@ function Header({isAuth, setIsAuth}) {
                                     <li>
                                         <Link className="white" to={{pathname: '/contactUs'}}>
                                             <span className="menu__item">
-                                                Contact Us
+                                                Contact
                                                 <i className="material-icons">contact_support</i>
                                             </span>
                                         </Link>
