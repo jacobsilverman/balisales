@@ -98,18 +98,42 @@ function Header({isAuth, setIsAuth}) {
             <header className="App-header">
                 <Container>
                     <Row>
-                        <Col xs={2} sm={2} md={2} className="remove-right-padding icon-padding">
-                            <a href="/">
-                                <i className="material-icons home">home</i>
-                            </a>
+                        <Col xs={3}>
+                            <div className="hamburger-menu">
+                                <input id="menu__toggle" type="checkbox" />
+                                <label className="menu__btn" htmlFor="menu__toggle">
+                                    <span></span>
+                                </label>
+
+                                <ul className="menu__box">
+                                    <li>
+                                        <a href="/">
+                                            <span className="menu__item">Home <i className="material-icons">home</i></span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <Link className="white" to={{pathname: '/createPost'}}>
+                                            <span className="menu__item">
+                                                Create Post
+                                                <i className="material-icons">add</i>
+                                            </span>
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link className="white" to={{pathname: '/contactUs'}}>
+                                            <span className="menu__item">
+                                                Contact Us
+                                                <i className="material-icons">contact_support</i>
+                                            </span>
+                                        </Link>
+                                    </li>
+                                </ul>
+                            </div>
                         </Col>
-                        <Col  xs={2} sm={2} md={2} className="icon-padding">
-                            <Link className="white" to={{pathname: '/createPost'}}><i className="material-icons home">add</i></Link>
+                        <Col xs={6} className="center title">
+                            <h1 style={{fontSize:"40px",fontFamily:"roboto",paddingTop:"10px"}}><a href="/">Sales</a></h1>
                         </Col>
-                        <Col xs={4} sm={4} md={4} className="center title">
-                            <h1 style={{fontSize:"40px",fontFamily:"roboto",paddingTop:"10px"}}>Sales</h1>
-                        </Col>
-                        <Col xs={4} sm={4} md={4} className="login-container">
+                        <Col xs={3} className="login-container">
                             {!isAuth
                             ? <Button size="large" onClick={signInWithGoogle}>Login</Button>
                             :
