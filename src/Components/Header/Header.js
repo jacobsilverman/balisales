@@ -108,7 +108,10 @@ function Header({isAuth, setIsAuth}) {
                                 <ul className="menu__box">
                                     <li>
                                         <a href="/">
-                                            <span className="menu__item">Home <i className="material-icons">home</i></span>
+                                            <span className="menu__item">
+                                                Home
+                                                <i className="material-icons">home</i>
+                                            </span>
                                         </a>
                                     </li>
                                     <li>
