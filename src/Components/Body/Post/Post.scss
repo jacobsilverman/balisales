@@ -1,7 +1,8 @@
 .post-container {
-    text-align: center;
+    display: flex;
     margin-left: auto;
     margin-right: auto;
+    max-width: 200px;
     margin-top: 15px;
     margin-bottom: 15px;
     border: 1px solid black;
@@ -23,6 +24,7 @@
 
 .fake-background {
     height: 100%;
+    width: 100%;
     &:hover {
         border-radius: 20px;
         background-color: rgb(white, .8);
@@ -61,8 +63,6 @@ a {
     text-decoration: none !important;
     color: darkorange;
     display: grid;
-    padding-left: 5%;
-    padding-right: 5%;
 }
 
 .price-container {
@@ -70,7 +70,6 @@ a {
     display: flex;
     justify-content: left;
     align-items: end;
-    padding-left: 0px;
 }
 
 .price {
@@ -85,10 +84,12 @@ a {
 .title-text {
     font-size: 150%;
     text-align: left;
+    padding-left: 35px;
 }
 
 .hidden-text {
     font-size: 100%;
+    padding-left: 5%;
     text-align: left;
     visibility: hidden;
     opacity: 0;
