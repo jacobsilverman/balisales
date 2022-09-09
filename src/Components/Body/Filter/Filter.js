@@ -18,7 +18,7 @@ function Filter({brand, setBrand, max, setMax, min, setMin, type, setType, setDi
     return (
         <Fragment>
             <Row>
-                <Col xs={5} className='align-left'>
+                <Col xs={12} className='align-right'>
                     <Button variant="outlined" color="error" size="small" onClick={() => {setDisplayFilter(false)}}>x</Button>
                 </Col>
             </Row>
