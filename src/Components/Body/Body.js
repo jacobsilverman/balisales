@@ -18,6 +18,8 @@ function Body({ posts }) {
     const [displayFilter, setDisplayFilter] = useState(false); // whether the filter is open or not
     const [sort, setSort] = useState('default');
     const [viewCount, setViewCount] = useState('default');
+    const [blade, setBlade] = useState('default');
+    const [status, setStatus] = useState('default');
     const [windowScroll, setWindowScroll] = useState(0); 
 
     const resetFilter = () => {
@@ -78,7 +80,9 @@ function Body({ posts }) {
                     setDisplayFilter={setDisplayFilter} 
                     resetFilter={resetFilter}
                     sort={sort} setSort={setSort} 
-                    viewCount={viewCount} setViewCount={setViewCount} />
+                    viewCount={viewCount} setViewCount={setViewCount}
+                    blade={blade} setBlade={setBlade}
+                    status={status} setStatus={setStatus} />
             </Col>
         </Row>
     );

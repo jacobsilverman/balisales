@@ -13,7 +13,7 @@ function Post({item, viewCount, accountView, deletePost}) {
 
     const queryParam = 'id='+item.id;
 
-    const priceCls = `price color-${useMemo(() => {return (item.type==='wts')?'red':(item.type==='wtb')?'green':''}, [item.type])}`;
+    const priceCls = `price-container color-${useMemo(() => {return (item.type==='wts')?'red':(item.type==='wtb')?'green':'black'}, [item.type])}`;
     const showViewCount = isNaN(12/viewCount);
 
     return (
@@ -58,7 +58,7 @@ function Post({item, viewCount, accountView, deletePost}) {
                         </Row>
                         <Row> 
                             <Col className={priceCls}>
-                                ${item.price}
+                                <span className="price">${item.price}</span>
                             </Col>
                         </Row>
                     </Link>

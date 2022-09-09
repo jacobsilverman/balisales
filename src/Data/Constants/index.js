@@ -7,3 +7,7 @@ export const types = ['wts', 'wtt', 'wtb'];
 export const sorts = ['min', 'max'];
 
 export const viewCounts = [1, 2, 3, 4, 6, 12];
+
+export const blades = ['blade', 'trainer'];
+
+export const statuses = ['available', 'pending', 'sold', 'traded'];

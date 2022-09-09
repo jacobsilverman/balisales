@@ -1,13 +1,13 @@
 import { Fragment } from 'react';
 
-import { brands, viewCounts, sorts, types } from '../../../Data/Constants';
+import { blades, brands, viewCounts, sorts, statuses, types } from '../../../Data/Constants';
 
 import { Col, Row } from 'react-bootstrap';
 import Button from '@mui/material/Button';
 
 import './Filter.scss';
 
-function Filter({brand, setBrand, max, setMax, min, setMin, type, setType, setDisplayFilter, resetFilter, sort, setSort, viewCount, setViewCount}) {
+function Filter({brand, setBrand, max, setMax, min, setMin, type, setType, setDisplayFilter, resetFilter, sort, setSort, viewCount, setViewCount, blade, setBlade, status, setStatus}) {
 
     const getOptions = (options) => {
         return options.map((name, key) => {
@@ -32,12 +32,6 @@ function Filter({brand, setBrand, max, setMax, min, setMin, type, setType, setDi
                             <input className='price-input' onChange={(event) => {setMin(event.target.value)}} value={min} />
                         </Col>
                         <Col xs={3} md={1} className="right">
-                            Max:
-                        </Col>
-                        <Col xs={3} md={2}>
-                            <input className='price-input' onChange={(event) => {setMax(event.target.value )}} value={max} />
-                        </Col>
-                        <Col xs={3} md={1} className="right">
                             <label>Brand:</label>
                         </Col>
                         <Col xs={3} md={2}>
@@ -45,6 +39,32 @@ function Filter({brand, setBrand, max, setMax, min, setMin, type, setType, setDi
                                 <option value="default">default</option>
                                 {getOptions(brands, brand)}
                             </select>
+                        </Col>
+                        <Col xs={1} className="right">
+                            <label>Sort:</label>
+                        </Col>
+                        <Col xs={2}>
+                            <select value={sort} className="select-width" onChange={(event) => setSort(event.target.value)}>
+                                <option value="default">default</option>
+                                {getOptions(sorts, sort)}
+                            </select>
+                        </Col>
+                        <Col xs={1} className="right">
+                            <label>Status:</label>
+                        </Col>
+                        <Col xs={2}>
+                            <select value={status} className="select-width" onChange={(event) => setStatus(event.target.value)}>
+                                <option value="default">default</option>
+                                {getOptions(statuses, status)}
+                            </select>
+                        </Col>
+                    </Row>
+                    <Row className='filter-item'>
+                        <Col xs={3} md={1} className="right">
+                            Max:
+                        </Col>
+                        <Col xs={3} md={2}>
+                            <input className='price-input' onChange={(event) => {setMax(event.target.value )}} value={max} />
                         </Col>
                         <Col xs={3} md={1} className="right">
                             <label>Type:</label>
@@ -55,24 +75,22 @@ function Filter({brand, setBrand, max, setMax, min, setMin, type, setType, setDi
                                 {getOptions(types, type)}
                             </select>
                         </Col>
-                    </Row>
-                    <Row className='filter-item'>
-                        <Col xs={3} className="right">
-                            <label>Sort:</label>
-                        </Col>
-                        <Col xs={3}>
-                            <select value={sort} className="select-width" onChange={(event) => setSort(event.target.value)}>
-                                <option value="default">default</option>
-                                {getOptions(sorts, sort)}
-                            </select>
-                        </Col>
-                        <Col xs={3} className="right">
+                        <Col xs={1} className="right">
                             <label>Show:</label>
                         </Col>
-                        <Col xs={3}>
+                        <Col xs={2}>
                             <select value={viewCount} className="select-width" onChange={(event) => setViewCount(event.target.value)} selected={viewCount}>
                                 <option value="default">default</option>
                                 {getOptions(viewCounts, viewCount)}
+                            </select>
+                        </Col>
+                        <Col xs={1} className="right">
+                            <label>Blades:</label>
+                        </Col>
+                        <Col xs={2}>
+                            <select value={blade} className="select-width" onChange={(event) => setBlade(event.target.value)} selected={blade}>
+                                <option value="default">default</option>
+                                {getOptions(blades, blade)}
                             </select>
                         </Col>
                     </Row>
