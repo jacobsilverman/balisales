@@ -109,24 +109,42 @@ function Header({isAuth, setIsAuth}) {
                                     <li>
                                         <a href="/">
                                             <span className="menu__item">
-                                                Home
-                                                <i className="material-icons">home</i>
+                                                <Row>
+                                                    <Col xs={3} className="menu-icon">
+                                                        <i className="material-icons">home</i>
+                                                    </Col>
+                                                    <Col  xs={9}>
+                                                        Home
+                                                    </Col>
+                                                </Row>
                                             </span>
                                         </a>
                                     </li>
                                     <li>
                                         <Link className="white" to={{pathname: '/createPost'}}>
                                             <span className="menu__item">
-                                                Create
-                                                <i className="material-icons">add</i>
+                                                <Row>
+                                                    <Col xs={3} className="menu-icon">
+                                                        <i className="material-icons">add</i>
+                                                    </Col>
+                                                    <Col xs={9}>
+                                                        Create
+                                                    </Col>
+                                                </Row>
                                             </span>
                                         </Link>
                                     </li>
                                     <li>
                                         <Link className="white" to={{pathname: '/contactUs'}}>
                                             <span className="menu__item">
-                                                Contact
-                                                <i className="material-icons">contact_support</i>
+                                                <Row>
+                                                    <Col xs={3} className="menu-icon">
+                                                        <i className="material-icons">contact_support</i>
+                                                    </Col>
+                                                    <Col xs={9}>
+                                                        Contact
+                                                    </Col>
+                                                </Row>
                                             </span>
                                         </Link>
                                     </li>
