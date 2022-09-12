@@ -60,7 +60,7 @@ function Header({isAuth, setIsAuth}) {
 
     const accountVisibilityCls = `account-dropdown ${showAccount ? "visible" : 'hidden'}`;
 
-    const popover = (
+    const accountOptionsPopover = (
         <Popover className="popover-container" id="popover-basic" title="Account Info">
             <Row className={accountVisibilityCls}>
                 <Col  xs={12}>
@@ -141,6 +141,20 @@ function Header({isAuth, setIsAuth}) {
                                         </Link>
                                     </li>
                                     <li>
+                                        <Link className="white" to={{pathname: '/discuss'}}>
+                                            <span className="menu__item">
+                                                <Row>
+                                                    <Col xs={3} className="menu-icon">
+                                                        <i className="material-icons">psychology</i>
+                                                    </Col>
+                                                    <Col xs={9}>
+                                                        Discuss
+                                                    </Col>
+                                                </Row>
+                                            </span>
+                                        </Link>
+                                    </li>
+                                    <li>
                                         <Link className="white" to={{pathname: '/contactUs'}}>
                                             <span className="menu__item">
                                                 <Row>
@@ -168,20 +182,6 @@ function Header({isAuth, setIsAuth}) {
                                             </span>
                                         </Link>
                                     </li>
-                                    <li>
-                                        <Link className="white" to={{pathname: '/discuss'}}>
-                                            <span className="menu__item">
-                                                <Row>
-                                                    <Col xs={3} className="menu-icon">
-                                                        <i className="material-icons">psychology</i>
-                                                    </Col>
-                                                    <Col xs={9}>
-                                                        Discuss
-                                                    </Col>
-                                                </Row>
-                                            </span>
-                                        </Link>
-                                    </li>
                                 </ul>
                             </div>
                         </Col>
@@ -192,7 +192,7 @@ function Header({isAuth, setIsAuth}) {
                             {!isAuth
                             ? <Button size="large" onClick={signInWithGoogle}>Login</Button>
                             :
-                            <OverlayTrigger trigger="click" placement="bottom-end" overlay={popover}>
+                            <OverlayTrigger trigger="click" placement="bottom-end" overlay={accountOptionsPopover}>
                                 <Button onClick={() => setShowAccount(!showAccount)}>
                                     <div className="account-profile" style={{backgroundImage: `url(${profilePic})`}} />
                                 </Button>
