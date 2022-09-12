@@ -11,3 +11,11 @@ export const viewCounts = [1, 2, 3, 4, 6, 12];
 export const blades = ['blade', 'trainer'];
 
 export const statuses = ['available', 'pending', 'sold', 'traded'];
+
+export const pageTitles = {
+    '/': 'Sales',
+    '/createPost': 'Create',
+    '/contactUs': 'Contact Us',
+    '/aboutUs': 'About Us',
+    '/discuss': 'Discussions'
+};

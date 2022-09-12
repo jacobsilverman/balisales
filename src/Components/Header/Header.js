@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 import './Header.scss';
 import { setUserLogin, getProfilePicture } from '../../Data/Services/userInfo.js';
+import { pageTitles } from '../../Data/Constants';
 
 import { Col, Container, OverlayTrigger, Popover, Row } from 'react-bootstrap';
 import defaultProfile from '../../Data/Images/default-profile.jpg';
@@ -19,6 +20,7 @@ function Header({isAuth, setIsAuth}) {
     const [showAccount, setShowAccount] = useState(false);
     const [profilePic, setProfilePic] = useState('');
     const [uid, setUid] = useState(localStorage.getItem("uid"));
+    const [pageTitle, setPageTitle] = useState(pageTitles[window.location.pathname]);
 
     useEffect(() => {
         getProfilePicture(uid).then((result) => {
@@ -27,6 +29,10 @@ function Header({isAuth, setIsAuth}) {
             setProfilePic(defaultProfile);
         });
     }, [uid]);
+
+    useEffect(() => {
+        setPageTitle(pageTitles[window.location.pathname]);
+    }, [window.location.pathname]);
 
     const signUserOut = () => {
         signOut(auth, provider).then(() => {
@@ -148,11 +154,39 @@ function Header({isAuth, setIsAuth}) {
                                             </span>
                                         </Link>
                                     </li>
+                                    <li>
+                                        <Link className="white" to={{pathname: '/aboutUs'}}>
+                                            <span className="menu__item">
+                                                <Row>
+                                                    <Col xs={3} className="menu-icon">
+                                                        <i className="material-icons">face</i>
+                                                    </Col>
+                                                    <Col xs={9}>
+                                                        About Us
+                                                    </Col>
+                                                </Row>
+                                            </span>
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link className="white" to={{pathname: '/discuss'}}>
+                                            <span className="menu__item">
+                                                <Row>
+                                                    <Col xs={3} className="menu-icon">
+                                                        <i className="material-icons">psychology</i>
+                                                    </Col>
+                                                    <Col xs={9}>
+                                                        Discuss
+                                                    </Col>
+                                                </Row>
+                                            </span>
+                                        </Link>
+                                    </li>
                                 </ul>
                             </div>
                         </Col>
                         <Col xs={6} className="center title">
-                            <h1 style={{fontSize:"40px",fontFamily:"roboto",paddingTop:"10px"}}><a href="/">Sales</a></h1>
+                            <h1 style={{fontSize:"40px",fontFamily:"roboto",paddingTop:"10px"}}><a href="/">{pageTitle}</a></h1>
                         </Col>
                         <Col xs={3} className="login-container">
                             {!isAuth

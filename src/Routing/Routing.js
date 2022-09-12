@@ -10,6 +10,8 @@ import Header from '../Components/Header';
 import Settings from '../Components/Settings';
 import Profile from '../Components/Profile';
 import ContactUs from '../Components/ContactUs';
+import AboutUs from '../Components/AboutUs';
+import Discuss from '../Components/Discuss';
 
 function Routing({ posts }) {
     const [isAuth, setIsAuth] = useState(localStorage.getItem("isAuth"));
@@ -27,6 +29,8 @@ function Routing({ posts }) {
                 <Route path="/settings" element={<Settings />} />
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/contactUs" element={<ContactUs />} />
+                <Route path="/aboutUs" element={<AboutUs />} />
+                <Route path="/discuss" element={<Discuss />} />
             </Routes>
         </BrowserRouter>
     );
