@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 
 import { auth } from '../../firebase-config';
-import { Container, Col, Row } from 'react-bootstrap';
+import { Container, Row } from 'react-bootstrap';
 
 import Post from '../Body/Post';
 import './Account.scss';
@@ -36,8 +36,12 @@ function Account({ posts }) {
 		)
     }
 
+	const editPost = async () => {
+		console.log("yes");
+	}
+
 	const setAccountData = () => {
-		return filterPosts.length > 0 ? filterPosts?.map((item) => { return <Post item={item} key={item.id} accountView={true} deletePost={deletePost} />}) : "no posts available";
+		return filterPosts.length > 0 ? filterPosts?.map((item) => { return <Post item={item} key={item.id} accountView={true} deletePost={deletePost} editPost={editPost} />}) : "no posts available";
 	}
 
 	return (

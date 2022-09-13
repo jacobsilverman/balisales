@@ -14,8 +14,22 @@ export const statuses = ['available', 'pending', 'sold', 'traded'];
 
 export const pageTitles = {
     '/': 'Sales',
+    '/profile': 'Profile',
+    '/settings': 'Settings',
+    '/account': 'Your Posts',
     '/createPost': 'Create',
     '/contactUs': 'Contact Us',
     '/aboutUs': 'About Us',
     '/discuss': 'Discussions'
+};
+
+export const priceColors = (type) => {
+    switch(type) {
+        case('wts'):
+            return 'red';
+        case('wtb'):
+            return 'green';
+        default:
+            return 'black';
+    };
 };
