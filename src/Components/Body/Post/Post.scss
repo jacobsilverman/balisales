@@ -45,14 +45,28 @@ a {
     display: flex;
     justify-content: center;
     align-items: center;
-    .background {
-        border: 2px solid black;
-        background-color: white;
-        height: 25%;
-    }
-    .modal-title {
-        padding-bottom: 20px;
-    }
+}
+
+.edit-modal {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.edit-input {
+    margin: 10px;
+}
+
+.modal-background {
+    border: 2px solid black;
+    background-color: white;
+    padding: 10px;
+}
+
+.modal-title {
+    padding-bottom: 20px;
 }
 
 .left-align {
@@ -65,16 +79,40 @@ a {
     display: grid;
 }
 
+.delete-container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+}
+
+.delete {
+    color: red;
+    font-size: 2.5vmax;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    border-bottom: 1px solid black;
+    border-left: 1px solid black;
+    box-shadow: -1px 1px 2px rgb(black, .8);
+    border-radius: 0px 20px 0px 0px;
+    width: 40px;
+    height: 35px;
+}
+
 .price-container {
     font-size: 150%;
     display: flex;
 }
 
 .price {
+    display: flex;
+    align-items: center;
     background-color: white;
     border-top: 1px solid black;
     border-right: 1px solid black;
     border-radius: 0px 0px 0px 20px;
+    box-shadow: 1px -1px 2px rgb(black, .8);
     padding-left: 5px;
     padding-right: 5px;
 }
@@ -94,6 +132,7 @@ a {
     border-top: 1px solid black;
     border-left: 1px solid black;
     border-radius: 0px 0px 20px 0px;
+    box-shadow: -1px -1px 2px rgb(black, .8);
     width: 40px;
     height: 40px;
     :hover {
@@ -113,10 +152,6 @@ a {
     text-align: left;
     visibility: hidden;
     opacity: 0;
-}
-
-.delete-post {
-    font-size: 2.5vmax;
 }
 
 .color-red {

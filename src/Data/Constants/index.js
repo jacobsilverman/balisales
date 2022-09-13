@@ -20,7 +20,8 @@ export const pageTitles = {
     '/createPost': 'Create',
     '/contactUs': 'Contact Us',
     '/aboutUs': 'About Us',
-    '/discuss': 'Discussions'
+    '/discuss': 'Discussions',
+    '/singlePost': 'User Post'
 };
 
 export const priceColors = (type) => {

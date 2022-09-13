@@ -17,7 +17,7 @@ function Account({ posts }) {
 	useEffect(() => {
 		setFilterPosts(
 			posts?.filter((ele) => {
-				return ele.author.id === auth.currentUser?.uid;
+				return ele?.author?.id === auth?.currentUser?.uid;
 			})
 		);
 	}, [posts]);
@@ -36,12 +36,8 @@ function Account({ posts }) {
 		)
     }
 
-	const editPost = async () => {
-		console.log("yes");
-	}
-
 	const setAccountData = () => {
-		return filterPosts.length > 0 ? filterPosts?.map((item) => { return <Post item={item} key={item.id} accountView={true} deletePost={deletePost} editPost={editPost} />}) : "no posts available";
+		return filterPosts.length > 0 ? filterPosts?.map((item) => { return <Post item={item} key={item.id} accountView={true} deletePost={deletePost} />}) : "no posts available";
 	}
 
 	return (

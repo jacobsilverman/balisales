@@ -6,7 +6,6 @@ import { brands, types } from '../../Data/Constants';
 import { addDoc, collection } from 'firebase/firestore';
 import { auth, db } from '../../firebase-config';
 
-// import Upload from '../Upload';
 import { storage } from "../../firebase-config.js";
 import { ref, uploadBytesResumable } from "firebase/storage";
 
@@ -88,7 +87,7 @@ function CreatePost() {
                     
                 </Col>
                 <Col xs={8} md={7} className="left">
-                    <input className="input-width" onChange={(event) => setTitle(event.target.value)} />
+                    <input placeholder="title" className="input-width" onChange={(event) => setTitle(event.target.value)} />
                 </Col>
             </Row>
             <Row>
@@ -96,7 +95,7 @@ function CreatePost() {
                     <label>Price:</label>
                 </Col>
                 <Col xs={8} md={7} className="left">
-                    <input className="input-width" onChange={(event) => setPrice(event.target.value)} />
+                    <input placeholder="price" className="input-width" onChange={(event) => setPrice(event.target.value)} />
                 </Col>
             </Row>
             <Row>
@@ -137,7 +136,7 @@ function CreatePost() {
                     <label>Description:</label>
                 </Col>
                 <Col xs={8} md={7} className="left">
-                    <input className="input-width" onChange={(event) => setDescription(event.target.value)} />
+                    <textarea rows={3} placeholder="description" className="input-width" onChange={(event) => setDescription(event.target.value)} />
                 </Col>
             </Row>
             <Row>

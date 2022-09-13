@@ -186,7 +186,7 @@ function Header({isAuth, setIsAuth}) {
                             </div>
                         </Col>
                         <Col xs={6} className="center title">
-                            <h1 style={{fontSize:"40px",fontFamily:"roboto",paddingTop:"10px"}}><a href="/">{pageTitle}</a></h1>
+                            <h1 style={{fontSize:"40px",fontFamily:"roboto",paddingTop:"10px"}}><a href="/">{pageTitle.split('&')[0]}</a></h1>
                         </Col>
                         <Col xs={3} className="login-container">
                             {!isAuth
