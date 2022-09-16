@@ -6,7 +6,7 @@ import { collection, getDocs } from 'firebase/firestore';
 import { db } from './firebase-config';
 
 
-import { getStorage, ref, getDownloadURL } from "firebase/storage";
+import { getStorage, ref, listAll, getDownloadURL } from "firebase/storage";
 // import BuildMocks from './Data/Mocks/BuildMocks.js'
 
 function App() {
@@ -19,13 +19,22 @@ function App() {
       const data = await getDocs(postsCollectionRef);
       allData = data.docs.map(async (doc) => {
         const storage = await getStorage();
-        const pathReference = ref(storage, `files/${doc.id}`); 
-        let parsedItem = { ...doc.data(), id: doc.id};
-        await getDownloadURL(pathReference)
-          .then((url) => {
-            parsedItem.url = url;
-          })
-          .catch((error) => {
+        const pathReference = ref(storage, `PostImages/${doc.id}`); 
+        let parsedItem = { ...doc.data(), imageUrls: [], id: doc.id};
+        await listAll(pathReference)
+          .then(async (res) => {
+            res.items.forEach(async (itemRef) => {
+              const pathReference = ref(storage, itemRef._location.path_); 
+              parsedItem.imageUrls.push(await getDownloadURL(pathReference)
+                .then((url) => {
+                  return url;
+                })
+                .catch((error) => {
+                  console.error(error.code);
+                })
+              )
+            });
+          }).catch((error) => {
             console.error(error.code);
           });
         return parsedItem;
@@ -36,8 +45,7 @@ function App() {
           return (prev.timeStamp <= next.timeStamp) ? 1 : -1;
         });
         setPosts(sortedData);
-      })
-      
+      });
     })();
   }, []);
 

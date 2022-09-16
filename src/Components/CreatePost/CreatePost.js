@@ -22,14 +22,35 @@ function CreatePost() {
     const [disableSubmit, setDisableSubmit] = useState(false);
 
     // State to store uploaded file
-    const [file, setFile] = useState("");
+    const [files, setFiles] = useState("");
 
     // progress
     const [percent, setPercent] = useState(0);
+
+    const [numberOfUploads, setNumberOfUploads] = useState(0);
     
     // Handle file upload event and update state
     function handleChange(event) {
-        setFile(event.target.files[0]);
+        console.log(event.target.files[0].value);
+        
+        setFiles([...files, event.target.files[numberOfUploads]]);
+        setNumberOfUploads(numberOfUploads+1);
+
+    }
+
+    function pictureInputs() {
+        let allInputs = [];
+        for (let i = 0; i <= numberOfUploads; i++) {
+            allInputs.push(
+                <div>
+                    <input type="file" onChange={handleChange} accept="/image/*" />
+                    <span>{percent}% done</span>
+                </div>
+            );
+        }
+
+        console.log(allInputs);
+        return allInputs;
     }
 
     const postsCollectionRef = collection(db, "posts");
@@ -45,26 +66,37 @@ function CreatePost() {
             timeStamp: Date.now(),
             author: {name: auth?.currentUser?.displayName || 'anonymous', id: auth?.currentUser?.uid || 'none' }
         }).then((result) => {
-            if (!file) {
+            if (!files[0]) {
                 alert("Please upload an image first!");
             }
+
+            const promises = [];
+            
+            files.map((file, index) => {
+                const storageRef = ref(storage, `/PostImages/${result.id}/image-${index}`);
+                const uploadTask = uploadBytesResumable(storageRef, file);
+                promises.push(uploadTask);
+                uploadTask.on(
+                    "state_changed",
+                    (snapshot) => {
+                        const percent = Math.round(
+                            (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+                        );
+                        setPercent(percent);
+                    },
+                    (err) => console.log(err),
+                    () => {
+                        console.log(storageRef);
+                    }
+                );
+            });
+
+            Promise.all(promises).then(() => {
+                console.log("all uploaded");
+            }).catch((err) => {
+                console.error(err)
+            })
         
-            const storageRef = ref(storage, `/files/${result.id}`);
-            const uploadTask = uploadBytesResumable(storageRef, file);
-        
-            uploadTask.on(
-                "state_changed",
-                (snapshot) => {
-                    const percent = Math.round(
-                        (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-                    );
-                    setPercent(percent);
-                },
-                (err) => console.log(err),
-                () => {
-                    window.location.pathname = "/";
-                }
-            );
         });
     }
 
@@ -141,10 +173,7 @@ function CreatePost() {
             </Row>
             <Row>
                 <Col className="center">
-                    <div>
-                        <input type="file" onChange={handleChange} accept="/image/*" />
-                        <span>{percent}% done</span>
-                    </div>
+                    {pictureInputs()}
                 </Col>
             </Row>
             <Row>

@@ -97,7 +97,7 @@ function Body({ posts }) {
                             <Row key={k}>
                                 {array.map((item) => {
                                     return (
-                                        <Post item={item} viewCount={viewCount} key={item.id} />
+                                        <Post background={item?.imageUrls[0]} item={item} viewCount={viewCount} key={item.id} />
                                     )
                                 })}
                             </Row>

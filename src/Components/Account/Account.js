@@ -25,7 +25,7 @@ function Account({ posts }) {
     const deletePost = async (id) => {
 		const storage = getStorage();
         const postDoc = doc(db, "posts", id);
-		const pictureRef = ref(storage, 'files/' + id);
+		const pictureRef = ref(storage, `PostImages/${id}`);
 
         await deleteDoc(postDoc);
 		await deleteObject(pictureRef);
