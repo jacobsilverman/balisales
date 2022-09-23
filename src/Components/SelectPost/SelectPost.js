@@ -1,4 +1,4 @@
-import { Fragment } from 'react';
+import { Fragment, useState } from 'react';
 
 import './SelectPost.scss';
 
@@ -9,10 +9,16 @@ function SelectPost({posts}) {
     const params = Object.fromEntries(urlSearchParams.entries());
     const user = posts.find((ele) => ele.id === params.id);
 
+    const [displayImage, setDisplayImage] = useState(0);
+
     return (
         <Fragment>
             <Row>
-                <Col xs={11} sm={11} md={5} className="image-container" style={{backgroundImage: `url(${user?.urls[0]})`}}/>
+                <Col xs={11} sm={11} md={5} className="image-container" style={{backgroundImage: `url(${user?.urls[displayImage]})`}}>
+                    <button onClick={() => setDisplayImage((displayImage-1) < 0 ? user.numberOfImages-1 : (displayImage-1))}>previous</button>
+                    <button onClick={() => setDisplayImage((displayImage+1)%user.numberOfImages)}>next</button>
+                </Col>
+                
                 <Col xs={12} sm={12} md={6} className="info-container">
                     <Row>
                         <Col xs={2} className="info-label">

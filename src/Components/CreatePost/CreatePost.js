@@ -31,9 +31,9 @@ function CreatePost() {
     
     // Handle file upload event and update state
     function handleChange(event) {
-        console.log(event.target.files[0].value);
+        console.log(event.target.files[0]);
         
-        setFiles([...files, event.target.files[numberOfUploads]]);
+        setFiles([...files, event.target.files[0]]);
         setNumberOfUploads(numberOfUploads+1);
     }
 
@@ -47,7 +47,7 @@ function CreatePost() {
                 </div>
             );
         }
-        
+
         return allInputs;
     }
 
@@ -75,6 +75,7 @@ function CreatePost() {
                 const storageRef = ref(storage, `/PostImages/${result.id}/image-${index}`);
                 const uploadTask = uploadBytesResumable(storageRef, file);
                 promises.push(uploadTask);
+
                 uploadTask.on(
                     "state_changed",
                     (snapshot) => {
