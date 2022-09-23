@@ -11,7 +11,7 @@ const DeleteModal = ({deletePost, item, openDeleteModal, setOpenDeleteModal}) =>
                     </Row>
                     <Row>
                         <Col xs={6}>
-                            <Button onClick={() => {deletePost(item.id);setOpenDeleteModal(false)}}>yes</Button>
+                            <Button onClick={() => {deletePost(item);setOpenDeleteModal(false)}}>yes</Button>
                         </Col>
                         <Col xs={6}>
                             <Button onClick={() => setOpenDeleteModal(false)}>no</Button>

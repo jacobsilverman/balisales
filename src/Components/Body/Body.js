@@ -1,8 +1,5 @@
 import React, { Fragment, useState } from 'react';
 
-// import MockData from '../../Data/Mocks/Posts.json';
-// import BuildMocks from '../../Data/Mocks/BuildMocks.js'
-
 import Post from './Post';
 import Filter from './Filter';
 

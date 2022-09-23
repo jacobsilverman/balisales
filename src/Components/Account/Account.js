@@ -22,16 +22,18 @@ function Account({ posts }) {
 		);
 	}, [posts]);
 	
-    const deletePost = async (id) => {
+    const deletePost = async (item) => {
 		const storage = getStorage();
-        const postDoc = doc(db, "posts", id);
-		const pictureRef = ref(storage, `PostImages/${id}`);
+        const postDoc = doc(db, "posts", item.id);
+		await deleteDoc(postDoc);
+		for (var i = 0; i < item.numberOfImages; i++) {
+			const pictureRef = ref(storage, `PostImages/${item.id}/image-${i}`);
+			await deleteObject(pictureRef);
+		}
 
-        await deleteDoc(postDoc);
-		await deleteObject(pictureRef);
 		setFilterPosts(
 			filterPosts?.filter((ele) => {
-				return ele.id !== id;
+				return ele.id !== item.id;
 			})
 		)
     }
