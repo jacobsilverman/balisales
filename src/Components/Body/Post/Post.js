@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useMemo, useState } from 'react';
+import React, { Fragment, useMemo, useState } from 'react';
 
 import { priceColors } from '../../../Data/Constants';
 
@@ -11,7 +11,7 @@ import { Col, Row } from 'react-bootstrap';
 import DeleteModal from './DeleteModal/DeleteModal.js';
 import EditModal from './EditModal/EditModal.js';
 
-function Post({background, item, viewCount, accountView, deletePost}) {
+function Post({item, viewCount, accountView, deletePost}) {
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
     const [openEditModal, setOpenEditModal] = useState(false);
 
@@ -24,7 +24,7 @@ function Post({background, item, viewCount, accountView, deletePost}) {
         <Fragment>
             <DeleteModal deletePost={deletePost} item={item} openDeleteModal={openDeleteModal} setOpenDeleteModal={setOpenDeleteModal} />
             <EditModal item={item} openEditModal={openEditModal} setOpenEditModal={setOpenEditModal} />
-            <Col className="post-container" style={{backgroundImage: `url(${background})`}} id={item.id} xs={showViewCount ? 5 : 12/viewCount} sm={showViewCount ? 5 : 12/viewCount} md={showViewCount ? 3 : 12/viewCount}>
+            <Col className="post-container" style={{backgroundImage: `url(${item.urls[0]})`}} id={item.id} xs={showViewCount ? 5 : 12/viewCount} sm={showViewCount ? 5 : 12/viewCount} md={showViewCount ? 3 : 12/viewCount}>
                 <div className="fake-background">
                     <Link className="link" to={{pathname: '/singlePost', search: queryParam}}>
                         <Row> 

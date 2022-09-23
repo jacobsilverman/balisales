@@ -35,7 +35,6 @@ function CreatePost() {
         
         setFiles([...files, event.target.files[numberOfUploads]]);
         setNumberOfUploads(numberOfUploads+1);
-
     }
 
     function pictureInputs() {
@@ -48,8 +47,7 @@ function CreatePost() {
                 </div>
             );
         }
-
-        console.log(allInputs);
+        
         return allInputs;
     }
 
@@ -63,6 +61,7 @@ function CreatePost() {
             condition,
             price,
             description,
+            numberOfImages: files.length,
             timeStamp: Date.now(),
             author: {name: auth?.currentUser?.displayName || 'anonymous', id: auth?.currentUser?.uid || 'none' }
         }).then((result) => {

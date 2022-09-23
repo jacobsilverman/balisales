@@ -97,10 +97,10 @@ function Filter({brand, setBrand, max, setMax, min, setMin, type, setType, setDi
                 </Col>
             </Row>
             <Row className='filter-item'>
-                        <Col xs={12}>
-                            <Button className="reset-button" variant="outlined" onClick={() => {resetFilter()}}>reset</Button>
-                        </Col>
-                    </Row>
+                <Col xs={12}>
+                    <Button className="reset-button" variant="outlined" onClick={() => {resetFilter()}}>reset</Button>
+                </Col>
+            </Row>
         </Fragment>
     );
 }

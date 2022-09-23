@@ -12,7 +12,7 @@ function SelectPost({posts}) {
     return (
         <Fragment>
             <Row>
-                <Col xs={11} sm={11} md={5} className="image-container" style={{backgroundImage: `url(${user?.url})`}}/>
+                <Col xs={11} sm={11} md={5} className="image-container" style={{backgroundImage: `url(${user?.urls[0]})`}}/>
                 <Col xs={12} sm={12} md={6} className="info-container">
                     <Row>
                         <Col xs={2} className="info-label">

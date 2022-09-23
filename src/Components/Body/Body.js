@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { Fragment, useState } from 'react';
 
 // import MockData from '../../Data/Mocks/Posts.json';
 // import BuildMocks from '../../Data/Mocks/BuildMocks.js'
@@ -33,20 +33,20 @@ function Body({ posts }) {
 
     const sortData = (data) => {
         if (sort === 'default') return data;
+   
         return [...data].sort((prev, next) => {
             if (sort === 'max') return (prev.price <= next.price) ? 1 : -1;
             return (prev.price >= next.price) ? 1 : -1;
-        })
-    }
-
-    let allPosts = sortData(posts);
+        });
+    };
 
     const parseData = () => {
+        let allPosts = sortData(posts);
         var partition = [];
         var parsedData = [];
         for (var i=0; i<=allPosts.length; i++){
             if (partition.length === viewCount || i === allPosts.length) {
-                parsedData.push(partition);
+                parsedData = partition;
                 partition = [];
             }
             validFilter(allPosts[i]) && partition.push(allPosts[i]);
@@ -87,22 +87,24 @@ function Body({ posts }) {
         </Row>
     );
 
+    const allPosts = (
+        parseData().map((item) => {
+            return (
+                <Fragment key={item.id}>
+                    <Post item={item} viewCount={viewCount} key={item.id} />
+                </Fragment>
+            )
+        })
+    );
+
     return (
         <Container className='body-container'>
             <Row>
                 {(displayFilter && filter) || openFilterButton}
                 <Col xs={12} className={topMargin}>
-                    {parseData()?.map((array, k) => {
-                        return (
-                            <Row key={k}>
-                                {array.map((item) => {
-                                    return (
-                                        <Post background={item?.imageUrls[0]} item={item} viewCount={viewCount} key={item.id} />
-                                    )
-                                })}
-                            </Row>
-                        );
-                    })}
+                    <Row>
+                        {allPosts}
+                    </Row>
                 </Col>
             </Row>
         </Container>
