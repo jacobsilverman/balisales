@@ -41,6 +41,7 @@ function Header({isAuth, setIsAuth}) {
             navigate("/");
             localStorage.clear();
             localStorage.setItem("uid", "");
+            localStorage.setItem("displayName", "");
             console.log("user id: ",localStorage.getItem("uid"));
             setUid("");
         })
@@ -50,9 +51,10 @@ function Header({isAuth, setIsAuth}) {
         signInWithPopup(auth, provider).then((result) => {
             setIsAuth(true);
             localStorage.setItem("isAuth", true);
-            console.log(result);
+            console.log(result?.user?.displayName);
             setUserLogin(result.user);
             localStorage.setItem("uid", result?.user?.uid);
+            localStorage.setItem("displayName", result?.user?.displayName);
             console.log("user id: ",localStorage.getItem("uid"));
             setUid(result?.user?.uid);
         })

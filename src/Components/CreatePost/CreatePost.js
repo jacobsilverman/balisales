@@ -51,9 +51,10 @@ function CreatePost() {
         return allInputs;
     }
 
-    const postsCollectionRef = collection(db, "posts");
+
     const createPost = async () => {
         setDisableSubmit(true);
+        const postsCollectionRef = collection(db, "posts");
         await addDoc(postsCollectionRef, {
             title,
             type,

@@ -33,7 +33,7 @@ function Post({item, viewCount, accountView, deletePost}) {
                                 {item.title.toUpperCase()}
                             </Col>
                             <Col className="delete-container">
-                                {accountView && <span className="delete" onClick={(e) => {e.preventDefault();setOpenDeleteModal(true);}}>x</span>}
+                                {accountView && <span className="delete link-danger" onClick={(e) => {e.preventDefault();setOpenDeleteModal(true);}}>x</span>}
                             </Col>
                         </Row>
                         <Row className="hidden-text show-onhover left-align">

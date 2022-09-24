@@ -3,10 +3,10 @@ import { Button, Col, Row } from 'react-bootstrap';
 
 const DeleteModal = ({deletePost, item, openDeleteModal, setOpenDeleteModal}) => {
     return (
-        <Modal open={openDeleteModal}>
-            <Row className="delete-modal">
-                <Col xs={5} sm={5} md={2} className="modal-background center">
-                    <Row>
+        <Modal open={openDeleteModal} id="delete-modal">
+            <Row className="modal-dialog delete-modal">
+                <Col xs={5} sm={5} md={2} className="modal-content modal-background center">
+                    <Row className="modal-header">
                         <Col className="modal-title">Do you want to delete this post?</Col>
                     </Row>
                     <Row>
