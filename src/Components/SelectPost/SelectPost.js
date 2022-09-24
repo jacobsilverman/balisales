@@ -4,6 +4,8 @@ import './SelectPost.scss';
 
 import { Col, Row } from 'react-bootstrap';
 
+import Button from '@mui/material/Button';
+
 function SelectPost({posts}) {
     const urlSearchParams = new URLSearchParams(window.location.search);
     const params = Object.fromEntries(urlSearchParams.entries());
@@ -15,29 +17,34 @@ function SelectPost({posts}) {
         <Fragment>
             <Row>
                 <Col xs={11} sm={11} md={5} className="image-container" style={{backgroundImage: `url(${user?.urls[displayImage]})`}}>
-                    <button onClick={() => setDisplayImage((displayImage-1) < 0 ? user.numberOfImages-1 : (displayImage-1))}>previous</button>
-                    <button onClick={() => setDisplayImage((displayImage+1)%user.numberOfImages)}>next</button>
+                    <Row>
+                        <Col xs={6} className="left">
+                            <Button variant="contained" onClick={() => setDisplayImage((displayImage-1) < 0 ? user?.numberOfImages-1 : (displayImage-1))}>Previous</Button>
+                        </Col>
+                        <Col xs={6} className="right">
+                            <Button variant="contained" onClick={() => setDisplayImage((displayImage+1)%user?.numberOfImages)}>Next</Button>
+                        </Col>
+                    </Row>
                 </Col>
-                
                 <Col xs={12} sm={12} md={6} className="info-container">
                     <Row>
                         <Col xs={2} className="info-label">
                             title:&nbsp;
                         </Col>
                         <Col xs={2} className="info-value">
-                            {user.title}
+                            {user?.title}
                         </Col>
                         <Col xs={2} className="info-label">
                             price:&nbsp;
                         </Col>
                         <Col xs={2} className="info-value">
-                            {user.price}
+                            {user?.price}
                         </Col>
                         <Col xs={2} className="info-label">
                             condition:&nbsp;
                         </Col>
                         <Col xs={2} className="info-value">
-                            {user.condition}
+                            {user?.condition}
                         </Col>
                     </Row>
                     <Row>
@@ -45,19 +52,19 @@ function SelectPost({posts}) {
                             brand:&nbsp;
                         </Col>
                         <Col xs={2} className="info-value">
-                            {user.brand}
+                            {user?.brand}
                         </Col>
                         <Col xs={2} className="info-label">
                             type:&nbsp;
                         </Col>
                         <Col xs={2} className="info-value">
-                            {user.type}
+                            {user?.type}
                         </Col>
                         <Col xs={2} className="info-label">
                             username:&nbsp;
                         </Col>
                         <Col xs={2} className="info-value">
-                            {user.author.name}
+                            {user?.author.name}
                         </Col>
                     </Row>
                     <Row>
@@ -65,7 +72,7 @@ function SelectPost({posts}) {
                             id:&nbsp;
                         </Col>
                         <Col xs={2} className="info-value">
-                            {user.id}
+                            {user?.id}
                         </Col>
                     </Row>
                 </Col>

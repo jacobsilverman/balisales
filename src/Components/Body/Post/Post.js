@@ -7,6 +7,7 @@ import './Post.scss';
 import { Link } from 'react-router-dom';
  
 import { Col, Row } from 'react-bootstrap';
+import Button from '@mui/material/Button';
 
 import DeleteModal from './DeleteModal/DeleteModal.js';
 import EditModal from './EditModal/EditModal.js';
