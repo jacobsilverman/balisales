@@ -1,5 +1,5 @@
 import { doc, addDoc, collection, getDocs, setDoc } from 'firebase/firestore';
-import { db, storage } from '../../firebase-config';
+import { db } from '../../firebase-config';
 
 const uid = localStorage.getItem("uid");
 const displayName = localStorage.getItem("displayName");
@@ -30,7 +30,6 @@ export const getDiscussions = async () => {
 };
 
 export const addComment = async (item, comment) => {
-    console.log("item: ", item);
     const discussionRef = doc(db, "discussions", item.id);
 
     await setDoc(discussionRef, {
@@ -44,11 +43,7 @@ export const addComment = async (item, comment) => {
 export const deleteComment = async (item, index) => {
     const discussionRef = doc(db, "discussions", item.id);
     item.comments.splice(index, 1);
-
-    await setDoc(discussionRef, {
-        ...item,
-        comments: item.comments
-    }).then((result) => {
+    await setDoc(discussionRef, item).then((result) => {
         console.log("result: ", result);
     });
 };

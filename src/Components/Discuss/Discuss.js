@@ -12,15 +12,9 @@ var Discuss = () => {
     const [currentComment, setCurrentComment] = useState("");
 
     useEffect(() => {
-        (
-            async () => {
-                getDiscussions().then((result) => {
-                    console.log(result);
-                    setDiscussions(result.map(item => item));
-                    return result;
-                })
-            }
-        )()
+        getDiscussions().then((result) => {
+            setDiscussions(result.map(item => item));
+        })
     }, []);
 
     return (
@@ -54,10 +48,10 @@ var Discuss = () => {
                 </div>
             </Row>
             <Row>
-                <div className="card-columns"  style={{marginTop:"20px"}}>
+                <div style={{marginTop:"20px"}}>
                     {discussions.map((item, index) => {
                         return (
-                            <Card key={index} className="w-50" style={{margin:"20px"}}>
+                            <div className="card" key={index} style={{margin:"20px 0 20px 0"}}>
                                 <div  className="card-header">
                                     {item?.displayName}
                                 </div>
@@ -65,27 +59,28 @@ var Discuss = () => {
                                     {item?.body}
                                 </div>
                                 <div className="card-footer">
-                                    <Row>
-                                        {item?.comments?.map((ele, index) => {
-                                            return (
-                                                <Row>
-                                                    <Col xs={2}>{ele.displayName}:</Col>
-                                                    <Col xs={8}>{ele.comment}</Col>
-                                                    {ele.uid === uid  && <Col xs={2}><button className="btn btn-danger" style={{fontSize: "10px"}} onClick={() => deleteComment(item, index)}>delete</button></Col>}
-                                                </Row>
-                                            )
-                                        })}
-                                    </Row>
-                                    <Row>  
-                                        <Col xs={8}>
-                                            <input onChange={(e) => setCurrentComment(e.target.value)} />
+                                    {item?.comments?.map((ele, index) => {
+                                        return (
+                                            <Row className="comment-container">
+                                                <Col xs={11} className="dialog-text">
+                                                    <Row style={{fontSize: "12px"}} xs={2}>{ele.displayName}</Row>
+                                                    <Row style={{margin: "5px 0px 5px 0px"}} xs={8}>{ele.comment}</Row>
+                                                </Col>
+                                                {/* {ele.uid === uid  && <Col xs={1}><button className="btn btn-primary" style={{fontSize: "10px"}} onClick={() => deleteComment(item, index)}>edit</button></Col>} */}
+                                                {ele.uid === uid  && <Col xs={1}><button className="btn btn-danger" style={{fontSize: "10px"}} onClick={() => deleteComment(item, index)}>delete</button></Col>}
+                                            </Row>
+                                        )
+                                    })}
+                                    <Row className="add-comment-container">  
+                                        <Col xs={11}>
+                                            <input style={{width:"100%"}} onChange={(e) => setCurrentComment(e.target.value)} />
                                         </Col>
-                                        <Col className="offset-2" xs={2}>
+                                        <Col xs={1}>
                                             <button className="btn btn-primary" style={{fontSize: "10px"}} onClick={() => {console.log(item, currentComment);addComment(item, currentComment)}}>Comment</button>
                                         </Col>
                                     </Row>
                                 </div>
-                            </Card>
+                            </div>
                         )
                     })}
                 </div>
