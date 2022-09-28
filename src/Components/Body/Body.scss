@@ -14,9 +14,9 @@
     z-index: 50;
 }
 
-.padding {
-    padding-left: 7vw;
-    padding-right: 7vw;
+.remove-padding {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
 }
 
 .right {
@@ -28,16 +28,17 @@
     background-color: white;
     color: black;
     border: black;
-    width: 15%;
+    width: 100%;
+    margin-bottom: 4px;
     display: flex;
     justify-content: center;
     font-family: roboto;
-    border-right: 1px solid black;
     border-bottom: 1px solid black;
 }
 
-.filter-button-containter {
-    padding-left: 0px;
+.filter-button-container {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
 }
 
 .post-margin {

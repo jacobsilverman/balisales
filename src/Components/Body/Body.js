@@ -1,9 +1,11 @@
-import React, { Fragment, useState } from 'react';
+import React, { useState } from 'react';
 
 import Post from './Post';
 import Filter from './Filter';
 
 import { Button, Col, Container, Row } from 'react-bootstrap';
+
+import Grid from '@mui/material/Grid';
 
 import './Body.scss';
 
@@ -36,36 +38,46 @@ function Body({ posts }) {
             return (prev.price >= next.price) ? 1 : -1;
         });
     };
-
-    const parseData = () => {
-        let allPosts = sortData(posts);
-        var partition = [];
-        var parsedData = [];
-        for (var i=0; i<=allPosts.length; i++){
-            if (partition.length === viewCount || i === allPosts.length) {
-                parsedData = partition;
-                partition = [];
-            }
-            validFilter(allPosts[i]) && partition.push(allPosts[i]);
-        }
-
-        return parsedData;
-    };
-
+    
     const validFilter = (post) => {
         return post?.price >= min 
             && post?.price <= max 
-            && (brand === post.brand || brand === 'default') 
-            && (post.type === type || type === 'default');
+            && (post.brand === brand || brand === 'default') 
+            && (post.type === type || type === 'default')
+            && (post.blade === blade || blade === 'default')
+            && (post.status === status || status === 'default');
     };
+
+    var divideData = () => {
+        let allPosts = sortData(posts);
+        let result = [];
+        let partition = [];
+        for (let i=0; i< allPosts.length; i++){
+            validFilter(allPosts[i]) && partition.push(allPosts[i]);
+            if ((i+1)%3===0 || i === allPosts.length-1) {
+                result.push(partition);
+                partition = [];
+            }
+            
+        };
+        return (
+            result.map((arr) => {
+                return <Grid container spacing={.5}>
+                    {arr.map((item) => {
+                        return <Post item={item} viewCount={viewCount} key={item.id} />
+                    })}
+                </Grid>
+            })
+        );
+    }
 
     document.addEventListener('scroll', () => {
         setWindowScroll(window.pageYOffset > 99);
     });
 
     const topFix = (windowScroll) ? 'fixed-top' : '';
-    const topMargin = (windowScroll && displayFilter) ? 'padding post-margin' : 'padding';
-    const openFilterButton = (<span className="filter-button-containter"><Button className={'filter-button ' + topFix} onClick={() => {setDisplayFilter(true)}}><b>FILTER</b></Button></span>);
+    const topMargin = (windowScroll && displayFilter) ? 'remove-padding post-margin' : 'remove-padding';
+    const openFilterButton = (<span className="filter-button-container"><Button className={'filter-button ' + topFix} onClick={() => {setDisplayFilter(true)}}><b>FILTER</b></Button></span>);
     const filter = (
         <Row className='filter-container'>
             <Col xs={12} className={topFix}>
@@ -84,24 +96,12 @@ function Body({ posts }) {
         </Row>
     );
 
-    const allPosts = (
-        parseData().map((item) => {
-            return (
-                <Fragment key={item.id}>
-                    <Post item={item} viewCount={viewCount} key={item.id} />
-                </Fragment>
-            )
-        })
-    );
-
     return (
         <Container className='body-container'>
             <Row>
                 {(displayFilter && filter) || openFilterButton}
                 <Col xs={12} className={topMargin}>
-                    <Row>
-                        {allPosts}
-                    </Row>
+                    {divideData()}
                 </Col>
             </Row>
         </Container>
