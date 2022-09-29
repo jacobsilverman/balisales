@@ -19,8 +19,8 @@ export const setUserLogin = async (user) => {
     }
 }
 
-export const getUserInfo = async () => {
-    const currentUserDoc = doc(db, "accounts", uid);
+export const getUserInfo = async (id) => {
+    const currentUserDoc = doc(db, "accounts", id || uid);
     const docSnap = await getDoc(currentUserDoc);
     return docSnap.data();
 }
