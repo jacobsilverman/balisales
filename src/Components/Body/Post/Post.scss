@@ -11,11 +11,13 @@
 .fake-background {
     height: 100%;
     width: 100%;
-    opacity: 0;
     &:hover {
-        opacity: 1;
         background-color: rgb(white, .8);
         transition-duration: .5s;
+        .hidden-text {
+            visibility: visible;
+            opacity: 1;
+        }
     }
 }
 
@@ -132,9 +134,6 @@ a {
 }
 
 .hidden-text {
-    font-size: 100%;
-    padding-left: 5%;
-    text-align: left;
     visibility: hidden;
     opacity: 0;
 }
