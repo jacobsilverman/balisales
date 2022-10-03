@@ -26,7 +26,7 @@ function Account({ posts }) {
 				const postDoc = doc(db, "posts", id);
 				const val = await getDoc(postDoc).then(async (doc) => {
 					let parsedDoc = {...doc.data(), id: doc.id, urls: []};
-					for (var i = 0; i<doc.data().numberOfImages; i++) {
+					for (var i = 0; i<parsedDoc.numberOfImages; i++) {
 						const storage = await getStorage();
 						const listRef = ref(storage, `/PostImages/${id}/image-${i}`);
 						await getDownloadURL(listRef)
@@ -52,7 +52,7 @@ function Account({ posts }) {
 		const storage = getStorage();
         const postDoc = doc(db, "posts", item.id);
 		await deleteDoc(postDoc);
-		deleteUserPost();
+		deleteUserPost(item.id);
 		for (var i = 0; i < item.numberOfImages; i++) {
 			const pictureRef = ref(storage, `PostImages/${item.id}/image-${i}`);
 			await deleteObject(pictureRef);

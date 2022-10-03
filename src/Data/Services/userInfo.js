@@ -36,7 +36,7 @@ export const addUserPost = async (postId) => {
 export const deleteUserPost = async (postId) => {
     getUserInfo().then(async (userInfo) => {
         const currentUserDoc = doc(db, "accounts", uid);
-        const payload = {...userInfo, posts: userInfo.posts.filter((item) => item.id !== postId)}
+        const payload = {...userInfo, posts: userInfo.posts.filter((item) => item !== postId)}
         await setDoc(currentUserDoc, payload);
     });
 }

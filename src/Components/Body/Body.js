@@ -61,8 +61,8 @@ function Body({ posts }) {
             
         };
         return (
-            result.map((arr) => {
-                return <Grid container spacing={.5}>
+            result.map((arr, index) => {
+                return <Grid container spacing={.5} key={index}>
                     {arr.map((item) => {
                         return <Post item={item} viewCount={viewCount} key={item.id} />
                     })}
