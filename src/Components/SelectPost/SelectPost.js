@@ -8,6 +8,8 @@ import { Col, Row } from 'react-bootstrap';
 
 import Button from '@mui/material/Button';
 
+import { Link } from 'react-router-dom';
+
 function SelectPost() {
     const urlSearchParams = new URLSearchParams(window.location.search);
     const params = Object.fromEntries(urlSearchParams.entries());
@@ -74,7 +76,7 @@ function SelectPost() {
                             username:&nbsp;
                         </Col>
                         <Col xs={2} className="info-value">
-                            {displayPost?.author?.name}
+                            <Link className="link" to={{pathname: '/profile', search: "id=" + displayPost?.author?.id}}>{displayPost?.author?.name}</Link>
                         </Col>
                     </Row>
                     <Row>

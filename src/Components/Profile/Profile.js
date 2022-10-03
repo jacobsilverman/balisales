@@ -6,9 +6,11 @@ import { Container, Col, Row } from 'react-bootstrap';
 
 const Profile = () => {
     const [userData, setUserData] = useState({});
+    const urlSearchParams = new URLSearchParams(window.location.search);
+    const params = Object.fromEntries(urlSearchParams.entries());
 
     useEffect(() => {
-        getUserInfo().then((result) => {
+        getUserInfo(params.id).then((result) => {
             setUserData(result);
         });
     }, []);
