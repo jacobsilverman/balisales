@@ -17,7 +17,7 @@ import EditModal from './EditModal/EditModal.js';
 function Post({item, viewCount, accountView, deletePost}) {
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
     const [openEditModal, setOpenEditModal] = useState(false);
-    const [openAccountModal, setOpenAccountModal] = useState(false);
+    // const [openAccountModal, setOpenAccountModal] = useState(false);
 
     const queryParam = 'id='+item?.id;
 
@@ -30,7 +30,6 @@ function Post({item, viewCount, accountView, deletePost}) {
             <EditModal item={item} openEditModal={openEditModal} setOpenEditModal={setOpenEditModal} />
             {/* <AccountModal item={item} openAccountModal={openAccountModal} setOpenAccountModal={setOpenAccountModal} /> */}
             <Grid item className="post-container" style={{backgroundImage: `url(${item?.urls[0]})`}} id={item?.id} xs={showViewCount ? 4 : 12/viewCount}>
-            
                 <div className="fake-background">
                     <Link className="link" to={{pathname: '/singlePost', search: queryParam}}>
                         <Row> 

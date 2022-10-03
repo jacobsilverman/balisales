@@ -42,11 +42,12 @@ const EditModal = ({item, openEditModal, setOpenEditModal}) => {
             price,
             description,
             timeStamp: Date.now(),
+            numberOfImages: item.numberOfImages,
             author: {name: item.author.name, id: item.author.id }
         }).then(() => {
+            const pictureRef = ref(getStorage(), `PostImages/${item.id}/image-0`);
             console.log("pictureRef: ", pictureRef);
-            const pictureRef = ref(getStorage(), 'files/' + item.id);
-            uploadBytesResumable(pictureRef, file);
+            // uploadBytesResumable(pictureRef, file);
         }).catch((error) => {
             console.error("problem: ", error)
         }).finally(() => {

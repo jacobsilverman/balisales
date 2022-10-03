@@ -5,8 +5,6 @@ import { ref, getDownloadURL, getStorage } from "firebase/storage";
 export const getPost = async (id) => {
     const docRef = doc(db, "posts", id);
     const postData = await getDoc(docRef).then(async (data) => {
-        console.log("test: ", data.data());
-
         let parsedItem = { ...data.data(), id: data.id, urls: []};
 
         for (var i = 0; i<parsedItem.numberOfImages; i++) {
@@ -23,6 +21,6 @@ export const getPost = async (id) => {
 
         return parsedItem;
     });
-    return postData.data();
+    return postData;
 }
 

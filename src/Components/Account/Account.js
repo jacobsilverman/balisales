@@ -1,7 +1,7 @@
 
 import { useEffect, useState } from 'react';
 
-import { auth } from '../../firebase-config';
+import Grid from '@mui/material/Grid';
 import { Container, Row } from 'react-bootstrap';
 
 import Post from '../Body/Post';
@@ -13,7 +13,7 @@ import { getStorage, ref, getDownloadURL, deleteObject } from "firebase/storage"
 import { doc, deleteDoc, getDoc } from 'firebase/firestore';
 import { db } from '../../firebase-config';
 
-function Account({ posts }) {
+function Account() {
 	const [filterPosts, setFilterPosts] = useState([]);
 
 	useEffect(() => {
@@ -66,13 +66,36 @@ function Account({ posts }) {
     }
 
 	const setAccountData = () => {
-		return filterPosts.length > 0 ? filterPosts?.map((item) => { return <Post item={item} key={item.id} accountView={true} deletePost={deletePost} />}) : "no posts available";
-	}
+		if (filterPosts.length === 0) {
+			return "no posts available";
+		} 
+
+		let result = [];
+        let partition = [];
+        for (let i=0; i< filterPosts.length; i++){
+            partition.push(filterPosts[i]);
+            if ((i+1)%3===0 || i === filterPosts.length-1) {
+                result.push(partition);
+                partition = [];
+            }
+            
+        };
+
+		return (
+            result.map((arr, index) => {
+                return <Grid container spacing={.5} key={index}>
+                    {arr.map((item) => {
+                        return <Post item={item} key={item.id} accountView={true} deletePost={deletePost} />
+                    })}
+                </Grid>
+            })
+        );
+    }
 
 	return (
 		<Container>
 			<Row className="account-container center">
-				{setAccountData()}
+				<Grid>{setAccountData()}</Grid>
 			</Row>
 		</Container>
 	);
