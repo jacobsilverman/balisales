@@ -14,6 +14,7 @@ function Settings() {
     const [instagram, setInstagram] = useState('');
     const [facebook, setFacebook] = useState('');
     const [file, setFile] = useState('');
+    const [posts, setPosts] = useState([]);
     
     useEffect(() => {
         getUserInfo().then((result) => {
@@ -24,6 +25,7 @@ function Settings() {
             setPhoneNumber(result.phoneNumber);
             setInstagram(result.instagram);
             setFacebook(result.facebook);
+            setPosts(result.posts || []);
         });
     }, []);
 
@@ -93,7 +95,7 @@ function Settings() {
                     </Row>
                     <Row>
                         <Col xs={12}>
-                            <Button onClick={() => setUserInfo({id, firstName, lastName, displayName, phoneNumber, instagram, facebook}, file)}>
+                            <Button onClick={() => setUserInfo({id, firstName, lastName, displayName, phoneNumber, instagram, facebook, posts}, file)}>
                                 Submit
                             </Button>
                         </Col>

@@ -3,6 +3,8 @@ import { Button, Col, Container, Row } from 'react-bootstrap';
 
 import { brands, types } from '../../Data/Constants';
 
+import { addUserPost } from '../../Data/Services/userInfo';
+
 import { addDoc, collection } from 'firebase/firestore';
 import { auth, db } from '../../firebase-config';
 
@@ -51,7 +53,6 @@ function CreatePost() {
         return allInputs;
     }
 
-
     const createPost = async () => {
         setDisableSubmit(true);
         const postsCollectionRef = collection(db, "posts");
@@ -97,8 +98,11 @@ function CreatePost() {
             }).catch((err) => {
                 console.error(err)
             })
+            return result;
         
-        });
+        }).then((result) => {
+            addUserPost(result.id);
+        })
     }
 
     const getOptions = (options) => {

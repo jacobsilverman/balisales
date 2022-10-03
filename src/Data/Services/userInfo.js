@@ -25,11 +25,31 @@ export const getUserInfo = async (id) => {
     return docSnap.data();
 }
 
+export const addUserPost = async (postId) => {
+    getUserInfo().then(async (userInfo) => {
+        const currentUserDoc = doc(db, "accounts", uid);
+        const payload = {...userInfo, posts: [...userInfo.posts, postId]}
+        await setDoc(currentUserDoc, payload);
+    });
+}
+
+export const deleteUserPost = async (postId) => {
+    getUserInfo().then(async (userInfo) => {
+        const currentUserDoc = doc(db, "accounts", uid);
+        const payload = {...userInfo, posts: userInfo.posts.filter((item) => item.id !== postId)}
+        await setDoc(currentUserDoc, payload);
+    });
+}
+
 export const setUserInfo = async (payload, file) => {
-    const pictureRef = ref(storage, `/profiles/${uid}`);
+    if (file !== '') {
+        const pictureRef = ref(storage, `/profiles/${uid}`);
+        await uploadBytesResumable(pictureRef, file);
+    }
+    
     const currentUserDoc = doc(db, "accounts", uid);
-    await uploadBytesResumable(pictureRef, file);
     await setDoc(currentUserDoc, payload);
+    
     window.location.reload(false);
 }
 
