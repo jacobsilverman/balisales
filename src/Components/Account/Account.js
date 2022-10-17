@@ -22,6 +22,9 @@ function Account() {
 
 	const getUserposts = async () => {
 		getUserInfo().then(async (info)  => {
+			if (!info?.posts) {
+				return null;
+			}
 			const allUserPost = info.posts.map(async (id) => {
 				const postDoc = doc(db, "posts", id);
 				const val = await getDoc(postDoc).then(async (doc) => {

@@ -24,74 +24,91 @@ function Filter({brand, setBrand, max, setMax, min, setMin, type, setType, setDi
             </Row>
             <Row>
                 <Col xs={12} className='filter-content'>
-                    <Row  className='filter-item'>
-                        <Col xs={3} md={1} className="right">
-                            Min:
+                    <Row className='filter-item'>
+                        <Col xs={12} md={6}>
+                            <Row>
+                                <Col xs={2} className="right">
+                                    Min:
+                                </Col>
+                                <Col xs={4} className='margin-sm'>
+                                    <input className='price-input' onChange={(event) => {setMin(event.target.value)}} value={min} />
+                                </Col>
+                                <Col xs={2} className="right">
+                                    <label>Brand:</label>
+                                </Col>
+                                <Col xs={4}>
+                                    <select value={brand} className="select-width" onChange={(event) => setBrand(event.target.value)}>
+                                        <option value="default">default</option>
+                                        {getOptions(brands, brand)}
+                                    </select>
+                                </Col>
+                            </Row>
                         </Col>
-                        <Col xs={3} md={2} className='margin-sm'>
-                            <input className='price-input' onChange={(event) => {setMin(event.target.value)}} value={min} />
-                        </Col>
-                        <Col xs={3} md={1} className="right">
-                            <label>Brand:</label>
-                        </Col>
-                        <Col xs={3} md={2}>
-                            <select value={brand} className="select-width" onChange={(event) => setBrand(event.target.value)}>
-                                <option value="default">default</option>
-                                {getOptions(brands, brand)}
-                            </select>
-                        </Col>
-                        <Col xs={1} className="right">
-                            <label>Sort:</label>
-                        </Col>
-                        <Col xs={2}>
-                            <select value={sort} className="select-width" onChange={(event) => setSort(event.target.value)}>
-                                <option value="default">default</option>
-                                {getOptions(sorts, sort)}
-                            </select>
-                        </Col>
-                        <Col xs={1} className="right">
-                            <label>Status:</label>
-                        </Col>
-                        <Col xs={2}>
-                            <select value={status} className="select-width" onChange={(event) => setStatus(event.target.value)}>
-                                <option value="default">default</option>
-                                {getOptions(statuses, status)}
-                            </select>
+                        <Col xs={12} md={6}>
+                            <Row>
+
+                                <Col xs={2} className="right">
+                                    <label>Sort:</label>
+                                </Col>
+                                <Col xs={4}>
+                                    <select value={sort} className="select-width" onChange={(event) => setSort(event.target.value)}>
+                                        <option value="default">default</option>
+                                        {getOptions(sorts, sort)}
+                                    </select>
+                                </Col>
+                                <Col xs={2} className="right">
+                                    <label>Status:</label>
+                                </Col>
+                                <Col xs={4}>
+                                    <select value={status} className="select-width" onChange={(event) => setStatus(event.target.value)}>
+                                        <option value="default">default</option>
+                                        {getOptions(statuses, status)}
+                                    </select>
+                                </Col>
+                            </Row>
                         </Col>
                     </Row>
                     <Row className='filter-item'>
-                        <Col xs={3} md={1} className="right">
-                            Max:
+                        <Col xs={12} md={6}>
+                            <Row>
+                                <Col xs={2} className="right">
+                                    Max:
+                                </Col>
+                                <Col xs={4}>
+                                    <input className='price-input' onChange={(event) => {setMax(event.target.value )}} value={max} />
+                                </Col>
+                                <Col xs={2} className="right">
+                                    <label>Type:</label>
+                                </Col>
+                                <Col xs={4}>
+                                    <select value={type} className="select-width" onChange={(event) => setType(event.target.value)}>
+                                        <option value="default">default</option>
+                                        {getOptions(types, type)}
+                                    </select>
+                                </Col>
+                            </Row>
                         </Col>
-                        <Col xs={3} md={2}>
-                            <input className='price-input' onChange={(event) => {setMax(event.target.value )}} value={max} />
-                        </Col>
-                        <Col xs={3} md={1} className="right">
-                            <label>Type:</label>
-                        </Col>
-                        <Col xs={3} md={2}>
-                            <select value={type} className="select-width" onChange={(event) => setType(event.target.value)}>
-                                <option value="default">default</option>
-                                {getOptions(types, type)}
-                            </select>
-                        </Col>
-                        <Col xs={1} className="right">
-                            <label>Show:</label>
-                        </Col>
-                        <Col xs={2}>
-                            <select value={viewCount} className="select-width" onChange={(event) => setViewCount(event.target.value)} selected={viewCount}>
-                                <option value="default">default</option>
-                                {getOptions(viewCounts, viewCount)}
-                            </select>
-                        </Col>
-                        <Col xs={1} className="right">
-                            <label>Blades:</label>
-                        </Col>
-                        <Col xs={2}>
-                            <select value={blade} className="select-width" onChange={(event) => setBlade(event.target.value)} selected={blade}>
-                                <option value="default">default</option>
-                                {getOptions(blades, blade)}
-                            </select>
+                        <Col xs={12} md={6}>
+                            <Row>
+                                <Col xs={2} className="right">
+                                    <label>Show:</label>
+                                </Col>
+                                <Col xs={4}>
+                                    <select value={viewCount} className="select-width" onChange={(event) => setViewCount(event.target.value)} selected={viewCount}>
+                                        <option value="default">default</option>
+                                        {getOptions(viewCounts, viewCount)}
+                                    </select>
+                                </Col>
+                                <Col xs={2} className="right">
+                                    <label>Blades:</label>
+                                </Col>
+                                <Col xs={4}>
+                                    <select value={blade} className="select-width" onChange={(event) => setBlade(event.target.value)} selected={blade}>
+                                        <option value="default">default</option>
+                                        {getOptions(blades, blade)}
+                                    </select>
+                                </Col>
+                            </Row>
                         </Col>
                     </Row>
                 </Col>
