@@ -4,7 +4,7 @@ import './AboutUs.scss';
 var AboutUs = () => {
     return (
         <Container className="about-container">
-            <Row>
+            {/* <Row>
                 <Col>
                     Hello User, my name is Jacob Silverman and I am the sole developer of this website. A bit about my history and creditials: I grew up in San Diego, California and later moved to NYC when I attended
                     NYU for my degree in Computer science with minors in Business & Psychology year of 2016. After college I was employed by E*Trade (now Morgan Stanley) as a Front End Web Developer where I have spent the last 6 years
@@ -14,7 +14,7 @@ var AboutUs = () => {
                     flipping while growing my collection by buy, selling and trading balisongs with the aim of trying all varieties while occassionally making slight profits. I find this niche hobby has provided infinite entertainment
                     for myself and I only wish to become more involved with the community/spread awareness of this wonderful hobby.
                 </Col>
-            </Row>
+            </Row> */}
             <Row>
                 <Col>
                     With recent dilemmas on the instagram sales channel I thought it would be a wonderful opporunity to start this project. Even though there are already plenty of alternative markets for Balisongs I find they dont satisfy 

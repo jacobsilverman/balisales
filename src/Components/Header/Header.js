@@ -106,7 +106,7 @@ function Header({isAuth, setIsAuth}) {
             <header className="App-header">
                 <Container>
                     <Row>
-                        <Col xs={3}>
+                        <Col xs={2}>
                             <div className="hamburger-menu">
                                 <input id="menu__toggle" type="checkbox" />
                                 <label className="menu__btn" htmlFor="menu__toggle">
@@ -142,7 +142,7 @@ function Header({isAuth, setIsAuth}) {
                                             </span>
                                         </Link>
                                     </li>
-                                    <li>
+                                    {/* <li>
                                         <Link className="white" to={{pathname: '/discuss'}}>
                                             <span className="menu__item">
                                                 <Row>
@@ -155,7 +155,7 @@ function Header({isAuth, setIsAuth}) {
                                                 </Row>
                                             </span>
                                         </Link>
-                                    </li>
+                                    </li> */}
                                     <li>
                                         <Link className="white" to={{pathname: '/contactUs'}}>
                                             <span className="menu__item">
@@ -187,10 +187,10 @@ function Header({isAuth, setIsAuth}) {
                                 </ul>
                             </div>
                         </Col>
-                        <Col xs={6} className="center title">
+                        <Col xs={8} className="center title">
                             <h1 style={{fontSize:"40px",fontFamily:"roboto",paddingTop:"10px"}}><a href="/">{pageTitle.split('&')[0]}</a></h1>
                         </Col>
-                        <Col xs={3} className="login-container">
+                        <Col xs={2} className="login-container">
                             {!isAuth
                             ? <Button size="large" onClick={signInWithGoogle}>Login</Button>
                             :
