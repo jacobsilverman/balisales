@@ -4,6 +4,11 @@ import { blades, brands, viewCounts, sorts, statuses, types } from '../../../Dat
 
 import { Col, Row } from 'react-bootstrap';
 import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+import FormControl from '@mui/material/FormControl';
+import MenuItem from '@mui/material/MenuItem';
+import InputLabel from '@mui/material/InputLabel';
+import Select from '@mui/material/Select';
 
 import './Filter.scss';
 
@@ -11,59 +16,63 @@ function Filter({brand, setBrand, max, setMax, min, setMin, type, setType, setDi
 
     const getOptions = (options) => {
         return options.map((name, key) => {
-            return <option key={key} value={name}>{name}</option>;
+            return <MenuItem key={key} value={name}>{name}</MenuItem>;
         });
     };
 
     return (
         <Fragment>
-            <Row>
-                <Col xs={12} className='align-right'>
-                    <Button variant="outlined" color="error" size="small" onClick={() => {setDisplayFilter(false)}}>x</Button>
+            <Row className='filter-item'>
+                <Col xs={1} className='align-left'>
+                    <Button variant="contained" color="error" size="small" onClick={() => {setDisplayFilter(false)}}>x</Button>
                 </Col>
+                <Col xs={11}>
+                    <Button className="reset-button" variant="contained" onClick={() => {resetFilter()}}>reset</Button>
+                </Col> 
             </Row>
             <Row>
                 <Col xs={12} className='filter-content'>
                     <Row className='filter-item'>
                         <Col xs={12} md={6}>
                             <Row>
-                                <Col xs={2} className="right">
-                                    Min:
+                                <Col xs={6} className='margin-sm'>
+                                    <TextField label="Min" color="" onChange={(event) => {setMin(event.target.value)}} focused value={min} />
                                 </Col>
-                                <Col xs={4} className='margin-sm'>
-                                    <input className='price-input' onChange={(event) => {setMin(event.target.value)}} value={min} />
-                                </Col>
-                                <Col xs={2} className="right">
-                                    <label>Brand:</label>
-                                </Col>
-                                <Col xs={4}>
-                                    <select value={brand} className="select-width" onChange={(event) => setBrand(event.target.value)}>
-                                        <option value="default">default</option>
-                                        {getOptions(brands, brand)}
-                                    </select>
+
+                                <Col xs={6}>
+                                    <TextField label="Max" color="" onChange={(event) => {setMax(event.target.value )}} focused value={max} />
                                 </Col>
                             </Row>
                         </Col>
                         <Col xs={12} md={6}>
                             <Row>
-
-                                <Col xs={2} className="right">
-                                    <label>Sort:</label>
+                                <Col xs={6}>
+                                    <FormControl fullWidth>
+                                        <InputLabel id="demo-simple-select-label">Sort</InputLabel>
+                                        <Select
+                                            labelId="demo-simple-select-label"
+                                            id="demo-simple-select"
+                                            value={sort}
+                                            label="Sort"
+                                            onChange={(event) => setSort(event.target.value)}>
+                                            <MenuItem value="default">default</MenuItem>
+                                            {getOptions(sorts, sort)}
+                                        </Select>
+                                    </FormControl>
                                 </Col>
-                                <Col xs={4}>
-                                    <select value={sort} className="select-width" onChange={(event) => setSort(event.target.value)}>
-                                        <option value="default">default</option>
-                                        {getOptions(sorts, sort)}
-                                    </select>
-                                </Col>
-                                <Col xs={2} className="right">
-                                    <label>Status:</label>
-                                </Col>
-                                <Col xs={4}>
-                                    <select value={status} className="select-width" onChange={(event) => setStatus(event.target.value)}>
-                                        <option value="default">default</option>
-                                        {getOptions(statuses, status)}
-                                    </select>
+                                <Col xs={6}>
+                                    <FormControl fullWidth>
+                                        <InputLabel id="demo-simple-select-label">status</InputLabel>
+                                        <Select
+                                            labelId="demo-simple-select-label"
+                                            id="demo-simple-select"
+                                            value={status}
+                                            label="status"
+                                            onChange={(event) => setStatus(event.target.value)}>
+                                            <MenuItem value="default">default</MenuItem>
+                                            {getOptions(statuses, status)}
+                                        </Select>
+                                    </FormControl>
                                 </Col>
                             </Row>
                         </Col>
@@ -71,51 +80,69 @@ function Filter({brand, setBrand, max, setMax, min, setMin, type, setType, setDi
                     <Row className='filter-item'>
                         <Col xs={12} md={6}>
                             <Row>
-                                <Col xs={2} className="right">
-                                    Max:
+                                <Col xs={6}>
+                                    <FormControl fullWidth>
+                                        <InputLabel id="demo-simple-select-label">brand</InputLabel>
+                                        <Select
+                                            labelId="demo-simple-select-label"
+                                            id="demo-simple-select"
+                                            value={brand}
+                                            label="status"
+                                            onChange={(event) => setBrand(event.target.value)}>
+                                            <MenuItem value="default">default</MenuItem>
+                                            {getOptions(brands, brand)}
+                                        </Select>
+                                    </FormControl>
                                 </Col>
-                                <Col xs={4}>
-                                    <input className='price-input' onChange={(event) => {setMax(event.target.value )}} value={max} />
-                                </Col>
-                                <Col xs={2} className="right">
-                                    <label>Type:</label>
-                                </Col>
-                                <Col xs={4}>
-                                    <select value={type} className="select-width" onChange={(event) => setType(event.target.value)}>
-                                        <option value="default">default</option>
-                                        {getOptions(types, type)}
-                                    </select>
+                                <Col xs={6}>
+                                    <FormControl fullWidth>
+                                        <InputLabel id="demo-simple-select-label">type</InputLabel>
+                                        <Select
+                                            labelId="demo-simple-select-label"
+                                            id="demo-simple-select"
+                                            value={type}
+                                            label="type"
+                                            onChange={(event) => setType(event.target.value)}>
+                                            <MenuItem value="default">default</MenuItem>
+                                            {getOptions(types, type)}
+                                        </Select>
+                                    </FormControl>
                                 </Col>
                             </Row>
                         </Col>
                         <Col xs={12} md={6}>
-                            <Row>
-                                <Col xs={2} className="right">
-                                    <label>Show:</label>
+                            <Row className='bottom-margin'>
+                                <Col xs={6}>
+                                    <FormControl fullWidth>
+                                        <InputLabel id="demo-simple-select-label">Show</InputLabel>
+                                        <Select
+                                            labelId="demo-simple-select-label"
+                                            id="demo-simple-select"
+                                            value={viewCount}
+                                            label="Show"
+                                            onChange={(event) => setViewCount(event.target.value)}>
+                                            <MenuItem value="default">default</MenuItem>
+                                            {getOptions(viewCounts, viewCount)}
+                                        </Select>
+                                    </FormControl>
                                 </Col>
-                                <Col xs={4}>
-                                    <select value={viewCount} className="select-width" onChange={(event) => setViewCount(event.target.value)} selected={viewCount}>
-                                        <option value="default">default</option>
-                                        {getOptions(viewCounts, viewCount)}
-                                    </select>
-                                </Col>
-                                <Col xs={2} className="right">
-                                    <label>Blades:</label>
-                                </Col>
-                                <Col xs={4}>
-                                    <select value={blade} className="select-width" onChange={(event) => setBlade(event.target.value)} selected={blade}>
-                                        <option value="default">default</option>
-                                        {getOptions(blades, blade)}
-                                    </select>
+                                <Col xs={6}>
+                                    <FormControl fullWidth>
+                                        <InputLabel id="demo-simple-select-label">Blade</InputLabel>
+                                        <Select
+                                            labelId="demo-simple-select-label"
+                                            id="demo-simple-select"
+                                            value={blade}
+                                            label="blade"
+                                            onChange={(event) => setBlade(event.target.value)}>
+                                            <MenuItem value="default">default</MenuItem>
+                                            {getOptions(blades, blade)}
+                                        </Select>
+                                    </FormControl>
                                 </Col>
                             </Row>
                         </Col>
                     </Row>
-                </Col>
-            </Row>
-            <Row className='filter-item'>
-                <Col xs={12}>
-                    <Button className="reset-button" variant="outlined" onClick={() => {resetFilter()}}>reset</Button>
                 </Col>
             </Row>
         </Fragment>
