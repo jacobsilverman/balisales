@@ -4,4 +4,15 @@
 
 .profile-label {
     cursor: pointer;
+    border: 2px solid black;
+    border-radius: .2cm;
+    padding: 10px;
+}
+
+.settings-container {
+    margin: 15px;
+}
+
+.setting-item {
+    padding: 20px;
 }

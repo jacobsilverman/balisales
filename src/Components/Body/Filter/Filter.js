@@ -67,7 +67,7 @@ function Filter({brand, setBrand, max, setMax, min, setMin, type, setType, setDi
                                 </Select>
                             </FormControl>
                         </Col>
-                        <Col xs={6} sm={6} md={3}  className="dropdown">
+                        <Col xs={6} sm={6} md={3} className="dropdown">
                             <FormControl fullWidth>
                                 <InputLabel id="demo-simple-select-label">brand</InputLabel>
                                 <Select
