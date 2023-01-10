@@ -23,124 +23,106 @@ function Filter({brand, setBrand, max, setMax, min, setMin, type, setType, setDi
     return (
         <Fragment>
             <Row className='filter-item'>
-                <Col xs={1} className='align-left'>
+                <Col xs={2} className='align-left'>
                     <Button variant="contained" color="error" size="small" onClick={() => {setDisplayFilter(false)}}>x</Button>
                 </Col>
-                <Col xs={11}>
+                <Col xs={10}>
                     <Button className="reset-button" variant="contained" onClick={() => {resetFilter()}}>reset</Button>
                 </Col> 
             </Row>
             <Row>
                 <Col xs={12} className='filter-content'>
                     <Row className='filter-item'>
-                        <Col xs={12} md={6}>
-                            <Row>
-                                <Col xs={6} className='margin-sm'>
-                                    <TextField label="Min" color="" onChange={(event) => {setMin(event.target.value)}} focused value={min} />
-                                </Col>
-
-                                <Col xs={6}>
-                                    <TextField label="Max" color="" onChange={(event) => {setMax(event.target.value )}} focused value={max} />
-                                </Col>
-                            </Row>
+                        <Col xs={6} sm={6} md={3} className="dropdown">
+                            <TextField label="Min" color="" onChange={(event) => {setMin(event.target.value)}} focused value={min} />
                         </Col>
-                        <Col xs={12} md={6}>
-                            <Row>
-                                <Col xs={6}>
-                                    <FormControl fullWidth>
-                                        <InputLabel id="demo-simple-select-label">Sort</InputLabel>
-                                        <Select
-                                            labelId="demo-simple-select-label"
-                                            id="demo-simple-select"
-                                            value={sort}
-                                            label="Sort"
-                                            onChange={(event) => setSort(event.target.value)}>
-                                            <MenuItem value="default">default</MenuItem>
-                                            {getOptions(sorts, sort)}
-                                        </Select>
-                                    </FormControl>
-                                </Col>
-                                <Col xs={6}>
-                                    <FormControl fullWidth>
-                                        <InputLabel id="demo-simple-select-label">status</InputLabel>
-                                        <Select
-                                            labelId="demo-simple-select-label"
-                                            id="demo-simple-select"
-                                            value={status}
-                                            label="status"
-                                            onChange={(event) => setStatus(event.target.value)}>
-                                            <MenuItem value="default">default</MenuItem>
-                                            {getOptions(statuses, status)}
-                                        </Select>
-                                    </FormControl>
-                                </Col>
-                            </Row>
+                        <Col xs={6} sm={6} md={3}>
+                            <TextField label="Max" color="" onChange={(event) => {setMax(event.target.value )}} focused value={max} />
                         </Col>
-                    </Row>
-                    <Row className='filter-item'>
-                        <Col xs={12} md={6}>
-                            <Row>
-                                <Col xs={6}>
-                                    <FormControl fullWidth>
-                                        <InputLabel id="demo-simple-select-label">brand</InputLabel>
-                                        <Select
-                                            labelId="demo-simple-select-label"
-                                            id="demo-simple-select"
-                                            value={brand}
-                                            label="status"
-                                            onChange={(event) => setBrand(event.target.value)}>
-                                            <MenuItem value="default">default</MenuItem>
-                                            {getOptions(brands, brand)}
-                                        </Select>
-                                    </FormControl>
-                                </Col>
-                                <Col xs={6}>
-                                    <FormControl fullWidth>
-                                        <InputLabel id="demo-simple-select-label">type</InputLabel>
-                                        <Select
-                                            labelId="demo-simple-select-label"
-                                            id="demo-simple-select"
-                                            value={type}
-                                            label="type"
-                                            onChange={(event) => setType(event.target.value)}>
-                                            <MenuItem value="default">default</MenuItem>
-                                            {getOptions(types, type)}
-                                        </Select>
-                                    </FormControl>
-                                </Col>
-                            </Row>
+                        <Col xs={6} sm={6} md={3}  className="dropdown">
+                            <FormControl fullWidth>
+                                <InputLabel id="demo-simple-select-label">Sort</InputLabel>
+                                <Select
+                                    labelId="demo-simple-select-label"
+                                    id="demo-simple-select"
+                                    value={sort}
+                                    label="Sort"
+                                    onChange={(event) => setSort(event.target.value)}>
+                                    <MenuItem value="default">default</MenuItem>
+                                    {getOptions(sorts, sort)}
+                                </Select>
+                            </FormControl>
                         </Col>
-                        <Col xs={12} md={6}>
-                            <Row className='bottom-margin'>
-                                <Col xs={6}>
-                                    <FormControl fullWidth>
-                                        <InputLabel id="demo-simple-select-label">Show</InputLabel>
-                                        <Select
-                                            labelId="demo-simple-select-label"
-                                            id="demo-simple-select"
-                                            value={viewCount}
-                                            label="Show"
-                                            onChange={(event) => setViewCount(event.target.value)}>
-                                            <MenuItem value="default">default</MenuItem>
-                                            {getOptions(viewCounts, viewCount)}
-                                        </Select>
-                                    </FormControl>
-                                </Col>
-                                <Col xs={6}>
-                                    <FormControl fullWidth>
-                                        <InputLabel id="demo-simple-select-label">Blade</InputLabel>
-                                        <Select
-                                            labelId="demo-simple-select-label"
-                                            id="demo-simple-select"
-                                            value={blade}
-                                            label="blade"
-                                            onChange={(event) => setBlade(event.target.value)}>
-                                            <MenuItem value="default">default</MenuItem>
-                                            {getOptions(blades, blade)}
-                                        </Select>
-                                    </FormControl>
-                                </Col>
-                            </Row>
+                        <Col xs={6} sm={6} md={3}>
+                            <FormControl fullWidth>
+                                <InputLabel id="demo-simple-select-label">status</InputLabel>
+                                <Select
+                                    labelId="demo-simple-select-label"
+                                    id="demo-simple-select"
+                                    value={status}
+                                    label="status"
+                                    onChange={(event) => setStatus(event.target.value)}>
+                                    <MenuItem value="default">default</MenuItem>
+                                    {getOptions(statuses, status)}
+                                </Select>
+                            </FormControl>
+                        </Col>
+                        <Col xs={6} sm={6} md={3}  className="dropdown">
+                            <FormControl fullWidth>
+                                <InputLabel id="demo-simple-select-label">brand</InputLabel>
+                                <Select
+                                    labelId="demo-simple-select-label"
+                                    id="demo-simple-select"
+                                    value={brand}
+                                    label="status"
+                                    onChange={(event) => setBrand(event.target.value)}>
+                                    <MenuItem value="default">default</MenuItem>
+                                    {getOptions(brands, brand)}
+                                </Select>
+                            </FormControl>
+                        </Col>
+                        <Col xs={6} sm={6} md={3}>
+                            <FormControl fullWidth>
+                                <InputLabel id="demo-simple-select-label">type</InputLabel>
+                                <Select
+                                    labelId="demo-simple-select-label"
+                                    id="demo-simple-select"
+                                    value={type}
+                                    label="type"
+                                    onChange={(event) => setType(event.target.value)}>
+                                    <MenuItem value="default">default</MenuItem>
+                                    {getOptions(types, type)}
+                                </Select>
+                            </FormControl>
+                        </Col>
+            
+                        <Col xs={6} sm={6} md={3}>
+                            <FormControl fullWidth>
+                                <InputLabel id="demo-simple-select-label">Show</InputLabel>
+                                <Select
+                                    labelId="demo-simple-select-label"
+                                    id="demo-simple-select"
+                                    value={viewCount}
+                                    label="Show"
+                                    onChange={(event) => setViewCount(event.target.value)}>
+                                    <MenuItem value="default">default</MenuItem>
+                                    {getOptions(viewCounts, viewCount)}
+                                </Select>
+                            </FormControl>
+                        </Col>
+                        <Col xs={6} sm={6} md={3}>
+                            <FormControl fullWidth>
+                                <InputLabel id="demo-simple-select-label">Blade</InputLabel>
+                                <Select
+                                    labelId="demo-simple-select-label"
+                                    id="demo-simple-select"
+                                    value={blade}
+                                    label="blade"
+                                    onChange={(event) => setBlade(event.target.value)}>
+                                    <MenuItem value="default">default</MenuItem>
+                                    {getOptions(blades, blade)}
+                                </Select>
+                            </FormControl>
                         </Col>
                     </Row>
                 </Col>

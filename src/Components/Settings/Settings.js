@@ -3,7 +3,12 @@ import { Col, Container, Row } from 'react-bootstrap';
 
 import { getUserInfo, setUserInfo } from '../../Data/Services/userInfo.js';
 
+import { MdUpload } from "react-icons/md";
+
 import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+
+import './Settings.scss';
 
 function Settings() {
     const [id, setId] = useState('');
@@ -39,58 +44,43 @@ function Settings() {
                 <Col xs={12} className="center">
                     <Row>
                         <Col xs={12}>
-                            <label>First name</label>
-                        </Col>
-                        <Col xs={12}>
-                            <input value={firstName} onChange={(event) => setFirstName(event.target.value)} />
+                            <TextField label="first name" color="" onChange={(event) => setFirstName(event.target.value)} focused value={firstName} />
                         </Col>
                     </Row>
                     <Row>
                         <Col xs={12}>
-                            <label>Last name</label>
-                        </Col>
-                        <Col xs={12}>
-                            <input value={lastName} onChange={(event) => setLastName(event.target.value)} />
+                            <TextField label="last name" color="" onChange={(event) => setLastName(event.target.value)} focused value={lastName} />
                         </Col>
                     </Row>
                     <Row>
                         <Col xs={12}>
-                            <label>Display name</label>
-                        </Col>
-                        <Col xs={12}>
-                            <input value={displayName} onChange={(event) => setDisplayName(event.target.value)} />
+                            <TextField label="display name" color="" onChange={(event) => setDisplayName(event.target.value)} focused value={displayName} />
                         </Col>
                     </Row>
                     <Row>
                         <Col xs={12}>
-                            <label>Phone number</label>
-                        </Col>
-                        <Col xs={12}>
-                            <input value={phoneNumber} onChange={(event) => setPhoneNumber(event.target.value)} />
+                            <TextField label="phone number" color="" onChange={(event) => setPhoneNumber(event.target.value)} focused value={phoneNumber} />
                         </Col>
                     </Row>
                     <Row>
                         <Col xs={12}>
-                            <label>Profile Picture</label>
+                            <TextField label="instagram" color="" onChange={(event) => setInstagram(event.target.value)} focused value={instagram} />
                         </Col>
+                    </Row>
+                    <Row>
+
                         <Col xs={12}>
-                            <input type="file" onChange={handleChange} accept="/image/*" />
+                            <TextField label="facebook" color="" onChange={(event) => setFacebook(event.target.value)} focused value={facebook} />
                         </Col>
                     </Row>
                     <Row>
                         <Col xs={12}>
-                            <label>Instagram Url</label>
-                        </Col>
-                        <Col xs={12}>
-                            <input value={instagram} onChange={(event) => setInstagram(event.target.value)} />
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col xs={12}>
-                            <label>Facebook Url</label>
-                        </Col>
-                        <Col xs={12}>
-                            <input value={facebook} onChange={(event) => setFacebook(event.target.value)} />
+                            <label className='profile-label' for="inputTag">
+                                Profile Picture
+                                <input id="inputTag" className='profile-input' type="file" onChange={handleChange} accept="/image/*" />
+                                <br />
+                                <MdUpload />
+                            </label>
                         </Col>
                     </Row>
                     <Row>
