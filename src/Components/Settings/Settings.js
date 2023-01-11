@@ -3,6 +3,8 @@ import { Col, Container, Row } from 'react-bootstrap';
 
 import { getUserInfo, setUserInfo } from '../../Data/Services/userInfo.js';
 
+import Account from '../Account';
+
 import { FaImage } from "react-icons/fa";
 
 import Button from '@mui/material/Button';
@@ -41,37 +43,36 @@ function Settings() {
     return (
         <Container>
             <Row>
-
                 <Col xs={12} className="center settings-container">
                     <Row>
-                        <Col xs={12} sm={4} className="setting-item">
-                            <TextField label="first name" color="" onChange={(event) => setFirstName(event.target.value)} focused value={firstName} />
+                        <Col xs={12} md="6" lg={4} className="setting-item">
+                            <TextField fullWidth label="first name" color="" onChange={(event) => setFirstName(event.target.value)} value={firstName} />
                         </Col>
             
-                        <Col xs={12} sm={4} className="setting-item">
-                            <TextField label="last name" color="" onChange={(event) => setLastName(event.target.value)} focused value={lastName} />
+                        <Col xs={12} md="6" lg={4} className="setting-item">
+                            <TextField fullWidth label="last name" color="" onChange={(event) => setLastName(event.target.value)} value={lastName} />
                         </Col>
             
-                        <Col xs={12} sm={4} className="setting-item">
-                            <TextField label="display name" color="" onChange={(event) => setDisplayName(event.target.value)} focused value={displayName} />
+                        <Col xs={12} md="6" lg={4} className="setting-item">
+                            <TextField fullWidth label="display name" color="" onChange={(event) => setDisplayName(event.target.value)} value={displayName} />
                         </Col>
                 
-                        <Col xs={12} sm={4} className="setting-item">
-                            <TextField label="phone number" color="" onChange={(event) => setPhoneNumber(event.target.value)} focused value={phoneNumber} />
+                        <Col xs={12} md="6" lg={4} className="setting-item">
+                            <TextField fullWidth label="phone number" color="" onChange={(event) => setPhoneNumber(event.target.value)} value={phoneNumber} />
                         </Col>
                 
-                        <Col xs={12} sm={4} className="setting-item">
-                            <TextField label="instagram" color="" onChange={(event) => setInstagram(event.target.value)} focused value={instagram} />
+                        <Col xs={12} md="6" lg={4} className="setting-item">
+                            <TextField fullWidth label="instagram" color="" onChange={(event) => setInstagram(event.target.value)} value={instagram} />
                         </Col>
                 
 
-                        <Col xs={12} sm={4} className="setting-item">
-                            <TextField label="facebook" color="" onChange={(event) => setFacebook(event.target.value)} focused value={facebook} />
+                        <Col xs={12} md="6" lg={4} className="setting-item">
+                            <TextField fullWidth label="facebook" color="" onChange={(event) => setFacebook(event.target.value)} value={facebook} />
                         </Col>
                 
                         <Col xs={12} className="setting-item">
                             <label className='profile-label' for="inputTag">
-                                Profile Picture
+                                <span style={{color:"#1976d2"}}>Profile Picture</span>
                                 <input id="inputTag" className='profile-input' type="file" onChange={handleChange} accept="/image/*" />
                                 <br />
                                 <FaImage size={40} />
@@ -79,14 +80,15 @@ function Settings() {
                         </Col>
                     </Row>
                     <Row>
-                        <Col xs={12} className="setting-item">
+                        <Col xs={12} className="submit-button">
                             <Button variant="contained" onClick={() => setUserInfo({id, firstName, lastName, displayName, phoneNumber, instagram, facebook, posts}, file)}>
                                 Submit
                             </Button>
                         </Col>
                     </Row>
                 </Col>
-        
+                <hr />
+                <Account />
             </Row>
         </Container>
     );

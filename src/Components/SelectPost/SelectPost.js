@@ -40,46 +40,46 @@ function SelectPost() {
                 </Col>}
                 <Col xs={12} sm={12} md={6} className="info-container">
                     <Row>
-                        <Col xs={2} className="info-label">
+                        <Col xs={3} className="info-label">
                             title:&nbsp;
                         </Col>
-                        <Col xs={2} className="info-value">
+                        <Col xs={3} className="info-value">
                             {displayPost?.title}
                         </Col>
-                        <Col xs={2} className="info-label">
+                        <Col xs={3} className="info-label">
                             price:&nbsp;
                         </Col>
-                        <Col xs={2} className="info-value">
+                        <Col xs={3} className="info-value">
                             {displayPost?.price}
                         </Col>
-                        <Col xs={2} className="info-label">
+                    </Row>
+                    <Row>
+                        <Col xs={3} className="info-label">
                             condition:&nbsp;
                         </Col>
-                        <Col xs={2} className="info-value">
+                        <Col xs={3} className="info-value">
                             {displayPost?.condition}
                         </Col>
-                    </Row>
-                    <Row>
-                        <Col xs={2} className="info-label">
+                        <Col xs={3} className="info-label">
                             brand:&nbsp;
                         </Col>
-                        <Col xs={2} className="info-value">
+                        <Col xs={3} className="info-value">
                             {displayPost?.brand}
-                        </Col>
-                        <Col xs={2} className="info-label">
-                            type:&nbsp;
-                        </Col>
-                        <Col xs={2} className="info-value">
-                            {displayPost?.type}
-                        </Col>
-                        <Col xs={2} className="info-label">
-                            username:&nbsp;
-                        </Col>
-                        <Col xs={2} className="info-value">
-                            <Link className="link" to={{pathname: '/profile', search: "id=" + displayPost?.author?.id}}>{displayPost?.author?.name}</Link>
                         </Col>
                     </Row>
                     <Row>
+                        <Col xs={3} className="info-label">
+                            type:&nbsp;
+                        </Col>
+                        <Col xs={3} className="info-value">
+                            {displayPost?.type}
+                        </Col>
+                        <Col xs={3} className="info-label">
+                            username:&nbsp;
+                        </Col>
+                        <Col xs={3} className="info-value">
+                            <Link className="link" to={{pathname: '/profile', search: "id=" + displayPost?.author?.id}}>{displayPost?.author?.name}</Link>
+                        </Col>
                         <Col xs={2} className="info-label">
                             created:&nbsp;
                         </Col>

@@ -11,6 +11,14 @@ import { auth, db } from '../../firebase-config';
 import { storage } from "../../firebase-config.js";
 import { ref, uploadBytesResumable } from "firebase/storage";
 
+import { FaImage } from "react-icons/fa";
+
+import TextField from '@mui/material/TextField';
+import FormControl from '@mui/material/FormControl';
+import MenuItem from '@mui/material/MenuItem';
+import InputLabel from '@mui/material/InputLabel';
+import Select from '@mui/material/Select';
+
 import './CreatePost.scss';
 
 function CreatePost() {
@@ -24,7 +32,8 @@ function CreatePost() {
     const [disableSubmit, setDisableSubmit] = useState(false);
 
     // State to store uploaded file
-    const [files, setFiles] = useState("");
+    const [files, setFiles] = useState([]);
+    const [showFiles, setShowFiles] = useState([]);
 
     // progress
     const [percent, setPercent] = useState(0);
@@ -34,19 +43,32 @@ function CreatePost() {
     // Handle file upload event and update state
     function handleChange(event) {
         console.log(event.target.files[0]);
+
+        if (event.target.files && event.target.files[0]) {
+            setShowFiles([URL.createObjectURL(event.target.files[0]), ...showFiles]);
+        }
         
-        setFiles([...files, event.target.files[0]]);
+        
+        setFiles(cur => [...cur, event.target.files[0]]);
+        // setShowFiles(cur => [...cur, event.target.files[0]]);
         setNumberOfUploads(numberOfUploads+1);
     }
 
+    
+
     function pictureInputs() {
         let allInputs = [];
+
         for (let i = 0; i <= numberOfUploads; i++) {
             allInputs.push(
-                <div>
-                    <input type="file" onChange={handleChange} accept="/image/*" />
-                    <span>{percent}% done</span>
-                </div>
+                <Col xs="12" sm={(numberOfUploads > 0) ? 6 : 12} className="setting-item center" key={i}>
+                    <label className='profile-label' for="inputTag">
+                        <span>{ files[numberOfUploads-i]?.name || "Upload Image"}</span>
+                        <input id="inputTag" className='profile-input' type="file" onChange={handleChange} accept="/image/*" />
+                        <br />
+                        {(i===0) ? <FaImage size={40} /> : <img src={showFiles[numberOfUploads-i]} onClick="" className="upload-image" alt="preview image" />}
+                    </label>
+                </Col>
             );
         }
 
@@ -107,79 +129,70 @@ function CreatePost() {
 
     const getOptions = (options) => {
         return options.map((name, key) => {
-            return <option key={key} value={name}>{name}</option>;
+            return <MenuItem key={key} value={name}>{name}</MenuItem>;
         });
     };
 
     return (
         <Container className="create-container">
             <Row>
-                <Col xs={12} className="center">
-                    <h2>Create Post</h2>
+                <Col xs={12} md={6} className="create-input">
+                    <TextField fullWidth label="title" color="" onChange={(event) => setTitle(event.target.value)}/>
+                </Col>
+
+                <Col xs={12} md={6} className="create-input">
+                    <TextField fullWidth label="price" color="" onChange={(event) => setPrice(event.target.value)}/>
+                </Col>
+
+                <Col xs={12} md={6} className="create-input">
+                    <FormControl fullWidth>
+                        <InputLabel id="demo-simple-select-label">Brand</InputLabel>
+                        <Select
+                            labelId="demo-simple-select-label"
+                            id="demo-simple-select"
+                            label="Brand"
+                            onChange={(event) => setBrand(event.target.value)}>
+                            <MenuItem value="default">default</MenuItem>
+                            {getOptions(brands, brand)}
+                        </Select>
+                    </FormControl>
+                </Col>
+      
+                <Col xs={12} md={6} className="create-input">
+                    <FormControl fullWidth>
+                        <InputLabel id="demo-simple-select-label">Sale Type</InputLabel>
+                        <Select
+                            labelId="demo-simple-select-label"
+                            id="demo-simple-select"
+                            label="Type"
+                            onChange={(event) => setType(event.target.value)}>
+                            <MenuItem value="default">default</MenuItem>
+                            {getOptions(types, type)}
+                        </Select>
+                    </FormControl>
+                </Col>
+       
+
+                <Col xs={12} md={6} className="create-input">
+                    <FormControl fullWidth>
+                        <InputLabel id="demo-simple-select-label">Condition</InputLabel>
+                        <Select
+                            labelId="demo-simple-select-label"
+                            id="demo-simple-select"
+                            label="Condition"
+                            onChange={(event) => setCondition(event.target.value)}>
+                            <MenuItem value="default">default</MenuItem>
+                            {getOptions([1,2,3,4,5,6,7,8,9,10], condition)}
+                        </Select>
+                    </FormControl>
+                </Col>
+
+                <Col xs={12} md={6} className="create-input">
+                    <TextField rows={3} placeholder="description" fullWidth label="description" className="input-width" onChange={(event) => setDescription(event.target.value)} />
                 </Col>
             </Row>
             <Row>
-                <Col xs={4} md={5} className="right">
-                    <label>Title:</label>
-                    
-                </Col>
-                <Col xs={8} md={7} className="left">
-                    <input placeholder="title" className="input-width" onChange={(event) => setTitle(event.target.value)} />
-                </Col>
-            </Row>
-            <Row>
-                <Col xs={4} md={5} className="right">
-                    <label>Price:</label>
-                </Col>
-                <Col xs={8} md={7} className="left">
-                    <input placeholder="price" className="input-width" onChange={(event) => setPrice(event.target.value)} />
-                </Col>
-            </Row>
-            <Row>
-                <Col xs={4} md={5} className="right">
-                    <label>Brand:</label>
-                </Col>
-                <Col xs={8} md={7} className="left">
-                    <select className="input-width" value={brand} onChange={(event) => setBrand(event.target.value)}>
-                        <option value="default">select</option>
-                        {getOptions(brands, brand)}
-                    </select>
-                </Col>
-            </Row>
-            <Row>
-                <Col xs={4} md={5} className="right">
-                    <label>Business:</label>
-                </Col>
-                <Col xs={8} md={7} className="left">
-                    <select className="input-width" value={type} onChange={(event) => setType(event.target.value)}>
-                        <option value="default">select</option>
-                        {getOptions(types, type)}
-                    </select>
-                </Col>
-            </Row>
-            <Row>
-                <Col xs={4} md={5} className="right">
-                    <label>Condition:</label>
-                </Col>
-                <Col xs={8} md={7} className="left">
-                    <select className="input-width" value={condition} onChange={(event) => setCondition(event.target.value)}>
-                        <option value="default">select</option>
-                        {getOptions([1,2,3,4,5,6,7,8,9,10], condition)}
-                    </select>
-                </Col>
-            </Row>
-            <Row>
-                <Col xs={4} md={5} className="right">
-                    <label>Description:</label>
-                </Col>
-                <Col xs={8} md={7} className="left">
-                    <textarea rows={3} placeholder="description" className="input-width" onChange={(event) => setDescription(event.target.value)} />
-                </Col>
-            </Row>
-            <Row>
-                <Col className="center">
-                    {pictureInputs()}
-                </Col>
+                {pictureInputs()}
             </Row>
             <Row>
                 <Col xs={12} className="center">

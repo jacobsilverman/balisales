@@ -91,6 +91,18 @@ const EditModal = ({item, openEditModal, setOpenEditModal}) => {
                                 {getOptions(brands, brand)}
                             </select>
                         </Col>
+                        {/* <FormControl fullWidth>
+                            <InputLabel id="demo-simple-select-label">Brand</InputLabel>
+                            <Select
+                                labelId="demo-simple-select-label"
+                                id="demo-simple-select"
+                                value={brand}
+                                label="Brand"
+                                onChange={(event) => setBrand(event.target.value)}>
+                                <MenuItem value="default">default</MenuItem>
+                                {getOptions(brands, brand)}
+                            </Select>
+                        </FormControl> */}
                     </Row>
                     <Row className="edit-input">
                         <Col xs={4} md={5} className="right">

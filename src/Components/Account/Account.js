@@ -1,5 +1,5 @@
 
-import { useEffect, useState } from 'react';
+import {Fragment,  useEffect, useState } from 'react';
 
 import Grid from '@mui/material/Grid';
 import { Container, Row } from 'react-bootstrap';
@@ -81,12 +81,11 @@ function Account() {
                 result.push(partition);
                 partition = [];
             }
-            
         };
 
 		return (
             result.map((arr, index) => {
-                return <Grid container spacing={.5} key={index}>
+                return <Grid container spacing={0} key={index} style={{padding:'0px'}}>
                     {arr.map((item) => {
                         return <Post item={item} key={item.id} accountView={true} deletePost={deletePost} />
                     })}
@@ -96,11 +95,9 @@ function Account() {
     }
 
 	return (
-		<Container>
-			<Row className="account-container center">
-				<Grid>{setAccountData()}</Grid>
-			</Row>
-		</Container>
+		<Fragment>
+			{setAccountData()}
+		</Fragment>
 	);
 	
 }

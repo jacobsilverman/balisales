@@ -58,7 +58,7 @@
 .account-dropdown {
     box-shadow: -2px 2px 6px rgba(0, 0, 0, .4);
     background-color: white;
-    min-width: 250px;
+    min-width: 100px;
 }
 
 .visible {
@@ -85,8 +85,12 @@
 .popover-item {
     border: 1px solid black;
     &:hover {
-        background-color: rgba(#000000, .2)
+      background-color: rgba(#1976d2, .3)
     }
+}
+
+.setting-icon {
+  margin-bottom: 5px;
 }
 
 .popover-text {
