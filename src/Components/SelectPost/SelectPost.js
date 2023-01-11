@@ -62,30 +62,40 @@ function SelectPost() {
                 </Row>}
             </Col>}
 
-            <Col xs={12} className="center">
-                {createdDate}
-            </Col>
             
-            <Row>
+            <Row style={{justifyContent:"center"}}>
                 <Col xs={12} sm={12} className="info-container">
-                    <Row>
-                        <Col xs={3}  className="info-label">
-                            <h2>{displayPost?.type}:&nbsp;</h2>
-                        </Col>
-                        <Col xs={3} className="info-value">
-                            <h2>
-                                $333{displayPost?.price}
-                            </h2>
-                        </Col>
-                        <Col xs={3} className="info-label">
-                            <h3>{displayPost?.condition}:</h3>
-                        </Col>
-                        <Col xs={3} className="info-value">
-                            <h3>{displayPost?.brand}</h3>
+                    <div style={{display: "flex", justifyContent: "space-evenly"}}>
+                        <div className="content-wrapper">
+                            <div className="desciption-title">
+                                Created
+                            </div>
+                            {createdDate}
+                        </div>
+                        <div className="content-wrapper">
+                            <div className="desciption-title">
+                                {displayPost?.type}
+                            </div>
+                            {displayPost?.price}
+                        </div>
+                        <div className="content-wrapper">
+                            <div className="desciption-title">
+                                {displayPost?.condition}
+                            </div>
+                            {displayPost?.brand}
+                        </div>
+                    </div>
+                    <Row className="content-wrapper">
+                        <div className="desciption-title">
+                            description
+                        </div>
+                        <Col xs={12}>
+                            {displayPost?.description}
                         </Col>
                     </Row>
                 </Col>
             </Row>
+
         </Fragment>
     );
 }
