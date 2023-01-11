@@ -41,20 +41,25 @@ function CreatePost() {
     const [numberOfUploads, setNumberOfUploads] = useState(0);
     
     // Handle file upload event and update state
-    function handleChange(event) {
+    function handleChange(event, index) {
         console.log(event.target.files[0]);
 
-        if (event.target.files && event.target.files[0]) {
+        if (event.target.files && event.target.files[0] && index === 0) {
             setShowFiles([URL.createObjectURL(event.target.files[0]), ...showFiles]);
+            setFiles(cur => [...cur, event.target.files[0]]);
+            setNumberOfUploads(numberOfUploads => numberOfUploads+1);
         }
-        
-        
-        setFiles(cur => [...cur, event.target.files[0]]);
-        // setShowFiles(cur => [...cur, event.target.files[0]]);
-        setNumberOfUploads(numberOfUploads+1);
+        console.log(index);
+
     }
 
-    
+    function removePicture(index) {
+        if (index !== 0) {
+            setShowFiles(showFiles => showFiles.splice(index, 1));
+            setFiles(files => files.splice(index, 1));
+            setNumberOfUploads(numberOfUploads => numberOfUploads-1);
+        }
+    }
 
     function pictureInputs() {
         let allInputs = [];
@@ -62,11 +67,11 @@ function CreatePost() {
         for (let i = 0; i <= numberOfUploads; i++) {
             allInputs.push(
                 <Col xs="12" sm={(numberOfUploads > 0) ? 6 : 12} className="setting-item center" key={i}>
-                    <label className='profile-label' for="inputTag">
-                        <span>{ files[numberOfUploads-i]?.name || "Upload Image"}</span>
-                        <input id="inputTag" className='profile-input' type="file" onChange={handleChange} accept="/image/*" />
+                    <label className='profile-label' for={"inputTag-"+i} onClick={i !==0 && (() => removePicture(i))}>
+                        <span>{files[numberOfUploads-i]?.name || "Upload Image"}</span>
+                        {(i===0) && <input id={"inputTag-"+i} className="profile-input" type="file" onChange={e => handleChange(e, i)} accept="/image/*" />}
                         <br />
-                        {(i===0) ? <FaImage size={40} /> : <img src={showFiles[numberOfUploads-i]} onClick="" className="upload-image" alt="preview image" />}
+                        {(i===0) ? <FaImage size={70} className="" /> : <img src={showFiles[numberOfUploads-i]} className="upload-image" alt="preview image" />}
                     </label>
                 </Col>
             );
@@ -171,8 +176,6 @@ function CreatePost() {
                         </Select>
                     </FormControl>
                 </Col>
-       
-
                 <Col xs={12} md={6} className="create-input">
                     <FormControl fullWidth>
                         <InputLabel id="demo-simple-select-label">Condition</InputLabel>
