@@ -22,6 +22,8 @@ function Settings() {
     const [facebook, setFacebook] = useState('');
     const [file, setFile] = useState('');
     const [posts, setPosts] = useState([]);
+
+    const [profilePicture, setProfilePicture] = useState(null);
     
     useEffect(() => {
         getUserInfo().then((result) => {
@@ -38,6 +40,7 @@ function Settings() {
 
     function handleChange(event) {
         setFile(event.target.files[0]);
+        setProfilePicture(URL.createObjectURL(event.target.files[0]));
     }
 
     return (
@@ -75,7 +78,7 @@ function Settings() {
                                 <span style={{color:"#1976d2"}}>Profile Picture</span>
                                 <input id="inputTag" className='profile-input' type="file" onChange={handleChange} accept="/image/*" />
                                 <br />
-                                <FaImage size={40} />
+                                {(!profilePicture) ? <FaImage size={40} /> : <img src={profilePicture} className="upload-image" alt="preview image" />}
                             </label>
                         </Col>
                     </Row>

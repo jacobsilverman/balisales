@@ -27,76 +27,74 @@ function SelectPost() {
 
     return (
         <Fragment>
-            <Row>
-                {displayPost?.urls && <Col xs={11} sm={11} md={5} className="image-container" style={{backgroundImage: `url(${displayPost?.urls[displayImage]})`}}>
-                    {displayPost?.numberOfImages > 1 && <Row>
-                        <Col xs={6} className="left">
-                            <Button variant="contained" onClick={() => setDisplayImage((displayImage-1) < 0 ? displayPost?.numberOfImages-1 : (displayImage-1))}>Previous</Button>
-                        </Col>
-                        <Col xs={6} className="right">
-                            <Button variant="contained" onClick={() => setDisplayImage((displayImage+1)%displayPost?.numberOfImages)}>Next</Button>
-                        </Col>
-                    </Row>}
-                </Col>}
-                <Col xs={12} sm={12} md={6} className="info-container">
-                    <Row>
-                        <Col xs={3} className="info-label">
-                            title:&nbsp;
-                        </Col>
-                        <Col xs={3} className="info-value">
-                            {displayPost?.title}
-                        </Col>
-                        <Col xs={3} className="info-label">
-                            price:&nbsp;
-                        </Col>
-                        <Col xs={3} className="info-value">
-                            {displayPost?.price}
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col xs={3} className="info-label">
-                            condition:&nbsp;
-                        </Col>
-                        <Col xs={3} className="info-value">
-                            {displayPost?.condition}
-                        </Col>
-                        <Col xs={3} className="info-label">
-                            brand:&nbsp;
-                        </Col>
-                        <Col xs={3} className="info-value">
-                            {displayPost?.brand}
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col xs={3} className="info-label">
-                            type:&nbsp;
-                        </Col>
-                        <Col xs={3} className="info-value">
-                            {displayPost?.type}
-                        </Col>
-                        <Col xs={3} className="info-label">
-                            username:&nbsp;
-                        </Col>
-                        <Col xs={3} className="info-value">
-                            <Link className="link" to={{pathname: '/profile', search: "id=" + displayPost?.author?.id}}>{displayPost?.author?.name}</Link>
-                        </Col>
-                        <Col xs={2} className="info-label">
-                            created:&nbsp;
-                        </Col>
-                        <Col xs={10} className="info-value">
-                            {createdDate}
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col xs={2} className="info-label">
-                            id:&nbsp;
-                        </Col>
-                        <Col xs={2} className="info-value">
-                            {displayPost?.id}
-                        </Col>
-                    </Row>
-                </Col>
-            </Row>
+            {displayPost?.urls && <Col xs={11} sm={11} md={5} className="image-container" style={{backgroundImage: `url(${displayPost?.urls[displayImage]})`}}>
+                {displayPost?.numberOfImages > 1 && <Row>
+                    <Col xs={6} className="left">
+                        <Button variant="contained" onClick={() => setDisplayImage((displayImage-1) < 0 ? displayPost?.numberOfImages-1 : (displayImage-1))}>Previous</Button>
+                    </Col>
+                    <Col xs={6} className="right">
+                        <Button variant="contained" onClick={() => setDisplayImage((displayImage+1)%displayPost?.numberOfImages)}>Next</Button>
+                    </Col>
+                </Row>}
+            </Col>}
+            <Col xs={12} sm={12} md={6} className="info-container">
+                <Row>
+                    <Col xs={3} className="info-label">
+                        title:&nbsp;
+                    </Col>
+                    <Col xs={3} className="info-value">
+                        {displayPost?.title}
+                    </Col>
+                    <Col xs={3} className="info-label">
+                        price:&nbsp;
+                    </Col>
+                    <Col xs={3} className="info-value">
+                        {displayPost?.price}
+                    </Col>
+                </Row>
+                <Row>
+                    <Col xs={3} className="info-label">
+                        condition:&nbsp;
+                    </Col>
+                    <Col xs={3} className="info-value">
+                        {displayPost?.condition}
+                    </Col>
+                    <Col xs={3} className="info-label">
+                        brand:&nbsp;
+                    </Col>
+                    <Col xs={3} className="info-value">
+                        {displayPost?.brand}
+                    </Col>
+                </Row>
+                <Row>
+                    <Col xs={3} className="info-label">
+                        type:&nbsp;
+                    </Col>
+                    <Col xs={3} className="info-value">
+                        {displayPost?.type}
+                    </Col>
+                    <Col xs={3} className="info-label">
+                        username:&nbsp;
+                    </Col>
+                    <Col xs={3} className="info-value">
+                        <Link className="link" to={{pathname: '/profile', search: "id=" + displayPost?.author?.id}}>{displayPost?.author?.name}</Link>
+                    </Col>
+                    <Col xs={2} className="info-label">
+                        created:&nbsp;
+                    </Col>
+                    <Col xs={10} className="info-value">
+                        {createdDate}
+                    </Col>
+                </Row>
+                <Row>
+                    <Col xs={2} className="info-label">
+                        id:&nbsp;
+                    </Col>
+                    <Col xs={2} className="info-value">
+                        {displayPost?.id}
+                    </Col>
+                </Row>
+            </Col>
         </Fragment>
     );
 }
