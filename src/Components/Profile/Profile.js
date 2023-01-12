@@ -1,11 +1,16 @@
 import { useEffect, useState } from 'react';
 
-import { getUserInfo } from '../../Data/Services/userInfo.js';
+import { getUserInfo, getProfilePicture } from '../../Data/Services/userInfo.js';
+import defaultProfile from '../../Data/Images/default-profile.jpg';
+
+import SocialMedia from '../SocialMedia/SocialMedia.js';
 
 import { Container, Col, Row } from 'react-bootstrap';
 
 const Profile = () => {
     const [userData, setUserData] = useState({});
+    const [profilePic, setProfilePic] = useState(null);
+
     const urlSearchParams = new URLSearchParams(window.location.search);
     const params = Object.fromEntries(urlSearchParams.entries());
 
@@ -13,64 +18,36 @@ const Profile = () => {
         getUserInfo(params.id).then((result) => {
             setUserData(result);
         });
+
+        getProfilePicture(params.id).then((result) => {
+            setProfilePic(result);
+        }).catch(() => {
+            setProfilePic(defaultProfile);
+        });
     }, []);
 
     return (
-        <Container>
+        <Container className="user-profile-container">
             <Row>
-                <Col xs={5} className="right">
-                    user Id:
-                </Col>
-                <Col xs={7} className="left">
-                    {userData.id}
+                <Col xs={12} className="center">
+                    <h1>{userData.firstName} {userData.lastName}</h1>
                 </Col>
             </Row>
+            
             <Row>
-                <Col xs={5} className="right">
-                    First Name:
-                </Col>
-                <Col xs={7} className="left">
-                    {userData.firstName}
+                <Col xs={12} className="profile-image center">
+                    <div className="account-profile center" style={{backgroundImage: `url(${profilePic})`}} />
                 </Col>
             </Row>
+
             <Row>
-                <Col xs={5} className="right">
-                    Last Name:
-                </Col>
-                <Col xs={7} className="left">
-                    {userData.lastName}
-                </Col>
-            </Row>
-            <Row>
-                <Col xs={5} className="right">
-                    Display Name:
-                </Col>
-                <Col xs={7} className="left">
-                    {userData.displayName}
-                </Col>
-            </Row>
-            <Row>
-                <Col xs={5} className="right">
-                    Phone Number:
-                </Col>
-                <Col xs={7} className="left">
-                    {userData.phoneNumber}
-                </Col>
-            </Row>
-            <Row>
-                <Col xs={5} className="right">
-                    Instagram:
-                </Col>
-                <Col xs={7} className="left">
-                    {userData.instagram}
-                </Col>
-            </Row>
-            <Row>
-                <Col xs={5} className="right">
-                    Facebook
-                </Col>
-                <Col xs={7} className="left">
-                    {userData.facebook}
+                <Col xs={12} className="center">
+           
+                    <SocialMedia 
+                        instagram={userData.instagram}
+                        facebook={userData.facebook}
+                        userName={userData.displayName}
+                        phoneNumber={userData.phoneNumber} />
                 </Col>
             </Row>
         </Container>

@@ -82,6 +82,19 @@
     box-shadow: 2px 2px 6px rgba(0, 0, 0, .4);
 }
 
+.profile-image .account-profile{
+  width: 90vw;
+  height: 90vw;
+  max-width: 500px;
+  max-height: 500px;
+  margin: auto;
+}
+
+
+.user-profile-container {
+  margin-top: 20px;
+}
+
 .popover-item {
     border: 1px solid black;
     &:hover {
