@@ -1,3 +1,6 @@
+
+import balilogo from '../Images/balilogo_2.svg';
+
 export const brands = ['baliplus', 'squid', 'kershaw', 'bradley', 'brs', 'mw', 'bbbarfly', 'hom', 'bm', 'bs', 'jk', 'nrb', 'svix', 'heibel', 'hypex', 'glidrco', 'mantis', 'theone', 'fellowship', 'biegler', 'flytanium', 'misc'];
 
 export const usernames = ['flipwrists', 'drigk', 'santa', 'gregg', 'sammy', 'retail'];
@@ -13,7 +16,7 @@ export const blades = ['blade', 'trainer'];
 export const statuses = ['available', 'pending', 'sold', 'traded'];
 
 export const pageTitles = {
-    '/': 'Sales',
+    '/': <img style={{maxWidth:"170px", maxHeight:"170px", display:"inline"}} src={balilogo} />,
     '/profile': 'Profile',
     '/settings': 'Settings',
     '/account': 'Your Posts',

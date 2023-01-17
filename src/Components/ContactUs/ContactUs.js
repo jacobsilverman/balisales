@@ -2,7 +2,8 @@ import { useState } from 'react';
 
 import { Container, Col, Row } from 'react-bootstrap';
 import './ContactUs.scss';
-import { Button } from '@mui/material';
+import { Button, TextField } from '@mui/material';
+import { TextareaAutosize } from '@mui/base';
 
 function ContactUs() {
     const [title, setTitle] = useState('');
@@ -23,11 +24,13 @@ function ContactUs() {
             <Row>
                 <Col className="center">
                     <textarea maxlength="2000" rows="1" cols="60" name="contact us" autofocus="true" placeholder="title" onChange={(event) => assignText(event, setTitle)} />
+                    {/* <TextField fullWidth label="Title" size="60" onChange={(event) => assignText(event, setTitle)} /> */}
                 </Col>
             </Row>
             <Row>
                 <Col className="center">
                     <textarea maxlength="2000" rows="5" cols="60" name="contact us" placeholder="message" onChange={(event) => assignText(event, setMessage)} />
+                    {/* <TextareaAutosize fullWidth minRows="5" label="Message" onChange={(event) => assignText(event, setMessage)} /> */}
                 </Col>
             </Row>
             <Row>

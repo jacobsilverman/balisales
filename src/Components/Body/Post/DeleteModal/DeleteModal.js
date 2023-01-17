@@ -10,11 +10,11 @@ const DeleteModal = ({deletePost, item, openDeleteModal, setOpenDeleteModal}) =>
                         <Col className="modal-title">Do you want to delete this post?</Col>
                     </Row>
                     <Row>
-                        <Col xs={6}>
-                            <Button onClick={() => {deletePost(item);setOpenDeleteModal(false)}}>yes</Button>
+                    <Col xs={6}>
+                            <Button onClick={() => setOpenDeleteModal(false)}>no</Button>
                         </Col>
                         <Col xs={6}>
-                            <Button onClick={() => setOpenDeleteModal(false)}>no</Button>
+                            <Button onClick={() => {deletePost(item);setOpenDeleteModal(false)}}>yes</Button>
                         </Col>
                     </Row>
                 </Col>

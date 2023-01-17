@@ -34,10 +34,10 @@ function Filter({brand, setBrand, max, setMax, min, setMin, type, setType, setDi
                 <Col xs={12} className='filter-content'>
                     <Row className='filter-item'>
                         <Col xs={6} sm={6} md={3} className="dropdown">
-                            <TextField label="Min" color="" onChange={(event) => {setMin(event.target.value)}} focused value={min} />
+                            <TextField fullWidth label="Min" color="" onChange={(event) => {setMin(event.target.value)}} value={min} />
                         </Col>
                         <Col xs={6} sm={6} md={3}>
-                            <TextField label="Max" color="" onChange={(event) => {setMax(event.target.value )}} focused value={max} />
+                            <TextField fullWidth label="Max" color="" onChange={(event) => {setMax(event.target.value )}} value={max} />
                         </Col>
                         <Col xs={6} sm={6} md={3}  className="dropdown">
                             <FormControl fullWidth>

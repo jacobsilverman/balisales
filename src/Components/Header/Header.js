@@ -10,6 +10,7 @@ import defaultProfile from '../../Data/Images/default-profile.jpg';
 
 // import { MdSettingsSuggest } from "react-icons/md";
 
+
 import { auth, provider } from '../../firebase-config';
 import { signInWithPopup, signOut } from 'firebase/auth';
 import { useNavigate }   from 'react-router-dom';
@@ -191,7 +192,9 @@ function Header({isAuth, setIsAuth}) {
                             </div>
                         </Col>
                         <Col xs={8} className="center title">
-                            <h1 style={{fontSize:"40px",fontFamily:"roboto",paddingTop:"10px"}}><a href="/">{pageTitle.split('&')[0]}</a></h1>
+                            { (typeof pageTitle === 'string') ? <h1 style={{display:"inline-block",fontSize:"40px",fontFamily:"roboto",paddingTop:"10px"}}><a href="/" style={{color:"black"}}>{pageTitle}</a></h1>
+                            : pageTitle
+                            }
                         </Col>
                         <Col xs={2} className="login-container">
                             {!isAuth
