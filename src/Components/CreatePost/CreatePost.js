@@ -153,10 +153,10 @@ function CreatePost() {
 
                 <Col xs={12} md={6} className="create-input">
                     <FormControl fullWidth>
-                        <InputLabel id="demo-simple-select-label">Brand</InputLabel>
+                        <InputLabel id="brand-label">Brand</InputLabel>
                         <Select
-                            labelId="demo-simple-select-label"
-                            id="demo-simple-select"
+                            labelId="brand-label"
+                            id="brand-select"
                             label="Brand"
                             onChange={(event) => setBrand(event.target.value)}>
                             <MenuItem value="default">default</MenuItem>
@@ -167,10 +167,10 @@ function CreatePost() {
       
                 <Col xs={12} md={6} className="create-input">
                     <FormControl fullWidth>
-                        <InputLabel id="demo-simple-select-label">Sale Type</InputLabel>
+                        <InputLabel id="sale-type-label">Sale Type</InputLabel>
                         <Select
-                            labelId="demo-simple-select-label"
-                            id="demo-simple-select"
+                            labelId="sale-type-label"
+                            id="sale-type-select"
                             label="Type"
                             onChange={(event) => setType(event.target.value)}>
                             <MenuItem value="default">default</MenuItem>
@@ -180,10 +180,10 @@ function CreatePost() {
                 </Col>
                 <Col xs={12} md={6} className="create-input">
                     <FormControl fullWidth>
-                        <InputLabel id="demo-simple-select-label">Condition</InputLabel>
+                        <InputLabel id="condition-label">Condition</InputLabel>
                         <Select
-                            labelId="demo-simple-select-label"
-                            id="demo-simple-select"
+                            labelId="condition-label"
+                            id="condition-select"
                             label="Condition"
                             onChange={(event) => setCondition(event.target.value)}>
                             <MenuItem value="default">default</MenuItem>
@@ -194,10 +194,10 @@ function CreatePost() {
 
                 <Col xs={12} md={6} className="create-input">
                     <FormControl fullWidth>
-                        <InputLabel id="demo-simple-select-label">Blade</InputLabel>
+                        <InputLabel id="blade-label">Blade</InputLabel>
                         <Select
-                            labelId="demo-simple-select-label"
-                            id="demo-simple-select"
+                            labelId="blade-label"
+                            id="blade-select"
                             label="Blade"
                             onChange={(event) => setBlade(event.target.value)}>
                             <MenuItem value="default">default</MenuItem>

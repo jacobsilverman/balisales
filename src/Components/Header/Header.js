@@ -63,6 +63,10 @@ function Header({isAuth, setIsAuth}) {
         })
     }
 
+    const closeNav = () => {
+        document.getElementById("menu__toggle").checked = false;
+    }
+
     const accountVisibilityCls = `account-dropdown ${showAccount ? "visible" : 'hidden'}`;
 
     const accountOptionsPopover = (
@@ -133,7 +137,7 @@ function Header({isAuth, setIsAuth}) {
                                         </a>
                                     </li>
                                     <li>
-                                        <Link className="white" to={{pathname: '/createPost'}}>
+                                        <Link className="white" to={{pathname: '/createPost'}} onClick={closeNav}>
                                             <span className="menu__item">
                                                 <Row>
                                                     <Col xs={3} className="menu-icon">
@@ -161,7 +165,7 @@ function Header({isAuth, setIsAuth}) {
                                         </Link>
                                     </li> */}
                                     <li>
-                                        <Link className="white" to={{pathname: '/contactUs'}}>
+                                        <Link className="white" to={{pathname: '/contactUs'}} onClick={closeNav}>
                                             <span className="menu__item">
                                                 <Row>
                                                     <Col xs={3} className="menu-icon">
@@ -175,7 +179,7 @@ function Header({isAuth, setIsAuth}) {
                                         </Link>
                                     </li>
                                     <li>
-                                        <Link className="white" to={{pathname: '/aboutUs'}}>
+                                        <Link className="white" to={{pathname: '/aboutUs'}} onClick={closeNav}>
                                             <span className="menu__item">
                                                 <Row>
                                                     <Col xs={3} className="menu-icon">

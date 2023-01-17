@@ -2,7 +2,8 @@
 import {Fragment,  useEffect, useState } from 'react';
 
 import Grid from '@mui/material/Grid';
-import { Container, Row } from 'react-bootstrap';
+import { Col, Container, Row } from 'react-bootstrap';
+import { ClipLoader } from 'react-spinners';
 
 import Post from '../Body/Post';
 import './Account.scss';
@@ -69,7 +70,13 @@ function Account() {
 
 	const setAccountData = () => {
 		if (filterPosts.length === 0) {
-			return "no posts available";
+			return (
+				<Row>
+					<Col xs={12} className="center">
+						<ClipLoader size={150} />
+					</Col>
+				</Row>
+			);
 		} 
 
 		let result = [];
@@ -89,7 +96,12 @@ function Account() {
                         return <Post item={item} key={item.id} accountView={true} deletePost={deletePost} />
                     })}
                 </Grid>
-            })
+            }) ||
+			<Row>
+				<Col xs={12} className="center">
+					<ClipLoader />
+				</Col>
+			</Row>
         );
     }
 

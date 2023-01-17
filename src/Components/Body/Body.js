@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import Post from './Post';
 import Filter from './Filter';
 
+import { ClipLoader } from 'react-spinners';
+
 import { Button, Col, Container, Row } from 'react-bootstrap';
 
 import Grid from '@mui/material/Grid';
@@ -49,6 +51,15 @@ function Body({ posts }) {
     };
 
     var divideData = () => {
+        if (posts.length === 0) {
+            return (
+                <Row >
+                    <Col xs={12} className="center">
+                        <ClipLoader size={150} />
+                    </Col> 
+                </Row>
+            );
+        }
         let allPosts = sortData(posts);
         let result = [];
         let partition = [];
