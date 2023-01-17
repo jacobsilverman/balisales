@@ -90,7 +90,7 @@ function Account() {
         };
 
 		return (
-            result.map((arr, index) => {
+            result.length > 0 && result.map((arr, index) => {
                 return <Grid container spacing={0} key={index} style={{padding:'0px'}}>
                     {arr.map((item) => {
                         return <Post item={item} key={item.id} accountView={true} deletePost={deletePost} />
@@ -99,7 +99,7 @@ function Account() {
             }) ||
 			<Row>
 				<Col xs={12} className="center">
-					<ClipLoader />
+					No Posts Available
 				</Col>
 			</Row>
         );
