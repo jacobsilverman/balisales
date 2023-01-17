@@ -24,7 +24,7 @@ function Post({item, viewCount, accountView, deletePost}) {
     return (
         <Fragment>
             <EditModal item={item} openEditModal={openEditModal} setOpenEditModal={setOpenEditModal} deletePost={deletePost}  />
-            {/* <AccountModal item={item} openAccountModal={openAccountModal} setOpenAccountModal={setOpenAccountModal} /> */}
+            
             <Grid item className="post-container" style={{backgroundImage: `url(${item?.urls[0]})`}} id={item?.id} xs={showViewCount ? 4 : 12/viewCount}>
                 <div className="fake-background">
                     <Link className="link" to={!accountView && {pathname: '/singlePost', search: queryParam}} onClick={accountView && ((e) => {e.preventDefault();setOpenEditModal(true);})}>

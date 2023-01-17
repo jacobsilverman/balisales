@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Button, Col, Container, Row } from 'react-bootstrap';
 
-import { brands, types } from '../../Data/Constants';
+import { brands, blades, types } from '../../Data/Constants';
 
 import { addUserPost } from '../../Data/Services/userInfo';
 
@@ -18,6 +18,7 @@ import FormControl from '@mui/material/FormControl';
 import MenuItem from '@mui/material/MenuItem';
 import InputLabel from '@mui/material/InputLabel';
 import Select from '@mui/material/Select';
+import TextareaAutosize from '@mui/material/TextareaAutosize';
 
 import './CreatePost.scss';
 
@@ -28,6 +29,7 @@ function CreatePost() {
     const [brand, setBrand] = useState("");
     const [condition, setCondition] = useState("");
     const [price, setPrice] = useState("");
+    const [blade, setBlade] = useState("");
 
     const [disableSubmit, setDisableSubmit] = useState(false);
 
@@ -67,7 +69,7 @@ function CreatePost() {
         for (let i = 0; i <= numberOfUploads; i++) {
             allInputs.push(
                 <Col xs="12" sm={(numberOfUploads > 0) ? 6 : 12} className="setting-item center" key={i}>
-                    <label className='profile-label' for={"inputTag-"+i} onClick={i !==0 && (() => removePicture(i))}>
+                    <label className='profile-label' htmlFor={"inputTag-"+i} onClick={i !==0 && (() => removePicture(i))}>
                         <span>{files[numberOfUploads-i]?.name || "Upload Image"}</span>
                         {(i===0) && <input id={"inputTag-"+i} className="profile-input" type="file" onChange={e => handleChange(e, i)} accept="/image/*" />}
                         <br />
@@ -191,7 +193,22 @@ function CreatePost() {
                 </Col>
 
                 <Col xs={12} md={6} className="create-input">
-                    <TextField rows={3} placeholder="description" fullWidth label="description" className="input-width" onChange={(event) => setDescription(event.target.value)} />
+                    <FormControl fullWidth>
+                        <InputLabel id="demo-simple-select-label">Blade</InputLabel>
+                        <Select
+                            labelId="demo-simple-select-label"
+                            id="demo-simple-select"
+                            label="Blade"
+                            onChange={(event) => setBlade(event.target.value)}>
+                            <MenuItem value="default">default</MenuItem>
+                            {getOptions(blades, blade)}
+                        </Select>
+                    </FormControl>
+                </Col>
+            </Row>
+            <Row>
+                <Col xs={12}>
+                    <TextareaAutosize style={{width: "100%"}} minRows={5} value={description} placeholder="Description" label="description" onChange={(event) => setDescription(event.target.value)} />
                 </Col>
             </Row>
             <Row>

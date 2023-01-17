@@ -7,11 +7,11 @@ export const usernames = ['flipwrists', 'drigk', 'santa', 'gregg', 'sammy', 'ret
 
 export const types = ['wts', 'wtt', 'wtb'];
 
+export const blades = ['live', 'trainer'];
+
 export const sorts = ['min', 'max'];
 
 export const viewCounts = [1, 2, 3, 4, 6, 12];
-
-export const blades = ['blade', 'trainer'];
 
 export const statuses = ['available', 'pending', 'sold', 'traded'];
 

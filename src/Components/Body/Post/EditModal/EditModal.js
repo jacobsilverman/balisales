@@ -15,6 +15,8 @@ import { Button, Col, Row } from 'react-bootstrap';
 import { doc, setDoc } from 'firebase/firestore';
 import { db } from '../../../../firebase-config';
 
+import { FaImage } from "react-icons/fa";
+
 import { ref, getStorage, uploadBytesResumable } from "firebase/storage";
 
 const EditModal = ({item, openEditModal, setOpenEditModal, deletePost}) => {
@@ -65,22 +67,24 @@ const EditModal = ({item, openEditModal, setOpenEditModal, deletePost}) => {
 
     return (
         <Modal open={openEditModal}>
+                                        
             <Row className="edit-modal">
                 <Col xs={7} className="modal-background center">
+                    <DeleteModal deletePost={deletePost} item={item} openDeleteModal={openDeleteModal} setOpenDeleteModal={setOpenDeleteModal} />
                     <Row className="edit-input">
                         <Col xs={6} sm={9} className="left">
                             <h2>Edit</h2>
                         </Col>
                         <Col xs={6} sm={3}>
-                            <DeleteModal deletePost={deletePost} item={item} openDeleteModal={openDeleteModal} setOpenDeleteModal={setOpenDeleteModal} />
+
                             <Button variant="danger" onClick={(e) => {e.preventDefault();setOpenDeleteModal(true);}}>Delete</Button>
                         </Col>
                     </Row>
                     <Row className="edit-input">
-                        <TextField fullWidth value={title} label="title" className="input-width" color="" onChange={(event) => setTitle(event.target.value)} />
+                        <TextField fullWidth value={title} label="Title" className="input-width" color="" onChange={(event) => setTitle(event.target.value)} />
                     </Row>
                     <Row className="edit-input">
-                        <TextField fullWidth value={price} label="price" className="input-width" color="" onChange={(event) => setPrice(event.target.value)} />
+                        <TextField fullWidth value={price} label="Price" className="input-width" color="" onChange={(event) => setPrice(event.target.value)} />
                     </Row>
                     <Row className="edit-input">
                         <FormControl fullWidth>
@@ -125,19 +129,27 @@ const EditModal = ({item, openEditModal, setOpenEditModal, deletePost}) => {
                         </FormControl>
                     </Row>
                     <Row className="edit-input">
-                        <TextareaAutosize fullWidth minRows={3} value={description} placeholder="description" label="description" onChange={(event) => setDescription(event.target.value)} />
+                        <TextareaAutosize fullwidth="true" minRows={3} value={description} placeholder="Description" label="description" onChange={(event) => setDescription(event.target.value)} />
                     </Row>
                     <Row className="edit-input">    
-                        <Col className="center">
+                        {/* <Col className="center">
                             <input type="file" onChange={handleChange} accept="/image/*" />
+                        </Col> */}
+                        <Col xs={12} className="setting-item">
+                            <label className='profile-label' htmlFor="inputTag">
+                                <span style={{color:"black"}}>Add Picture</span>
+                                <input id="inputTag" className='profile-input' type="file" onChange={handleChange} accept="/image/*" />
+                                <br />
+                                {<FaImage size={40}  />}
+                            </label>
                         </Col>
                     </Row>
                     <Row className="edit-input">
                         <Col xs={6}>
-                            <Button onClick={() => setOpenEditModal(false)}>cancel</Button>
+                            <Button onClick={() => setOpenEditModal(false)}>Cancel</Button>
                         </Col>
                         <Col xs={6}>
-                            <Button onClick={() => {editPost();setOpenEditModal(false)}}>submit</Button>
+                            <Button onClick={() => {editPost();setOpenEditModal(false)}}>Submit</Button>
                         </Col>
                     </Row>
                 </Col>

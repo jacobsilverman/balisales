@@ -74,8 +74,8 @@ function Settings() {
                         </Col>
                 
                         <Col xs={12} className="setting-item">
-                            <label className='profile-label' for="inputTag">
-                                <span style={{color:"#1976d2"}}>Profile Picture</span>
+                            <label className='profile-label' htmlFor="inputTag">
+                                <span style={{color:"black"}}>Profile Picture</span>
                                 <input id="inputTag" className='profile-input' type="file" onChange={handleChange} accept="/image/*" />
                                 <br />
                                 {(!profilePicture) ? <FaImage size={40} /> : <img src={profilePicture} className="upload-image" alt="preview image" />}

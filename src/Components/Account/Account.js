@@ -34,7 +34,6 @@ function Account() {
 						const listRef = ref(storage, `/PostImages/${id}/image-${i}`);
 						await getDownloadURL(listRef)
 						  .then((url) => {
-							console.log("url: ", url);
 							parsedDoc.urls.push(url);
 						  })
 						  .catch((error) => {

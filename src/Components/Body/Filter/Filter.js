@@ -41,12 +41,12 @@ function Filter({brand, setBrand, max, setMax, min, setMin, type, setType, setDi
                         </Col>
                         <Col xs={6} sm={6} md={3}  className="dropdown">
                             <FormControl fullWidth>
-                                <InputLabel id="demo-simple-select-label">Sort</InputLabel>
+                                <InputLabel id="demo-simple-select-label">Cost</InputLabel>
                                 <Select
                                     labelId="demo-simple-select-label"
                                     id="demo-simple-select"
                                     value={sort}
-                                    label="Sort"
+                                    label="Cost"
                                     onChange={(event) => setSort(event.target.value)}>
                                     <MenuItem value="default">default</MenuItem>
                                     {getOptions(sorts, sort)}
