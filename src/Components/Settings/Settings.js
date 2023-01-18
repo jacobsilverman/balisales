@@ -91,7 +91,7 @@ function Settings() {
                     </Row>
                 </Col>
                 <hr />
-                <Account user={id} />
+                <Account user={id} accountView={true} />
             </Row>
         </Container>
     );

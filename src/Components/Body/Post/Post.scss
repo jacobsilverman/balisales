@@ -8,18 +8,18 @@
     border: .5px solid black;
 }
 
-.fake-background {
-    height: 100%;
-    width: 100%;
-    &:hover {
-        background-color: rgb(white, .3);
-        transition-duration: .5s;
-        .hidden-text {
-            visibility: visible;
-            opacity: 1;
-        }
-    }
-}
+// .fake-background {
+//     height: 100%;
+//     width: 100%;
+//     &:hover {
+//         background-color: rgb(white, .3);
+//         transition-duration: .5s;
+//         .hidden-text {
+//             visibility: visible;
+//             opacity: 1;
+//         }
+//     }
+// }
 
 a {
     text-decoration: none;

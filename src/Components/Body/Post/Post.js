@@ -18,7 +18,7 @@ function Post({item, viewCount, accountView, deletePost}) {
 
     const queryParam = 'id='+item?.id;
 
-    const priceCls = `price-container hidden-text color-${useMemo(() => {return priceColors(item?.type)}, [item?.type])}`;
+    // const priceCls = `price-container hidden-text color-${useMemo(() => {return priceColors(item?.type)}, [item?.type])}`;
     const showViewCount = isNaN(12/viewCount);
 
     return (
@@ -26,9 +26,9 @@ function Post({item, viewCount, accountView, deletePost}) {
             <EditModal item={item} openEditModal={openEditModal} setOpenEditModal={setOpenEditModal} deletePost={deletePost}  />
             
             <Grid item className="post-container" style={{backgroundImage: `url(${item?.urls[0]})`}} id={item?.id} xs={showViewCount ? 4 : 12/viewCount}>
-                <div className="fake-background">
+                {/* <div className="fake-background"> */}
                     <Link className="link" to={!accountView && {pathname: '/singlePost', search: queryParam}} onClick={accountView && ((e) => {e.preventDefault();setOpenEditModal(true);})}>
-                        <Row> 
+                        {/* <Row> 
                             <Col xs={10} className="title-text hidden-text">
                                 {item?.title?.toUpperCase()}
                             </Col>
@@ -40,9 +40,9 @@ function Post({item, viewCount, accountView, deletePost}) {
                             <Col className={priceCls}>
                                 <span className="price">${item?.price}</span>
                             </Col>
-                        </Row>}
+                        </Row>} */}
                     </Link>
-                </div>
+                {/* </div> */}
             </Grid> 
         </Fragment>
     );

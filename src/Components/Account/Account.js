@@ -14,7 +14,7 @@ import { getStorage, ref, deleteObject } from "firebase/storage";
 import { doc, deleteDoc } from 'firebase/firestore';
 import { db } from '../../firebase-config';
 
-function Account({user}) {
+function Account({user, accountView}) {
 	const [filterPosts, setFilterPosts] = useState([]);
 
 	useEffect(() => {
@@ -67,7 +67,7 @@ function Account({user}) {
             result.length > 0 && result.map((arr, index) => {
                 return <Grid container spacing={0} key={index} style={{padding:'0px'}}>
                     {arr.map((item) => {
-                        return <Post item={item} key={item.id} accountView={true} deletePost={deletePost} />
+                        return <Post item={item} key={item.id} accountView={accountView} deletePost={deletePost} />
                     })}
                 </Grid>
             }) ||
