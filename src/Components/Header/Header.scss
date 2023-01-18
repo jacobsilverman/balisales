@@ -82,14 +82,20 @@
     box-shadow: 2px 2px 6px rgba(0, 0, 0, .4);
 }
 
-.profile-image .account-profile{
-  width: 90vw;
-  height: 110vh;
-  max-width: 500px;
-  max-height: 500px;
+.user-account-profile {
+  background-size: 100% 100%;
+  width: 15vw;
+  height: 15vw;
+  border-radius: 2vw;
   margin: auto;
+  background-repeat: no-repeat;
+  background-position: center;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, .4);
 }
 
+.profile-image {
+  margin: auto;
+}
 
 .user-profile-container {
   margin-top: 20px;

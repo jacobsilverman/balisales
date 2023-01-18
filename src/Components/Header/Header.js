@@ -8,9 +8,6 @@ import { pageTitles } from '../../Data/Constants';
 import { Col, Container, OverlayTrigger, Popover, Row } from 'react-bootstrap';
 import defaultProfile from '../../Data/Images/default-profile.jpg';
 
-// import { MdSettingsSuggest } from "react-icons/md";
-
-
 import { auth, provider } from '../../firebase-config';
 import { signInWithPopup, signOut } from 'firebase/auth';
 import { useNavigate }   from 'react-router-dom';

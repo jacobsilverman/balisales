@@ -5,6 +5,8 @@ import { getProfilePicture } from '../../Data/Services/userInfo.js';
 import { getPost } from '../../Data/Services/PostInfo.js';
 import defaultProfile from '../../Data/Images/default-profile.jpg';
 
+import { ClipLoader } from 'react-spinners';
+
 import './SelectPost.scss';
 
 import { Col, Row } from 'react-bootstrap';
@@ -16,7 +18,7 @@ import { Link } from 'react-router-dom';
 function SelectPost() {
     const urlSearchParams = new URLSearchParams(window.location.search);
     const params = Object.fromEntries(urlSearchParams.entries());
-    const [createdDate, setCreatedData] = useState(0);
+    const [createdDate, setCreatedData] = useState(null);
 
     const [displayImage, setDisplayImage] = useState(0);
     const [displayPost, setDisplayPost] = useState({});
@@ -41,7 +43,8 @@ function SelectPost() {
     }, [displayPost]);
 
 
-    return (
+
+    const displaySelectedPost = (
         <Fragment>
             <Col xs={12} className="display-title center" >
                 <h1>{displayPost?.title}</h1>
@@ -95,9 +98,17 @@ function SelectPost() {
                     </Row>
                 </Col>
             </Row>
-
         </Fragment>
     );
+
+
+    return (!createdDate || !displayPost || !profilePic )
+    ? (<Row>
+        <Col xs={12} className="center">
+            <ClipLoader size={150} />
+        </Col>
+    </Row>)
+    : displaySelectedPost;
 }
 
 export default SelectPost;

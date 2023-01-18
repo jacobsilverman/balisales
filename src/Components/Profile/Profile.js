@@ -31,26 +31,26 @@ const Profile = () => {
 
     return (
         <Container className="user-profile-container">
-            <Row>
-                <Col xs={12} className="center">
-                    <h1>{userData.firstName} {userData.lastName}</h1>
-                </Col>
-            </Row>
-            
-            <Row>
-                <Col xs={12} className="profile-image center">
-                    <div className="account-profile center" style={{backgroundImage: `url(${profilePic})`}} />
+            <Row className="center">
+                <Col xs={3}>
+                     <h2>{userData.displayName}</h2>
                 </Col>
             </Row>
 
             <Row>
-                <Col xs={12} className="center">
-           
+                <Col xs={3} className="profile-image center">
+                    <div className="user-account-profile center" style={{backgroundImage: `url(${profilePic})`}} />
+                </Col>
+                <Col xs={9}>
                     <SocialMedia 
                         instagram={userData.instagram}
                         facebook={userData.facebook}
-                        userName={userData.displayName}
                         phoneNumber={userData.phoneNumber} />
+                </Col>
+            </Row>
+            <Row className="center">
+                <Col xs={12}>
+                     <h3>{userData.firstName} {userData.lastName}</h3>
                 </Col>
             </Row>
             <hr />
