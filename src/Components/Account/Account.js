@@ -64,14 +64,15 @@ function Account({user, accountView}) {
         };
 
 		return (
-            result.length > 0 && result.map((arr, index) => {
-                return <Grid container spacing={0} key={index} style={{padding:'0px'}}>
-                    {arr.map((item) => {
-                        return <Post item={item} key={item.id} accountView={accountView} deletePost={deletePost} />
-                    })}
-                </Grid>
-            }) ||
-			<Row>
+            result.length > 0 && 
+			<Grid container style={{padding:'0px'}} className="grid-container-posts">
+				{result.map((arr) => {
+					return arr.map((item) => {
+							return <Post item={item} key={item.id} accountView={accountView} deletePost={deletePost} />
+						})
+					})}
+			</Grid>
+			 ||<Row>
 				<Col xs={12} className="center">
 					No Posts Available
 				</Col>

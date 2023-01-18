@@ -36,12 +36,15 @@
 
 .filter-container {
     border: 1px solid black;
-    border-radius: 0 10px 10px 0;
     border-top: none;
     display: grid;
     background-color: white;
     padding: 10px;
-    max-width: 101.1%;
+}
+
+.filter-exit-button {
+    display: flex;
+    margin-bottom: 10px;
 }
 
 .bottom-margin {

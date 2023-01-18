@@ -55,15 +55,16 @@ function SelectPost() {
                     <div className="display-name">{displayPost?.author?.name}</div>
                     <div className="account-profile center" style={{backgroundImage: `url(${profilePic})`}} />
                 </Link>
-                {displayPost?.numberOfImages > 1 && <Row>
-                    <Col xs={6} className="previous-image">
-                        <Button variant="contained" onClick={() => setDisplayImage(cur => (cur-1) < 0 ? displayPost?.numberOfImages-1 : (cur-1))}>Previous</Button>
-                    </Col>
-                    <Col xs={6} className="next-image">
-                        <Button variant="contained" onClick={() => setDisplayImage(cur => (cur+1)%displayPost?.numberOfImages)}>Next</Button>
-                    </Col>
-                </Row>}
             </Col>}
+
+            {displayPost?.numberOfImages > 1 && <Row>
+                <Col xs={6} className="previous-image">
+                    <Button variant="contained" onClick={() => setDisplayImage(cur => (cur-1) < 0 ? displayPost?.numberOfImages-1 : (cur-1))}>Previous</Button>
+                </Col>
+                <Col xs={6} className="next-image">
+                    <Button variant="contained" onClick={() => setDisplayImage(cur => (cur+1)%displayPost?.numberOfImages)}>Next</Button>
+                </Col>
+            </Row>}
 
             
             <Row style={{justifyContent:"center"}}>

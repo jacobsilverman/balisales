@@ -78,39 +78,33 @@ function Body({ posts }) {
             
         };
         return (
-            result.map((arr, index) => {
-                return <Grid container spacing={.5} key={index}>
-                    {arr.map((item) => {
+            <Grid container className="grid-container-posts">
+                {result.map((arr) => {
+                    return arr.map((item) => {
                         return <Post item={item} viewCount={viewCount} key={item.id} />
-                    })}
-                </Grid>
-            })
+                    })
+                })}
+            </Grid>
         );
     }
-
-    // document.addEventListener('scroll', () => {
-    //     setWindowScroll(window.pageYOffset > 99);
-    // });
 
     const topFix = (windowScroll) ? 'fixed-top filter-container' : 'filter-container';
     const topMargin = (windowScroll && displayFilter) ? 'remove-padding post-margin' : 'remove-padding';
     const openFilterButton = (<span className="filter-button-container"><Button className={'filter-button ' + topFix} onClick={() => {setDisplayFilter(true)}}><b>FILTER</b></Button></span>);
     const filter = (
-        // <Row className='filter-container'>
-            <Col xs={12} className={topFix}>
-                <Filter 
-                    brand={brand} setBrand={setBrand} 
-                    type={type} setMax={setMax} 
-                    min={min} setMin={setMin} 
-                    max={max} setType={setType} 
-                    setDisplayFilter={setDisplayFilter} 
-                    resetFilter={resetFilter}
-                    sort={sort} setSort={setSort} 
-                    viewCount={viewCount} setViewCount={setViewCount}
-                    blade={blade} setBlade={setBlade}
-                    status={status} setStatus={setStatus} />
-            </Col>
-        // </Row>
+        <Col xs={12} className={topFix}>
+            <Filter 
+                brand={brand} setBrand={setBrand} 
+                type={type} setMax={setMax} 
+                min={min} setMin={setMin} 
+                max={max} setType={setType} 
+                setDisplayFilter={setDisplayFilter} 
+                resetFilter={resetFilter}
+                sort={sort} setSort={setSort} 
+                viewCount={viewCount} setViewCount={setViewCount}
+                blade={blade} setBlade={setBlade}
+                status={status} setStatus={setStatus} />
+        </Col>
     );
 
     return (

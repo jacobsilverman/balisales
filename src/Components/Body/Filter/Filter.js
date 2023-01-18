@@ -23,10 +23,10 @@ function Filter({brand, setBrand, max, setMax, min, setMin, type, setType, setDi
     return (
         <Fragment>
             <Row className='filter-item'>
-                <Col xs={2} className='align-left'>
+                <Col xs={3} className='filter-exit-button'>
                     <Button variant="contained" color="error" size="small" onClick={() => {setDisplayFilter(false)}}>x</Button>
                 </Col>
-                <Col xs={10}>
+                <Col xs={9}>
                     <Button className="reset-button" variant="contained" onClick={() => {resetFilter()}}>reset</Button>
                 </Col> 
             </Row>

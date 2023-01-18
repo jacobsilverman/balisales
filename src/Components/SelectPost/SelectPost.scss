@@ -17,16 +17,15 @@
 .previous-image {
     display:flex;
     align-items: flex-end;
+    justify-content: center;
     margin-left: -5px;
-    margin-bottom: -29rem;
 }
 
 .next-image {
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: flex-end;
     margin-right: -35px;
-    margin-bottom: -29rem;
     padding-right: 0px;
 }
 

@@ -29,7 +29,6 @@
     color: black;
     border: black;
     width: 100%;
-    margin-bottom: 4px;
     display: flex;
     justify-content: center;
     font-family: roboto;
@@ -45,6 +44,22 @@
     margin-top: 38vh;
 }
 
-.filter-container {
-    width: 102.5%;
+.grid-container-posts {
+    border-top: 2px solid white;
+
+    div:nth-child(3n + 3){
+        border-right: 2px solid white;
+        border-left: 2px solid white;
+        border-bottom: 2px solid white;
+    }
+
+    div:nth-child(3n + 2){
+        border-bottom: 2px solid white;
+    }
+
+    div:nth-child(3n + 1){
+        border-right: 2px solid white;
+        border-left: 2px solid white;
+        border-bottom: 2px solid white;
+    }
 }
