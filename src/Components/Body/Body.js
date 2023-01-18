@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Post from './Post';
 import Filter from './Filter';
@@ -22,6 +22,12 @@ function Body({ posts }) {
     const [blade, setBlade] = useState('default');
     const [status, setStatus] = useState('default');
     const [windowScroll, setWindowScroll] = useState(0); 
+
+    useEffect(() => {
+        document.addEventListener('scroll', () => {
+            setWindowScroll(window.pageYOffset > 99);
+        });
+    }, [])
 
     const resetFilter = () => {
         setMin(0);
@@ -82,15 +88,15 @@ function Body({ posts }) {
         );
     }
 
-    document.addEventListener('scroll', () => {
-        setWindowScroll(window.pageYOffset > 99);
-    });
+    // document.addEventListener('scroll', () => {
+    //     setWindowScroll(window.pageYOffset > 99);
+    // });
 
-    const topFix = (windowScroll) ? 'fixed-top' : '';
+    const topFix = (windowScroll) ? 'fixed-top filter-container' : 'filter-container';
     const topMargin = (windowScroll && displayFilter) ? 'remove-padding post-margin' : 'remove-padding';
     const openFilterButton = (<span className="filter-button-container"><Button className={'filter-button ' + topFix} onClick={() => {setDisplayFilter(true)}}><b>FILTER</b></Button></span>);
     const filter = (
-        <Row className='filter-container'>
+        // <Row className='filter-container'>
             <Col xs={12} className={topFix}>
                 <Filter 
                     brand={brand} setBrand={setBrand} 
@@ -104,7 +110,7 @@ function Body({ posts }) {
                     blade={blade} setBlade={setBlade}
                     status={status} setStatus={setStatus} />
             </Col>
-        </Row>
+        // </Row>
     );
 
     return (

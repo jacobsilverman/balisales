@@ -44,7 +44,6 @@ export const getUserPosts = async (userId) => {
             return val;
         });
         return Promise.all(allUserPost).then((result) => {
-            console.log("result: ", result);
             return result;
         });
     })

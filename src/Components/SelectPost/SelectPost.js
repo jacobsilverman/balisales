@@ -50,7 +50,7 @@ function SelectPost() {
                 <h1>{displayPost?.title}</h1>
             </Col>
 
-            {displayPost?.urls && <Col xs={11} sm={11} md={5} className="image-container align-items-end" style={{backgroundImage: `url(${displayPost?.urls[displayImage]})`}}>
+            {displayPost?.urls && <Col xs={11} sm={11} md={7} className="image-container align-items-end" style={{backgroundImage: `url(${displayPost?.urls[displayImage]})`}}>
                 <Link className="link-wrapper" to={{pathname: '/profile', search: "id=" + displayPost?.author?.id}}>
                     <div className="display-name">{displayPost?.author?.name}</div>
                     <div className="account-profile center" style={{backgroundImage: `url(${profilePic})`}} />
