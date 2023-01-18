@@ -91,7 +91,7 @@ function Settings() {
                     </Row>
                 </Col>
                 <hr />
-                <Account />
+                <Account user={id} />
             </Row>
         </Container>
     );

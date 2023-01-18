@@ -2,54 +2,28 @@
 import {Fragment,  useEffect, useState } from 'react';
 
 import Grid from '@mui/material/Grid';
-import { Col, Container, Row } from 'react-bootstrap';
+import { Col, Row } from 'react-bootstrap';
 import { ClipLoader } from 'react-spinners';
 
 import Post from '../Body/Post';
 import './Account.scss';
 
-import { deleteUserPost, getUserInfo } from '../../Data/Services/userInfo';
+import { deleteUserPost, getUserPosts } from '../../Data/Services/userInfo';
 
-import { getStorage, ref, getDownloadURL, deleteObject } from "firebase/storage";
-import { doc, deleteDoc, getDoc } from 'firebase/firestore';
+import { getStorage, ref, deleteObject } from "firebase/storage";
+import { doc, deleteDoc } from 'firebase/firestore';
 import { db } from '../../firebase-config';
 
-function Account() {
+function Account({user}) {
 	const [filterPosts, setFilterPosts] = useState([]);
 
 	useEffect(() => {
-		getUserposts();
+        getUserPosts(user).then((result) => {
+            setFilterPosts(result);
+        }).catch(() => {
+            console.error("cant get user posts");
+        });
 	}, []);
-
-	const getUserposts = async () => {
-		getUserInfo().then(async (info)  => {
-			if (!info?.posts) {
-				return null;
-			}
-			const allUserPost = info.posts.map(async (id) => {
-				const postDoc = doc(db, "posts", id);
-				const val = await getDoc(postDoc).then(async (doc) => {
-					let parsedDoc = {...doc.data(), id: doc.id, urls: []};
-					for (var i = 0; i<parsedDoc.numberOfImages; i++) {
-						const storage = await getStorage();
-						const listRef = ref(storage, `/PostImages/${id}/image-${i}`);
-						await getDownloadURL(listRef)
-						  .then((url) => {
-							parsedDoc.urls.push(url);
-						  })
-						  .catch((error) => {
-							console.error(error);
-						  });
-					};
-					return parsedDoc;
-				})
-				return val;
-			});
-			Promise.all(allUserPost).then((result) => {
-				setFilterPosts(result);
-			});
-		})
-	}
 	
     const deletePost = async (item) => {
 		const storage = getStorage();

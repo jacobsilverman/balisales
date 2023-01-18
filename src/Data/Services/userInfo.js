@@ -1,6 +1,6 @@
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { db, storage } from '../../firebase-config';
-import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 
 const uid = localStorage.getItem("uid");
 
@@ -17,6 +17,37 @@ export const setUserLogin = async (user) => {
     catch{
         console.log("error on login");
     }
+}
+
+export const getUserPosts = async (userId) => {
+    return getUserInfo(userId).then(async (info)  => {
+        if (!info?.posts) {
+            return null;
+        }
+        const allUserPost = info.posts.map(async (id) => {
+            const postDoc = doc(db, "posts", id);
+            const val = await getDoc(postDoc).then(async (doc) => {
+                let parsedDoc = {...doc.data(), id: doc.id, urls: []};
+                for (var i = 0; i<parsedDoc.numberOfImages; i++) {
+                    const storage = await getStorage();
+                    const listRef = ref(storage, `/PostImages/${id}/image-${i}`);
+                    await getDownloadURL(listRef)
+                      .then((url) => {
+                        parsedDoc.urls.push(url);
+                      })
+                      .catch((error) => {
+                        console.error(error);
+                      });
+                };
+                return parsedDoc;
+            })
+            return val;
+        });
+        return Promise.all(allUserPost).then((result) => {
+            console.log("result: ", result);
+            return result;
+        });
+    })
 }
 
 export const getUserInfo = async (id) => {

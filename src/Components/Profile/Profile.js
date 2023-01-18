@@ -3,6 +3,8 @@ import { useEffect, useState } from 'react';
 import { getUserInfo, getProfilePicture } from '../../Data/Services/userInfo.js';
 import defaultProfile from '../../Data/Images/default-profile.jpg';
 
+import Account from '../Account/Account';
+
 import SocialMedia from '../SocialMedia/SocialMedia.js';
 
 import { Container, Col, Row } from 'react-bootstrap';
@@ -25,6 +27,7 @@ const Profile = () => {
             setProfilePic(defaultProfile);
         });
     }, []);
+
 
     return (
         <Container className="user-profile-container">
@@ -50,6 +53,8 @@ const Profile = () => {
                         phoneNumber={userData.phoneNumber} />
                 </Col>
             </Row>
+            <hr />
+            <Account user={params.id} />
         </Container>
     );
 }
