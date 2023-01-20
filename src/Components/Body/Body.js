@@ -23,11 +23,11 @@ function Body({ posts }) {
     const [status, setStatus] = useState('default');
     const [windowScroll, setWindowScroll] = useState(0); 
 
-    useEffect(() => {
-        document.addEventListener('scroll', () => {
-            setWindowScroll(window.pageYOffset > 99);
-        });
-    }, [])
+    // useEffect(() => {
+    //     document.addEventListener('scroll', () => {
+    //         setWindowScroll(window.pageYOffset > 99);
+    //     });
+    // }, [])
 
     const resetFilter = () => {
         setMin(0);

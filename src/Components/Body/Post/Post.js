@@ -1,12 +1,11 @@
 import React, { Fragment, useMemo, useState } from 'react';
 
-import { priceColors } from '../../../Data/Constants';
+// import { priceColors } from '../../../Data/Constants';
 
 import './Post.scss';
 
 import { Link } from 'react-router-dom';
  
-import { Col, Row } from 'react-bootstrap';
 import Grid from '@mui/material/Grid';
 
 import EditModal from './EditModal/EditModal.js';
