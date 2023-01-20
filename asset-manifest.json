@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/static/css/main.a78935fd.css",
-    "main.js": "/static/js/main.62c6f33f.js",
+    "main.js": "/static/js/main.d555429f.js",
     "static/js/787.56191e2a.chunk.js": "/static/js/787.56191e2a.chunk.js",
     "static/media/background.jpg": "/static/media/background.cf64b77973fd58ad89c4.jpg",
     "static/media/balilogo_2.svg": "/static/media/balilogo_2.e6f7ac93cc3f75fd14e20b3b4aa2e58d.svg",
     "index.html": "/index.html",
     "main.a78935fd.css.map": "/static/css/main.a78935fd.css.map",
-    "main.62c6f33f.js.map": "/static/js/main.62c6f33f.js.map",
+    "main.d555429f.js.map": "/static/js/main.d555429f.js.map",
     "787.56191e2a.chunk.js.map": "/static/js/787.56191e2a.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.a78935fd.css",
-    "static/js/main.62c6f33f.js"
+    "static/js/main.d555429f.js"
   ]
 }
