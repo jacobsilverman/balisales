@@ -5,7 +5,6 @@ import Routing from './Routing';
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from './firebase-config';
 
-
 import { getStorage, ref, getDownloadURL } from "firebase/storage";
 // import BuildMocks from './Data/Mocks/BuildMocks.js'
 

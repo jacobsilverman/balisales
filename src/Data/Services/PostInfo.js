@@ -23,4 +23,3 @@ export const getPost = async (id) => {
     });
     return postData;
 }
-

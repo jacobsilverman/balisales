@@ -1,10 +1,10 @@
-import { useState } from 'react';
+import { Fragment, useState } from 'react';
 
 import { brands, types } from '../../../../Data/Constants';
 
 import DeleteModal from '../DeleteModal/DeleteModal';
 
-import { Modal, TextareaAutosize } from '@mui/material';
+import { Grid, Modal, TextareaAutosize } from '@mui/material';
 import TextField from '@mui/material/TextField';
 import FormControl from '@mui/material/FormControl';
 import MenuItem from '@mui/material/MenuItem';
@@ -27,6 +27,9 @@ const EditModal = ({item, openEditModal, setOpenEditModal, deletePost}) => {
     const [condition, setCondition] = useState(item.condition);
     const [price, setPrice] = useState(item.price);
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
+    const [numberOfImages, setNumberOfImages] = useState(item.numberOfImages);
+    const [removedImages, setRemovedImages] = useState({});
+
 
     // State to store uploaded file
     const [file, setFile] = useState("");
@@ -52,7 +55,7 @@ const EditModal = ({item, openEditModal, setOpenEditModal, deletePost}) => {
             price,
             description,
             timeStamp: Date.now(),
-            numberOfImages: item.numberOfImages,
+            numberOfImages: numberOfImages,
             author: {name: item.author.name, id: item.author.id }
         }).then(() => {
             const pictureRef = ref(getStorage(), `PostImages/${item.id}/image-0`);
@@ -64,6 +67,41 @@ const EditModal = ({item, openEditModal, setOpenEditModal, deletePost}) => {
             window.location.reload();
         });
     }
+
+    const handleImageClick = (url) => {
+        setRemovedImages(cur => {
+            cur[url] = !cur[url] ?? true
+            return cur;
+        });
+        console.log(removedImages);
+    }
+
+    const pictures = (
+        <Grid container>
+            {item.urls.map((url) => {
+                return (
+                    <Grid item key={url} className="center" style={{backgroundImage: `url(${url})`, backgroundSize: "100% 100%", width: "100px", height: "100px"}} onClick={() => handleImageClick(url)} >
+                        {removedImages[url]}
+                    </Grid>
+                )})}
+        </Grid>
+    );
+
+    const addPicture = (
+        <Row className="edit-input">    
+            {/* <Col className="center">
+                <input type="file" onChange={handleChange} accept="/image/*" />
+            </Col> */}
+            <Col xs={12} className="setting-item">
+                <label className='profile-label' htmlFor="inputTag">
+                    <span style={{color:"black"}}>Add Picture</span>
+                    <input id="inputTag" className='profile-input' type="file" onChange={handleChange} accept="/image/*" />
+                    <br />
+                    {<FaImage size={40}  />}
+                </label>
+            </Col>
+        </Row>
+    );
 
     return (
         <Modal open={openEditModal}>
@@ -81,17 +119,18 @@ const EditModal = ({item, openEditModal, setOpenEditModal, deletePost}) => {
                         </Col>
                     </Row>
                     <Row className="edit-input">
-                        <TextField fullWidth value={title} label="Title" className="input-width" color="" onChange={(event) => setTitle(event.target.value)} />
+                        <TextField fullWidth size="small" value={title} label="Title" className="input-width" color="" onChange={(event) => setTitle(event.target.value)} />
                     </Row>
                     <Row className="edit-input">
-                        <TextField fullWidth value={price} label="Price" className="input-width" color="" onChange={(event) => setPrice(event.target.value)} />
+                        <TextField fullWidth size="small" value={price} label="Price" className="input-width" color="" onChange={(event) => setPrice(event.target.value)} />
                     </Row>
                     <Row className="edit-input">
                         <FormControl fullWidth>
-                            <InputLabel id="brand-label">Brand</InputLabel>
+                            <InputLabel size="small" id="brand-label">Brand</InputLabel>
                             <Select
                                 labelId="brand-label"
                                 id="brand-select"
+                                size="small"
                                 value={brand}
                                 label="Brand"
                                 onChange={(event) => setBrand(event.target.value)}>
@@ -102,10 +141,11 @@ const EditModal = ({item, openEditModal, setOpenEditModal, deletePost}) => {
                     </Row>
                     <Row className="edit-input">
                         <FormControl fullWidth>
-                            <InputLabel id="business-label">Business</InputLabel>
+                            <InputLabel size="small" id="business-label">Business</InputLabel>
                             <Select
                                 labelId="business-label"
                                 id="business-select"
+                                size="small"
                                 value={type}
                                 label="Type"
                                 onChange={(event) => setType(event.target.value)}>
@@ -116,10 +156,11 @@ const EditModal = ({item, openEditModal, setOpenEditModal, deletePost}) => {
                     </Row>
                     <Row className="edit-input">
                         <FormControl fullWidth>
-                            <InputLabel id="condition-label">Condition</InputLabel>
+                            <InputLabel size="small" id="condition-label">Condition</InputLabel>
                             <Select
                                 labelId="condition-label"
                                 id="condition-select"
+                                size="small"
                                 value={condition}
                                 label="Condition"
                                 onChange={(event) => setCondition(event.target.value)}>
@@ -131,19 +172,8 @@ const EditModal = ({item, openEditModal, setOpenEditModal, deletePost}) => {
                     <Row className="edit-input">
                         <TextareaAutosize fullwidth="true" minRows={3} value={description} placeholder="Description" label="description" onChange={(event) => setDescription(event.target.value)} />
                     </Row>
-                    <Row className="edit-input">    
-                        {/* <Col className="center">
-                            <input type="file" onChange={handleChange} accept="/image/*" />
-                        </Col> */}
-                        <Col xs={12} className="setting-item">
-                            <label className='profile-label' htmlFor="inputTag">
-                                <span style={{color:"black"}}>Add Picture</span>
-                                <input id="inputTag" className='profile-input' type="file" onChange={handleChange} accept="/image/*" />
-                                <br />
-                                {<FaImage size={40}  />}
-                            </label>
-                        </Col>
-                    </Row>
+                    {/* {addPicture}
+                    {pictures} */}
                     <Row className="edit-input">
                         <Col xs={6}>
                             <Button onClick={() => setOpenEditModal(false)}>Cancel</Button>
