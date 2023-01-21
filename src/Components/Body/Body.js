@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
-import Post from './Post';
-import Filter from './Filter';
+const Filter = React.lazy(() => import('./Filter'));
+const Post = React.lazy(() => import('./Post'));
 
 import { ClipLoader } from 'react-spinners';
 
@@ -21,7 +21,7 @@ function Body({ posts }) {
     const [viewCount, setViewCount] = useState('default');
     const [blade, setBlade] = useState('default');
     const [status, setStatus] = useState('default');
-    const [windowScroll, setWindowScroll] = useState(0); 
+    // const [windowScroll, setWindowScroll] = useState(0); 
 
     // useEffect(() => {
     //     document.addEventListener('scroll', () => {
@@ -57,15 +57,15 @@ function Body({ posts }) {
     };
 
     var divideData = () => {
-        if (posts.length === 0) {
-            return (
-                <Row >
-                    <Col xs={12} className="center">
-                        <ClipLoader size={150} />
-                    </Col> 
-                </Row>
-            );
-        }
+        // if (posts.length === 0) {
+        //     return (
+        //         <Row >
+        //             <Col xs={12} className="center">
+        //                 <ClipLoader size={150} />
+        //             </Col> 
+        //         </Row>
+        //     );
+        // }
         let allPosts = sortData(posts);
         let result = [];
         let partition = [];
@@ -88,8 +88,10 @@ function Body({ posts }) {
         );
     }
 
-    const topFix = (windowScroll) ? 'fixed-top filter-container' : 'filter-container';
-    const topMargin = (windowScroll && displayFilter) ? 'remove-padding post-margin' : 'remove-padding';
+    // const topFix = (windowScroll) ? 'fixed-top filter-container' : 'filter-container';
+    // const topMargin = (windowScroll && displayFilter) ? 'remove-padding post-margin' : 'remove-padding';
+    const topFix = 'filter-container';
+    const topMargin = 'remove-padding';
     const openFilterButton = (<span className="filter-button-container"><Button className={'filter-button ' + topFix} onClick={() => {setDisplayFilter(true)}}><b>FILTER</b></Button></span>);
     const filter = (
         <Col xs={12} className={topFix}>

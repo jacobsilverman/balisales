@@ -171,7 +171,7 @@ function CreatePost() {
                         <Select
                             labelId="sale-type-label"
                             id="sale-type-select"
-                            label="Type"
+                            label="Sale Type"
                             onChange={(event) => setType(event.target.value)}>
                             <MenuItem value="default">default</MenuItem>
                             {getOptions(types, type)}
