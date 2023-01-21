@@ -1,9 +1,9 @@
 {
   "files": {
     "main.css": "/static/css/main.6470a5a2.css",
-    "main.js": "/static/js/main.43e05182.js",
+    "main.js": "/static/js/main.e6cd6138.js",
     "static/css/354.10e3169b.chunk.css": "/static/css/354.10e3169b.chunk.css",
-    "static/js/354.c9b1e3bf.chunk.js": "/static/js/354.c9b1e3bf.chunk.js",
+    "static/js/354.72f51f1a.chunk.js": "/static/js/354.72f51f1a.chunk.js",
     "static/css/154.763f8056.chunk.css": "/static/css/154.763f8056.chunk.css",
     "static/js/154.b0d48ce3.chunk.js": "/static/js/154.b0d48ce3.chunk.js",
     "static/css/906.074f6dd8.chunk.css": "/static/css/906.074f6dd8.chunk.css",
@@ -27,9 +27,9 @@
     "static/media/balilogo_2.svg": "/static/media/balilogo_2.e6f7ac93cc3f75fd14e20b3b4aa2e58d.svg",
     "index.html": "/index.html",
     "main.6470a5a2.css.map": "/static/css/main.6470a5a2.css.map",
-    "main.43e05182.js.map": "/static/js/main.43e05182.js.map",
+    "main.e6cd6138.js.map": "/static/js/main.e6cd6138.js.map",
     "354.10e3169b.chunk.css.map": "/static/css/354.10e3169b.chunk.css.map",
-    "354.c9b1e3bf.chunk.js.map": "/static/js/354.c9b1e3bf.chunk.js.map",
+    "354.72f51f1a.chunk.js.map": "/static/js/354.72f51f1a.chunk.js.map",
     "154.763f8056.chunk.css.map": "/static/css/154.763f8056.chunk.css.map",
     "154.b0d48ce3.chunk.js.map": "/static/js/154.b0d48ce3.chunk.js.map",
     "906.074f6dd8.chunk.css.map": "/static/css/906.074f6dd8.chunk.css.map",
@@ -52,6 +52,6 @@
   },
   "entrypoints": [
     "static/css/main.6470a5a2.css",
-    "static/js/main.43e05182.js"
+    "static/js/main.e6cd6138.js"
   ]
 }
