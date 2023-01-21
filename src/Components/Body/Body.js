@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 
-const Filter = React.lazy(() => import('./Filter'));
-const Post = React.lazy(() => import('./Post'));
-
-import { ClipLoader } from 'react-spinners';
+// import { ClipLoader } from 'react-spinners';
 
 import { Button, Col, Container, Row } from 'react-bootstrap';
 
 import Grid from '@mui/material/Grid';
 
 import './Body.scss';
+
+const Filter = React.lazy(() => import('./Filter'));
+const Post = React.lazy(() => import('./Post'));
 
 function Body({ posts }) {
     const [min, setMin] = useState(0);
