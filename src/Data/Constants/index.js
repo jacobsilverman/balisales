@@ -1,5 +1,7 @@
 import balilogo from '../Images/balilogo_2.svg';
 
+export const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
 export const brands = ['baliplus', 'squid', 'kershaw', 'bradley', 'brs', 'mw', 'bbbarfly', 'hom', 'bm', 'bs', 'jk', 'nrb', 'svix', 'heibel', 'hypex', 'glidrco', 'mantis', 'theone', 'fellowship', 'biegler', 'flytanium', 'misc'];
 
 export const usernames = ['flipwrists', 'drigk', 'santa', 'gregg', 'sammy', 'retail'];

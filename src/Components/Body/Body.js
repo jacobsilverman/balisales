@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-// import { ClipLoader } from 'react-spinners';
+import Spinner from '../../Data/Constants/Spinner';
 
 import { Button, Col, Container, Row } from 'react-bootstrap';
 
@@ -66,18 +66,14 @@ function Body({ posts }) {
     };
 
     var divideData = () => {
-        // if (posts.length === 0) {
-        //     return (
-        //         <Row >
-        //             <Col xs={12} className="center">
-        //                 <ClipLoader size={150} />
-        //             </Col> 
-        //         </Row>
-        //     );
-        // }
+        if (posts.length === 0) {
+            return (<Spinner />);
+        }
+
         let allPosts = sortData(posts);
         let result = [];
         let partition = [];
+        
         for (let i=0; i< allPosts.length; i++){
             validFilter(allPosts[i]) && partition.push(allPosts[i]);
             if ((i+1)%3===0 || i === allPosts.length-1) {
@@ -86,6 +82,7 @@ function Body({ posts }) {
             }
             
         };
+
         return (
             <Grid container className="grid-container-posts">
                 {result.map((arr) => {

@@ -5,7 +5,7 @@ import { getProfilePicture } from '../../Data/Services/userInfo.js';
 import { getPost } from '../../Data/Services/PostInfo.js';
 import defaultProfile from '../../Data/Images/default-profile.jpg';
 
-import { ClipLoader } from 'react-spinners';
+import Spinner from '../../Data/Constants/Spinner';
 
 import './SelectPost.scss';
 
@@ -102,11 +102,7 @@ function SelectPost() {
 
 
     return (!createdDate || !displayPost || !profilePic )
-    ? (<Row>
-        <Col xs={12} className="center">
-            <ClipLoader size={150} />
-        </Col>
-    </Row>)
+    ? (<Spinner />)
     : displaySelectedPost;
 }
 

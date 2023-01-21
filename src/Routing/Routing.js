@@ -2,8 +2,7 @@ import React, { Suspense, useState } from 'react';
 
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-import { ClipLoader } from 'react-spinners';
-import { Col, Row } from 'react-bootstrap';
+import Spinner from '../Data/Constants/Spinner';
 
 import Header from '../Components/Header';
 
@@ -21,20 +20,12 @@ const Discuss = React.lazy(() => import('../Components/Discuss'));
 function Routing({ posts }) {
     const [isAuth, setIsAuth] = useState(localStorage.getItem("isAuth"));
 
-    const spinner = (
-        <Row className="center">
-            <Col>
-                <ClipLoader size={150} />
-            </Col>
-        </Row>
-    );
-
     return (
         <BrowserRouter>
             <nav>
                 <Header isAuth={isAuth} setIsAuth={setIsAuth} />
             </nav>
-            <Suspense fallback={spinner}>
+            <Suspense fallback={<Spinner />}>
                 <Routes>
                     <Route path='/' element={<Body posts={posts} />} />
                     <Route path='/singlePost' element={<SelectPost />} />

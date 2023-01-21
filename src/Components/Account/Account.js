@@ -3,7 +3,7 @@ import {Fragment,  useEffect, useState } from 'react';
 
 import Grid from '@mui/material/Grid';
 import { Col, Row } from 'react-bootstrap';
-import { ClipLoader } from 'react-spinners';
+import Spinner from '../../Data/Constants/Spinner.js';
 
 import Post from '../Body/Post';
 import './Account.scss';
@@ -45,11 +45,7 @@ function Account({user, accountView}) {
 	const setAccountData = () => {
 		if (filterPosts.length === 0) {
 			return (
-				<Row>
-					<Col xs={12} className="center">
-						<ClipLoader size={150} />
-					</Col>
-				</Row>
+				<Spinner />
 			);
 		} 
 
