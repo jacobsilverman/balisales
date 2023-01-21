@@ -12,13 +12,7 @@ import Select from '@mui/material/Select';
 
 import './Filter.scss';
 
-function Filter({brand, setBrand, max, setMax, min, setMin, type, setType, setDisplayFilter, resetFilter, sort, setSort, viewCount, setViewCount, blade, setBlade, status, setStatus}) {
-
-    const getOptions = (options) => {
-        return options.map((name, key) => {
-            return <MenuItem key={key} value={name}>{name}</MenuItem>;
-        });
-    };
+function Filter({getOptions, brand, setBrand, max, setMax, min, setMin, type, setType, setDisplayFilter, resetFilter, sort, setSort, viewCount, setViewCount, blade, setBlade, status, setStatus}) {
 
     return (
         <Fragment>

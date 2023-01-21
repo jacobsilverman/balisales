@@ -9,6 +9,7 @@ import Grid from '@mui/material/Grid';
 import './Body.scss';
 import Filter from './Filter';
 import Post from './Post';
+import MenuItem from '@mui/material/MenuItem';
 
 // const Filter = React.lazy(() => import('./Filter'));
 // const Post = React.lazy(() => import('./Post'));
@@ -58,6 +59,12 @@ function Body({ posts }) {
             && (post.status === status || status === 'default');
     };
 
+    const getOptions = (options) => {
+        return options.map((name, key) => {
+            return <MenuItem key={name+"-"+key} value={name}>{name}</MenuItem>;
+        });
+    };
+
     var divideData = () => {
         // if (posts.length === 0) {
         //     return (
@@ -98,6 +105,7 @@ function Body({ posts }) {
     const filter = (
         <Col xs={12} className={topFix}>
             <Filter 
+                getOptions={getOptions}
                 brand={brand} setBrand={(v) => setBrand(v)} 
                 type={type} setMax={(v) => setMax(v)} 
                 min={min} setMin={(v) => setMin(v)} 
