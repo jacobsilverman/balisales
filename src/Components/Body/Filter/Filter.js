@@ -10,8 +10,6 @@ import MenuItem from '@mui/material/MenuItem';
 import InputLabel from '@mui/material/InputLabel';
 import Select from '@mui/material/Select';
 
-import { isMobile } from '../../../Data/Constants';
-
 import './Filter.scss';
 
 function Filter({getOptions, brand, setBrand, max, setMax, min, setMin, type, setType, setDisplayFilter, resetFilter, sort, setSort, viewCount, setViewCount, blade, setBlade, status, setStatus}) {
@@ -35,8 +33,8 @@ function Filter({getOptions, brand, setBrand, max, setMax, min, setMin, type, se
                         <Col xs={6} sm={6} md={3}>
                             <TextField fullWidth label="Max" color="" onChange={(event) => {setMax(event.target.value )}} value={max} />
                         </Col>
-                        {!isMobile && 
-                        <Fragment>
+                        
+                        
                         <Col xs={6} sm={6} md={3}  className="dropdown">
                             <FormControl fullWidth>
                                 <InputLabel id="demo-simple-select-label">Cost</InputLabel>
@@ -122,7 +120,6 @@ function Filter({getOptions, brand, setBrand, max, setMax, min, setMin, type, se
                                 </Select>
                             </FormControl>
                         </Col>
-                        </Fragment>}
                     </Row>
                 </Col>
             </Row>

@@ -11,6 +11,8 @@ import Filter from './Filter';
 import Post from './Post';
 import MenuItem from '@mui/material/MenuItem';
 
+import { isMobile } from '../../Data/Constants';
+
 // const Filter = React.lazy(() => import('./Filter'));
 // const Post = React.lazy(() => import('./Post'));
 
@@ -73,7 +75,7 @@ function Body({ posts }) {
         let allPosts = sortData(posts);
         let result = [];
         let partition = [];
-        
+
         for (let i=0; i< allPosts.length; i++){
             validFilter(allPosts[i]) && partition.push(allPosts[i]);
             if ((i+1)%3===0 || i === allPosts.length-1) {
@@ -119,7 +121,7 @@ function Body({ posts }) {
     return (
         <Container className='body-container'>
             <Row>
-                {(displayFilter && filter) || openFilterButton}
+                {(displayFilter && filter) || (!isMobile && openFilterButton)}
                 <Col xs={12} className={topMargin}>
                     {divideData()}
                 </Col>
