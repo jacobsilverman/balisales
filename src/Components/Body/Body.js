@@ -7,9 +7,11 @@ import { Button, Col, Container, Row } from 'react-bootstrap';
 import Grid from '@mui/material/Grid';
 
 import './Body.scss';
+import Filter from './Filter';
+import Post from './Post';
 
-const Filter = React.lazy(() => import('./Filter'));
-const Post = React.lazy(() => import('./Post'));
+// const Filter = React.lazy(() => import('./Filter'));
+// const Post = React.lazy(() => import('./Post'));
 
 function Body({ posts }) {
     const [min, setMin] = useState(0);
@@ -96,16 +98,16 @@ function Body({ posts }) {
     const filter = (
         <Col xs={12} className={topFix}>
             <Filter 
-                brand={brand} setBrand={setBrand} 
-                type={type} setMax={setMax} 
-                min={min} setMin={setMin} 
-                max={max} setType={setType} 
-                setDisplayFilter={setDisplayFilter} 
-                resetFilter={resetFilter}
-                sort={sort} setSort={setSort} 
-                viewCount={viewCount} setViewCount={setViewCount}
-                blade={blade} setBlade={setBlade}
-                status={status} setStatus={setStatus} />
+                brand={brand} setBrand={(v) => setBrand(v)} 
+                type={type} setMax={(v) => setMax(v)} 
+                min={min} setMin={(v) => setMin(v)} 
+                max={max} setType={(v) => setType(v)} 
+                setDisplayFilter={(v) => setDisplayFilter(v)} 
+                resetFilter={(v) => resetFilter(v)}
+                sort={sort} setSort={(v) => setSort(v)} 
+                viewCount={viewCount} setViewCount={(v) => setViewCount(v)}
+                blade={blade} setBlade={(v) => setBlade(v)}
+                status={status} setStatus={(v) => setStatus(v)} />
         </Col>
     );
 
