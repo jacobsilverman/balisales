@@ -18,24 +18,27 @@ function ContactUs() {
         <Container className="contact-container">
             <Row>
                 <Col className="center">
-                    Please feel free to send us a message for any reason
+                    <h5>Please feel free to send us a message for any reason</h5>
                 </Col>
             </Row>
             <Row>
                 <Col className="center">
-                    <textarea maxLength="2000" rows="1" cols="60" name="contact us" autoFocus={true} placeholder="title" onChange={(event) => assignText(event, setTitle)} />
+                    <TextField fullWidth label="title" color="" onChange={(event) => assignText(event, setTitle)}/>
+                
+                    {/* <textarea maxLength="2000" rows="1" cols="60" name="contact us" autoFocus={true} placeholder="title" onChange={(event) => assignText(event, setTitle)} /> */}
                     {/* <TextField fullWidth label="Title" size="60" onChange={(event) => assignText(event, setTitle)} /> */}
                 </Col>
             </Row>
             <Row>
                 <Col className="center">
-                    <textarea maxLength="2000" rows="5" cols="60" name="contact us" placeholder="message" onChange={(event) => assignText(event, setMessage)} />
+                    <TextareaAutosize style={{width: "100%"}} minRows={5} placeholder="Description" label="description" onChange={(event) => assignText(event, setMessage)} />
+                    {/* <textarea maxLength="2000" rows="5" cols="60" name="contact us" placeholder="message" onChange={(event) => assignText(event, setMessage)} /> */}
                     {/* <TextareaAutosize fullWidth minRows="5" label="Message" onChange={(event) => assignText(event, setMessage)} /> */}
                 </Col>
             </Row>
             <Row>
                 <Col className="center">
-                    <Button>
+                    <Button variant="outlined">
                         <a href={email}>
                             Submit
                         </a>
