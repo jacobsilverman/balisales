@@ -17,6 +17,7 @@ import Button from '@mui/material/Button';
 function Header({isAuth, setIsAuth}) {
     let navigate = useNavigate();
     
+    const [showNav, setShowNav] = useState(false);
     const [showAccount, setShowAccount] = useState(false);
     const [profilePic, setProfilePic] = useState('');
     const [uid, setUid] = useState(localStorage.getItem("uid"));
@@ -32,7 +33,7 @@ function Header({isAuth, setIsAuth}) {
 
     useEffect(() => {
         setPageTitle(pageTitles[window.location.pathname]);
-    }, [window.location.pathname]);
+    }, [window?.location?.pathname]);
 
     const signUserOut = () => {
         signOut(auth, provider).then(() => {
@@ -61,6 +62,7 @@ function Header({isAuth, setIsAuth}) {
     }
 
     const closeNav = () => {
+        setShowNav(cur => !cur);
         document.getElementById("menu__toggle").checked = false;
     }
 
@@ -111,14 +113,14 @@ function Header({isAuth, setIsAuth}) {
             <header className="App-header">
                 <Container>
                     <Row>
-                        <Col xs={2}>
+                        <Col className='remove-padding'>
                             <div className="hamburger-menu">
-                                <input id="menu__toggle" type="checkbox" />
+                                <input id="menu__toggle" type="checkbox" onClick={() => setShowNav(cur => !cur)} />
                                 <label className="menu__btn" htmlFor="menu__toggle">
                                     <span></span>
                                 </label>
-
-                                <ul className="menu__box">
+                                {showNav && <div className="menu__background" onClick={closeNav} />}
+                                {showNav && <ul className="menu__box">
                                     <li>
                                         <a href="/">
                                             <span className="menu__item">
@@ -189,7 +191,7 @@ function Header({isAuth, setIsAuth}) {
                                             </span>
                                         </Link>
                                     </li>
-                                </ul>
+                                </ul>}
                             </div>
                         </Col>
                         <Col xs={7} sm={8} className="center title">

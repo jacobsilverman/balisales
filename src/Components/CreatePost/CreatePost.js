@@ -69,9 +69,9 @@ function CreatePost() {
         for (let i = 0; i <= numberOfUploads; i++) {
             allInputs.push(
                 <Col xs="12" sm={(numberOfUploads > 0) ? 6 : 12} className="setting-item center" key={i}>
-                    <label className='profile-label' htmlFor={"inputTag-"+i} onClick={i !==0 && (() => removePicture(i))}>
+                    <label className='profile-label' htmlFor={"inputPicture-"+i} onClick={i !==0 && (() => removePicture(i))}>
                         <span>{files[numberOfUploads-i]?.name || "Upload Image"}</span>
-                        {(i===0) && <input id={"inputTag-"+i} className="profile-input" type="file" onChange={e => handleChange(e, i)} accept="/image/*" />}
+                        {(i===0) && <input id={"inputPicture-"+i} className="profile-input" type="file" onChange={e => handleChange(e, i)} accept="/image/*" />}
                         <br />
                         {(i===0) ? <FaImage size={70} className="" /> : <img src={showFiles[numberOfUploads-i]} className="upload-image" alt="preview image" />}
                     </label>

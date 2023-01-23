@@ -42,3 +42,18 @@ img {
     align-items: center;
 }
 
+.profile-input {
+    display: none;
+}
+
+
+.profile-label {
+    cursor: pointer;
+    border: .5px solid grey;
+    border-radius: .2cm;
+    padding: 10px;
+    &:hover {
+        background-color: rgba(#1976d2, .3)
+    }
+}
+
