@@ -8,7 +8,7 @@ export const usernames = ['flipwrists', 'drigk', 'santa', 'gregg', 'sammy', 'ret
 
 export const types = ['wts', 'wtt', 'wtb'];
 
-export const blades = ['live', 'trainer'];
+export const blades = ['live', 'trainer', 'parts'];
 
 export const sorts = ['min', 'max'];
 

@@ -42,17 +42,27 @@ function CreatePost() {
 
     const [numberOfUploads, setNumberOfUploads] = useState(0);
     
+    const resetPostCreation = () => {
+        setTitle("");
+        setDescription("");
+        setType("");
+        setBrand("");
+        setCondition("");
+        setPrice("");
+        setBlade("");
+        setNumberOfUploads( 0);
+        setFiles([]);
+        setShowFiles([]);
+        setDisableSubmit(false);
+    }
+
     // Handle file upload event and update state
     function handleChange(event, index) {
-        console.log(event.target.files[0]);
-
         if (event.target.files && event.target.files[0] && index === 0) {
             setShowFiles([URL.createObjectURL(event.target.files[0]), ...showFiles]);
             setFiles(cur => [...cur, event.target.files[0]]);
             setNumberOfUploads(numberOfUploads => numberOfUploads+1);
         }
-        console.log(index);
-
     }
 
     function removePicture(index) {
@@ -68,7 +78,7 @@ function CreatePost() {
 
         for (let i = 0; i <= numberOfUploads; i++) {
             allInputs.push(
-                <Col xs="12" sm={(numberOfUploads > 0) ? 6 : 12} className="setting-item center" key={i}>
+                <Col xs="12" sm={(numberOfUploads > 0) ? 6 : 12} className="setting-item center" key={i+"+"+numberOfUploads}>
                     <label className='profile-label' htmlFor={"inputPicture-"+i} onClick={i !==0 && (() => removePicture(i))}>
                         <span>{files[numberOfUploads-i]?.name || "Upload Image"}</span>
                         {(i===0) && <input id={"inputPicture-"+i} className="profile-input" type="file" onChange={e => handleChange(e, i)} accept="/image/*" />}
@@ -124,6 +134,7 @@ function CreatePost() {
 
             Promise.all(promises).then(() => {
                 console.log("all uploaded");
+                resetPostCreation();
             }).catch((err) => {
                 console.error(err)
             })
@@ -131,7 +142,9 @@ function CreatePost() {
         
         }).then((result) => {
             addUserPost(result.id);
-        })
+        }).catch(() =>{
+            console.log("error with creating post");
+        });
     }
 
     const getOptions = (options) => {
