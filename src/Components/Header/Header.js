@@ -136,7 +136,7 @@ function Header({isAuth, setIsAuth}) {
                                         </a>
                                     </li>
                                     <li>
-                                        <Link className="white" to={{pathname: '/createPost'}} onClick={closeNav}>
+                                        <Link className="white" to={uid && {pathname: '/createPost'}} onClick={(uid && closeNav) || signInWithGoogle}>
                                             <span className="menu__item">
                                                 <Row>
                                                     <Col xs={3} className="menu-icon">
