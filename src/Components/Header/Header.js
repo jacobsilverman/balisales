@@ -195,7 +195,7 @@ function Header({isAuth, setIsAuth}) {
                             </div>
                         </Col>
                         <Col xs={7} sm={8} className="center title">
-                            { (typeof pageTitle === 'string') ? <h1 style={{display:"inline-block",fontSize:"40px",fontFamily:"roboto",paddingTop:"10px"}}><a href="/" style={{color:"black"}}>{pageTitle}</a></h1>
+                            { (typeof pageTitle === 'string') ? <h1 style={{display:"inline-block",fontSize:"40px",fontFamily:"roboto",paddingTop:"10px"}}><a href="/" style={{color:"black", textDecoration: "none"}}>{pageTitle}</a></h1>
                             : pageTitle
                             }
                         </Col>

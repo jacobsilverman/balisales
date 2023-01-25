@@ -14,12 +14,13 @@ var AboutUs = () => {
                     flipping while growing my collection by buy, selling and trading balisongs with the aim of trying all varieties while occassionally making slight profits. I find this niche hobby has provided infinite entertainment
                     for myself and I only wish to become more involved with the community/spread awareness of this wonderful hobby.
                 </Col>
-            </Row> */}
+            </Row> 
+                                With recent dilemmas on the instagram sales channel I thought it would be a wonderful opporunity to start this project. Even though there are already plenty of alternative markets for Balisongs I find they dont satisfy 
+                    all the possible areas of contention when it comes to balisong deals. Whether it be surcharges, unknown identities/potential scams, difficulties with filtering to find your desired balisongs, or any issues a user can face 
+                    my aim is to completely eliminate these problems by actively enhancing this website based on the communities preferences and ideas.*/}
             <Row>
                 <Col>
-                    With recent dilemmas on the instagram sales channel I thought it would be a wonderful opporunity to start this project. Even though there are already plenty of alternative markets for Balisongs I find they dont satisfy 
-                    all the possible areas of contention when it comes to balisong deals. Whether it be surcharges, unknown identities/potential scams, difficulties with filtering to find your desired balisongs, or any issues a user can face 
-                    my aim is to completely eliminate these problems by actively enhancing this website based on the communities preferences and ideas. Please check out the <a href="/discuss">Discussion Page</a> to contribute to the growth of this website!
+                    Please check out the <a href="/discuss">Discussion Page</a> to contribute to the growth of this website!
                 </Col>
             </Row>
             <Row>
