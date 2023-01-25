@@ -41,8 +41,8 @@ function Header({isAuth, setIsAuth}) {
             setShowAccount(false);
             navigate("/");
             localStorage.clear();
-            localStorage.setItem("uid", "");
-            localStorage.setItem("displayName", "");
+            localStorage.removeItem("uid");
+            localStorage.removeItem("displayName");
             console.log("user id: ",localStorage.getItem("uid"));
             setUid("");
         })
@@ -136,7 +136,7 @@ function Header({isAuth, setIsAuth}) {
                                         </a>
                                     </li>
                                     <li>
-                                        <Link className="white" to={uid && {pathname: '/createPost'}} onClick={(uid && closeNav) || signInWithGoogle}>
+                                        <Link className="white" to={{pathname: uid && '/createPost'}} onClick={(uid && closeNav) || signInWithGoogle}>
                                             <span className="menu__item">
                                                 <Row>
                                                     <Col xs={3} className="menu-icon">
