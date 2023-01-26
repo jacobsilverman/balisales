@@ -25,8 +25,8 @@ var AboutUs = () => {
             </Row>
             <Row>
                 <Col>
-                    I want to personally thank you for using my website and hope you are actively enjoying it, along with finding/making deals with ease. For reference here are links to my <a target="_blank" href="https://www.instagram.com/flipwrists/">Instagram @flipwrists</a> and <a target="_blank" href="https://www.facebook.com/jacob.silverman.73">Facebook</a>, if you care to drop a follow, like, or  
-                    just want to say hi, it is greatly appreciated but not required by any means.
+                    I want to thank you for using this website and hope you are actively enjoying it, along with finding/making deals with ease. With more time continued improvements for the site are within reach. The ultimate goal is to 
+                    reduce the risk involved and cut out all potential of scamming or sour transactions taking place.
                 </Col>
             </Row>
             <Row>
