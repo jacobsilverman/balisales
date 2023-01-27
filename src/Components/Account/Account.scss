@@ -2,3 +2,23 @@
 .center {
     text-align: center;
 }
+
+.grid-container-posts {
+    border-top: 2px solid white;
+
+    div:nth-child(3n + 3){
+        border-right: 2px solid white;
+        border-left: 2px solid white;
+        border-bottom: 2px solid white;
+    }
+
+    div:nth-child(3n + 2){
+        border-bottom: 2px solid white;
+    }
+
+    div:nth-child(3n + 1){
+        border-right: 2px solid white;
+        border-left: 2px solid white;
+        border-bottom: 2px solid white;
+    }
+}

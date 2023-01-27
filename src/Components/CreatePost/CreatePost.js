@@ -182,12 +182,7 @@ function CreatePost() {
             return
         }
 
-        if (newValue !== "") {
-            setValidation(cur => {return {...cur, title: true}});
-        } else {
-            setValidation(cur => {return {...cur, title: false}});
-        }
-        
+        setValidation(cur => {return {...cur, title: newValue !== ""}});
         setTitle(newValue);
     }
 
@@ -197,12 +192,7 @@ function CreatePost() {
             return
         }
 
-        if (newValue !== "") {
-            setValidation(cur => {return {...cur, price: true}});
-        } else {
-            setValidation(cur => {return {...cur, price: false}});
-        }
-
+        setValidation(cur => {return {...cur, price: newValue !== ""}});
         setPrice(newValue);
     }
 
@@ -228,7 +218,6 @@ function CreatePost() {
         let newValue = event.target.value;
         if (newValue !== "") {
             setValidation(cur => {return {...cur, condition: true}});
-
         }
         
         setCondition(newValue);

@@ -19,6 +19,9 @@ function Account({user, accountView}) {
 
 	useEffect(() => {
         getUserPosts(user).then((result) => {
+			result.sort((a, b) => {
+				return b.timeStamp - a.timeStamp;
+			});
             setFilterPosts(result);
         }).catch(() => {
             console.error("cant get user posts");

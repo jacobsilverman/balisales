@@ -1,13 +1,12 @@
-import { Fragment, useState } from 'react';
+import { useState } from 'react';
 
 import { brands, types } from '../../../../Data/Constants';
 
 import DeleteModal from '../DeleteModal/DeleteModal';
 
-import { Grid, Modal, TextareaAutosize } from '@mui/material';
+import { Grid, MenuItem, Modal, TextareaAutosize } from '@mui/material';
 import TextField from '@mui/material/TextField';
 import FormControl from '@mui/material/FormControl';
-import MenuItem from '@mui/material/MenuItem';
 import InputLabel from '@mui/material/InputLabel';
 import Select from '@mui/material/Select';
 import { Button, Col, Row } from 'react-bootstrap';
@@ -17,7 +16,7 @@ import { db } from '../../../../firebase-config';
 
 import { FaImage } from "react-icons/fa";
 
-import { ref, getStorage, uploadBytesResumable } from "firebase/storage";
+import { ref, getStorage } from "firebase/storage";
 
 const EditModal = ({item, openEditModal, setOpenEditModal, deletePost}) => {
     const [title, setTitle] = useState(item.title);
@@ -41,7 +40,7 @@ const EditModal = ({item, openEditModal, setOpenEditModal, deletePost}) => {
 
     const getOptions = (options) => {
         return options.map((name, key) => {
-            return <option key={key} value={name}>{name}</option>;
+            return <MenuItem key={key} value={name}>{name}</MenuItem>;
         });
     };
 
@@ -105,7 +104,6 @@ const EditModal = ({item, openEditModal, setOpenEditModal, deletePost}) => {
 
     return (
         <Modal open={openEditModal}>
-                                        
             <Row className="edit-modal">
                 <Col xs={7} className="modal-background center">
                     <DeleteModal deletePost={deletePost} item={item} openDeleteModal={openDeleteModal} setOpenDeleteModal={setOpenDeleteModal} />
@@ -114,57 +112,53 @@ const EditModal = ({item, openEditModal, setOpenEditModal, deletePost}) => {
                             <h2>Edit</h2>
                         </Col>
                         <Col xs={6} sm={3}>
-
                             <Button variant="danger" onClick={(e) => {e.preventDefault();setOpenDeleteModal(true);}}>Delete</Button>
                         </Col>
                     </Row>
                     <Row className="edit-input">
-                        <TextField fullWidth size="small" value={title} label="Title" className="input-width" color="" onChange={(event) => setTitle(event.target.value)} />
+                        <TextField fullWidth size="small" value={title} label="Title" className="input-width" onChange={(event) => setTitle(event.target.value)} />
                     </Row>
                     <Row className="edit-input">
-                        <TextField fullWidth size="small" value={price} label="Price" className="input-width" color="" onChange={(event) => setPrice(event.target.value)} />
+                        <TextField fullWidth size="small" value={price} label="Price" className="input-width" onChange={(event) => setPrice(event.target.value)} />
                     </Row>
                     <Row className="edit-input">
                         <FormControl fullWidth>
-                            <InputLabel size="small" id="brand-label">Brand</InputLabel>
+                            <InputLabel size="small" id="brand-edit-label">Brand</InputLabel>
                             <Select
-                                labelId="brand-label"
-                                id="brand-select"
+                                labelId="brand-edit-label"
+                                id="brand-edit-select"
                                 size="small"
                                 value={brand}
                                 label="Brand"
                                 onChange={(event) => setBrand(event.target.value)}>
-                                <MenuItem value="default">default</MenuItem>
                                 {getOptions(brands, brand)}
                             </Select>
                         </FormControl>
                     </Row>
                     <Row className="edit-input">
                         <FormControl fullWidth>
-                            <InputLabel size="small" id="business-label">Business</InputLabel>
+                            <InputLabel size="small" id="business-edit-label">Business</InputLabel>
                             <Select
-                                labelId="business-label"
-                                id="business-select"
+                                labelId="business-edit-label"
+                                id="business-edit-select"
                                 size="small"
                                 value={type}
-                                label="Type"
+                                label="Business"
                                 onChange={(event) => setType(event.target.value)}>
-                                <MenuItem value="default">select</MenuItem>
                                 {getOptions(types, type)}
                             </Select>
                         </FormControl>
                     </Row>
                     <Row className="edit-input">
                         <FormControl fullWidth>
-                            <InputLabel size="small" id="condition-label">Condition</InputLabel>
+                            <InputLabel size="small" id="condition-edit-label">Condition</InputLabel>
                             <Select
-                                labelId="condition-label"
-                                id="condition-select"
+                                labelId="condition-edit-label"
+                                id="condition-edit-select"
                                 size="small"
                                 value={condition}
                                 label="Condition"
                                 onChange={(event) => setCondition(event.target.value)}>
-                                <MenuItem value="default">default</MenuItem>
                                 {getOptions([1,2,3,4,5,6,7,8,9,10], condition)}
                             </Select>
                         </FormControl>
