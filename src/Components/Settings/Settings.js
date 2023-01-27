@@ -46,9 +46,10 @@ function Settings() {
             setFacebook(result.facebook);
             setPosts(result.posts || []);
             setValidation({
-                firstName: result.firstName.length > 0 && true,
-                lastName: result.lastName.length > 0 && true,
-                displayName: result.displayName.length > 0 && true
+                firstName: result.firstName.length > 0,
+                lastName: result.lastName.length > 0,
+                displayName: result.displayName.length > 0,
+                phoneNumber: result.phoneNumber.length === 0 || result.phoneNumber.length === 10
             });
         });
     }, []);
@@ -76,6 +77,22 @@ function Settings() {
         setDisplayName(newVal);
     }
 
+    const handlePhoneNumberChange = (event) => {
+        let result = event.target.value;
+        let parsedNumber = result.replace("(","").replace(")","").replace(" ","").replace("-","");
+        setValidation(cur => {return {...cur, phoneNumber: parsedNumber.length === 0  || parsedNumber.length === 10}});
+        setPhoneNumber(parsedNumber);
+    }
+
+    const displayNumber = (number) => {
+        return (number.length >3 ? "(" : "")
+        + number.substring(0, 3) 
+        + (number.length > 3 ? ") " : "")
+        + number.substring(3, 6) 
+        + (number.length > 6 ? "-" : "")
+        + number.substring(6, 10);
+    }
+
     return (
         <Container>
             <Row>
@@ -94,7 +111,7 @@ function Settings() {
                         </Col>
                 
                         <Col xs={12} md="6" lg={4} className="setting-item">
-                            <TextField fullWidth label="phone number" color="" type="tel"  pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" onChange={(event) => setPhoneNumber(event.target.value)} value={phoneNumber} />
+                            <TextField fullWidth label="phone number" error={!validation.phoneNumber} onChange={handlePhoneNumberChange} value={displayNumber(phoneNumber)} inputProps={{ maxLength: 14 }} />
                         </Col>
                 
                         <Col xs={12} md="6" lg={4} className="setting-item">
