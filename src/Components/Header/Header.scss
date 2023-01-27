@@ -58,7 +58,7 @@
 .account-dropdown {
     box-shadow: -2px 2px 6px rgba(0, 0, 0, .4);
     background-color: white;
-    min-width: 100px;
+    min-width: 150px;
 }
 
 .visible {
@@ -196,10 +196,6 @@
   z-index: 100;
 }
 
-a {
-  text-decoration: none;
-}
-
 .menu__item {
   display: block;
   padding: 22px 22px;
@@ -213,11 +209,19 @@ a {
     justify-content: center;
     margin: 40px 0 0 0;
     padding: 0;
+    :hover {
+      color: #CFD8DC;
+    }
+  }
+
+}
+
+@media only screen and (max-width: 1134px) {
+  .menu__item:hover {
+    background-color: #CFD8DC;
   }
 }
-.menu__item:hover {
-  background-color: #CFD8DC;
-}
+
 .menu-icon {
   display: flex;
   align-items: center;
