@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { Button, Col, Container, Row } from 'react-bootstrap';
 
 import { brands, blades, types } from '../../Data/Constants';
@@ -41,6 +41,24 @@ function CreatePost() {
     const [percent, setPercent] = useState(0);
 
     const [numberOfUploads, setNumberOfUploads] = useState(0);
+    const [validation, setValidation] = useState({
+        title: false,
+        price: false,
+        brand: false,
+        sale: false,
+        condition: false,
+        blade: false
+    });
+
+    let isValidated = useMemo(() => {
+        const valid = !Object.values(validation).some((item) => item === false);
+
+        if (valid === true) {
+            setDisableSubmit(false);
+        }
+
+        return valid;
+    }, [validation]);
     
     const resetPostCreation = () => {
         setTitle("");
@@ -50,14 +68,14 @@ function CreatePost() {
         setCondition("");
         setPrice("");
         setBlade("");
-        setNumberOfUploads( 0);
+        setNumberOfUploads(0);
         setFiles([]);
         setShowFiles([]);
         setDisableSubmit(false);
     }
 
     // Handle file upload event and update state
-    function handleChange(event, index) {
+    function handlePictureChange(event, index) {
         if (event.target.files && event.target.files[0] && index === 0) {
             setShowFiles([URL.createObjectURL(event.target.files[0]), ...showFiles]);
             setFiles(cur => [...cur, event.target.files[0]]);
@@ -79,9 +97,9 @@ function CreatePost() {
         for (let i = 0; i <= numberOfUploads; i++) {
             allInputs.push(
                 <Col xs="12" sm={(numberOfUploads > 0) ? 6 : 12} className="setting-item center" key={i+"+"+numberOfUploads}>
-                    <label className='profile-label' htmlFor={"inputPicture-"+i} onClick={i !==0 && (() => removePicture(i))}>
+                    <label className='profile-label' htmlFor={"inputPicture-"+i} onClick={(i !==0)  ? () => removePicture(i) : null}>
                         <span>{files[numberOfUploads-i]?.name || "Upload Image"}</span>
-                        {(i===0) && <input id={"inputPicture-"+i} className="profile-input" type="file" onChange={e => handleChange(e, i)} accept="/image/*" />}
+                        {(i===0) && <input id={"inputPicture-"+i} className="profile-input" type="file" onChange={e => handlePictureChange(e, i)} accept="/image/*" />}
                         <br />
                         {(i===0) ? <FaImage size={70} className="" /> : <img src={showFiles[numberOfUploads-i]} className="upload-image" alt="preview image" />}
                     </label>
@@ -93,7 +111,16 @@ function CreatePost() {
     }
 
     const createPost = async () => {
-        setDisableSubmit(true);
+        if (!isValidated) {
+            setDisableSubmit(true);
+            return
+        }
+
+        if (!files[0]) {
+            alert("Please upload an image first!");
+            return
+        }
+        
         const postsCollectionRef = collection(db, "posts");
         await addDoc(postsCollectionRef, {
             title,
@@ -106,10 +133,6 @@ function CreatePost() {
             timeStamp: Date.now(),
             author: {name: auth?.currentUser?.displayName || 'anonymous', id: auth?.currentUser?.uid || 'none' }
         }).then((result) => {
-            if (!files[0]) {
-                alert("Please upload an image first!");
-            }
-
             const promises = [];
             
             files.map((file, index) => {
@@ -153,67 +176,123 @@ function CreatePost() {
         });
     };
 
+    const handleTitleChange = (event) => {
+        let newValue = event.target.value;
+        if (newValue.match(/[%<>\\$'"]/)) {
+            return
+        }
+
+        if (newValue !== "") {
+            setValidation(cur => {return {...cur, title: true}});
+
+        }
+        
+        setTitle(newValue);
+    }
+
+    const handlePriceChange = (event) => {
+        let newValue = event.target.value;
+        if (newValue.match(/[-]/)) {
+            return
+        }
+
+        if (newValue !== "") {
+            setValidation(cur => {return {...cur, price: true}});
+        }
+
+        setPrice(newValue);
+    }
+
+    const handleBrandChange = (event) => {
+        let newValue = event.target.value;
+        if (newValue !== "") {
+            setValidation(cur => {return {...cur, brand: true}});
+        }
+        
+        setBrand(newValue);
+    }
+
+    const handleSaleChange = (event) => {
+        let newValue = event.target.value;
+        if (newValue !== "") {
+            setValidation(cur => {return {...cur, sale: true}});
+        }
+
+        setType(newValue);
+    }
+
+    const handleConditionChange = (event) => {
+        let newValue = event.target.value;
+        if (newValue !== "") {
+            setValidation(cur => {return {...cur, condition: true}});
+
+        }
+        
+        setCondition(newValue);
+    }
+
+    const handleBladeChange = (event) => {
+        let newValue = event.target.value;
+        if (newValue !== "") {
+            setValidation(cur => {return {...cur, blade: true}});
+        }
+        
+        setBlade(newValue);
+    }
+
     return (
         <Container className="create-container">
             <Row>
                 <Col xs={12} md={6} className="create-input">
-                    <TextField fullWidth label="title" color="" onChange={(event) => setTitle(event.target.value)}/>
+                    <TextField fullWidth label="title" color="" error={validation.title === false && disableSubmit} type="search" value={title} onChange={handleTitleChange} />
                 </Col>
-
                 <Col xs={12} md={6} className="create-input">
-                    <TextField fullWidth label="price" color="" onChange={(event) => setPrice(event.target.value)}/>
+                    <TextField fullWidth label="price" color="" error={validation.price === false && disableSubmit} type="number" value={price} onChange={handlePriceChange}/>
                 </Col>
-
                 <Col xs={12} md={6} className="create-input">
-                    <FormControl fullWidth>
+                    <FormControl fullWidth error={validation.brand === false && disableSubmit}>
                         <InputLabel id="brand-label">Brand</InputLabel>
                         <Select
                             labelId="brand-label"
                             id="brand-select"
                             label="Brand"
-                            onChange={(event) => setBrand(event.target.value)}>
-                            <MenuItem value="default">default</MenuItem>
+                            onChange={handleBrandChange}>
                             {getOptions(brands, brand)}
                         </Select>
                     </FormControl>
                 </Col>
-      
                 <Col xs={12} md={6} className="create-input">
-                    <FormControl fullWidth>
+                    <FormControl fullWidth error={validation.sale === false && disableSubmit}>
                         <InputLabel id="sale-type-label">Sale Type</InputLabel>
                         <Select
                             labelId="sale-type-label"
                             id="sale-type-select"
                             label="Sale Type"
-                            onChange={(event) => setType(event.target.value)}>
-                            <MenuItem value="default">default</MenuItem>
+                            onChange={handleSaleChange}>
                             {getOptions(types, type)}
                         </Select>
                     </FormControl>
                 </Col>
                 <Col xs={12} md={6} className="create-input">
-                    <FormControl fullWidth>
+                    <FormControl fullWidth error={validation.condition === false && disableSubmit}>
                         <InputLabel id="condition-label">Condition</InputLabel>
                         <Select
                             labelId="condition-label"
                             id="condition-select"
                             label="Condition"
-                            onChange={(event) => setCondition(event.target.value)}>
-                            <MenuItem value="default">default</MenuItem>
+                            onChange={handleConditionChange}>
                             {getOptions([1,2,3,4,5,6,7,8,9,10], condition)}
                         </Select>
                     </FormControl>
                 </Col>
-
                 <Col xs={12} md={6} className="create-input">
-                    <FormControl fullWidth>
+                    <FormControl fullWidth error={validation.blade === false && disableSubmit}>
                         <InputLabel id="blade-label">Blade</InputLabel>
                         <Select
                             labelId="blade-label"
                             id="blade-select"
                             label="Blade"
-                            onChange={(event) => setBlade(event.target.value)}>
-                            <MenuItem value="default">default</MenuItem>
+                            onChange={handleBladeChange}>
                             {getOptions(blades, blade)}
                         </Select>
                     </FormControl>

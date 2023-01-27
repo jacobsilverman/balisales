@@ -28,13 +28,11 @@ function Filter({getOptions, brand, setBrand, max, setMax, min, setMin, type, se
                 <Col xs={12} className='filter-content'>
                     <Row className='filter-item'>
                         <Col xs={6} sm={6} md={3} className="dropdown">
-                            <TextField fullWidth label="Min" color="" onChange={(event) => {setMin(event.target.value)}} value={min} />
+                            <TextField fullWidth label="Min" color="" type="number" onChange={(event) => {setMin(event.target.value)}} value={min} />
                         </Col>
                         <Col xs={6} sm={6} md={3}>
-                            <TextField fullWidth label="Max" color="" onChange={(event) => {setMax(event.target.value )}} value={max} />
+                            <TextField fullWidth label="Max" color="" type="number" onChange={(event) => {setMax(event.target.value )}} value={max} />
                         </Col>
-                        
-                        
                         <Col xs={6} sm={6} md={3}  className="dropdown">
                             <FormControl fullWidth>
                                 <InputLabel id="demo-simple-select-label">Cost</InputLabel>
