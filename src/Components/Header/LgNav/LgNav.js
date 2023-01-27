@@ -6,7 +6,7 @@ import { Col, Row } from 'react-bootstrap';
 
 const LgNav = ({signInWithGoogle, closeNav, uid}) => {
     return (
-        <Col lg={8}>
+        <Col lg={7}>
             <Row>
                 <Col xs={3}>
                     <a href="/">

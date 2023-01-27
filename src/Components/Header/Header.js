@@ -132,7 +132,7 @@ function Header({isAuth, setIsAuth}) {
 
                         {window.innerWidth > 1135 && (
                         <Fragment>
-                            <Col xs={7} sm={8} lg={2} className="center title">
+                            <Col xs={7} sm={8} lg={3} className="center title">
                                 { (typeof pageTitle === 'string') ? <h1 style={{display:"inline-block",fontSize:"40px",fontFamily:"roboto",paddingTop:"10px"}}><a href="/" style={{color:"black", textDecoration: "none"}}>{pageTitle}</a></h1>
                                 : pageTitle
                                 }

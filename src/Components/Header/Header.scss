@@ -195,6 +195,11 @@
   box-shadow: 2px 2px 6px rgba(0, 0, 0, .4);
   z-index: 100;
 }
+
+a {
+  text-decoration: none;
+}
+
 .menu__item {
   display: block;
   padding: 22px 22px;
@@ -203,6 +208,12 @@
   font-size: 20px;
   font-weight: 600;
   text-decoration: none;
+  @media only screen and (min-width: 1135px) {
+    display: flex;
+    justify-content: center;
+    margin: 40px 0 0 0;
+    padding: 0;
+  }
 }
 .menu__item:hover {
   background-color: #CFD8DC;

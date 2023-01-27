@@ -184,7 +184,8 @@ function CreatePost() {
 
         if (newValue !== "") {
             setValidation(cur => {return {...cur, title: true}});
-
+        } else {
+            setValidation(cur => {return {...cur, title: false}});
         }
         
         setTitle(newValue);
@@ -198,6 +199,8 @@ function CreatePost() {
 
         if (newValue !== "") {
             setValidation(cur => {return {...cur, price: true}});
+        } else {
+            setValidation(cur => {return {...cur, price: false}});
         }
 
         setPrice(newValue);
