@@ -28,7 +28,8 @@ function Settings() {
     const [validation, setValidation] = useState({
         firstName: true,
         lastName: true,
-        displayName: true
+        displayName: true,
+        phoneNumber: true
     });
 
     const isValid = useMemo(() => {
