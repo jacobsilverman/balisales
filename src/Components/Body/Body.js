@@ -28,6 +28,8 @@ function Body({ posts }) {
     const [status, setStatus] = useState('default');
 
     const viewCountHeight = 120/viewCount;
+    const showViewCount = isNaN(12/viewCount);
+
 
     // const [windowScroll, setWindowScroll] = useState(0); 
 
@@ -93,7 +95,15 @@ function Body({ posts }) {
                 {result.map((arr) => {
                     return arr.map((item) => {
                         const displayUrl =  `url(${item?.urls[0]})`;
-                        return <Post displayUrl={displayUrl} item={item} viewCount={viewCount} viewCountHeight={viewCountHeight} key={item.id} />
+                        const queryParam = 'id='+item?.id;
+                        return <Post 
+                            displayUrl={displayUrl} 
+                            item={item} 
+                            queryParam={queryParam}
+                            viewCount={viewCount} 
+                            viewCountHeight={viewCountHeight} 
+                            showViewCount={showViewCount}
+                            key={item.id} />
                     })
                 })}
             </Grid>

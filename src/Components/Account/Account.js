@@ -16,6 +16,7 @@ import { db } from '../../firebase-config';
 
 function Account({user, accountView}) {
 	const [filterPosts, setFilterPosts] = useState([]);
+	const [openEditModal, setOpenEditModal] = useState(false);
 
 	useEffect(() => {
         getUserPosts(user).then((result) => {
@@ -68,7 +69,15 @@ function Account({user, accountView}) {
 				{result.map((arr) => {
 					return arr.map((item) => {
 							const displayUrl =  `url(${item?.urls[0]})`;
-							return <Post displayUrl={displayUrl} item={item} key={item.id} accountView={accountView} deletePost={deletePost} />
+							const queryParam = 'id='+item?.id;
+							return <Post 
+								displayUrl={displayUrl}
+								item={item} key={item.id}
+								queryParam={queryParam}
+								accountView={accountView}
+								deletePost={deletePost}
+								openEditModal={openEditModal}
+								setOpenEditModal={setOpenEditModal} />
 						})
 					})}
 			</Grid>
