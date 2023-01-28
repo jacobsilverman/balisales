@@ -12,10 +12,13 @@ import defaultProfile from '../../Data/Images/default-profile.jpg';
 
 import { auth, provider } from '../../firebase-config';
 import { signInWithPopup, signOut } from 'firebase/auth';
+import { useNavigate }   from 'react-router-dom';
 
 import Button from '@mui/material/Button';
 
 function Header() {
+    let navigate = useNavigate();
+    
     const [isAuth, setIsAuth] = useState(localStorage.getItem("isAuth"));
     const [showNav, setShowNav] = useState(false);
     const [showAccount, setShowAccount] = useState(false);
@@ -109,51 +112,49 @@ function Header() {
     );
 
     return (
-        <nav>
-            <header className="App-header">
-                <Container>
-                    <Row>
+        <header className="App-header">
+            <Container>
+                <Row>
 
-                        {window.innerWidth <= 1135 && (
-                        <Fragment>
-                            <SmNav signInWithGoogle={signInWithGoogle}
-                            showNav={showNav}
-                            closeNav={closeNav}
-                            setShowNav={setShowNav}
-                            uid={uid} />
-                            <Col xs={7} sm={8} className="center title">
-                                { (typeof pageTitle === 'string') ? <h1 style={{display:"inline-block",fontSize:"40px",fontFamily:"roboto",paddingTop:"10px"}}><a href="/" style={{color:"black", textDecoration: "none"}}>{pageTitle}</a></h1>
-                                : pageTitle
-                                }
-                            </Col>
-                        </Fragment>)}
-
-                        {window.innerWidth > 1135 && (
-                        <Fragment>
-                            <Col xs={7} sm={8} lg={3} className="center title">
-                                { (typeof pageTitle === 'string') ? <h1 style={{display:"inline-block",fontSize:"40px",fontFamily:"roboto",paddingTop:"10px"}}><a href="/" style={{color:"black", textDecoration: "none"}}>{pageTitle}</a></h1>
-                                : pageTitle
-                                }
-                            </Col>
-                            <LgNav signInWithGoogle={signInWithGoogle}
-                            closeNav={closeNav}
-                            uid={uid} />
-
-                        </Fragment>)}
-                        <Col xs={3} sm={2} lg={2} className="login-container">
-                            {!isAuth
-                            ? <Button size="large" onClick={signInWithGoogle}>Login</Button>
-                            :
-                            <OverlayTrigger trigger="click" placement="bottom-end" show={showAccount} overlay={accountOptionsPopover}>
-                                <Button onClick={() => setShowAccount(show => !show)}>
-                                    <div className="account-profile" style={{backgroundImage: `url(${profilePic})`}} />
-                                </Button>
-                            </OverlayTrigger>}
+                    {window.innerWidth <= 1135 && (
+                    <Fragment>
+                        <SmNav signInWithGoogle={signInWithGoogle}
+                        showNav={showNav}
+                        closeNav={closeNav}
+                        setShowNav={setShowNav}
+                        uid={uid} />
+                        <Col xs={7} sm={8} className="center title">
+                            { (typeof pageTitle === 'string') ? <h1 style={{display:"inline-block",fontSize:"40px",fontFamily:"roboto",paddingTop:"10px"}}><a href="/" style={{color:"black", textDecoration: "none"}}>{pageTitle}</a></h1>
+                            : pageTitle
+                            }
                         </Col>
-                    </Row>
-                </Container>
-            </header>
-        </nav>
+                    </Fragment>)}
+
+                    {window.innerWidth > 1135 && (
+                    <Fragment>
+                        <Col xs={7} sm={8} lg={3} className="center title">
+                            { (typeof pageTitle === 'string') ? <h1 style={{display:"inline-block",fontSize:"40px",fontFamily:"roboto",paddingTop:"10px"}}><a href="/" style={{color:"black", textDecoration: "none"}}>{pageTitle}</a></h1>
+                            : pageTitle
+                            }
+                        </Col>
+                        <LgNav signInWithGoogle={signInWithGoogle}
+                        closeNav={closeNav}
+                        uid={uid} />
+
+                    </Fragment>)}
+                    <Col xs={3} sm={2} lg={2} className="login-container">
+                        {!isAuth
+                        ? <Button size="large" onClick={signInWithGoogle}>Login</Button>
+                        :
+                        <OverlayTrigger trigger="click" placement="bottom-end" show={showAccount} overlay={accountOptionsPopover}>
+                            <Button onClick={() => setShowAccount(show => !show)}>
+                                <div className="account-profile" style={{backgroundImage: `url(${profilePic})`}} />
+                            </Button>
+                        </OverlayTrigger>}
+                    </Col>
+                </Row>
+            </Container>
+        </header>
     );
 }
 
