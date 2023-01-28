@@ -31,7 +31,7 @@ var AboutUs = () => {
             </Row>
             <Row>
                 <Col>
-                    Anyways, I hope you have a wonderful day and take care. <span class="waving-hand">👋</span>
+                    Anyways, I hope you have a wonderful day and take care. <span className="waving-hand">👋</span>
                 </Col>
             </Row>
         </Container>
