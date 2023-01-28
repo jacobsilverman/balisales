@@ -12,7 +12,6 @@ import defaultProfile from '../../Data/Images/default-profile.jpg';
 
 import { auth, provider } from '../../firebase-config';
 import { signInWithPopup, signOut } from 'firebase/auth';
-import { useNavigate }   from 'react-router-dom';
 
 import Button from '@mui/material/Button';
 
@@ -23,8 +22,6 @@ function Header() {
     const [profilePic, setProfilePic] = useState('');
     const [uid, setUid] = useState(localStorage.getItem("uid"));
     const [pageTitle, setPageTitle] = useState(pageTitles[window.location.pathname]);
-
-    let navigate = useNavigate();
 
     useEffect(() => {
         getProfilePicture(uid).then((result) => {
