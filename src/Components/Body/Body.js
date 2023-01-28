@@ -26,6 +26,9 @@ function Body({ posts }) {
     const [viewCount, setViewCount] = useState('default');
     const [blade, setBlade] = useState('default');
     const [status, setStatus] = useState('default');
+
+    const viewCountHeight = 120/viewCount;
+
     // const [windowScroll, setWindowScroll] = useState(0); 
 
     // useEffect(() => {
@@ -89,7 +92,8 @@ function Body({ posts }) {
             <Grid container className="grid-container-posts">
                 {result.map((arr) => {
                     return arr.map((item) => {
-                        return <Post item={item} viewCount={viewCount} key={item.id} />
+                        const displayUrl =  `url(${item?.urls[0]})`;
+                        return <Post displayUrl={displayUrl} item={item} viewCount={viewCount} viewCountHeight={viewCountHeight} key={item.id} />
                     })
                 })}
             </Grid>

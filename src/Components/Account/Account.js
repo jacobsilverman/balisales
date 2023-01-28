@@ -67,7 +67,8 @@ function Account({user, accountView}) {
 			<Grid container style={{padding:'0px'}} className="grid-container-posts">
 				{result.map((arr) => {
 					return arr.map((item) => {
-							return <Post item={item} key={item.id} accountView={accountView} deletePost={deletePost} />
+							const displayUrl =  `url(${item?.urls[0]})`;
+							return <Post displayUrl={displayUrl} item={item} key={item.id} accountView={accountView} deletePost={deletePost} />
 						})
 					})}
 			</Grid>
