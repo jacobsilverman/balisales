@@ -17,7 +17,7 @@ export const viewCounts = [1, 2, 3, 4, 6, 12];
 export const statuses = ['available', 'pending', 'sold', 'traded'];
 
 export const pageTitles = {
-    '/': <img style={{maxWidth:"170px", maxHeight:"170px", display:"inline"}} src={balilogo} />,
+    '/': <img alt="Sale" style={{maxWidth:"170px", maxHeight:"170px", display:"inline"}} src={balilogo} />,
     '/profile': 'Profile',
     '/settings': 'Settings',
     '/account': 'Your Posts',

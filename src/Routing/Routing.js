@@ -1,12 +1,12 @@
-import React, { Suspense, useState } from 'react';
+import React, { Suspense } from 'react';
 
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import Spinner from '../Data/Constants/Spinner';
 
 import Header from '../Components/Header';
+import Body from '../Components/Body';
 
-const Body  = React.lazy(() => import('../Components/Body'));
 const SelectPost = React.lazy(() => import('../Components/SelectPost'));
 const Account = React.lazy(() => import('../Components/Account'));
 const CreatePost = React.lazy(() => import('../Components/CreatePost'));
