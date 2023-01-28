@@ -13,9 +13,6 @@ import MenuItem from '@mui/material/MenuItem';
 
 import { isMobile } from '../../Data/Constants';
 
-// const Filter = React.lazy(() => import('./Filter'));
-// const Post = React.lazy(() => import('./Post'));
-
 function Body({ posts }) {
     const [min, setMin] = useState(0);
     const [max, setMax] = useState(10000);
@@ -87,7 +84,6 @@ function Body({ posts }) {
                 result.push(partition);
                 partition = [];
             }
-            
         };
 
         return (

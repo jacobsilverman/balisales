@@ -16,14 +16,15 @@ import { useNavigate }   from 'react-router-dom';
 
 import Button from '@mui/material/Button';
 
-function Header({isAuth, setIsAuth}) {
-    let navigate = useNavigate();
-    
+function Header() {
+    const [isAuth, setIsAuth] = useState(localStorage.getItem("isAuth"));
     const [showNav, setShowNav] = useState(false);
     const [showAccount, setShowAccount] = useState(false);
     const [profilePic, setProfilePic] = useState('');
     const [uid, setUid] = useState(localStorage.getItem("uid"));
     const [pageTitle, setPageTitle] = useState(pageTitles[window.location.pathname]);
+
+    let navigate = useNavigate();
 
     useEffect(() => {
         getProfilePicture(uid).then((result) => {
@@ -111,7 +112,7 @@ function Header({isAuth, setIsAuth}) {
     );
 
     return (
-        <Fragment>
+        <nav>
             <header className="App-header">
                 <Container>
                     <Row>
@@ -155,7 +156,7 @@ function Header({isAuth, setIsAuth}) {
                     </Row>
                 </Container>
             </header>
-        </Fragment>
+        </nav>
     );
 }
 

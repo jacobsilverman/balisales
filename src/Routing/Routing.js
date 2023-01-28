@@ -16,15 +16,10 @@ const ContactUs = React.lazy(() => import('../Components/ContactUs'));
 const AboutUs = React.lazy(() => import('../Components/AboutUs'));
 const Discuss = React.lazy(() => import('../Components/Discuss'));
 
-
 function Routing({ posts }) {
-    const [isAuth, setIsAuth] = useState(localStorage.getItem("isAuth"));
-
     return (
         <BrowserRouter>
-            <nav>
-                <Header isAuth={isAuth} setIsAuth={setIsAuth} />
-            </nav>
+            <Header />
             <Suspense fallback={<Spinner />}>
                 <Routes>
                     <Route path='/' element={<Body posts={posts} />} />

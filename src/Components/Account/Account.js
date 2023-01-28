@@ -72,7 +72,8 @@ function Account({user, accountView}) {
 							const queryParam = 'id='+item?.id;
 							return <Post 
 								displayUrl={displayUrl}
-								item={item} key={item.id}
+								item={item}
+								key={item.id}
 								queryParam={queryParam}
 								accountView={accountView}
 								deletePost={deletePost}
