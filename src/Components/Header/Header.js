@@ -137,10 +137,7 @@ function Header() {
                             : pageTitle
                             }
                         </Col>
-                        <LgNav signInWithGoogle={signInWithGoogle}
-                        closeNav={closeNav}
-                        uid={uid} />
-
+                        <LgNav />
                     </Fragment>)}
                     <Col xs={3} sm={2} lg={2} className="login-container">
                         {!isAuth

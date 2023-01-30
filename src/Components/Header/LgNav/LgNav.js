@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { Col, Row } from 'react-bootstrap';
 
 
-const LgNav = ({signInWithGoogle, closeNav, uid}) => {
+const LgNav = () => {
     return (
         <Col lg={7}>
             <Row>
@@ -23,7 +23,7 @@ const LgNav = ({signInWithGoogle, closeNav, uid}) => {
                     </a>
                 </Col>
                 <Col xs={3}>
-                    <Link className="white" to={{pathname: '/createPost'}} onClick={closeNav}>
+                    <Link className="white" to={{pathname: '/createPost'}}>
                         <span className="menu__item">
                             <Row>
                                 <Col xs={3} className="menu-icon">
@@ -51,7 +51,7 @@ const LgNav = ({signInWithGoogle, closeNav, uid}) => {
                     </Link>
                 </li> */}
                 <Col xs={3}>
-                    <Link className="white" to={{pathname: '/contactUs'}} onClick={closeNav}>
+                    <Link className="white" to={{pathname: '/contactUs'}}>
                         <span className="menu__item">
                             <Row>
                                 <Col xs={3} className="menu-icon">
@@ -65,7 +65,7 @@ const LgNav = ({signInWithGoogle, closeNav, uid}) => {
                     </Link>
                 </Col>
                 <Col xs={3}>
-                    <Link className="white" to={{pathname: '/aboutUs'}} onClick={closeNav}>
+                    <Link className="white" to={{pathname: '/aboutUs'}}>
                         <span className="menu__item">
                             <Row>
                                 <Col xs={3} className="menu-icon">
