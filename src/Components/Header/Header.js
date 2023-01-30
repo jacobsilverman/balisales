@@ -27,15 +27,23 @@ function Header() {
     const [pageTitle, setPageTitle] = useState(pageTitles[window.location.pathname]);
 
     useEffect(() => {
-        getProfilePicture(uid).then((result) => {
-            setProfilePic(result);
-        }).catch(() => {
-            setProfilePic(defaultProfile);
-        });
+        let ignore = false;
+        if (!ignore) {
+            getProfilePicture(uid).then((result) => {
+                setProfilePic(result);
+            }).catch(() => {
+                setProfilePic(defaultProfile);
+            });
+        }
+        return () => { ignore = true };
     }, [uid]);
 
     useEffect(() => {
-        setPageTitle(pageTitles[window.location.pathname]);
+        let ignore = false;
+        if (!ignore) {
+            setPageTitle(pageTitles[window.location.pathname]);
+        }
+        return () => { ignore = true };
     }, [window?.location?.pathname]);
 
     const signUserOut = () => {
@@ -112,46 +120,47 @@ function Header() {
     );
 
     return (
-        <header className="App-header">
-            <Container>
-                <Row>
+        <nav>
+            <header className="App-header">
+                <Container>
+                    <Row>
+                        {window.innerWidth <= 1135 && (
+                        <Fragment>
+                            <SmNav signInWithGoogle={signInWithGoogle}
+                            showNav={showNav}
+                            closeNav={closeNav}
+                            setShowNav={setShowNav}
+                            uid={uid} />
+                            <Col xs={7} sm={8} className="center title">
+                                { (typeof pageTitle === 'string') ? <h1 style={{display:"inline-block",fontSize:"40px",fontFamily:"roboto",paddingTop:"10px"}}><a href="/" style={{color:"black", textDecoration: "none"}}>{pageTitle}</a></h1>
+                                : pageTitle
+                                }
+                            </Col>
+                        </Fragment>)}
 
-                    {window.innerWidth <= 1135 && (
-                    <Fragment>
-                        <SmNav signInWithGoogle={signInWithGoogle}
-                        showNav={showNav}
-                        closeNav={closeNav}
-                        setShowNav={setShowNav}
-                        uid={uid} />
-                        <Col xs={7} sm={8} className="center title">
-                            { (typeof pageTitle === 'string') ? <h1 style={{display:"inline-block",fontSize:"40px",fontFamily:"roboto",paddingTop:"10px"}}><a href="/" style={{color:"black", textDecoration: "none"}}>{pageTitle}</a></h1>
-                            : pageTitle
-                            }
+                        {window.innerWidth > 1135 && (
+                        <Fragment>
+                            <Col xs={7} sm={8} lg={3} className="center title">
+                                { (typeof pageTitle === 'string') ? <h1 style={{display:"inline-block",fontSize:"40px",fontFamily:"roboto",paddingTop:"10px"}}><a href="/" style={{color:"black", textDecoration: "none"}}>{pageTitle}</a></h1>
+                                : pageTitle
+                                }
+                            </Col>
+                            <LgNav />
+                        </Fragment>)}
+                        <Col xs={3} sm={2} lg={2} className="login-container">
+                            {!isAuth
+                            ? <Button size="large" onClick={signInWithGoogle}>Login</Button>
+                            :
+                            <OverlayTrigger trigger="click" placement="bottom-end" show={showAccount} overlay={accountOptionsPopover}>
+                                <Button onClick={() => setShowAccount(show => !show)}>
+                                    <div className="account-profile" style={{backgroundImage: `url(${profilePic})`}} />
+                                </Button>
+                            </OverlayTrigger>}
                         </Col>
-                    </Fragment>)}
-
-                    {window.innerWidth > 1135 && (
-                    <Fragment>
-                        <Col xs={7} sm={8} lg={3} className="center title">
-                            { (typeof pageTitle === 'string') ? <h1 style={{display:"inline-block",fontSize:"40px",fontFamily:"roboto",paddingTop:"10px"}}><a href="/" style={{color:"black", textDecoration: "none"}}>{pageTitle}</a></h1>
-                            : pageTitle
-                            }
-                        </Col>
-                        <LgNav />
-                    </Fragment>)}
-                    <Col xs={3} sm={2} lg={2} className="login-container">
-                        {!isAuth
-                        ? <Button size="large" onClick={signInWithGoogle}>Login</Button>
-                        :
-                        <OverlayTrigger trigger="click" placement="bottom-end" show={showAccount} overlay={accountOptionsPopover}>
-                            <Button onClick={() => setShowAccount(show => !show)}>
-                                <div className="account-profile" style={{backgroundImage: `url(${profilePic})`}} />
-                            </Button>
-                        </OverlayTrigger>}
-                    </Col>
-                </Row>
-            </Container>
-        </header>
+                    </Row>
+                </Container>
+            </header>
+        </nav>
     );
 }
 

@@ -19,9 +19,7 @@ const Discuss = React.lazy(() => import('../Components/Discuss'));
 function Routing({ posts }) {
     return (
         <BrowserRouter>
-            <nav>
-                <Header />
-            </nav>
+            <Header />
             <Suspense fallback={<Spinner />}>
                 <Routes>
                     <Route path='/' element={<Body posts={posts} />} />
