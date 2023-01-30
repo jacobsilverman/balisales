@@ -12,8 +12,8 @@ const SmNav = ({signInWithGoogle, showNav, closeNav, setShowNav, uid}) => {
                 <label className="menu__btn" htmlFor="menu__toggle">
                     <span></span>
                 </label>
-                {showNav && <div className="menu__background" onClick={closeNav} />}
-                <ul className="menu__box">
+                {showNav && <div className="menu__background" onClick={() => setShowNav(cur => !cur)} />}
+                {showNav && <ul className="menu__box">
                     <li>
                         <a href="/">
                             <span className="menu__item">
@@ -84,7 +84,7 @@ const SmNav = ({signInWithGoogle, showNav, closeNav, setShowNav, uid}) => {
                             </span>
                         </Link>
                     </li>
-                </ul>
+                </ul>}
             </div>
         </Col>
     );
