@@ -18,7 +18,7 @@ function Post({displayUrl, item, queryParam, viewCount, viewCountHeight, account
             {accountView && <EditModal item={item} openEditModal={openEditModal} setOpenEditModal={setOpenEditModal} deletePost={deletePost} />}
             <Grid item className="post-container"
                 style={{backgroundImage: displayUrl, height: viewCountHeight+"vw"}} 
-                id={"post"+item?.id} 
+                key={"post"+item?.id} 
                 xs={showViewCount ? 4 : 12/viewCount}>
                 <Link to={!accountView && {pathname: '/singlePost', search: queryParam}} 
                     className="link" 
