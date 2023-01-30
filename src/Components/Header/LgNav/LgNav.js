@@ -23,7 +23,7 @@ const LgNav = ({signInWithGoogle, closeNav, uid}) => {
                     </a>
                 </Col>
                 <Col xs={3}>
-                    <Link className="white" to={{pathname: uid && '/createPost'}} onClick={(uid && closeNav) || signInWithGoogle}>
+                    <Link className="white" to={{pathname: '/createPost'}} onClick={closeNav}>
                         <span className="menu__item">
                             <Row>
                                 <Col xs={3} className="menu-icon">

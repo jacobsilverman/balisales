@@ -29,7 +29,7 @@ const SmNav = ({signInWithGoogle, showNav, closeNav, setShowNav, uid}) => {
                         </a>
                     </li>
                     <li>
-                        <Link className="white" to={{pathname: '/createPost'}}>
+                        <Link className="white" to={{pathname: '/createPost'}}  onClick={closeNav}>
                             <span className="menu__item">
                                 <Row>
                                     <Col xs={3} className="menu-icon">
