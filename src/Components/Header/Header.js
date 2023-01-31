@@ -22,15 +22,16 @@ function Header() {
     const [isAuth, setIsAuth] = useState(localStorage.getItem("isAuth"));
     const [showNav, setShowNav] = useState(false);
     const [showAccount, setShowAccount] = useState(false);
-    const [profilePic, setProfilePic] = useState('');
+    const [profilePic, setProfilePic] = useState(localStorage.getItem("profile-picture-"+localStorage.getItem("uid")));
     const [uid, setUid] = useState(localStorage.getItem("uid"));
     const [pageTitle, setPageTitle] = useState(pageTitles[window.location.pathname]);
 
     useEffect(() => {
         let ignore = false;
-        if (!ignore) {
+        if (!ignore && !profilePic) {
             getProfilePicture(uid).then((result) => {
                 setProfilePic(result);
+                localStorage.setItem("profile-picture-"+uid, result);
             }).catch(() => {
                 setProfilePic(defaultProfile);
             });
@@ -53,6 +54,7 @@ function Header() {
             navigate("/");
             localStorage.clear();
             localStorage.removeItem("uid");
+            localStorage.removeItem("profile-picture-"+uid);
             localStorage.removeItem("displayName");
             console.log("user id: ",localStorage.getItem("uid"));
             setUid("");
