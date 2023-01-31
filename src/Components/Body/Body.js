@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 
 import Spinner from '../../Data/Constants/Spinner';
 
@@ -26,7 +26,6 @@ function Body({ posts }) {
 
     const viewCountHeight = 120/viewCount;
     const showViewCount = isNaN(12/viewCount);
-
 
     // const [windowScroll, setWindowScroll] = useState(0); 
 
@@ -71,7 +70,7 @@ function Body({ posts }) {
         });
     };
 
-    var divideData = () => {
+    var divideData = useMemo(() => {
         if (posts.length === 0) {
             return (<Spinner />);
         }
@@ -80,7 +79,7 @@ function Body({ posts }) {
         let result = [];
         let partition = [];
 
-        for (let i=0; i< allPosts.length; i++){
+        for (let i=0; i < allPosts.length; i++){
             validFilter(allPosts[i]) && partition.push(allPosts[i]);
             if ((i+1)%3===0 || i === allPosts.length-1) {
                 result.push(partition);
@@ -106,7 +105,7 @@ function Body({ posts }) {
                 })}
             </Grid>
         );
-    }
+    }, [min, max, brand, type, displayFilter, sort, viewCount, blade, status, posts])
 
     // const topFix = (windowScroll) ? 'fixed-top filter-container' : 'filter-container';
     // const topMargin = (windowScroll && displayFilter) ? 'remove-padding post-margin' : 'remove-padding';
@@ -135,11 +134,11 @@ function Body({ posts }) {
             <Row>
                 {(displayFilter && filter) || (!isMobile && openFilterButton)}
                 <Col xs={12} className={topMargin}>
-                    {divideData()}
+                    {divideData}
                 </Col>
             </Row>
         </Container>
-    );
+    )
 }
 
 export default Body;
