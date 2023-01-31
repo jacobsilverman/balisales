@@ -43,7 +43,7 @@ function Filter({getOptions, brand, setBrand, max, setMax, min, setMin, type, se
                                     label="Cost"
                                     onChange={(event) => setSort(event.target.value)}>
                                     <MenuItem value="default">default</MenuItem>
-                                    {getOptions(sorts, sort)}
+                                    {getOptions(sorts, "sort")}
                                 </Select>
                             </FormControl>
                         </Col>
@@ -57,7 +57,7 @@ function Filter({getOptions, brand, setBrand, max, setMax, min, setMin, type, se
                                     label="status"
                                     onChange={(event) => setStatus(event.target.value)}>
                                     <MenuItem value="default">default</MenuItem>
-                                    {getOptions(statuses, status)}
+                                    {getOptions(statuses, "status")}
                                 </Select>
                             </FormControl>
                         </Col>
@@ -71,7 +71,7 @@ function Filter({getOptions, brand, setBrand, max, setMax, min, setMin, type, se
                                     label="status"
                                     onChange={(event) => setBrand(event.target.value)}>
                                     <MenuItem value="default">default</MenuItem>
-                                    {getOptions(brands, brand)}
+                                    {getOptions(brands, "brand")}
                                 </Select>
                             </FormControl>
                         </Col>
@@ -85,7 +85,7 @@ function Filter({getOptions, brand, setBrand, max, setMax, min, setMin, type, se
                                     label="type"
                                     onChange={(event) => setType(event.target.value)}>
                                     <MenuItem value="default">default</MenuItem>
-                                    {getOptions(types, type)}
+                                    {getOptions(types, "type")}
                                 </Select>
                             </FormControl>
                         </Col>
@@ -100,7 +100,7 @@ function Filter({getOptions, brand, setBrand, max, setMax, min, setMin, type, se
                                     label="Show"
                                     onChange={(event) => setViewCount(event.target.value)}>
                                     <MenuItem value="default">default</MenuItem>
-                                    {getOptions(viewCounts, viewCount)}
+                                    {getOptions(viewCounts, "viewCount")}
                                 </Select>
                             </FormControl>
                         </Col>
@@ -114,7 +114,7 @@ function Filter({getOptions, brand, setBrand, max, setMax, min, setMin, type, se
                                     label="blade"
                                     onChange={(event) => setBlade(event.target.value)}>
                                     <MenuItem value="default">default</MenuItem>
-                                    {getOptions(blades, blade)}
+                                    {getOptions(blades, "blade")}
                                 </Select>
                             </FormControl>
                         </Col>

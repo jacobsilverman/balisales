@@ -40,8 +40,10 @@ function Body({ posts }) {
         setMin(0);
         setMax(10000);
         setBrand('default');
+        setBlade('default');
         setType('default');
         setSort('default');
+        setStatus('default');
         setViewCount('default');
     };
 
@@ -63,9 +65,9 @@ function Body({ posts }) {
             && (post.status === status || status === 'default');
     };
 
-    const getOptions = (options) => {
+    const getOptions = (options, option) => {
         return options.map((name, key) => {
-            return <MenuItem key={name+"-"+key} value={name}>{name}</MenuItem>;
+            return <MenuItem key={option+"-"+name+"-"+key} value={name}>{name}</MenuItem>;
         });
     };
 
@@ -115,16 +117,16 @@ function Body({ posts }) {
         <Col xs={12} className={topFix}>
             <Filter 
                 getOptions={getOptions}
-                brand={brand} setBrand={(v) => setBrand(v)} 
-                type={type} setMax={(v) => setMax(v)} 
-                min={min} setMin={(v) => setMin(v)} 
-                max={max} setType={(v) => setType(v)} 
-                setDisplayFilter={(v) => setDisplayFilter(v)} 
-                resetFilter={(v) => resetFilter(v)}
-                sort={sort} setSort={(v) => setSort(v)} 
-                viewCount={viewCount} setViewCount={(v) => setViewCount(v)}
-                blade={blade} setBlade={(v) => setBlade(v)}
-                status={status} setStatus={(v) => setStatus(v)} />
+                brand={brand} setBrand={setBrand} 
+                type={type} setMax={setMax} 
+                min={min} setMin={setMin} 
+                max={max} setType={setType} 
+                setDisplayFilter={setDisplayFilter} 
+                resetFilter={resetFilter}
+                sort={sort} setSort={setSort} 
+                viewCount={viewCount} setViewCount={setViewCount}
+                blade={blade} setBlade={setBlade}
+                status={status} setStatus={setStatus} />
         </Col>
     );
 
