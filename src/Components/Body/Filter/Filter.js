@@ -99,7 +99,6 @@ function Filter({getOptions, brand, setBrand, max, setMax, min, setMin, type, se
                                     value={viewCount}
                                     label="Show"
                                     onChange={(event) => setViewCount(event.target.value)}>
-                                    <MenuItem value="default">default</MenuItem>
                                     {getOptions(viewCounts, "viewCount")}
                                 </Select>
                             </FormControl>

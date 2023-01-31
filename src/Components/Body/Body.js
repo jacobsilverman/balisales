@@ -20,7 +20,7 @@ function Body({ posts }) {
     const [type, setType] = useState('default');
     const [displayFilter, setDisplayFilter] = useState(false); // whether the filter is open or not
     const [sort, setSort] = useState('default');
-    const [viewCount, setViewCount] = useState('default');
+    const [viewCount, setViewCount] = useState(3);
     const [blade, setBlade] = useState('default');
     const [status, setStatus] = useState('default');
 
@@ -43,7 +43,7 @@ function Body({ posts }) {
         setType('default');
         setSort('default');
         setStatus('default');
-        setViewCount('default');
+        setViewCount(3);
     };
 
     const sortData = (data) => {
