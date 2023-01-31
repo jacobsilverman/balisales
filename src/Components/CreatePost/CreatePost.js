@@ -170,9 +170,9 @@ function CreatePost() {
         });
     }
 
-    const getOptions = (options) => {
-        return options.map((name, key) => {
-            return <MenuItem key={key} value={name}>{name}</MenuItem>;
+    const getOptions = (options, option) => {
+        return options.map((name) => {
+            return <MenuItem key={option+"-"+name} value={name}>{name}</MenuItem>;
         });
     };
 
@@ -248,8 +248,9 @@ function CreatePost() {
                             labelId="brand-label"
                             id="brand-select"
                             label="Brand"
+                            defaultValue=""
                             onChange={handleBrandChange}>
-                            {getOptions(brands, brand)}
+                            {getOptions(brands, "brand")}
                         </Select>
                     </FormControl>
                 </Col>
@@ -260,8 +261,9 @@ function CreatePost() {
                             labelId="sale-type-label"
                             id="sale-type-select"
                             label="Sale Type"
+                            defaultValue=""
                             onChange={handleSaleChange}>
-                            {getOptions(types, type)}
+                            {getOptions(types, "type")}
                         </Select>
                     </FormControl>
                 </Col>
@@ -272,8 +274,9 @@ function CreatePost() {
                             labelId="condition-label"
                             id="condition-select"
                             label="Condition"
+                            defaultValue=""
                             onChange={handleConditionChange}>
-                            {getOptions([1,2,3,4,5,6,7,8,9,10], condition)}
+                            {getOptions([1,2,3,4,5,6,7,8,9,10], "condition")}
                         </Select>
                     </FormControl>
                 </Col>
@@ -284,8 +287,9 @@ function CreatePost() {
                             labelId="blade-label"
                             id="blade-select"
                             label="Blade"
+                            defaultValue=""
                             onChange={handleBladeChange}>
-                            {getOptions(blades, blade)}
+                            {getOptions(blades, "blade")}
                         </Select>
                     </FormControl>
                 </Col>

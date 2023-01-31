@@ -66,8 +66,8 @@ function Body({ posts }) {
     };
 
     const getOptions = (options, option) => {
-        return options.map((name, key) => {
-            return <MenuItem key={option+"-"+name+"-"+key} value={name}>{name}</MenuItem>;
+        return options.map((name) => {
+            return <MenuItem key={option+"-"+name} value={name}>{name}</MenuItem>;
         });
     };
 
