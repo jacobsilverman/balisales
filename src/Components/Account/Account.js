@@ -5,7 +5,7 @@ import Grid from '@mui/material/Grid';
 import { Col, Row } from 'react-bootstrap';
 import Spinner from '../../Data/Constants/Spinner.js';
 
-import Post from '../Body/Post';
+import Post from '../Body/Posts/Post';
 import './Account.scss';
 
 import { deleteUserPost, getUserPosts } from '../../Data/Services/userInfo';
@@ -71,7 +71,7 @@ function Account({user, accountView}) {
 						
 				})}
 			</Grid>
-			 ||<Row>
+			|| <Row>
 				<Col xs={12} className="center">
 					No Posts Available
 				</Col>

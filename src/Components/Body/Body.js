@@ -1,16 +1,11 @@
-import React, { useEffect, useMemo, useState } from 'react';
-
-import Spinner from '../../Data/Constants/Spinner';
-import { getAllPosts } from '../../Data/Services/Home.js';
+import { useState } from 'react';
 
 import { Button, Col, Container, Row } from 'react-bootstrap';
 // import BuildMocks from './Data/Mocks/BuildMocks.js'
 
-import Grid from '@mui/material/Grid';
-
+import Posts from './Posts';
 import './Body.scss';
 import Filter from './Filter';
-import Post from './Post';
 import MenuItem from '@mui/material/MenuItem';
 
 function Body() {
@@ -24,11 +19,6 @@ function Body() {
     const [blade, setBlade] = useState('default');
     const [status, setStatus] = useState('default');
 
-    const [posts, setPosts] = useState([]);
-
-    const viewCountHeight = 120/viewCount;
-    const showViewCount = isNaN(12/viewCount);
-
     // const [windowScroll, setWindowScroll] = useState(0); 
 
     // useEffect(() => {
@@ -36,18 +26,6 @@ function Body() {
     //         setWindowScroll(window.pageYOffset > 99);
     //     });
     // }, [])
-
-    useEffect(() => {
-        let ignore = false;
-        if (!ignore) {
-          getAllPosts().then((allPosts) => {
-            setPosts(allPosts);
-          }).catch(() => {
-            console.log("error getting posts");
-          });
-        };
-        return () => { ignore = true };
-      }, []);
 
     const resetFilter = () => {
         setMin(0);
@@ -60,62 +38,23 @@ function Body() {
         setViewCount(3);
     };
 
-    const sortData = (data) => {
-        if (sort === 'default') return data;
-   
-        return [...data].sort((prev, next) => {
-            if (sort === 'max') return (prev.price <= next.price) ? 1 : -1;
-            return (prev.price >= next.price) ? 1 : -1;
-        });
-    };
-    
-    const validFilter = (post) => {
-        return post?.price >= min 
-            && post?.price <= max 
-            && (post.brand === brand || brand === 'default') 
-            && (post.type === type || type === 'default')
-            && (post.blade === blade || blade === 'default')
-            && (post.status === status || status === 'default');
-    };
-
     const getOptions = (options, option) => {
         return options.map((name) => {
             return <MenuItem key={option+"-"+name} value={name}>{name}</MenuItem>;
         });
     };
 
-    var divideData = useMemo(() => {
-        if (posts.length === 0) {
-            return (<Spinner />);
-        }
-
-        let allValidPostsSorted = sortData(posts.filter((post) => validFilter(post)));
-
-        return (
-            <Grid container className="grid-container-posts">
-                {allValidPostsSorted.map((item) => {
-                    const displayUrl =  `url(${item?.urls[0]})`;
-                    const queryParam = 'id='+item?.id;
-                    return <Post 
-                        displayUrl={displayUrl} 
-                        item={item} 
-                        queryParam={queryParam}
-                        viewCount={viewCount} 
-                        viewCountHeight={viewCountHeight} 
-                        showViewCount={showViewCount}
-                        key={item.id} />
-                })}
-            </Grid>
-        );
-    }, [min, max, brand, type, displayFilter, sort, viewCount, blade, status, posts])
-
     // const topFix = (windowScroll) ? 'fixed-top filter-container' : 'filter-container';
     // const topMargin = (windowScroll && displayFilter) ? 'remove-padding post-margin' : 'remove-padding';
-    const topFix = 'filter-container';
-    const topMargin = 'remove-padding';
-    const openFilterButton = (<span className="filter-button-container"><Button className={'filter-button ' + topFix} onClick={() => {setDisplayFilter(true)}}><b>FILTER</b></Button></span>);
+    const openFilterButton = (
+        <span className="filter-button-container">
+            <Button className="filter-button" onClick={() => {setDisplayFilter(true)}}>
+                <b>FILTER</b>
+            </Button>
+        </span>
+    );
     const filter = (
-        <Col xs={12} className={topFix}>
+        <Col xs={12} className="filter-container">
             <Filter 
                 getOptions={getOptions}
                 brand={brand} setBrand={setBrand} 
@@ -135,9 +74,16 @@ function Body() {
         <Container className='body-container'>
             <Row>
                 {(displayFilter && filter) || openFilterButton}
-                <Col xs={12} className={topMargin}>
-                    {divideData}
-                </Col>
+                <Posts 
+                    min={min} 
+                    max={max} 
+                    brand={brand} 
+                    type={type} 
+                    displayFilter={displayFilter} 
+                    sort={sort}
+                    viewCount={viewCount}
+                    blade={blade}
+                    status={status} />
             </Row>
         </Container>
     )

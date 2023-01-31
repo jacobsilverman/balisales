@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { brands, types } from '../../../../Data/Constants';
+import { brands, types } from '../../../../../Data/Constants';
 
 import DeleteModal from '../DeleteModal/DeleteModal';
 
@@ -12,7 +12,7 @@ import Select from '@mui/material/Select';
 import { Button, Col, Row } from 'react-bootstrap';
 
 import { doc, setDoc } from 'firebase/firestore';
-import { db } from '../../../../firebase-config';
+import { db } from '../../../../../firebase-config';
 
 import { FaImage } from "react-icons/fa";
 
