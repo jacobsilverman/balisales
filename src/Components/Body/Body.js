@@ -1,8 +1,10 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 
 import Spinner from '../../Data/Constants/Spinner';
+import { getAllPosts } from '../../Data/Services/Home.js';
 
 import { Button, Col, Container, Row } from 'react-bootstrap';
+// import BuildMocks from './Data/Mocks/BuildMocks.js'
 
 import Grid from '@mui/material/Grid';
 
@@ -11,7 +13,7 @@ import Filter from './Filter';
 import Post from './Post';
 import MenuItem from '@mui/material/MenuItem';
 
-function Body({ posts }) {
+function Body() {
     const [min, setMin] = useState(0);
     const [max, setMax] = useState(10000);
     const [brand, setBrand] = useState('default');
@@ -21,6 +23,8 @@ function Body({ posts }) {
     const [viewCount, setViewCount] = useState(3);
     const [blade, setBlade] = useState('default');
     const [status, setStatus] = useState('default');
+
+    const [posts, setPosts] = useState([]);
 
     const viewCountHeight = 120/viewCount;
     const showViewCount = isNaN(12/viewCount);
@@ -32,6 +36,18 @@ function Body({ posts }) {
     //         setWindowScroll(window.pageYOffset > 99);
     //     });
     // }, [])
+
+    useEffect(() => {
+        let ignore = false;
+        if (!ignore) {
+          getAllPosts().then((allPosts) => {
+            setPosts(allPosts);
+          }).catch(() => {
+            console.log("error getting posts");
+          });
+        };
+        return () => { ignore = true };
+      }, []);
 
     const resetFilter = () => {
         setMin(0);

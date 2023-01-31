@@ -16,13 +16,13 @@ const ContactUs = React.lazy(() => import('../Components/ContactUs'));
 const AboutUs = React.lazy(() => import('../Components/AboutUs'));
 const Discuss = React.lazy(() => import('../Components/Discuss'));
 
-function Routing({ posts }) {
+function Routing() {
     return (
         <BrowserRouter>
             <Header />
             <Suspense fallback={<Spinner />}>
                 <Routes>
-                    <Route path='/' element={<Body posts={posts} />} />
+                    <Route path='/' element={<Body />} />
                     <Route path='/singlePost' element={<SelectPost />} />
                     <Route path='/account' element={<Account />} />
                     <Route path='/createPost' element={<CreatePost />} />

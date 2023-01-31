@@ -53,34 +53,23 @@ function Account({user, accountView}) {
 			);
 		} 
 
-		let result = [];
-        let partition = [];
-        for (let i=0; i< filterPosts.length; i++){
-            partition.push(filterPosts[i]);
-            if ((i+1)%3===0 || i === filterPosts.length-1) {
-                result.push(partition);
-                partition = [];
-            }
-        };
-
 		return (
-            result.length > 0 && 
+            filterPosts.length > 0 && 
 			<Grid container style={{padding:'0px'}} className="grid-container-posts">
-				{result.map((arr) => {
-					return arr.map((item) => {
-							const displayUrl =  `url(${item?.urls[0]})`;
-							const queryParam = 'id='+item?.id;
-							return <Post 
-								displayUrl={displayUrl}
-								item={item}
-								key={item.id}
-								queryParam={queryParam}
-								accountView={accountView}
-								deletePost={deletePost}
-								openEditModal={openEditModal}
-								setOpenEditModal={setOpenEditModal} />
-						})
-					})}
+				{filterPosts.map((item) => {
+					const displayUrl =  `url(${item?.urls[0]})`;
+					const queryParam = 'id='+item?.id;
+					return <Post 
+						displayUrl={displayUrl}
+						item={item}
+						key={item.id}
+						queryParam={queryParam}
+						accountView={accountView}
+						deletePost={deletePost}
+						openEditModal={openEditModal}
+						setOpenEditModal={setOpenEditModal} />
+						
+				})}
 			</Grid>
 			 ||<Row>
 				<Col xs={12} className="center">
