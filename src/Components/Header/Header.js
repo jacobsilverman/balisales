@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState } from 'react';
+import { Fragment, useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import './Header.scss';
@@ -121,46 +121,52 @@ function Header() {
         </Popover>
     );
 
+    const navBar = useMemo(() =>{
+        return (
+            <Container>
+                <Row>
+                    {window.innerWidth <= 1135 && (
+                    <Fragment>
+                        <SmNav signInWithGoogle={signInWithGoogle}
+                        showNav={showNav}
+                        closeNav={closeNav}
+                        setShowNav={setShowNav}
+                        uid={uid} />
+                        <Col xs={7} sm={8} className="center title">
+                            { (typeof pageTitle === 'string') ? <h1 style={{display:"inline-block",fontSize:"40px",fontFamily:"roboto",paddingTop:"10px"}}><a href="/" style={{color:"black", textDecoration: "none"}}>{pageTitle}</a></h1>
+                            : pageTitle
+                            }
+                        </Col>
+                    </Fragment>)}
+
+                    {window.innerWidth > 1135 && (
+                    <Fragment>
+                        <Col xs={7} sm={8} lg={3} className="center title">
+                            { (typeof pageTitle === 'string') ? <h1 style={{display:"inline-block",fontSize:"40px",fontFamily:"roboto",paddingTop:"10px"}}><a href="/" style={{color:"black", textDecoration: "none"}}>{pageTitle}</a></h1>
+                            : pageTitle
+                            }
+                        </Col>
+                        <LgNav />
+                    </Fragment>)}
+                    <Col xs={3} sm={2} lg={2} className="login-container">
+                        {!isAuth
+                        ? <Button size="large" onClick={signInWithGoogle}>Login</Button>
+                        :
+                        <OverlayTrigger trigger="click" placement="bottom-end" show={showAccount} overlay={accountOptionsPopover}>
+                            <Button onClick={() => setShowAccount(show => !show)}>
+                                <div className="account-profile" style={{backgroundImage: `url(${profilePic})`}} />
+                            </Button>
+                        </OverlayTrigger>}
+                    </Col>
+                </Row>
+            </Container>
+        );
+    }, [profilePic, isAuth, showAccount, isAuth, showNav]);
+
     return (
         <nav>
             <header className="App-header">
-                <Container>
-                    <Row>
-                        {window.innerWidth <= 1135 && (
-                        <Fragment>
-                            <SmNav signInWithGoogle={signInWithGoogle}
-                            showNav={showNav}
-                            closeNav={closeNav}
-                            setShowNav={setShowNav}
-                            uid={uid} />
-                            <Col xs={7} sm={8} className="center title">
-                                { (typeof pageTitle === 'string') ? <h1 style={{display:"inline-block",fontSize:"40px",fontFamily:"roboto",paddingTop:"10px"}}><a href="/" style={{color:"black", textDecoration: "none"}}>{pageTitle}</a></h1>
-                                : pageTitle
-                                }
-                            </Col>
-                        </Fragment>)}
-
-                        {window.innerWidth > 1135 && (
-                        <Fragment>
-                            <Col xs={7} sm={8} lg={3} className="center title">
-                                { (typeof pageTitle === 'string') ? <h1 style={{display:"inline-block",fontSize:"40px",fontFamily:"roboto",paddingTop:"10px"}}><a href="/" style={{color:"black", textDecoration: "none"}}>{pageTitle}</a></h1>
-                                : pageTitle
-                                }
-                            </Col>
-                            <LgNav />
-                        </Fragment>)}
-                        <Col xs={3} sm={2} lg={2} className="login-container">
-                            {!isAuth
-                            ? <Button size="large" onClick={signInWithGoogle}>Login</Button>
-                            :
-                            <OverlayTrigger trigger="click" placement="bottom-end" show={showAccount} overlay={accountOptionsPopover}>
-                                <Button onClick={() => setShowAccount(show => !show)}>
-                                    <div className="account-profile" style={{backgroundImage: `url(${profilePic})`}} />
-                                </Button>
-                            </OverlayTrigger>}
-                        </Col>
-                    </Row>
-                </Container>
+                {navBar}
             </header>
         </nav>
     );

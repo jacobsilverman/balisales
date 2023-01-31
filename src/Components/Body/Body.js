@@ -11,8 +11,6 @@ import Filter from './Filter';
 import Post from './Post';
 import MenuItem from '@mui/material/MenuItem';
 
-import { isMobile } from '../../Data/Constants';
-
 function Body({ posts }) {
     const [min, setMin] = useState(0);
     const [max, setMax] = useState(10000);
@@ -75,11 +73,11 @@ function Body({ posts }) {
             return (<Spinner />);
         }
 
-        let allPosts = sortData(posts.filter((post) => validFilter(post)));
+        let allValidPostsSorted = sortData(posts.filter((post) => validFilter(post)));
 
         return (
             <Grid container className="grid-container-posts">
-                {allPosts.map((item) => {
+                {allValidPostsSorted.map((item) => {
                     const displayUrl =  `url(${item?.urls[0]})`;
                     const queryParam = 'id='+item?.id;
                     return <Post 
