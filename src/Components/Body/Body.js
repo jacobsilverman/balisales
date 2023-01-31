@@ -75,33 +75,21 @@ function Body({ posts }) {
             return (<Spinner />);
         }
 
-        let allPosts = sortData(posts);
-        let result = [];
-        let partition = [];
-
-        for (let i=0; i < allPosts.length; i++){
-            validFilter(allPosts[i]) && partition.push(allPosts[i]);
-            if ((i+1)%3===0 || i === allPosts.length-1) {
-                result.push(partition);
-                partition = [];
-            }
-        };
+        let allPosts = sortData(posts.filter((post) => validFilter(post)));
 
         return (
             <Grid container className="grid-container-posts">
-                {result.map((arr) => {
-                    return arr.map((item) => {
-                        const displayUrl =  `url(${item?.urls[0]})`;
-                        const queryParam = 'id='+item?.id;
-                        return <Post 
-                            displayUrl={displayUrl} 
-                            item={item} 
-                            queryParam={queryParam}
-                            viewCount={viewCount} 
-                            viewCountHeight={viewCountHeight} 
-                            showViewCount={showViewCount}
-                            key={item.id} />
-                    })
+                {allPosts.map((item) => {
+                    const displayUrl =  `url(${item?.urls[0]})`;
+                    const queryParam = 'id='+item?.id;
+                    return <Post 
+                        displayUrl={displayUrl} 
+                        item={item} 
+                        queryParam={queryParam}
+                        viewCount={viewCount} 
+                        viewCountHeight={viewCountHeight} 
+                        showViewCount={showViewCount}
+                        key={item.id} />
                 })}
             </Grid>
         );
