@@ -120,7 +120,7 @@ function Body({ posts }) {
     return (
         <Container className='body-container'>
             <Row>
-                {(displayFilter && filter) || (!isMobile && openFilterButton)}
+                {(displayFilter && filter) || openFilterButton}
                 <Col xs={12} className={topMargin}>
                     {divideData}
                 </Col>
