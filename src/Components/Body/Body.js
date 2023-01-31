@@ -78,8 +78,7 @@ function Body() {
                     min={min} 
                     max={max} 
                     brand={brand} 
-                    type={type} 
-                    displayFilter={displayFilter} 
+                    type={type}
                     sort={sort}
                     viewCount={viewCount}
                     blade={blade}

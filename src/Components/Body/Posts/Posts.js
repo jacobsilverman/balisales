@@ -9,7 +9,7 @@ import Post from './Post';
 
 import { getAllPosts } from '../../../Data/Services/Home.js';
 
-const Posts = ({min, max, brand, type, displayFilter, sort, viewCount, blade, status}) => {
+const Posts = ({min, max, brand, type, sort, viewCount, blade, status}) => {
     const [posts, setPosts] = useState([]);
 
     const viewCountHeight = 120/viewCount;
@@ -69,7 +69,7 @@ const Posts = ({min, max, brand, type, displayFilter, sort, viewCount, blade, st
                 })}
             </Grid>
         );
-    }, [min, max, brand, type, displayFilter, sort, viewCount, blade, status, posts])
+    }, [min, max, brand, type, sort, viewCount, blade, status, posts])
 
 
     return (

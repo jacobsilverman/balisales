@@ -1,5 +1,5 @@
 
-import {Fragment,  useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import Grid from '@mui/material/Grid';
 import { Col, Row } from 'react-bootstrap';
@@ -79,12 +79,7 @@ function Account({user, accountView}) {
         );
     }
 
-	return (
-		<Fragment>
-			{setAccountData()}
-		</Fragment>
-	);
-	
+	return setAccountData();
 }
 
 export default Account;
