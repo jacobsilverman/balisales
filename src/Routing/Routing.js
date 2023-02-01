@@ -8,7 +8,6 @@ import Header from '../Components/Header';
 import Body from '../Components/Body';
 
 const SelectPost = React.lazy(() => import('../Components/SelectPost'));
-const Account = React.lazy(() => import('../Components/Account'));
 const CreatePost = React.lazy(() => import('../Components/CreatePost'));
 const Settings = React.lazy(() => import('../Components/Settings'));
 const Profile = React.lazy(() => import('../Components/Profile'));
@@ -24,7 +23,6 @@ function Routing() {
                 <Routes>
                     <Route path='/' element={<Body />} />
                     <Route path='/singlePost' element={<SelectPost />} />
-                    <Route path='/account' element={<Account />} />
                     <Route path='/createPost' element={<CreatePost />} />
                     <Route path="/settings" element={<Settings />} />
                     <Route path="/profile" element={<Profile />} />

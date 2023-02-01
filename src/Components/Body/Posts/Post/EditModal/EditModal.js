@@ -4,21 +4,21 @@ import { brands, types } from '../../../../../Data/Constants';
 
 import DeleteModal from '../DeleteModal/DeleteModal';
 
-import { Grid, MenuItem, Modal, TextareaAutosize } from '@mui/material';
+import { MenuItem, Modal, TextareaAutosize } from '@mui/material';
 import TextField from '@mui/material/TextField';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import Select from '@mui/material/Select';
 import { Button, Col, Row } from 'react-bootstrap';
 
-import { doc, setDoc } from 'firebase/firestore';
+import { doc, deleteDoc, setDoc } from 'firebase/firestore';
 import { db } from '../../../../../firebase-config';
+import { deleteUserPost } from '../../../../../Data/Services/userInfo';
+// import { FaImage } from "react-icons/fa";
 
-import { FaImage } from "react-icons/fa";
+import { ref, deleteObject, getStorage } from "firebase/storage";
 
-import { ref, getStorage } from "firebase/storage";
-
-const EditModal = ({item, openEditModal, setOpenEditModal, deletePost}) => {
+const EditModal = ({item, openEditModal, setOpenEditModal, filterPosts, setFilterPosts}) => {
     const [title, setTitle] = useState(item.title);
     const [description, setDescription] = useState(item.description);
     const [type, setType] = useState(item.type);
@@ -26,21 +26,20 @@ const EditModal = ({item, openEditModal, setOpenEditModal, deletePost}) => {
     const [condition, setCondition] = useState(item.condition);
     const [price, setPrice] = useState(item.price);
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
-    const [numberOfImages, setNumberOfImages] = useState(item.numberOfImages);
-    const [removedImages, setRemovedImages] = useState({});
-
+    // const [removedImages, setRemovedImages] = useState({});
+    console.log(item.id);
 
     // State to store uploaded file
-    const [file, setFile] = useState("");
+    // const [file, setFile] = useState("");
     
-    // Handle file upload event and update state
-    function handleChange(event) {
-        setFile(event.target.files[0]);
-    }
+    // // Handle file upload event and update state
+    // function handleChange(event) {
+    //     setFile(event.target.files[0]);
+    // }
 
-    const getOptions = (options) => {
-        return options.map((name, key) => {
-            return <MenuItem key={key} value={name}>{name}</MenuItem>;
+    const getOptions = (options, key) => {
+        return options.map((name) => {
+            return <MenuItem key={key+"-"+name} value={name}>{name}</MenuItem>;
         });
     };
 
@@ -54,7 +53,7 @@ const EditModal = ({item, openEditModal, setOpenEditModal, deletePost}) => {
             price,
             description,
             timeStamp: Date.now(),
-            numberOfImages: numberOfImages,
+            numberOfImages: item.numberOfImages,
             author: {name: item.author.name, id: item.author.id }
         }).then(() => {
             const pictureRef = ref(getStorage(), `PostImages/${item.id}/image-0`);
@@ -67,40 +66,57 @@ const EditModal = ({item, openEditModal, setOpenEditModal, deletePost}) => {
         });
     }
 
-    const handleImageClick = (url) => {
-        setRemovedImages(cur => {
-            cur[url] = !cur[url] ?? true
-            return cur;
-        });
-        console.log(removedImages);
+    const deletePost = async (item) => {
+		const storage = getStorage();
+        const postDoc = doc(db, "posts", item.id);
+		await deleteDoc(postDoc);
+		deleteUserPost(item.id);
+		for (var i = 0; i < item.numberOfImages; i++) {
+			const pictureRef = ref(storage, `PostImages/${item.id}/image-${i}`);
+			await deleteObject(pictureRef);
+		}
+
+		setFilterPosts(
+			filterPosts?.filter((ele) => {
+				return ele.id !== item.id;
+			})
+		)
     }
 
-    const pictures = (
-        <Grid container>
-            {item.urls.map((url) => {
-                return (
-                    <Grid item key={url} className="center" style={{backgroundImage: `url(${url})`, backgroundSize: "100% 100%", width: "100px", height: "100px"}} onClick={() => handleImageClick(url)} >
-                        {removedImages[url]}
-                    </Grid>
-                )})}
-        </Grid>
-    );
+    // const handleImageClick = (url) => {
+    //     setRemovedImages(cur => {
+    //         cur[url] = !cur[url] ?? true
+    //         return cur;
+    //     });
+    //     console.log(removedImages);
+    // }
 
-    const addPicture = (
-        <Row className="edit-input">    
-            {/* <Col className="center">
-                <input type="file" onChange={handleChange} accept="/image/*" />
-            </Col> */}
-            <Col xs={12} className="setting-item">
-                <label className='profile-label' htmlFor="inputTag">
-                    <span style={{color:"black"}}>Add Picture</span>
-                    <input id="inputTag" className='profile-input' type="file" onChange={handleChange} accept="/image/*" />
-                    <br />
-                    {<FaImage size={40}  />}
-                </label>
-            </Col>
-        </Row>
-    );
+    // const pictures = (
+    //     <Grid container>
+    //         {item.urls.map((url) => {
+    //             return (
+    //                 <Grid item key={url} className="center" style={{backgroundImage: `url(${url})`, backgroundSize: "100% 100%", width: "100px", height: "100px"}} onClick={() => handleImageClick(url)} >
+    //                     {removedImages[url]}
+    //                 </Grid>
+    //             )})}
+    //     </Grid>
+    // );
+
+    // const addPicture = (
+    //     <Row className="edit-input">    
+    //         {/* <Col className="center">
+    //             <input type="file" onChange={handleChange} accept="/image/*" />
+    //         </Col> */}
+    //         <Col xs={12} className="setting-item">
+    //             <label className='profile-label' htmlFor="inputTag">
+    //                 <span style={{color:"black"}}>Add Picture</span>
+    //                 <input id="inputTag" className='profile-input' type="file" onChange={handleChange} accept="/image/*" />
+    //                 <br />
+    //                 {<FaImage size={40}  />}
+    //             </label>
+    //         </Col>
+    //     </Row>
+    // );
 
     return (
         <Modal open={openEditModal}>
@@ -131,7 +147,7 @@ const EditModal = ({item, openEditModal, setOpenEditModal, deletePost}) => {
                                 value={brand}
                                 label="Brand"
                                 onChange={(event) => setBrand(event.target.value)}>
-                                {getOptions(brands, brand)}
+                                {getOptions(brands, "brand")}
                             </Select>
                         </FormControl>
                     </Row>
@@ -145,7 +161,7 @@ const EditModal = ({item, openEditModal, setOpenEditModal, deletePost}) => {
                                 value={type}
                                 label="Business"
                                 onChange={(event) => setType(event.target.value)}>
-                                {getOptions(types, type)}
+                                {getOptions(types, "type")}
                             </Select>
                         </FormControl>
                     </Row>
@@ -159,7 +175,7 @@ const EditModal = ({item, openEditModal, setOpenEditModal, deletePost}) => {
                                 value={condition}
                                 label="Condition"
                                 onChange={(event) => setCondition(event.target.value)}>
-                                {getOptions([1,2,3,4,5,6,7,8,9,10], condition)}
+                                {getOptions([1,2,3,4,5,6,7,8,9,10], "condition")}
                             </Select>
                         </FormControl>
                     </Row>

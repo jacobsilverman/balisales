@@ -12,7 +12,6 @@ const EditModal  = React.lazy(() => import('./EditModal/EditModal.js'));
 
 function Post({displayUrl, item, queryParam, viewCount, viewCountHeight, accountView, showViewCount = 3, deletePost, openEditModal, setOpenEditModal}) {
     // const priceCls = `price-container hidden-text color-${useMemo(() => {return priceColors(item?.type)}, [item?.type])}`;
-
     return (
         <Fragment>
             {accountView && <EditModal item={item} openEditModal={openEditModal} setOpenEditModal={setOpenEditModal} deletePost={deletePost} />}
