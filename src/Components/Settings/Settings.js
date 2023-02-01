@@ -15,7 +15,7 @@ function Settings() {
             <Row>
                 <SettingsForm id={id} />
                 <hr />
-                <Account user={id} />
+                <Account user={id} settingsPage={true} />
             </Row>
         </Container>
     );

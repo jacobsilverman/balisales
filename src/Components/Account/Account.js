@@ -1,5 +1,5 @@
 
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Grid from '@mui/material/Grid';
 import Spinner from '../../Data/Constants/Spinner.js';
@@ -8,10 +8,13 @@ import Post from '../Body/Posts/Post';
 import './Account.scss';
 
 import { getUserPosts } from '../../Data/Services/userInfo';
+const EditModal  = React.lazy(() => import('../../Components/Body/Posts/Post/EditModal'));
 
-function Account({user}) {
+function Account({user, settingsPage}) {
 	const [filterPosts, setFilterPosts] = useState([]);
 	const [openEditModal, setOpenEditModal] = useState(false);
+	const [selectedPost, setSelectedPost] = useState({});
+
 	useEffect(() => {
         getUserPosts(user).then((result) => {
 			result.sort((a, b) => {
@@ -31,8 +34,13 @@ function Account({user}) {
 		} 
 
 		return (
-            filterPosts.length > 0 && 
 			<Grid container style={{padding:'0px'}} className="grid-container-posts">
+				{settingsPage && <EditModal 
+					item={selectedPost} 
+					filterPosts={filterPosts}
+					setFilterPosts={setFilterPosts}
+					openEditModal={openEditModal} 
+					setOpenEditModal={setOpenEditModal} />}
 				{filterPosts.map((item) => {
 					const displayUrl =  `url(${item?.urls[0]})`;
 					const queryParam = 'id='+item?.id;
@@ -41,10 +49,11 @@ function Account({user}) {
 						item={item}
 						key={item.id}
 						queryParam={queryParam}
-						accountView={true}
-						filterPosts={filterPosts} setFilterPosts={setFilterPosts}
+						settingsPage={settingsPage}
 						openEditModal={openEditModal}
-						setOpenEditModal={setOpenEditModal} />
+						setOpenEditModal={setOpenEditModal}
+						selectedPost={selectedPost}
+						setSelectedPost={setSelectedPost} />
 						
 				})}
 			</Grid>

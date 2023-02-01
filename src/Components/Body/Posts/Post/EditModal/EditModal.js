@@ -1,8 +1,8 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { brands, types } from '../../../../../Data/Constants';
 
-import DeleteModal from '../DeleteModal/DeleteModal';
+import DeleteModal from '../DeleteModal';
 
 import { MenuItem, Modal, TextareaAutosize } from '@mui/material';
 import TextField from '@mui/material/TextField';
@@ -14,20 +14,18 @@ import { Button, Col, Row } from 'react-bootstrap';
 import { doc, deleteDoc, setDoc } from 'firebase/firestore';
 import { db } from '../../../../../firebase-config';
 import { deleteUserPost } from '../../../../../Data/Services/userInfo';
-// import { FaImage } from "react-icons/fa";
 
 import { ref, deleteObject, getStorage } from "firebase/storage";
 
 const EditModal = ({item, openEditModal, setOpenEditModal, filterPosts, setFilterPosts}) => {
-    const [title, setTitle] = useState(item.title);
-    const [description, setDescription] = useState(item.description);
-    const [type, setType] = useState(item.type);
-    const [brand, setBrand] = useState(item.brand);
-    const [condition, setCondition] = useState(item.condition);
-    const [price, setPrice] = useState(item.price);
+    const [title, setTitle] = useState(item?.title);
+    const [description, setDescription] = useState(item?.description);
+    const [type, setType] = useState(item?.type);
+    const [brand, setBrand] = useState(item?.brand);
+    const [condition, setCondition] = useState(item?.condition);
+    const [price, setPrice] = useState(item?.price);
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
     // const [removedImages, setRemovedImages] = useState({});
-    console.log(item.id);
 
     // State to store uploaded file
     // const [file, setFile] = useState("");
@@ -36,6 +34,15 @@ const EditModal = ({item, openEditModal, setOpenEditModal, filterPosts, setFilte
     // function handleChange(event) {
     //     setFile(event.target.files[0]);
     // }
+
+    useEffect(() => {
+        setTitle(item.title);
+        setDescription(item.description)
+        setType(item.type)
+        setBrand(item.brand)
+        setCondition(item.condition)
+        setPrice(item.price)
+    }, [item]);
 
     const getOptions = (options, key) => {
         return options.map((name) => {
@@ -122,7 +129,7 @@ const EditModal = ({item, openEditModal, setOpenEditModal, filterPosts, setFilte
         <Modal open={openEditModal}>
             <Row className="edit-modal">
                 <Col xs={7} className="modal-background center">
-                    <DeleteModal deletePost={deletePost} item={item} openDeleteModal={openDeleteModal} setOpenDeleteModal={setOpenDeleteModal} />
+                    <DeleteModal deletePost={deletePost} item={item} openDeleteModal={openDeleteModal} setOpenDeleteModal={setOpenDeleteModal} setOpenEditModal={setOpenEditModal} />
                     <Row className="edit-input">
                         <Col xs={6} sm={9} className="left">
                             <h2>Edit</h2>
