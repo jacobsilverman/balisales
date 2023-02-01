@@ -6,9 +6,8 @@ import { brands, blades, types } from '../../Data/Constants';
 import { addUserPost } from '../../Data/Services/userInfo';
 
 import { addDoc, collection } from 'firebase/firestore';
-import { auth, db } from '../../firebase-config';
 
-import { storage } from "../../firebase-config.js";
+import { auth, db, storage } from "../../firebase-config.js";
 import { ref, uploadBytesResumable } from "firebase/storage";
 
 import { FaImage } from "react-icons/fa";
