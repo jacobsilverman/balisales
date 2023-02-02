@@ -3,7 +3,6 @@ import { Col, Row } from 'react-bootstrap';
 
 import { getUserInfo, setUserInfo } from '../../../Data/Services/userInfo.js';
 
-
 import { FaImage } from "react-icons/fa";
 
 import Button from '@mui/material/Button';

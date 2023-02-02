@@ -124,6 +124,7 @@ function CreatePost() {
         await addDoc(postsCollectionRef, {
             title,
             type,
+            blade,
             brand, 
             condition,
             price,
@@ -248,6 +249,7 @@ function CreatePost() {
                             id="brand-select"
                             label="Brand"
                             defaultValue=""
+                            value={brand}
                             onChange={handleBrandChange}>
                             {getOptions(brands, "brand")}
                         </Select>
@@ -261,6 +263,7 @@ function CreatePost() {
                             id="sale-type-select"
                             label="Sale Type"
                             defaultValue=""
+                            value={type}
                             onChange={handleSaleChange}>
                             {getOptions(types, "type")}
                         </Select>
@@ -274,6 +277,7 @@ function CreatePost() {
                             id="condition-select"
                             label="Condition"
                             defaultValue=""
+                            value={condition}
                             onChange={handleConditionChange}>
                             {getOptions([1,2,3,4,5,6,7,8,9,10], "condition")}
                         </Select>
@@ -287,6 +291,7 @@ function CreatePost() {
                             id="blade-select"
                             label="Blade"
                             defaultValue=""
+                            value={blade}
                             onChange={handleBladeChange}>
                             {getOptions(blades, "blade")}
                         </Select>
