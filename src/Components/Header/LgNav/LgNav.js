@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { Col, Row } from 'react-bootstrap';
 
 
-const LgNav = () => {
+const LgNav = ({setPageTitle}) => {
     return (
         <Col lg={7}>
             <Row>
@@ -23,7 +23,7 @@ const LgNav = () => {
                     </a>
                 </Col>
                 <Col xs={3}>
-                    <Link className="white" to={{pathname: '/createPost'}}>
+                    <Link className="white" to={{pathname: '/createPost'}}  onClick={() =>{setPageTitle("Create")}}>
                         <span className="menu__item">
                             <Row>
                                 <Col xs={3} className="menu-icon">
@@ -51,7 +51,7 @@ const LgNav = () => {
                     </Link>
                 </li> */}
                 <Col xs={3}>
-                    <Link className="white" to={{pathname: '/contactUs'}}>
+                    <Link className="white" to={{pathname: '/contactUs'}}  onClick={() =>{setPageTitle("Contact")}}>
                         <span className="menu__item">
                             <Row>
                                 <Col xs={3} className="menu-icon">
@@ -65,7 +65,7 @@ const LgNav = () => {
                     </Link>
                 </Col>
                 <Col xs={3}>
-                    <Link className="white" to={{pathname: '/aboutUs'}}>
+                    <Link className="white" to={{pathname: '/aboutUs'}}  onClick={() =>{setPageTitle("About Us")}}>
                         <span className="menu__item">
                             <Row>
                                 <Col xs={3} className="menu-icon">

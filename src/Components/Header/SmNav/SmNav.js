@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { Col, Row } from 'react-bootstrap';
 
 
-const SmNav = ({showNav, closeNav, setShowNav, uid}) => {
+const SmNav = ({showNav, closeNav, setPageTitle, setShowNav, uid}) => {
     return (
         <Col className='remove-padding'>
             <div className="hamburger-menu">
@@ -29,7 +29,7 @@ const SmNav = ({showNav, closeNav, setShowNav, uid}) => {
                         </a>
                     </li>
                     <li>
-                        <Link className="white" to={{pathname: '/createPost'}}  onClick={closeNav}>
+                        <Link className="white" to={{pathname: '/createPost'}}  onClick={() =>{setPageTitle("Create");closeNav()}}>
                             <span className="menu__item">
                                 <Row>
                                     <Col xs={3} className="menu-icon">
@@ -57,7 +57,7 @@ const SmNav = ({showNav, closeNav, setShowNav, uid}) => {
                         </Link>
                     </li> */}
                                         <li>
-                        <Link className="white" to={{pathname: `/profile?id=${uid}`}} onClick={closeNav}>
+                        <Link className="white" to={{pathname: `/profile?id=${uid}`}}  onClick={() =>{setPageTitle("Profile");closeNav()}}>
                             <span className="menu__item">
                                 <Row>
                                     <Col xs={3} className="menu-icon">
@@ -71,7 +71,7 @@ const SmNav = ({showNav, closeNav, setShowNav, uid}) => {
                         </Link>
                     </li>
                     <li>
-                        <Link className="white" to={{pathname: '/settings'}} onClick={closeNav}>
+                        <Link className="white" to={{pathname: '/settings'}}  onClick={() =>{setPageTitle("Settings");closeNav()}}>
                             <span className="menu__item">
                                 <Row>
                                     <Col xs={3} className="menu-icon">
@@ -85,7 +85,7 @@ const SmNav = ({showNav, closeNav, setShowNav, uid}) => {
                         </Link>
                     </li>
                     <li>
-                        <Link className="white" to={{pathname: '/contactUs'}} onClick={closeNav}>
+                        <Link className="white" to={{pathname: '/contactUs'}}  onClick={() =>{setPageTitle("Contact");closeNav()}}>
                             <span className="menu__item">
                                 <Row>
                                     <Col xs={3} className="menu-icon">
@@ -99,7 +99,7 @@ const SmNav = ({showNav, closeNav, setShowNav, uid}) => {
                         </Link>
                     </li>
                     <li>
-                        <Link className="white" to={{pathname: '/aboutUs'}} onClick={closeNav}>
+                        <Link className="white" to={{pathname: '/aboutUs'}}  onClick={() =>{setPageTitle("About Us");closeNav()}}>
                             <span className="menu__item">
                                 <Row>
                                     <Col xs={3} className="menu-icon">
