@@ -28,7 +28,7 @@ const Posts = ({min, max, brand, type, sort, viewCount, blade, status}) => {
     }, []);
 
     const sortData = (data) => {
-        if (sort === 'default') return data;
+        if (sort === 'all') return data;
    
         return [...data].sort((prev, next) => {
             if (sort === 'max') return (prev.price <= next.price) ? 1 : -1;
@@ -39,10 +39,10 @@ const Posts = ({min, max, brand, type, sort, viewCount, blade, status}) => {
     const validFilter = (post) => {
         return post?.price >= min 
             && post?.price <= max 
-            && (post.brand === brand || brand === 'default') 
-            && (post.type === type || type === 'default')
-            && (post.blade === blade || blade === 'default')
-            && (post.status === status || status === 'default');
+            && (post.brand === brand || brand === 'all') 
+            && (post.type === type || type === 'all')
+            && (post.blade === blade || blade === 'all')
+            && (post.status === status || status === 'all');
     };
 
 

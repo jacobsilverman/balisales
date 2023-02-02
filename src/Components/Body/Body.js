@@ -11,13 +11,13 @@ import MenuItem from '@mui/material/MenuItem';
 function Body() {
     const [min, setMin] = useState(0);
     const [max, setMax] = useState(10000);
-    const [brand, setBrand] = useState('default');
-    const [type, setType] = useState('default');
+    const [brand, setBrand] = useState('all');
+    const [type, setType] = useState('all');
     const [displayFilter, setDisplayFilter] = useState(false); // whether the filter is open or not
-    const [sort, setSort] = useState('default');
+    const [sort, setSort] = useState('all');
     const [viewCount, setViewCount] = useState(3);
-    const [blade, setBlade] = useState('default');
-    const [status, setStatus] = useState('default');
+    const [blade, setBlade] = useState('all');
+    const [status, setStatus] = useState('all');
 
     // const [windowScroll, setWindowScroll] = useState(0); 
 
@@ -30,11 +30,11 @@ function Body() {
     const resetFilter = () => {
         setMin(0);
         setMax(10000);
-        setBrand('default');
-        setBlade('default');
-        setType('default');
-        setSort('default');
-        setStatus('default');
+        setBrand('all');
+        setBlade('all');
+        setType('all');
+        setSort('all');
+        setStatus('all');
         setViewCount(3);
     };
 

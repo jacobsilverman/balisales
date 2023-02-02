@@ -42,7 +42,7 @@ function Filter({getOptions, brand, setBrand, max, setMax, min, setMin, type, se
                                     value={sort}
                                     label="Cost"
                                     onChange={(event) => setSort(event.target.value)}>
-                                    <MenuItem value="default">default</MenuItem>
+                                    <MenuItem value="all">all</MenuItem>
                                     {getOptions(sorts, "sort")}
                                 </Select>
                             </FormControl>
@@ -56,7 +56,7 @@ function Filter({getOptions, brand, setBrand, max, setMax, min, setMin, type, se
                                     value={status}
                                     label="status"
                                     onChange={(event) => setStatus(event.target.value)}>
-                                    <MenuItem value="default">default</MenuItem>
+                                    <MenuItem value="all">all</MenuItem>
                                     {getOptions(statuses, "status")}
                                 </Select>
                             </FormControl>
@@ -70,7 +70,7 @@ function Filter({getOptions, brand, setBrand, max, setMax, min, setMin, type, se
                                     value={brand}
                                     label="status"
                                     onChange={(event) => setBrand(event.target.value)}>
-                                    <MenuItem value="default">default</MenuItem>
+                                    <MenuItem value="all">all</MenuItem>
                                     {getOptions(brands, "brand")}
                                 </Select>
                             </FormControl>
@@ -84,7 +84,7 @@ function Filter({getOptions, brand, setBrand, max, setMax, min, setMin, type, se
                                     value={type}
                                     label="type"
                                     onChange={(event) => setType(event.target.value)}>
-                                    <MenuItem value="default">default</MenuItem>
+                                    <MenuItem value="all">all</MenuItem>
                                     {getOptions(types, "type")}
                                 </Select>
                             </FormControl>
@@ -112,7 +112,7 @@ function Filter({getOptions, brand, setBrand, max, setMax, min, setMin, type, se
                                     value={blade}
                                     label="blade"
                                     onChange={(event) => setBlade(event.target.value)}>
-                                    <MenuItem value="default">default</MenuItem>
+                                    <MenuItem value="all">all</MenuItem>
                                     {getOptions(blades, "blade")}
                                 </Select>
                             </FormControl>
