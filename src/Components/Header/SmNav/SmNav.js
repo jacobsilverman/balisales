@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { Col, Row } from 'react-bootstrap';
 
 
-const SmNav = ({signInWithGoogle, showNav, closeNav, setShowNav, uid}) => {
+const SmNav = ({showNav, closeNav, setShowNav, uid}) => {
     return (
         <Col className='remove-padding'>
             <div className="hamburger-menu">
@@ -56,6 +56,34 @@ const SmNav = ({signInWithGoogle, showNav, closeNav, setShowNav, uid}) => {
                             </span>
                         </Link>
                     </li> */}
+                                        <li>
+                        <Link className="white" to={{pathname: `/profile?id=${uid}`}} onClick={closeNav}>
+                            <span className="menu__item">
+                                <Row>
+                                    <Col xs={3} className="menu-icon">
+                                        <i className="material-icons">person</i>
+                                    </Col>
+                                    <Col xs={9}>
+                                        Profile
+                                    </Col>
+                                </Row>
+                            </span>
+                        </Link>
+                    </li>
+                    <li>
+                        <Link className="white" to={{pathname: '/settings'}} onClick={closeNav}>
+                            <span className="menu__item">
+                                <Row>
+                                    <Col xs={3} className="menu-icon">
+                                        <i className="material-icons">settings</i>
+                                    </Col>
+                                    <Col xs={9}>
+                                        Settings
+                                    </Col>
+                                </Row>
+                            </span>
+                        </Link>
+                    </li>
                     <li>
                         <Link className="white" to={{pathname: '/contactUs'}} onClick={closeNav}>
                             <span className="menu__item">
