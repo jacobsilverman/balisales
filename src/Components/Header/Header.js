@@ -21,7 +21,6 @@ function Header() {
     let navigate = useNavigate();
     
     const [isAuth, setIsAuth] = useState(localStorage.getItem("isAuth"));
-    // const [showNav, setShowNav] = useState(false);
     const [showAccount, setShowAccount] = useState(false);
     const [showInbox, setShowInbox] = useState(false);
     const [showNav, setShowNav] = useState(false);
@@ -70,10 +69,6 @@ function Header() {
             setUid(result?.user?.uid);
         })
     }
-    // const closeNav = () => {
-    //     setShowNav(cur => !cur);
-    //     document.getElementById("menu__toggle").checked = false;
-    // }
 
     const resetAllPopovers = (ignore) => {
         ignore !== "inbox" && setShowInbox(false);
@@ -206,30 +201,6 @@ function Header() {
         return (
             <Container>
                 <Row>
-                    {/* {window.innerWidth <= 1135 && 
-                    <Col className='remove-padding'>
-                        <SmNav signInWithGoogle={signInWithGoogle}
-                            showNav={showNav}
-                            closeNav={closeNav}
-                            setPageTitle={setPageTitle}
-                            setShowNav={setShowNav}
-                            uid={uid} />
-                    </Col>} */}
-                    {/* <Col xs={8} md={3} className="center title">
-                        <h1 style={{display:"inline-block",fontSize:"40px",fontFamily:"roboto",paddingTop:"10px"}}>
-                            <a href="/" style={{color:"black", textDecoration: "none"}}>
-                                {pageTitle}
-                            </a>
-                        </h1>
-                    </Col> */}
-                    {/* {window.innerWidth > 1135 && 
-                        <Col>
-                            <LgNav setPageTitle={setPageTitle} />
-                        </Col>
-                    } */}
-
-
-
                     <Col xs={5} sm={4} md={3} lg={2} className="login-container-left">
                         <Link className="white" to={{pathname: '/'}}>
                             <Button onClick={() =>{resetAllPopovers();setPageTitle("Home")}}>
@@ -257,7 +228,6 @@ function Header() {
                     <Col xs={6} sm={4} md={3} lg={2} className="login-container-right">
                         <OverlayTrigger trigger="click" placement="bottom-end" show={showSearch} overlay={searchPopover}>
                             <Button  onClick={() => {resetAllPopovers("search");setShowSearch(show => !show)}}>
-                                
                                 <i className="material-icons">search</i>
                             </Button>
                         </OverlayTrigger>
