@@ -218,13 +218,13 @@ function Header() {
                             </Button>
                         </OverlayTrigger>
                     </Col>
-                    <Col className="center title">
+                    {window.innerWidth > 650 ? <Col className="center title">
                         <h1 style={{display:"inline-block",fontSize:"40px",fontFamily:"roboto",paddingTop:"10px"}}>
                             <a href="/" style={{color:"black", textDecoration: "none"}}>
                                 {pageTitle}
                             </a>
                         </h1>
-                    </Col>
+                    </Col> : <Col />}
                     <Col xs={6} sm={4} md={3} lg={2} className="login-container-right">
                         <OverlayTrigger trigger="click" placement="bottom-end" show={showSearch} overlay={searchPopover}>
                             <Button  onClick={() => {resetAllPopovers("search");setShowSearch(show => !show)}}>
