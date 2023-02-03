@@ -6,7 +6,7 @@ import { Col, Row } from 'react-bootstrap';
 
 const SmNav = ({showNav, closeNav, setPageTitle, setShowNav, uid}) => {
     return (
-        <Col className='remove-padding'>
+        
             <div className="hamburger-menu">
                 <input id="menu__toggle" type="checkbox" onClick={() => setShowNav(cur => !cur)} />
                 <label className="menu__btn" htmlFor="menu__toggle">
@@ -114,7 +114,6 @@ const SmNav = ({showNav, closeNav, setPageTitle, setShowNav, uid}) => {
                     </li>
                 </ul>}
             </div>
-        </Col>
     );
    
 }

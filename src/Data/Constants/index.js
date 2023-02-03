@@ -1,4 +1,4 @@
-import balilogo from '../Images/balilogo_2.svg';
+// import balilogo from '../Images/balilogo_2.svg';
 
 export const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
@@ -17,7 +17,8 @@ export const viewCounts = [1, 2, 3, 4, 6, 12];
 export const statuses = ['available', 'pending', 'sold', 'traded'];
 
 export const pageTitles = {
-    '/': <img alt="Sale" style={{maxWidth:"170px", maxHeight:"170px", display:"inline"}} src={balilogo} />,
+    // '/': <img alt="Sale" style={{maxWidth:"170px", maxHeight:"170px", display:"inline"}} src={balilogo} />,
+    '/': 'Home',
     '/profile': 'Profile',
     '/settings': 'Settings',
     '/account': 'Your Posts',
