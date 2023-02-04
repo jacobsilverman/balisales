@@ -54,7 +54,7 @@ const Profile = () => {
                 </Col>
             </Row>
             <hr />
-            <Account user={params.id} accountView={false} />
+            <Account user={params.id} accountView={false} settingsPage={false} />
         </Container>
     );
 }

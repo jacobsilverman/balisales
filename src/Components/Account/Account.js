@@ -1,11 +1,9 @@
 
 import React, { useEffect, useState } from 'react';
 
-import Grid from '@mui/material/Grid';
 import Spinner from '../../Data/Constants/Spinner.js';
 
 import Post from '../Body/Posts/Post';
-import './Account.scss';
 
 import { getUserPosts } from '../../Data/Services/userInfo';
 const EditModal  = React.lazy(() => import('../../Components/Body/Posts/Post/EditModal'));
@@ -34,7 +32,7 @@ function Account({user, settingsPage}) {
 		} 
 
 		return (
-			<Grid container style={{padding:'0px'}} className="grid-container-posts">
+			<div style={{padding:'20px'}} className="grid-container-posts">
 				{settingsPage && <EditModal 
 					item={selectedPost} 
 					filterPosts={filterPosts}
@@ -56,7 +54,7 @@ function Account({user, settingsPage}) {
 						setSelectedPost={setSelectedPost} />
 						
 				})}
-			</Grid>
+			</div>
         );
     }
 

@@ -65,6 +65,20 @@
     color: red;
 }
 
+@media screen and (max-width: 700px) {
+  .title {
+    display: none;
+  }
+
+  .login-container-left button {
+    min-width: 30px;
+  }
+
+  .login-container-right button {
+    min-width: 30px;
+  }
+}
+
 .white {
     color: white;
 }
@@ -156,31 +170,6 @@
 
 hr {
   margin: 10;
-}
-
-.menu__item {
-  display: block;
-  padding: 22px 22px;
-  color: #333;
-  font-family: "Roobert","Inter","Helvetica Neue",Helvetica,Arial,sans-serif;
-  font-size: 20px;
-  font-weight: 600;
-  text-decoration: none;
-  @media only screen and (min-width: 1135px) {
-    display: flex;
-    justify-content: center;
-    margin: 40px 0 0 0;
-    padding: 0;
-    :hover {
-      color: #CFD8DC;
-    }
-  }
-}
-
-@media only screen and (max-width: 1134px) {
-  .menu__item:hover {
-    background-color: #CFD8DC;
-  }
 }
 
 .menu-icon {

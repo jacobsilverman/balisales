@@ -4,16 +4,12 @@ import { Col } from 'react-bootstrap';
 
 import Spinner from '../../../Data/Constants/Spinner';
 
-import Grid from '@mui/material/Grid';
 import Post from './Post';
 
 import { getAllPosts } from '../../../Data/Services/Home.js';
 
 const Posts = ({min, max, brand, type, sort, viewCount, blade, status}) => {
     const [posts, setPosts] = useState([]);
-
-    const viewCountHeight = 120/viewCount;
-    const showViewCount = isNaN(12/viewCount);
 
     useEffect(() => {
         let ignore = false;
@@ -54,7 +50,7 @@ const Posts = ({min, max, brand, type, sort, viewCount, blade, status}) => {
         let allValidPostsSorted = sortData(posts.filter((post) => validFilter(post)));
 
         return (
-            <Grid container className="grid-container-posts">
+            <div className="grid-container-posts">
                 {allValidPostsSorted.map((item) => {
                     const displayUrl =  `url(${item?.urls[0]})`;
                     const queryParam = 'id='+item?.id;
@@ -62,12 +58,10 @@ const Posts = ({min, max, brand, type, sort, viewCount, blade, status}) => {
                         displayUrl={displayUrl} 
                         item={item} 
                         queryParam={queryParam}
-                        viewCount={viewCount} 
-                        viewCountHeight={viewCountHeight} 
-                        showViewCount={showViewCount}
+                        viewCount={viewCount}
                         key={item.id} />
                 })}
-            </Grid>
+            </div>
         );
     }, [min, max, brand, type, sort, viewCount, blade, status, posts])
 

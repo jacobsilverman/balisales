@@ -76,7 +76,6 @@ function Header() {
         ignore !== "notifications" && setShowNotifications(false);
         ignore !== "search" && setShowSearch(false);
         ignore !== "nav" && setShowNav(false);
-
     }
     
     const navCls = `account-dropdown ${showNav ? "visible" : 'hidden'}`;
@@ -84,26 +83,26 @@ function Header() {
     const navPopover = (
         <Popover id="popover-nav" title="Account Info">
             <Row className={navCls}>
-            <Col xs={12} className="popover-container">
-                <Link className="white" to={{pathname: '/createPost'}}>
-                    <Button  onClick={() =>{resetAllPopovers("create");setPageTitle("Create")}}>
-                        <i className="material-icons">add</i>
-                        &nbsp;Create
-                    </Button>
-                </Link>
-                <hr />
-                <Link className="white" to={{pathname: '/contactUs'}}>
-                    <Button onClick={() =>{resetAllPopovers("contact");setPageTitle("Contact")}}>
-                        <i className="material-icons">contact_support</i>
-                        &nbsp;Contact Support
-                    </Button>
-                </Link>
-                <Link className="white" to={{pathname: '/aboutUs'}}>
-                    <Button onClick={() =>{resetAllPopovers("about");setPageTitle("About Us")}}>
-                        <i className="material-icons">face</i>
-                        &nbsp;About Us
-                    </Button>
-                </Link>
+                <Col xs={12} className="popover-container">
+                    <Link className="white" to={{pathname: '/createPost'}}>
+                        <Button  onClick={() =>{resetAllPopovers("create");setPageTitle("Create")}}>
+                            <i className="material-icons">add</i>
+                            &nbsp;Create
+                        </Button>
+                    </Link>
+                    <hr />
+                    <Link className="white" to={{pathname: '/contactUs'}}>
+                        <Button onClick={() =>{resetAllPopovers("contact");setPageTitle("Contact")}}>
+                            <i className="material-icons">contact_support</i>
+                            &nbsp;Contact Support
+                        </Button>
+                    </Link>
+                    <Link className="white" to={{pathname: '/aboutUs'}}>
+                        <Button onClick={() =>{resetAllPopovers("about");setPageTitle("About Us")}}>
+                            <i className="material-icons">face</i>
+                            &nbsp;About Us
+                        </Button>
+                    </Link>
                 </Col>
             </Row>
         </Popover>
@@ -218,7 +217,7 @@ function Header() {
                             </Button>
                         </OverlayTrigger>
                     </Col>
-                    {window.innerWidth > 650 ? <Col className="center title">
+                    {window.innerWidth > 700 ? <Col className="center title">
                         <h1 style={{display:"inline-block",fontSize:"40px",fontFamily:"roboto",paddingTop:"10px"}}>
                             <a href="/" style={{color:"black", textDecoration: "none"}}>
                                 {pageTitle}
