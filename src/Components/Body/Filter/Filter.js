@@ -1,6 +1,6 @@
 import { Fragment } from 'react';
 
-import { blades, brands, viewCounts, sorts, statuses, types } from '../../../Data/Constants';
+import { blades, brands, times, sorts, statuses, types } from '../../../Data/Constants';
 
 import { Col, Row } from 'react-bootstrap';
 import Button from '@mui/material/Button';
@@ -12,7 +12,7 @@ import Select from '@mui/material/Select';
 
 import './Filter.scss';
 
-function Filter({getOptions, brand, setBrand, max, setMax, min, setMin, type, setType, setDisplayFilter, resetFilter, sort, setSort, viewCount, setViewCount, blade, setBlade, status, setStatus}) {
+function Filter({getOptions, brand, setBrand, max, setMax, min, setMin, type, setType, setDisplayFilter, resetFilter, sort, setSort, time, setTime, blade, setBlade, status, setStatus}) {
 
     return (
         <Fragment>
@@ -35,10 +35,10 @@ function Filter({getOptions, brand, setBrand, max, setMax, min, setMin, type, se
                         </Col>
                         <Col xs={6} sm={6} md={3}  className="dropdown">
                             <FormControl fullWidth>
-                                <InputLabel id="demo-simple-select-label">Cost</InputLabel>
+                                <InputLabel id="filter-sort-select-label">Cost</InputLabel>
                                 <Select
-                                    labelId="demo-simple-select-label"
-                                    id="demo-simple-select"
+                                    labelId="filter-sort-select-label"
+                                    id="filter-sort-select"
                                     value={sort}
                                     label="Cost"
                                     onChange={(event) => setSort(event.target.value)}>
@@ -49,10 +49,10 @@ function Filter({getOptions, brand, setBrand, max, setMax, min, setMin, type, se
                         </Col>
                         <Col xs={6} sm={6} md={3}>
                             <FormControl fullWidth>
-                                <InputLabel id="demo-simple-select-label">status</InputLabel>
+                                <InputLabel id="filter-status-select-label">status</InputLabel>
                                 <Select
-                                    labelId="demo-simple-select-label"
-                                    id="demo-simple-select"
+                                    labelId="filter-status-select-label"
+                                    id="filter-status-select"
                                     value={status}
                                     label="status"
                                     onChange={(event) => setStatus(event.target.value)}>
@@ -63,10 +63,10 @@ function Filter({getOptions, brand, setBrand, max, setMax, min, setMin, type, se
                         </Col>
                         <Col xs={6} sm={6} md={3} className="dropdown">
                             <FormControl fullWidth>
-                                <InputLabel id="demo-simple-select-label">brand</InputLabel>
+                                <InputLabel id="filter-brand-select-label">brand</InputLabel>
                                 <Select
-                                    labelId="demo-simple-select-label"
-                                    id="demo-simple-select"
+                                    labelId="filter-brand-select-label"
+                                    id="filter-brand-select"
                                     value={brand}
                                     label="status"
                                     onChange={(event) => setBrand(event.target.value)}>
@@ -77,10 +77,10 @@ function Filter({getOptions, brand, setBrand, max, setMax, min, setMin, type, se
                         </Col>
                         <Col xs={6} sm={6} md={3}>
                             <FormControl fullWidth>
-                                <InputLabel id="demo-simple-select-label">type</InputLabel>
+                                <InputLabel id="filter-type-select-label">type</InputLabel>
                                 <Select
-                                    labelId="demo-simple-select-label"
-                                    id="demo-simple-select"
+                                    labelId="filter-type-select-label"
+                                    id="filter-type-select"
                                     value={type}
                                     label="type"
                                     onChange={(event) => setType(event.target.value)}>
@@ -92,23 +92,23 @@ function Filter({getOptions, brand, setBrand, max, setMax, min, setMin, type, se
             
                         <Col xs={6} sm={6} md={3}>
                             <FormControl fullWidth>
-                                <InputLabel id="demo-simple-select-label">Show</InputLabel>
+                                <InputLabel id="filter-time-select-label">Time</InputLabel>
                                 <Select
-                                    labelId="demo-simple-select-label"
-                                    id="demo-simple-select"
-                                    value={viewCount}
-                                    label="Show"
-                                    onChange={(event) => setViewCount(event.target.value)}>
-                                    {getOptions(viewCounts, "viewCount")}
+                                    labelId="filter-time-select-label"
+                                    id="filter-time-select"
+                                    value={time}
+                                    label="Time"
+                                    onChange={(event) => setTime(event.target.value)}>
+                                    {getOptions(times, "time")}
                                 </Select>
                             </FormControl>
                         </Col>
                         <Col xs={6} sm={6} md={3}>
                             <FormControl fullWidth>
-                                <InputLabel id="demo-simple-select-label">Blade</InputLabel>
+                                <InputLabel id="filter-blade-select-label">Blade</InputLabel>
                                 <Select
-                                    labelId="demo-simple-select-label"
-                                    id="demo-simple-select"
+                                    labelId="filter-blade-select-label"
+                                    id="filter-blade-select"
                                     value={blade}
                                     label="blade"
                                     onChange={(event) => setBlade(event.target.value)}>

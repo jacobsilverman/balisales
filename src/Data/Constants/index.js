@@ -12,7 +12,7 @@ export const blades = ['live', 'trainer', 'parts'];
 
 export const sorts = ['min', 'max'];
 
-export const viewCounts = [1, 2, 3, 4, 6, 12];
+export const times = ["new", "old"];
 
 export const statuses = ['available', 'pending', 'sold', 'traded'];
 

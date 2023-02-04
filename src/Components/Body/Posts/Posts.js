@@ -8,7 +8,7 @@ import Post from './Post';
 
 import { getAllPosts } from '../../../Data/Services/Home.js';
 
-const Posts = ({min, max, brand, type, sort, viewCount, blade, status}) => {
+const Posts = ({min, max, brand, type, sort, time, blade, status}) => {
     const [posts, setPosts] = useState([]);
 
     useEffect(() => {
@@ -24,9 +24,14 @@ const Posts = ({min, max, brand, type, sort, viewCount, blade, status}) => {
     }, []);
 
     const sortData = (data) => {
-        if (sort === 'all') return data;
-   
-        return [...data].sort((prev, next) => {
+        const sortedByTime = [...data].sort((a, b) => {
+            if (time === "new") return (a.timeStamp <= b.timeStamp) ? 1 : -1;
+            else return (b.timeStamp < a.timeStamp) ? 1 : -1;
+        })
+
+        if (sort === 'all') return sortedByTime;
+
+        return sortedByTime.sort((prev, next) => {
             if (sort === 'max') return (prev.price <= next.price) ? 1 : -1;
             return (prev.price >= next.price) ? 1 : -1;
         });
@@ -58,12 +63,11 @@ const Posts = ({min, max, brand, type, sort, viewCount, blade, status}) => {
                         displayUrl={displayUrl} 
                         item={item} 
                         queryParam={queryParam}
-                        viewCount={viewCount}
                         key={item.id} />
                 })}
             </div>
         );
-    }, [min, max, brand, type, sort, viewCount, blade, status, posts])
+    }, [min, max, brand, type, sort, time, blade, status, posts])
 
 
     return (

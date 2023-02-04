@@ -15,7 +15,7 @@ function Body() {
     const [type, setType] = useState('all');
     const [displayFilter, setDisplayFilter] = useState(false); // whether the filter is open or not
     const [sort, setSort] = useState('all');
-    const [viewCount, setViewCount] = useState(3);
+    const [time, setTime] = useState('new');
     const [blade, setBlade] = useState('all');
     const [status, setStatus] = useState('all');
 
@@ -35,7 +35,7 @@ function Body() {
         setType('all');
         setSort('all');
         setStatus('all');
-        setViewCount(3);
+        setTime('new');
     };
 
     const getOptions = (options, option) => {
@@ -64,7 +64,7 @@ function Body() {
                 setDisplayFilter={setDisplayFilter} 
                 resetFilter={resetFilter}
                 sort={sort} setSort={setSort} 
-                viewCount={viewCount} setViewCount={setViewCount}
+                time={time} setTime={setTime}
                 blade={blade} setBlade={setBlade}
                 status={status} setStatus={setStatus} />
         </Col>
@@ -80,7 +80,7 @@ function Body() {
                     brand={brand} 
                     type={type}
                     sort={sort}
-                    viewCount={viewCount}
+                    time={time}
                     blade={blade}
                     status={status} />
             </Row>
