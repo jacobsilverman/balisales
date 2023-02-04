@@ -6,23 +6,7 @@ import Spinner from '../../../Data/Constants/Spinner';
 
 import Post from './Post';
 
-import { getAllPosts } from '../../../Data/Services/Home.js';
-
-const Posts = ({min, max, brand, type, sort, time, blade, status}) => {
-    const [posts, setPosts] = useState([]);
-
-    useEffect(() => {
-        let ignore = false;
-        if (!ignore) {
-          getAllPosts().then((allPosts) => {
-            setPosts(allPosts);
-          }).catch(() => {
-            console.log("error getting posts");
-          });
-        };
-        return () => { ignore = true };
-    }, []);
-
+const Posts = ({min, max, brand, posts, type, sort, time, blade, status}) => {
     const sortData = (data) => {
         const sortedByTime = [...data].sort((a, b) => {
             if (time === "new") return (a.timeStamp <= b.timeStamp) ? 1 : -1;

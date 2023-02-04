@@ -1,6 +1,8 @@
-import React, { Suspense } from 'react';
+import React, { useEffect, useState, Suspense } from 'react';
 
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+
+import { getAllPosts } from '../Data/Services/Home.js';
 
 import Spinner from '../Data/Constants/Spinner';
 
@@ -16,12 +18,26 @@ const AboutUs = React.lazy(() => import('../Components/AboutUs'));
 const Discuss = React.lazy(() => import('../Components/Discuss'));
 
 function Routing() {
+    const [posts, setPosts] = useState([]);
+
+    useEffect(() => {
+        let ignore = false;
+        if (!ignore) {
+          getAllPosts().then((allPosts) => {
+            setPosts(allPosts);
+          }).catch(() => {
+            console.log("error getting posts");
+          });
+        };
+        return () => { ignore = true };
+    }, []);
+
     return (
         <BrowserRouter>
-            <Header />
+            <Header posts={posts} />
             <Suspense fallback={<Spinner />}>
                 <Routes>
-                    <Route path='/' element={<Body />} />
+                    <Route path='/' element={<Body posts={posts} />} />
                     <Route path='/singlePost' element={<SelectPost />} />
                     <Route path='/createPost' element={<CreatePost />} />
                     <Route path="/settings" element={<Settings />} />

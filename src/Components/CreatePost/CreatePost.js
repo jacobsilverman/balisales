@@ -239,7 +239,7 @@ function CreatePost() {
                     <TextField fullWidth label="title" color="" error={validation.title === false && disableSubmit} type="search" value={title} onChange={handleTitleChange} />
                 </Col>
                 <Col xs={12} md={6} className="create-input">
-                    <TextField fullWidth label="price" color="" error={validation.price === false && disableSubmit} type="number" value={price} onChange={handlePriceChange}/>
+                    <TextField fullWidth label="price" color="" error={validation.price === false && disableSubmit} type="number" value={price} onChange={handlePriceChange} />
                 </Col>
                 <Col xs={12} md={6} className="create-input">
                     <FormControl fullWidth error={validation.brand === false && disableSubmit}>

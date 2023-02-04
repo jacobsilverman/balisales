@@ -8,7 +8,7 @@ import './Body.scss';
 import Filter from './Filter';
 import MenuItem from '@mui/material/MenuItem';
 
-function Body() {
+function Body({posts}) {
     const [min, setMin] = useState(0);
     const [max, setMax] = useState(10000);
     const [brand, setBrand] = useState('all');
@@ -78,6 +78,7 @@ function Body() {
                     min={min} 
                     max={max} 
                     brand={brand} 
+                    posts={posts}
                     type={type}
                     sort={sort}
                     time={time}

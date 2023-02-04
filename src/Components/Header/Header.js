@@ -4,8 +4,6 @@ import { Link } from 'react-router-dom';
 import './Header.scss';
 import { setUserLogin, getProfilePicture } from '../../Data/Services/userInfo.js';
 import { pageTitles } from '../../Data/Constants';
-// import SmNav from './SmNav/SmNav';
-// import LgNav from './LgNav/LgNav';
 
 import { Col, Container, OverlayTrigger, Popover, Row } from 'react-bootstrap';
 import defaultProfile from '../../Data/Images/default-profile.jpg';
@@ -14,10 +12,45 @@ import { auth, provider } from '../../firebase-config';
 import { signInWithPopup, signOut } from 'firebase/auth';
 import { useNavigate }   from 'react-router-dom';
 
-import Button from '@mui/material/Button';
-import { TextField } from '@mui/material';
+import { Button, TextField } from '@mui/material';
 
-function Header() {
+const SearchBar = ({posts, showSearch}) => {
+    const [searchValue, setSearchValue] = useState("");
+
+    const searchFilter = useMemo(() => {
+        const searchItems = ["test", "yes", "new"];
+        const result = searchItems.filter((item) => {
+            return item.includes(searchValue);
+        }).map((item) => {
+            return (<div key={"search-"+item}>{item}</div>)
+        });
+        return result;
+    },[searchValue])
+    
+    const searchCls = `account-dropdown ${showSearch ? "visible" : 'hidden'}`;
+    const searchAbility = (event) => {
+        let newValue = event.target.value;
+        if (newValue.match(/[%<>\\$'"]/)) {
+            return
+        }
+        setSearchValue(newValue);
+    }
+  
+    return (
+        <Fragment>
+            <Row className={searchCls}>
+                <Col xs={12} className="popover-container">
+                    <TextField fullWidth label="search" color="" type="search" defaultValue={searchValue} onChange={searchAbility} />
+                </Col>
+            </Row>
+            {searchValue !== "" && searchFilter.length > 0 && <div className="search-results-container">
+                {searchFilter}
+            </div>}
+        </Fragment>
+    );
+  };
+
+function Header({posts}) {
     let navigate = useNavigate();
     
     const [isAuth, setIsAuth] = useState(localStorage.getItem("isAuth"));
@@ -77,7 +110,7 @@ function Header() {
         ignore !== "search" && setShowSearch(false);
         ignore !== "nav" && setShowNav(false);
     }
-    
+
     const navCls = `account-dropdown ${showNav ? "visible" : 'hidden'}`;
 
     const navPopover = (
@@ -108,16 +141,9 @@ function Header() {
         </Popover>
     );
 
-
-    const searchCls = `account-dropdown ${showSearch ? "visible" : 'hidden'}`;
-
     const searchPopover = (
         <Popover id="popover-search" title="Account Info">
-            <Row className={searchCls}>
-                <Col xs={12} className="popover-container">
-                    <input></input>
-                </Col>
-            </Row>
+            <SearchBar posts={posts} showSearch={showSearch} />
         </Popover>
     );
 
