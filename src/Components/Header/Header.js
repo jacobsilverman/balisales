@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import './Header.scss';
 import { setUserLogin, getProfilePicture } from '../../Data/Services/userInfo.js';
 import { pageTitles } from '../../Data/Constants';
+import Companies from '../../Data/Constants/Companies.json';
 
 import { Col, Container, OverlayTrigger, Popover, Row } from 'react-bootstrap';
 import defaultProfile from '../../Data/Images/default-profile.jpg';
@@ -18,21 +19,36 @@ const SearchBar = ({posts, showSearch}) => {
     const [searchValue, setSearchValue] = useState("");
 
     const searchFilter = useMemo(() => {
-        const searchItems = ["test", "yes", "new"];
-        const result = searchItems.filter((item) => {
-            return item.includes(searchValue);
-        }).map((item) => {
-            return (<div key={"search-"+item}>{item}</div>)
+        let cache = {}
+        console.log(Companies);
+        let result = posts.map((post) => {
+            if (!cache[post.author.name.toLowerCase()] && post.author.name.toLowerCase().includes(searchValue.toLowerCase())){
+                cache[post.author.name.toLowerCase()] = true;
+                return (<a href={"/profile?id="+post?.author?.id} key={"search-"+post?.id}>{post?.author.name}</a>)
+            } else if (post.title.toLowerCase().includes(searchValue)) {
+                return (<a href={"/singlePost?id="+post.id}  key={"search-"+post?.id}>{post.title}</a>);
+            }
         });
+
+        result = [...result, ...Object.keys(Companies).map((company) => {
+            let val = [];
+            if (company.toLowerCase().includes(searchValue.toLowerCase())){
+                val.push((<div>{company}</div>))
+            }
+            Companies[company].forEach((bali) => {
+                if (bali.toLowerCase().includes(searchValue.toLowerCase())){
+                    val.push((<div>{bali+": "+company}</div>))
+                }
+            })
+            return val;
+        })]
+
         return result;
-    },[searchValue])
+    }, [searchValue])
     
     const searchCls = `account-dropdown ${showSearch ? "visible" : 'hidden'}`;
     const searchAbility = (event) => {
         let newValue = event.target.value;
-        if (newValue.match(/[%<>\\$'"]/)) {
-            return
-        }
         setSearchValue(newValue);
     }
   
@@ -40,7 +56,7 @@ const SearchBar = ({posts, showSearch}) => {
         <Fragment>
             <Row className={searchCls}>
                 <Col xs={12} className="popover-container">
-                    <TextField fullWidth label="search" color="" type="search" defaultValue={searchValue} onChange={searchAbility} />
+                    <TextField autoComplete="off" fullWidth label="search" color="" type="search" defaultValue={searchValue} onChange={searchAbility} />
                 </Col>
             </Row>
             {searchValue !== "" && searchFilter.length > 0 && <div className="search-results-container">
