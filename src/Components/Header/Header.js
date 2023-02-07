@@ -246,7 +246,7 @@ const Header = ({posts}) => {
             <Row className={notificationCls}>
                 <Button xs={3} className="popover-container">
                     <i className="material-icons">highlight</i>
-                    &nbsp;no new alerts
+                    &nbsp;{t("no new alerts")}
                 </Button>
             </Row>
         </Popover>
@@ -259,7 +259,7 @@ const Header = ({posts}) => {
             <Row className={inboxCls}>
                 <Button xs={3} className="popover-container">
                     <i className="material-icons">message</i>
-                    &nbsp;no new messages
+                    &nbsp;{t("no new messages")}
                 </Button>
             </Row>
         </Popover>

@@ -20,6 +20,7 @@ import Select from '@mui/material/Select';
 import TextareaAutosize from '@mui/material/TextareaAutosize';
 
 import './CreatePost.scss';
+import { useTranslation } from 'react-i18next';
 
 function CreatePost() {
     const [title, setTitle] = useState("");
@@ -48,6 +49,8 @@ function CreatePost() {
         condition: false,
         blade: false
     });
+
+    const { t } = useTranslation();
 
     let isValidated = useMemo(() => {
         const valid = !Object.values(validation).some((item) => item === false);
@@ -97,7 +100,7 @@ function CreatePost() {
             allInputs.push(
                 <Col xs="12" sm={(numberOfUploads > 0) ? 6 : 12} className="setting-item center" key={i+"+"+numberOfUploads}>
                     <label className='profile-label' htmlFor={"inputPicture-"+i} onClick={(i !==0)  ? () => removePicture(i) : null}>
-                        <span>{files[numberOfUploads-i]?.name || "Upload Image"}</span>
+                        <span>{files[numberOfUploads-i]?.name || t("Upload Image")}</span>
                         {(i===0) && <input id={"inputPicture-"+i} className="profile-input" type="file" onChange={e => handlePictureChange(e, i)} accept="/image/*" />}
                         <br />
                         {(i===0) ? <FaImage size={70} className="" /> : <img src={showFiles[numberOfUploads-i]} className="upload-image" alt="preview image" />}
@@ -172,7 +175,7 @@ function CreatePost() {
 
     const getOptions = (options, option) => {
         return options.map((name) => {
-            return <MenuItem key={option+"-"+name} value={name}>{name}</MenuItem>;
+            return <MenuItem key={option+"-"+name} value={name}>{t(name)}</MenuItem>;
         });
     };
 
@@ -236,14 +239,14 @@ function CreatePost() {
         <Container className="create-container">
             <Row>
                 <Col xs={12} md={6} className="create-input">
-                    <TextField fullWidth label="title" color="" error={validation.title === false && disableSubmit} type="search" value={title} onChange={handleTitleChange} />
+                    <TextField fullWidth label={t("Title")} color="" error={validation.title === false && disableSubmit} type="search" value={title} onChange={handleTitleChange} />
                 </Col>
                 <Col xs={12} md={6} className="create-input">
-                    <TextField fullWidth label="price" color="" error={validation.price === false && disableSubmit} type="number" value={price} onChange={handlePriceChange} />
+                    <TextField fullWidth label={t("Price")} color="" error={validation.price === false && disableSubmit} type="number" value={price} onChange={handlePriceChange} />
                 </Col>
                 <Col xs={12} md={6} className="create-input">
                     <FormControl fullWidth error={validation.brand === false && disableSubmit}>
-                        <InputLabel id="brand-label">Brand</InputLabel>
+                        <InputLabel id="brand-label">{t("Brand")}</InputLabel>
                         <Select
                             labelId="brand-label"
                             id="brand-select"
@@ -257,11 +260,11 @@ function CreatePost() {
                 </Col>
                 <Col xs={12} md={6} className="create-input">
                     <FormControl fullWidth error={validation.sale === false && disableSubmit}>
-                        <InputLabel id="sale-type-label">Sale Type</InputLabel>
+                        <InputLabel id="sale-type-label">{t("Sale Type")}</InputLabel>
                         <Select
                             labelId="sale-type-label"
                             id="sale-type-select"
-                            label="Sale Type"
+                            label={t("Sale Type")}
                             defaultValue=""
                             value={type}
                             onChange={handleSaleChange}>
@@ -271,11 +274,11 @@ function CreatePost() {
                 </Col>
                 <Col xs={12} md={6} className="create-input">
                     <FormControl fullWidth error={validation.condition === false && disableSubmit}>
-                        <InputLabel id="condition-label">Condition</InputLabel>
+                        <InputLabel id="condition-label">{t("Condition")}</InputLabel>
                         <Select
                             labelId="condition-label"
                             id="condition-select"
-                            label="Condition"
+                            label={t("Condition")}
                             defaultValue=""
                             value={condition}
                             onChange={handleConditionChange}>
@@ -285,11 +288,11 @@ function CreatePost() {
                 </Col>
                 <Col xs={12} md={6} className="create-input">
                     <FormControl fullWidth error={validation.blade === false && disableSubmit}>
-                        <InputLabel id="blade-label">Blade</InputLabel>
+                        <InputLabel id="blade-label">{t("Blade")}</InputLabel>
                         <Select
                             labelId="blade-label"
                             id="blade-select"
-                            label="Blade"
+                            label={t("Blade")}
                             defaultValue=""
                             value={blade}
                             onChange={handleBladeChange}>
@@ -300,7 +303,7 @@ function CreatePost() {
             </Row>
             <Row>
                 <Col xs={12}>
-                    <TextareaAutosize style={{width: "100%"}} minRows={5} value={description} placeholder="Description" label="description" onChange={(event) => setDescription(event.target.value)} />
+                    <TextareaAutosize style={{width: "100%"}} minRows={5} value={description} placeholder={t("Description")} label={t("Description")} onChange={(event) => setDescription(event.target.value)} />
                 </Col>
             </Row>
             <Row>
@@ -308,7 +311,7 @@ function CreatePost() {
             </Row>
             <Row>
                 <Col xs={12} className="center">
-                    <Button disabled={disableSubmit} className="submit-button" onClick={createPost}>Submit</Button>
+                    <Button disabled={disableSubmit} className="submit-button" onClick={createPost}>{t("Submit")}</Button>
                 </Col>
             </Row>
         </Container>

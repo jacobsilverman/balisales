@@ -14,10 +14,13 @@ import { Col, Row } from 'react-bootstrap';
 import Button from '@mui/material/Button';
 
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 function SelectPost() {
     const urlSearchParams = new URLSearchParams(window.location.search);
     const params = Object.fromEntries(urlSearchParams.entries());
+    const { t } = useTranslation();
+    
     const [createdDate, setCreatedData] = useState(null);
 
     const [displayImage, setDisplayImage] = useState(0);
@@ -57,10 +60,10 @@ function SelectPost() {
 
             {displayPost?.numberOfImages > 1 && <Row>
                 <Col xs={6} className="previous-image">
-                    <Button variant="contained" onClick={() => setDisplayImage(cur => (cur-1) < 0 ? displayPost?.numberOfImages-1 : (cur-1))}>Previous</Button>
+                    <Button variant="contained" onClick={() => setDisplayImage(cur => (cur-1) < 0 ? displayPost?.numberOfImages-1 : (cur-1))}>{t("Previous")}</Button>
                 </Col>
                 <Col xs={6} className="next-image">
-                    <Button variant="contained" onClick={() => setDisplayImage(cur => (cur+1)%displayPost?.numberOfImages)}>Next</Button>
+                    <Button variant="contained" onClick={() => setDisplayImage(cur => (cur+1)%displayPost?.numberOfImages)}>{t("Next")}</Button>
                 </Col>
             </Row>}
 
@@ -70,13 +73,13 @@ function SelectPost() {
                     <div style={{display: "flex", justifyContent: "space-evenly"}}>
                         <div className="content-wrapper">
                             <div className="desciption-title">
-                                Created
+                                {t("Created")}
                             </div>
                             {createdDate}
                         </div>
                         <div className="content-wrapper">
                             <div className="desciption-title">
-                                {displayPost?.type}
+                                {t(displayPost?.type)}
                             </div>
                             {displayPost?.price}
                         </div>
@@ -89,7 +92,7 @@ function SelectPost() {
                     </div>
                     <Row className="content-wrapper">
                         <div className="desciption-title">
-                            description
+                            {t("Description")}
                         </div>
                         <Col xs={12}>
                             {displayPost?.description}

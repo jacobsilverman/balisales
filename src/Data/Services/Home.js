@@ -25,10 +25,6 @@ export const getAllPosts = async () => {
     });
 
     return Promise.all(allData).then((result) => {
-      // const sortedData = result.sort((prev, next) => {
-      //   return next.timeStamp - prev.timeStamp;
-      // });
-      
       return result;
     })
   };
