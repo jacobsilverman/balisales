@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo } from 'react';
 
 import { Col } from 'react-bootstrap';
 
@@ -9,14 +9,14 @@ import Post from './Post';
 const Posts = ({min, max, brand, posts, type, sort, time, blade, status}) => {
     const sortData = (data) => {
         const sortedByTime = [...data].sort((a, b) => {
-            if (time === "new") return (a.timeStamp <= b.timeStamp) ? 1 : -1;
+            if (time === "New") return (a.timeStamp <= b.timeStamp) ? 1 : -1;
             else return (b.timeStamp < a.timeStamp) ? 1 : -1;
         })
 
-        if (sort === 'all') return sortedByTime;
+        if (sort === 'All') return sortedByTime;
 
         return sortedByTime.sort((prev, next) => {
-            if (sort === 'max') return (prev.price <= next.price) ? 1 : -1;
+            if (sort === 'Maximum') return (prev.price <= next.price) ? 1 : -1;
             return (prev.price >= next.price) ? 1 : -1;
         });
     };
@@ -24,10 +24,10 @@ const Posts = ({min, max, brand, posts, type, sort, time, blade, status}) => {
     const validFilter = (post) => {
         return post?.price >= min 
             && post?.price <= max 
-            && (post.brand === brand || brand === 'all') 
-            && (post.type === type || type === 'all')
-            && (post.blade === blade || blade === 'all')
-            && (post.status === status || status === 'all');
+            && (post?.brand?.toLowerCase() === brand?.toLowerCase() || brand === 'All') 
+            && (post?.type?.toLowerCase() === type?.toLowerCase() || type === 'All')
+            && (post?.blade?.toLowerCase() === blade?.toLowerCase() || blade === 'All')
+            && (post?.status?.toLowerCase() === status?.toLowerCase() || status === 'All');
     };
 
 

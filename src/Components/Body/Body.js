@@ -8,17 +8,21 @@ import './Body.scss';
 import Filter from './Filter';
 import MenuItem from '@mui/material/MenuItem';
 
+import { useTranslation } from "react-i18next";
+
 function Body({posts}) {
     const [min, setMin] = useState(0);
     const [max, setMax] = useState(10000);
-    const [brand, setBrand] = useState('all');
-    const [type, setType] = useState('all');
+    const [brand, setBrand] = useState('All');
+    const [type, setType] = useState('All');
     const [displayFilter, setDisplayFilter] = useState(false); // whether the filter is open or not
-    const [sort, setSort] = useState('all');
-    const [time, setTime] = useState('new');
-    const [blade, setBlade] = useState('all');
-    const [status, setStatus] = useState('all');
+    const [sort, setSort] = useState('All');
+    const [time, setTime] = useState('New');
+    const [blade, setBlade] = useState('All');
+    const [status, setStatus] = useState('All');
 
+
+    const {t} = useTranslation();
     // const [windowScroll, setWindowScroll] = useState(0); 
 
     // useEffect(() => {
@@ -30,17 +34,17 @@ function Body({posts}) {
     const resetFilter = () => {
         setMin(0);
         setMax(10000);
-        setBrand('all');
-        setBlade('all');
-        setType('all');
-        setSort('all');
-        setStatus('all');
-        setTime('new');
+        setBrand('All');
+        setBlade('All');
+        setType('All');
+        setSort('All');
+        setStatus('All');
+        setTime('New');
     };
 
     const getOptions = (options, option) => {
         return options.map((name) => {
-            return <MenuItem key={option+"-"+name} value={name}>{name}</MenuItem>;
+            return <MenuItem key={option+"-"+name} value={name}>{t(name)}</MenuItem>;
         });
     };
 
@@ -49,7 +53,7 @@ function Body({posts}) {
     const openFilterButton = (
         <span className="filter-button-container">
             <Button className="filter-button" onClick={() => {setDisplayFilter(true)}}>
-                <b>FILTER</b>
+                <b>{t("Filter")}</b>
             </Button>
         </span>
     );
@@ -66,7 +70,8 @@ function Body({posts}) {
                 sort={sort} setSort={setSort} 
                 time={time} setTime={setTime}
                 blade={blade} setBlade={setBlade}
-                status={status} setStatus={setStatus} />
+                status={status} setStatus={setStatus}
+                t={t} />
         </Col>
     );
 

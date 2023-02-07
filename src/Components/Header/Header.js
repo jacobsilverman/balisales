@@ -17,7 +17,7 @@ import { Button, TextField } from '@mui/material';
 
 import { useTranslation } from "react-i18next";
 
-const SearchBar = ({posts, showSearch}) => {
+const SearchBar = ({posts, showSearch, t}) => {
     const [searchValue, setSearchValue] = useState("");
 
     const searchFilter = useMemo(() => {
@@ -57,7 +57,7 @@ const SearchBar = ({posts, showSearch}) => {
         <Fragment>
             <Row className={searchCls}>
                 <Col xs={12} className="popover-container">
-                    <TextField autoComplete="off" fullWidth label="search" color="" type="search" defaultValue={searchValue} onChange={searchAbility} />
+                    <TextField autoComplete="off" fullWidth label={t("Search")} color="" type="search" defaultValue={searchValue} onChange={searchAbility} />
                 </Col>
             </Row>
             {searchValue !== "" && searchFilter.length > 0 && <div className="search-results-container">
@@ -67,7 +67,7 @@ const SearchBar = ({posts, showSearch}) => {
     );
 };
 
-const AccountOptions = ({uid, isAuth, resetAllPopovers, signInWithGoogle, signUserOut, showAccount, setShowAccount, setPageTitle}) => {
+const AccountOptions = ({uid, isAuth, resetAllPopovers, signInWithGoogle, signUserOut, showAccount, setShowAccount, setPageTitle, t}) => {
     const [showLanguages, setShowLanguages] = useState(false);
 
     const {i18n} = useTranslation();
@@ -99,7 +99,7 @@ const AccountOptions = ({uid, isAuth, resetAllPopovers, signInWithGoogle, signUs
             <Col xs={12} className="popover-container">
                 <Button onClick={() => {setShowLanguages(true);}}>
                     <i className="material-icons">language</i>
-                    <span>&nbsp;Language</span>
+                    <span>&nbsp;{t("Language")}</span>
                 </Button>
                 
                 <Link to={{pathname: '/settings'}} onClick={() => {setShowAccount(show => !show);setPageTitle("Settings")}}>
@@ -113,13 +113,13 @@ const AccountOptions = ({uid, isAuth, resetAllPopovers, signInWithGoogle, signUs
                     <Link to={{pathname: '/profile?id='+uid}} onClick={() => {setShowAccount(show => !show); setPageTitle("Profile")}}>
                         <Button>
                             <i className="material-icons">person</i>
-                            <span>&nbsp;Profile</span>
+                            <span>&nbsp;{t("Profile")}</span>
                         </Button>
                     </Link>
                     <Link to={{pathname: '/settings'}} onClick={() => {setShowAccount(show => !show);setPageTitle("Settings")}}>
                         <Button>
                             <i className="material-icons">settings</i>
-                            <span>&nbsp;Settings</span>
+                            <span>&nbsp;{t("Settings")}</span>
                         </Button>
                     </Link>
                     <hr />
@@ -127,11 +127,11 @@ const AccountOptions = ({uid, isAuth, resetAllPopovers, signInWithGoogle, signUs
                 <Link to={{pathname: '/'}}>
                     {isAuth ? <Button onClick={signUserOut} color="error">
                         <i className="material-icons">logout</i>
-                        <span>&nbsp;Logout</span>
+                        <span>&nbsp;{t("Log Out")}</span>
                     </Button>
                     :<Button onClick={signInWithGoogle}>
                         <i className="material-icons">login</i>
-                        <span>&nbsp;Log In</span>
+                        <span>&nbsp;{t("Log In")}</span>
                     </Button>}
                 </Link>
             </Col>
@@ -212,20 +212,20 @@ const Header = ({posts}) => {
                     <Link className="white" to={{pathname: '/createPost'}}>
                         <Button  onClick={() =>{resetAllPopovers("create");setPageTitle("Create")}}>
                             <i className="material-icons">add</i>
-                            &nbsp;Create
+                            &nbsp;{t("Create")}
                         </Button>
                     </Link>
                     <hr />
                     <Link className="white" to={{pathname: '/contactUs'}}>
                         <Button onClick={() =>{resetAllPopovers("contact");setPageTitle("Contact")}}>
                             <i className="material-icons">contact_support</i>
-                            &nbsp;Contact Support
+                            &nbsp;{t("Contact Support")}
                         </Button>
                     </Link>
                     <Link className="white" to={{pathname: '/aboutUs'}}>
                         <Button onClick={() =>{resetAllPopovers("about");setPageTitle("About")}}>
                             <i className="material-icons">face</i>
-                            &nbsp;About Us
+                            &nbsp;{t("About Us")}
                         </Button>
                     </Link>
                 </Col>
@@ -235,7 +235,7 @@ const Header = ({posts}) => {
 
     const searchPopover = (
         <Popover id="popover-search" title="Account Info">
-            <SearchBar posts={posts} showSearch={showSearch} />
+            <SearchBar posts={posts} showSearch={showSearch} t={t} />
         </Popover>
     );
 
@@ -275,7 +275,8 @@ const Header = ({posts}) => {
                 signUserOut={signUserOut} 
                 showAccount={showAccount} 
                 setShowAccount={setShowAccount}
-                setPageTitle={setPageTitle} />
+                setPageTitle={setPageTitle}
+                t={t} />
         </Popover>
     );
 
@@ -283,7 +284,7 @@ const Header = ({posts}) => {
         return (
             <Container>
                 <Row>
-                    <Col xs={4} sm={3} md={3} lg={2} className="login-container-left">
+                    <Col xs={3} sm={3} md={3} lg={2} className="login-container-left">
                         <Link className="white" to={{pathname: '/'}}>
                             <Button onClick={() =>{resetAllPopovers();setPageTitle("Home")}}>
                                 <i className="material-icons">home</i>
@@ -291,7 +292,7 @@ const Header = ({posts}) => {
                         </Link>
                         <Link className="white" to={{pathname: '/'}}>
                             <Button onClick={() =>{resetAllPopovers();setPageTitle("Home")}}>
-                                Browse
+                                {t("Browse")}
                             </Button>
                         </Link>
                         <OverlayTrigger trigger="click" placement="bottom-start" show={showNav} overlay={navPopover}>
@@ -307,7 +308,7 @@ const Header = ({posts}) => {
                             </a>
                         </h1>
                     </Col> : <Col />}
-                    <Col xs={7} sm={5} md={3} lg={2} className="login-container-right">
+                    <Col xs={8} sm={5} md={3} lg={2} className="login-container-right">
                         <OverlayTrigger trigger="click" placement="bottom-end" show={showSearch} overlay={searchPopover}>
                             <Button  onClick={() => {resetAllPopovers("search");setShowSearch(show => !show)}}>
                                 <i className="material-icons">search</i>
@@ -327,8 +328,8 @@ const Header = ({posts}) => {
                         </OverlayTrigger>}
                         {!isAuth && 
                         <Fragment>
-                            <Button variant='outlined' size="medium" onClick={signInWithGoogle}  style={{textTransform: 'none', padding:"5px",margin:"5px"}}>Log In</Button>
-                            <Button variant='contained' size="medium" onClick={signInWithGoogle}  style={{textTransform: 'none', padding:"5px",margin:"5px"}}>Sign Up</Button>
+                            <Button variant='outlined' size="medium" onClick={signInWithGoogle}  style={{textTransform: 'none', padding:"5px",margin:"5px"}}>{t("Log In")}</Button>
+                            <Button variant='contained' size="medium" onClick={signInWithGoogle}  style={{textTransform: 'none', padding:"5px",margin:"5px"}}>{t("Sign Up")}</Button>
                         </Fragment>}
                         <OverlayTrigger trigger="click" placement="bottom-end" show={showAccount} overlay={accountOptionsPopover}>
                             <Button onClick={() => {resetAllPopovers("account");setShowAccount(show => !show) }}>

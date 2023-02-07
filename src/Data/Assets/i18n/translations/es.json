@@ -1,11 +1,1 @@
-{
-  "Home": "Hogar",
-
-  "Create": "Crear",
-
-  "Contact": "Contacto",
-
-  "About": "Información",
-
-  "Filter": "Filtrar"
-}
+{"Home":"Inicio","Create":"Crear","Contact":"Contacto","About":"Acerca de","Filter":"Filtro","Reset":"Restablecer","Minimum":"Mínimo","Maximum":"Máximo","Cost":"Coste","Status":"Estado","Brand":"Marca","Type":"Tipo","Time":"Tiempo","Blade":"Blade","All":"Todos","Available":"Disponible","Pending":"Pendiente","Sold":"Vendido","Traded":"Negociado","Selling":"Venta","Trading":"Comercio","Buying":"Compra","New":"Nuevo","Old":"Antiguo","Live":"En vivo","Trainer":"Entrenador","Parts":"Piezas","Log In":"Iniciar sesión","Log Out":"Cerrar sesión","Sign Up":"Registrarse","Browse":"Examinar","Contact Support":"Contactar con soporte","About Us":"Acerca de nosotros","Language":"Idioma","Title":"Título","Price":"Precio","Condition":"Condición","Sale Type":"Tipo de venta","Description":"Descripción","Upload Image":"Subir imagen","Submit":"Enviar","Search":"Buscar"}

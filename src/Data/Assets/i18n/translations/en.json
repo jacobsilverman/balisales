@@ -1,11 +1,1 @@
-{
-  "Home": "Home",
-
-  "Create": "Create",
-
-  "Contact": "Contact",
-
-  "About": "About",
-
-  "Filter": "Filter"
-}
+{"Home":"Home","Create":"Create","Contact":"Contact","About":"About","Filter":"Filter","Reset":"Reset","Minimum":"Minimum","Maximum":"Maximum","Cost":"Cost","Status":"Status","Brand":"Brand","Type":"Type","Time":"Time","Blade":"Blade","All":"All","Available":"Available","Pending":"Pending","Sold":"Sold","Traded":"Traded","Selling":"Selling","Trading":"Trading","Buying":"Buying","New":"New","Old":"Old","Live":"Live","Trainer":"Trainer","Parts":"Parts","Log In":"Log In","Log Out":"Log Out","Sign Up":"Sign Up","Browse":"Browse","Contact Support":"Contact Support","About Us":"About Us","Language":"Language","Title":"Title","Price":"Price","Condition":"Condition","Sale Type":"Sale Type","Description":"Description","Upload Image":"Upload Image","Submit":"Submit","Search":"Search"}

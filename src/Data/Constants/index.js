@@ -6,15 +6,15 @@ export const brands = ['baliplus', 'squid', 'kershaw', 'bradley', 'brs', 'mw', '
 
 export const usernames = ['flipwrists', 'drigk', 'santa', 'gregg', 'sammy', 'retail'];
 
-export const types = ['wts', 'wtt', 'wtb'];
+export const types = ['Selling', 'Trading', 'Buying'];
 
-export const blades = ['live', 'trainer', 'parts'];
+export const blades = ['Live', 'Trainer', 'Parts'];
 
-export const sorts = ['min', 'max'];
+export const sorts = ['Minimum', 'Maximum'];
 
-export const times = ["new", "old"];
+export const times = ["New", "Old"];
 
-export const statuses = ['available', 'pending', 'sold', 'traded'];
+export const statuses = ['Available', 'Pending', 'Sold', 'Traded'];
 
 export const pageTitles = {
     // '/': <img alt="Sale" style={{maxWidth:"170px", maxHeight:"170px", display:"inline"}} src={balilogo} />,
