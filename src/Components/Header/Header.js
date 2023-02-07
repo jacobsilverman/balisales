@@ -20,7 +20,6 @@ const SearchBar = ({posts, showSearch}) => {
 
     const searchFilter = useMemo(() => {
         let cache = {}
-        console.log(Companies);
         let result = posts.map((post) => {
             if (!cache[post.author.name.toLowerCase()] && post.author.name.toLowerCase().includes(searchValue.toLowerCase())){
                 cache[post.author.name.toLowerCase()] = true;
@@ -64,7 +63,74 @@ const SearchBar = ({posts, showSearch}) => {
             </div>}
         </Fragment>
     );
-  };
+};
+
+const AccountOptions = ({uid, isAuth, signInWithGoogle, signUserOut, showAccount, setShowAccount, setPageTitle}) => {
+    const [showLanguages, setShowLanguages] = useState(false);
+
+    const languageCls = `account-dropdown ${showLanguages ? "visible" : 'hidden'}`;
+    const languagePopover = (
+        <Row className={languageCls}>
+            <Col xs={12} className="popover-container">
+                <Button onClick={() => setShowLanguages(false)}><i className='material-icons'>arrow_back</i></Button>
+                <Button>
+                    english
+                </Button>
+                <Button>
+                    spanish
+                </Button>
+            </Col>
+        </Row>
+    );
+
+    const accountVisibilityCls = `account-dropdown ${showAccount ? "visible" : 'hidden'}`;
+
+    const accountOptionsPopover = (
+        <Row className={accountVisibilityCls}>
+            <Col xs={12} className="popover-container">
+                <Button onClick={() => {setShowLanguages(true);}}>
+                    <i className="material-icons">language</i>
+                    <span>&nbsp;Language</span>
+                </Button>
+                
+                <Link to={{pathname: '/settings'}} onClick={() => {setShowAccount(show => !show);setPageTitle("Settings")}}>
+                    <Button>
+                        <i className="material-icons">dark_mode</i>
+                        <span>&nbsp;Dark Theme</span>
+                    </Button>
+                </Link>
+                <hr />
+                {isAuth && <Fragment>
+                    <Link to={{pathname: '/profile?id='+uid}} onClick={() => {setShowAccount(show => !show); setPageTitle("Profile")}}>
+                        <Button>
+                            <i className="material-icons">person</i>
+                            <span>&nbsp;Profile</span>
+                        </Button>
+                    </Link>
+                    <Link to={{pathname: '/settings'}} onClick={() => {setShowAccount(show => !show);setPageTitle("Settings")}}>
+                        <Button>
+                            <i className="material-icons">settings</i>
+                            <span>&nbsp;Settings</span>
+                        </Button>
+                    </Link>
+                    <hr />
+                </Fragment>}
+                <Link to={{pathname: '/'}}>
+                    {isAuth ? <Button onClick={signUserOut} color="error">
+                        <i className="material-icons">logout</i>
+                        <span>&nbsp;Logout</span>
+                    </Button>
+                    :<Button onClick={signInWithGoogle}>
+                        <i className="material-icons">login</i>
+                        <span>&nbsp;Log In</span>
+                    </Button>}
+                </Link>
+            </Col>
+        </Row>
+    );
+
+    return (showLanguages) ? languagePopover : accountOptionsPopover;
+}
 
 function Header({posts}) {
     let navigate = useNavigate();
@@ -189,52 +255,16 @@ function Header({posts}) {
         </Popover>
     );
 
-    const accountVisibilityCls = `account-dropdown ${showAccount ? "visible" : 'hidden'}`;
-
     const accountOptionsPopover = (
         <Popover id="popover-account" title="Account Info">
-            <Row className={accountVisibilityCls}>
-                <Col xs={12} className="popover-container">
-                    <Link to={{pathname: '/settings'}} onClick={() => {setShowAccount(show => !show);setPageTitle("Settings")}}>
-                        <Button>
-                            <i className="material-icons">language</i>
-                            <span>&nbsp;Language</span>
-                        </Button>
-                    </Link>
-                    <Link to={{pathname: '/settings'}} onClick={() => {setShowAccount(show => !show);setPageTitle("Settings")}}>
-                        <Button>
-                            <i className="material-icons">dark_mode</i>
-                            <span>&nbsp;Dark Theme</span>
-                        </Button>
-                    </Link>
-                    <hr />
-                    {isAuth && <Fragment>
-                        <Link to={{pathname: '/profile?id='+uid}} onClick={() => {setShowAccount(show => !show); setPageTitle("Profile")}}>
-                            <Button>
-                                <i className="material-icons">person</i>
-                                <span>&nbsp;Profile</span>
-                            </Button>
-                        </Link>
-                        <Link to={{pathname: '/settings'}} onClick={() => {setShowAccount(show => !show);setPageTitle("Settings")}}>
-                            <Button>
-                                <i className="material-icons">settings</i>
-                                <span>&nbsp;Settings</span>
-                            </Button>
-                        </Link>
-                        <hr />
-                    </Fragment>}
-                    <Link to={{pathname: '/'}}>
-                        {isAuth ? <Button onClick={signUserOut} color="error">
-                            <i className="material-icons">logout</i>
-                            <span>&nbsp;Logout</span>
-                        </Button>
-                        :<Button onClick={signInWithGoogle}>
-                            <i className="material-icons">login</i>
-                            <span>&nbsp;Log In</span>
-                        </Button>}
-                    </Link>
-                </Col>
-            </Row>
+            <AccountOptions 
+                uid={uid} 
+                isAuth={isAuth} 
+                signInWithGoogle={signInWithGoogle} 
+                signUserOut={signUserOut} 
+                showAccount={showAccount} 
+                setShowAccount={setShowAccount}
+                setPageTitle={setPageTitle} />
         </Popover>
     );
 
@@ -242,7 +272,7 @@ function Header({posts}) {
         return (
             <Container>
                 <Row>
-                    <Col xs={5} sm={4} md={3} lg={2} className="login-container-left">
+                    <Col xs={4} sm={3} md={3} lg={2} className="login-container-left">
                         <Link className="white" to={{pathname: '/'}}>
                             <Button onClick={() =>{resetAllPopovers();setPageTitle("Home")}}>
                                 <i className="material-icons">home</i>
@@ -259,14 +289,14 @@ function Header({posts}) {
                             </Button>
                         </OverlayTrigger>
                     </Col>
-                    {window.innerWidth > 700 ? <Col className="center title">
+                    {window.innerWidth > 800 ? <Col className="center title">
                         <h1 style={{display:"inline-block",fontSize:"40px",fontFamily:"roboto",paddingTop:"10px"}}>
                             <a href="/" style={{color:"black", textDecoration: "none"}}>
                                 {pageTitle}
                             </a>
                         </h1>
                     </Col> : <Col />}
-                    <Col xs={6} sm={4} md={3} lg={2} className="login-container-right">
+                    <Col xs={7} sm={5} md={3} lg={2} className="login-container-right">
                         <OverlayTrigger trigger="click" placement="bottom-end" show={showSearch} overlay={searchPopover}>
                             <Button  onClick={() => {resetAllPopovers("search");setShowSearch(show => !show)}}>
                                 <i className="material-icons">search</i>
@@ -290,7 +320,7 @@ function Header({posts}) {
                             <Button variant='contained' size="medium" onClick={signInWithGoogle}  style={{textTransform: 'none', padding:"5px",margin:"5px"}}>Sign Up</Button>
                         </Fragment>}
                         <OverlayTrigger trigger="click" placement="bottom-end" show={showAccount} overlay={accountOptionsPopover}>
-                            <Button onClick={() => {resetAllPopovers("account");setShowAccount(show => !show)}}>
+                            <Button onClick={() => {resetAllPopovers("account");setShowAccount(show => !show) }}>
                                 {isAuth ? 
                                 <div className="account-profile" style={{backgroundImage: `url(${profilePic})`}} />
                                 : <i className="material-icons">manage_accounts</i>}
