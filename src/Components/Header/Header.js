@@ -15,6 +15,8 @@ import { useNavigate }   from 'react-router-dom';
 
 import { Button, TextField } from '@mui/material';
 
+import { useTranslation } from "react-i18next";
+
 const SearchBar = ({posts, showSearch}) => {
     const [searchValue, setSearchValue] = useState("");
 
@@ -65,18 +67,25 @@ const SearchBar = ({posts, showSearch}) => {
     );
 };
 
-const AccountOptions = ({uid, isAuth, signInWithGoogle, signUserOut, showAccount, setShowAccount, setPageTitle}) => {
+const AccountOptions = ({uid, isAuth, resetAllPopovers, signInWithGoogle, signUserOut, showAccount, setShowAccount, setPageTitle}) => {
     const [showLanguages, setShowLanguages] = useState(false);
+
+    const {i18n} = useTranslation();
+
+    const changeLanguage = (language) => {
+        i18n.changeLanguage(language);
+        resetAllPopovers();
+    };
 
     const languageCls = `account-dropdown ${showLanguages ? "visible" : 'hidden'}`;
     const languagePopover = (
         <Row className={languageCls}>
             <Col xs={12} className="popover-container">
                 <Button onClick={() => setShowLanguages(false)}><i className='material-icons'>arrow_back</i></Button>
-                <Button>
+                <Button onClick={() => changeLanguage("en")}>
                     english
                 </Button>
-                <Button>
+                <Button onClick={() => changeLanguage("es")}>
                     spanish
                 </Button>
             </Col>
@@ -132,8 +141,9 @@ const AccountOptions = ({uid, isAuth, signInWithGoogle, signUserOut, showAccount
     return (showLanguages) ? languagePopover : accountOptionsPopover;
 }
 
-function Header({posts}) {
+const Header = ({posts}) => {
     let navigate = useNavigate();
+    const { t } = useTranslation();
     
     const [isAuth, setIsAuth] = useState(localStorage.getItem("isAuth"));
     const [showAccount, setShowAccount] = useState(false);
@@ -143,7 +153,7 @@ function Header({posts}) {
     const [showSearch, setShowSearch] = useState(false);
     const [profilePic, setProfilePic] = useState(localStorage.getItem("profile-picture-"+localStorage.getItem("uid")));
     const [uid, setUid] = useState(localStorage.getItem("uid"));
-    const [pageTitle, setPageTitle] = useState(pageTitles[window.location.pathname]);
+    const [pageTitle, setPageTitle] = useState(t(pageTitles[window.location.pathname]));
 
     useEffect(() => {
         let ignore = false;
@@ -213,7 +223,7 @@ function Header({posts}) {
                         </Button>
                     </Link>
                     <Link className="white" to={{pathname: '/aboutUs'}}>
-                        <Button onClick={() =>{resetAllPopovers("about");setPageTitle("About Us")}}>
+                        <Button onClick={() =>{resetAllPopovers("about");setPageTitle("About")}}>
                             <i className="material-icons">face</i>
                             &nbsp;About Us
                         </Button>
@@ -260,6 +270,7 @@ function Header({posts}) {
             <AccountOptions 
                 uid={uid} 
                 isAuth={isAuth} 
+                resetAllPopovers={resetAllPopovers}
                 signInWithGoogle={signInWithGoogle} 
                 signUserOut={signUserOut} 
                 showAccount={showAccount} 
@@ -292,7 +303,7 @@ function Header({posts}) {
                     {window.innerWidth > 800 ? <Col className="center title">
                         <h1 style={{display:"inline-block",fontSize:"40px",fontFamily:"roboto",paddingTop:"10px"}}>
                             <a href="/" style={{color:"black", textDecoration: "none"}}>
-                                {pageTitle}
+                                {t(pageTitle)}
                             </a>
                         </h1>
                     </Col> : <Col />}

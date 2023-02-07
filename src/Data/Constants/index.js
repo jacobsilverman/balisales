@@ -21,10 +21,9 @@ export const pageTitles = {
     '/': 'Home',
     '/profile': 'Profile',
     '/settings': 'Settings',
-    '/account': 'Your Posts',
     '/createPost': 'Create',
-    '/contactUs': 'Contact Us',
-    '/aboutUs': 'About Us',
+    '/contactUs': 'Contact',
+    '/aboutUs': 'About',
     '/discuss': 'Discussions',
     '/singlePost': 'User Post'
 };
