@@ -7,6 +7,7 @@ import { FaImage } from "react-icons/fa";
 
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
+import { useTranslation } from 'react-i18next';
 
 const SettingsForm = ({id}) => {
     const [firstName, setFirstName] = useState('');
@@ -26,6 +27,8 @@ const SettingsForm = ({id}) => {
         displayName: false,
         phoneNumber: true
     });
+
+    const { t } = useTranslation();
 
     const isValid = useMemo(() => {
         return !Object.values(validation).some((item) => item === false);
@@ -93,32 +96,32 @@ const SettingsForm = ({id}) => {
         <Col xs={12} className="center settings-container">
             <Row>
                 <Col xs={12} md="6" lg={4} className="setting-item">
-                    <TextField fullWidth label="first name" error={!validation.firstName} type="search" onChange={handleFirstNameChange} value={firstName} />
+                    <TextField fullWidth label={t("First Name")} error={!validation.firstName} type="search" onChange={handleFirstNameChange} value={firstName} />
                 </Col>
 
                 <Col xs={12} md="6" lg={4} className="setting-item">
-                    <TextField fullWidth label="last name" error={!validation.lastName} type="search" onChange={handleLastNameChange} value={lastName} />
+                    <TextField fullWidth label={t("Last Name")} error={!validation.lastName} type="search" onChange={handleLastNameChange} value={lastName} />
                 </Col>
 
                 <Col xs={12} md="6" lg={4} className="setting-item">
-                    <TextField fullWidth label="display name" error={!validation.displayName} type="search" onChange={handleDisplayNameChange} value={displayName} />
+                    <TextField fullWidth label={t("Display Name")} error={!validation.displayName} type="search" onChange={handleDisplayNameChange} value={displayName} />
                 </Col>
         
                 <Col xs={12} md="6" lg={4} className="setting-item">
-                    <TextField fullWidth label="phone number" error={!validation.phoneNumber} onChange={handlePhoneNumberChange} value={displayNumber(phoneNumber)} inputProps={{ maxLength: 14 }} />
+                    <TextField fullWidth label={t("Phone Number")} error={!validation.phoneNumber} onChange={handlePhoneNumberChange} value={displayNumber(phoneNumber)} inputProps={{ maxLength: 14 }} />
                 </Col>
         
                 <Col xs={12} md="6" lg={4} className="setting-item">
-                    <TextField fullWidth label="instagram" color="" type="url" onChange={(event) => setInstagram(event.target.value)} value={instagram} />
+                    <TextField fullWidth label={t("Instagram")} color="" type="url" onChange={(event) => setInstagram(event.target.value)} value={instagram} />
                 </Col>
 
                 <Col xs={12} md="6" lg={4} className="setting-item">
-                    <TextField fullWidth label="facebook" color="" type="url" onChange={(event) => setFacebook(event.target.value)} value={facebook} />
+                    <TextField fullWidth label={t("Facebook")} color="" type="url" onChange={(event) => setFacebook(event.target.value)} value={facebook} />
                 </Col>
         
                 <Col xs={12} className="setting-item">
                     <label className='profile-label' htmlFor="inputTag">
-                        <span style={{color:"black"}}>Profile Picture</span>
+                        <span style={{color:"black"}}>{t('Profile Picture')}</span>
                         <input id="inputTag" className='profile-input' type="file" onChange={handleProfileChange} accept="/image/*" />
                         <br />
                         {(!profilePicture) ? <FaImage size={40} /> : <img src={profilePicture} className="upload-image" alt="preview image" />}
@@ -128,7 +131,7 @@ const SettingsForm = ({id}) => {
             <Row>
                 <Col xs={12} className="submit-button">
                     <Button disabled={!isValid} variant="contained" onClick={() => setUserInfo({id, firstName, lastName, displayName, phoneNumber, instagram, facebook, posts}, file)}>
-                        Submit
+                        {t("Submit")}
                     </Button>
                 </Col>
             </Row>

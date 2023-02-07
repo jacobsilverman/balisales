@@ -16,6 +16,7 @@ import { db } from '../../../../../firebase-config';
 import { deleteUserPost } from '../../../../../Data/Services/userInfo';
 
 import { ref, deleteObject, getStorage } from "firebase/storage";
+import { useTranslation } from 'react-i18next';
 
 const EditModal = ({item, openEditModal, setOpenEditModal, filterPosts, setFilterPosts}) => {
     const [title, setTitle] = useState(item?.title);
@@ -35,6 +36,8 @@ const EditModal = ({item, openEditModal, setOpenEditModal, filterPosts, setFilte
     //     setFile(event.target.files[0]);
     // }
 
+    const { t } = useTranslation();
+
     useEffect(() => {
         setTitle(item.title);
         setDescription(item.description)
@@ -46,7 +49,7 @@ const EditModal = ({item, openEditModal, setOpenEditModal, filterPosts, setFilte
 
     const getOptions = (options, key) => {
         return options.map((name) => {
-            return <MenuItem key={key+"-"+name} value={name}>{name}</MenuItem>;
+            return <MenuItem key={key+"-"+name} value={name}>{t(name)}</MenuItem>;
         });
     };
 
@@ -132,27 +135,27 @@ const EditModal = ({item, openEditModal, setOpenEditModal, filterPosts, setFilte
                     <DeleteModal deletePost={deletePost} item={item} openDeleteModal={openDeleteModal} setOpenDeleteModal={setOpenDeleteModal} setOpenEditModal={setOpenEditModal} />
                     <Row className="edit-input">
                         <Col xs={6} sm={9} className="left">
-                            <h2>Edit</h2>
+                            <h2>{t('Edit')}</h2>
                         </Col>
                         <Col xs={6} sm={3}>
-                            <Button variant="danger" onClick={(e) => {e.preventDefault();setOpenDeleteModal(true);}}>Delete</Button>
+                            <Button variant="danger" onClick={(e) => {e.preventDefault();setOpenDeleteModal(true);}}>{t("Delete")}</Button>
                         </Col>
                     </Row>
                     <Row className="edit-input">
-                        <TextField fullWidth size="small" value={title} label="Title" className="input-width" onChange={(event) => setTitle(event.target.value)} />
+                        <TextField fullWidth size="small" value={title} label={t("Title")} className="input-width" onChange={(event) => setTitle(event.target.value)} />
                     </Row>
                     <Row className="edit-input">
-                        <TextField fullWidth size="small" value={price} label="Price" className="input-width" onChange={(event) => setPrice(event.target.value)} />
+                        <TextField fullWidth size="small" value={price} label={t("Price")} className="input-width" onChange={(event) => setPrice(event.target.value)} />
                     </Row>
                     <Row className="edit-input">
                         <FormControl fullWidth>
-                            <InputLabel size="small" id="brand-edit-label">Brand</InputLabel>
+                            <InputLabel size="small" id="brand-edit-label">{t("Brand")}</InputLabel>
                             <Select
                                 labelId="brand-edit-label"
                                 id="brand-edit-select"
                                 size="small"
                                 value={brand}
-                                label="Brand"
+                                label={t("Brand")}
                                 onChange={(event) => setBrand(event.target.value)}>
                                 {getOptions(brands, "brand")}
                             </Select>
@@ -160,13 +163,13 @@ const EditModal = ({item, openEditModal, setOpenEditModal, filterPosts, setFilte
                     </Row>
                     <Row className="edit-input">
                         <FormControl fullWidth>
-                            <InputLabel size="small" id="business-edit-label">Business</InputLabel>
+                            <InputLabel size="small" id="business-edit-label">{t("Sale Type")}</InputLabel>
                             <Select
                                 labelId="business-edit-label"
                                 id="business-edit-select"
                                 size="small"
                                 value={type}
-                                label="Business"
+                                label={t("Sale Type")}
                                 onChange={(event) => setType(event.target.value)}>
                                 {getOptions(types, "type")}
                             </Select>
@@ -174,29 +177,29 @@ const EditModal = ({item, openEditModal, setOpenEditModal, filterPosts, setFilte
                     </Row>
                     <Row className="edit-input">
                         <FormControl fullWidth>
-                            <InputLabel size="small" id="condition-edit-label">Condition</InputLabel>
+                            <InputLabel size="small" id="condition-edit-label">{t("Condition")}</InputLabel>
                             <Select
                                 labelId="condition-edit-label"
                                 id="condition-edit-select"
                                 size="small"
                                 value={condition}
-                                label="Condition"
+                                label={t("Condition")}
                                 onChange={(event) => setCondition(event.target.value)}>
                                 {getOptions([1,2,3,4,5,6,7,8,9,10], "condition")}
                             </Select>
                         </FormControl>
                     </Row>
                     <Row className="edit-input">
-                        <TextareaAutosize fullwidth="true" minRows={3} value={description} placeholder="Description" label="description" onChange={(event) => setDescription(event.target.value)} />
+                        <TextareaAutosize fullwidth="true" minRows={3} value={description} placeholder={t("Description")} label={t("Description")} onChange={(event) => setDescription(event.target.value)} />
                     </Row>
                     {/* {addPicture}
                     {pictures} */}
                     <Row className="edit-input">
                         <Col xs={6}>
-                            <Button onClick={() => setOpenEditModal(false)}>Cancel</Button>
+                            <Button onClick={() => setOpenEditModal(false)}>{t("Cancel")}</Button>
                         </Col>
                         <Col xs={6}>
-                            <Button onClick={() => {editPost();setOpenEditModal(false)}}>Submit</Button>
+                            <Button onClick={() => {editPost();setOpenEditModal(false)}}>{t("Submit")}</Button>
                         </Col>
                     </Row>
                 </Col>

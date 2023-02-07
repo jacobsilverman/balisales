@@ -7,7 +7,9 @@ let enWords = ['Home','Create','Contact','About','Filter',
 'About Us', 'Language', 'Title', 'Price', 'Condition', 'Sale Type',
 'Description', 'Upload Image', 'Submit', 'Search', 'Profile', 
 'Settings', 'no new messages', 'no new alerts', 'Created',
-'Previous', 'Next',
+'Previous', 'Next', 'First Name', 'Last Name', 'Display Name',
+'Phone Number', 'Instagram', 'Facebook', 'Profile Picture', 'Cancel',
+'Edit', 'Delete', 'Yes', 'No', 'Do you want to delete this post?',
 'Please feel free to send us a message for any reason'];
 
 let esWords = ['Inicio', 'Crear', 'Contacto', 'Acerca de', 'Filtro',
@@ -17,7 +19,10 @@ let esWords = ['Inicio', 'Crear', 'Contacto', 'Acerca de', 'Filtro',
 'Iniciar sesión', 'Cerrar sesión', 'Registrarse', 'Examinar', 'Contactar con soporte',
 'Acerca de nosotros', 'Idioma', 'Título', 'Precio', 'Condición', 'Tipo de venta',
 'Descripción', 'Subir imagen', 'Enviar', 'Buscar', 'Perfil',
-'Configuración', 'sin mensajes nuevos', 'sin alertas nuevas',
+'Configuración', 'sin mensajes nuevos', 'sin alertas nuevas', 'Creado',
+'Anterior', 'Siguiente', 'Nombre', 'Apellido', 'Nombre para mostrar',
+'Número de teléfono', 'Instagram', 'Facebook', 'Imagen de perfil', 'Cancelar',
+'Editar', 'Eliminar', 'Sí', 'No', '¿Quieres eliminar esta publicación?',
 'No dude en enviarnos un mensaje por cualquier motivo'];
 
 const hardCodedWords = ['baliplus', 'squid', 'kershaw', 'bradley', 'brs', 'mw', 'bbbarfly', 'hom', 'bm', 'bs', 'jk', 'nrb', 'svix', 'heibel', 'hypex', 'glidrco', 'mantis', 'theone', 'fellowship', 'biegler', 'flytanium', 'misc', 1, 2, 3,4, 5,6,7,8,9,10]
