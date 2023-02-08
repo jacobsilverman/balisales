@@ -10,17 +10,15 @@ import MenuItem from '@mui/material/MenuItem';
 
 import { useTranslation } from "react-i18next";
 
-function Body({posts}) {
+function Body({posts, showFilter, setShowFilter}) {
     const [min, setMin] = useState(0);
     const [max, setMax] = useState(10000);
     const [brand, setBrand] = useState('All');
     const [type, setType] = useState('All');
-    const [displayFilter, setDisplayFilter] = useState(false); // whether the filter is open or not
     const [sort, setSort] = useState('All');
     const [time, setTime] = useState('New');
     const [blade, setBlade] = useState('All');
     const [status, setStatus] = useState('All');
-
 
     const {t} = useTranslation();
     // const [windowScroll, setWindowScroll] = useState(0); 
@@ -50,13 +48,13 @@ function Body({posts}) {
 
     // const topFix = (windowScroll) ? 'fixed-top filter-container' : 'filter-container';
     // const topMargin = (windowScroll && displayFilter) ? 'remove-padding post-margin' : 'remove-padding';
-    const openFilterButton = (
-        <span className="filter-button-container">
-            <Button className="filter-button" onClick={() => {setDisplayFilter(true)}}>
-                <b>{t("Filter")}</b>
-            </Button>
-        </span>
-    );
+    // const openFilterButton = (
+    //     <span className="filter-button-container">
+    //         <Button className="filter-button" onClick={() => {setShowFilter(true)}}>
+    //             <b>{t("Filter")}</b>
+    //         </Button>
+    //     </span>
+    // );
     const filter = (
         <Col xs={12} className="filter-container">
             <Filter 
@@ -65,7 +63,7 @@ function Body({posts}) {
                 type={type} setMax={setMax} 
                 min={min} setMin={setMin} 
                 max={max} setType={setType} 
-                setDisplayFilter={setDisplayFilter} 
+                setDisplayFilter={setShowFilter} 
                 resetFilter={resetFilter}
                 sort={sort} setSort={setSort} 
                 time={time} setTime={setTime}
@@ -78,7 +76,7 @@ function Body({posts}) {
     return (
         <Container className='body-container'>
             <Row>
-                {(displayFilter && filter) || openFilterButton}
+                {(showFilter && filter)}
                 <Posts 
                     min={min} 
                     max={max} 

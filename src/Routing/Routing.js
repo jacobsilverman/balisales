@@ -19,6 +19,7 @@ const Discuss = React.lazy(() => import('../Components/Discuss'));
 
 function Routing() {
     const [posts, setPosts] = useState([]);
+    const [showFilter, setShowFilter] = useState(false);
 
     useEffect(() => {
         let ignore = false;
@@ -34,10 +35,10 @@ function Routing() {
 
     return (
         <BrowserRouter>
-            <Header posts={posts} />
+            <Header posts={posts} setShowFilter={setShowFilter} />
             <Suspense fallback={<Spinner />}>
                 <Routes>
-                    <Route path='/' element={<Body posts={posts} />} />
+                    <Route path='/' element={<Body posts={posts} showFilter={showFilter} setShowFilter={setShowFilter} />} />
                     <Route path='/singlePost' element={<SelectPost />} />
                     <Route path='/createPost' element={<CreatePost />} />
                     <Route path="/settings" element={<Settings />} />

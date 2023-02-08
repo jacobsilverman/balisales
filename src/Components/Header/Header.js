@@ -1,5 +1,5 @@
 import { Fragment, useEffect, useMemo, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 import './Header.scss';
 import { setUserLogin, getProfilePicture } from '../../Data/Services/userInfo.js';
@@ -194,7 +194,7 @@ const AccountOptions = ({uid, isAuth, resetAllPopovers, signInWithGoogle, signUs
     return (showLanguages) ? languagePopover : accountOptionsPopover;
 }
 
-const Header = ({posts}) => {
+const Header = ({posts, setShowFilter}) => {
     let navigate = useNavigate();
     const { t } = useTranslation();
     
@@ -207,6 +207,8 @@ const Header = ({posts}) => {
     const [profilePic, setProfilePic] = useState(localStorage.getItem("profile-picture-"+localStorage.getItem("uid")));
     const [uid, setUid] = useState(localStorage.getItem("uid"));
     const [pageTitle, setPageTitle] = useState(t(pageTitles[window.location.pathname]));
+
+    const location = useLocation();
 
     useEffect(() => {
         let ignore = false;
@@ -343,11 +345,17 @@ const Header = ({posts}) => {
                                 <i className="material-icons">home</i>
                             </Button>
                         </Link>
-                        <Link className="white" to={{pathname: '/'}}>
+                        {location.pathname==='/' ? 
+                        //  <Link className="white">
+                            <Button onClick={() =>{resetAllPopovers();setShowFilter(cur => !cur)}}>
+                                {t("Filter")}
+                            </Button>
+                        // </Link>
+                        : <Link className="white" to={{pathname: '/'}}>
                             <Button onClick={() =>{resetAllPopovers();setPageTitle("Home")}}>
                                 {t("Browse")}
                             </Button>
-                        </Link>
+                        </Link>}
                         <OverlayTrigger trigger="click" placement="bottom-start" show={showNav} overlay={navPopover}>
                             <Button onClick={() =>{resetAllPopovers("nav");setShowNav(show => !show)}}>
                                 <i className="material-icons">format_list_bulleted</i>
@@ -395,7 +403,7 @@ const Header = ({posts}) => {
                 </Row>
             </Container>
         );
-    }, [profilePic, isAuth, showAccount, showInbox, showNav, showNotifications, showSearch]);
+    }, [profilePic, isAuth, showAccount, showInbox, showNav, showNotifications, showSearch, pageTitle]);
 
     return (
         <nav>
