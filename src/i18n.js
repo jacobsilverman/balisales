@@ -5,6 +5,7 @@ import Backend from 'i18next-xhr-backend';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import en from './Data/Assets/i18n/translations/en.json';
 import es from './Data/Assets/i18n/translations/es.json';
+import iw from './Data/Assets/i18n/translations/iw.json';
 
 i18n
   .use(Backend)
@@ -13,10 +14,13 @@ i18n
   .init({
     resources: {
       en: {
-        translation: en,
+        translation: en
       },
       es: {
-        translation: es,
+        translation: es
+      },
+      iw: {
+        translation: iw
       }
     },
     fallbackLng: 'en',

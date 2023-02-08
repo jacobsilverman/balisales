@@ -25,10 +25,43 @@ let esWords = ['Inicio', 'Crear', 'Contacto', 'Acerca de', 'Filtro',
 'Editar', 'Eliminar', 'Sí', 'No', '¿Quieres eliminar esta publicación?',
 'No dude en enviarnos un mensaje por cualquier motivo'];
 
-const hardCodedWords = ['baliplus', 'squid', 'kershaw', 'bradley', 'brs', 'mw', 'bbbarfly', 'hom', 'bm', 'bs', 'jk', 'nrb', 'svix', 'heibel', 'hypex', 'glidrco', 'mantis', 'theone', 'fellowship', 'biegler', 'flytanium', 'misc', 1, 2, 3,4, 5,6,7,8,9,10]
+let iwWords = ['בית', 'צור', 'צור קשר', 'אודות', 'מסנן',
+'איפוס','מינימום','מקסימום','עלות','סטטוס','מותג','סוג',
+'זמן', 'להב', 'הכל', 'זמין', 'בהמתנה', 'נמכר', 'נסחר',
+'מכירה','מסחר','קנייה','חדש','ישן','חי','מאמן','חלקים',
+'התחבר', 'תנתק', 'הירשם', 'עיון', 'צור קשר עם התמיכה',
+'אודותינו', 'שפה', 'כותרת', 'מחיר', 'מצב', 'סוג מכירה',
+'תיאור', 'העלה תמונה', 'שלח', 'חיפוש', 'פרופיל',
+'הגדרות', 'אין הודעות חדשות', 'אין התראות חדשות', 'נוצר',
+'קודם', 'הבא', 'שם פרטי', 'שם משפחה', 'שם תצוגה',
+'מספר טלפון', 'אינסטגרם', 'פייסבוק', 'תמונת פרופיל', 'ביטול',
+'ערוך', 'מחק', 'כן', 'לא', 'האם אתה רוצה למחוק את הפוסט הזה?',
+'אנא אל תהסס לשלוח לנו הודעה מכל סיבה'];
 
-enWords = [...enWords, ...hardCodedWords];
-esWords = [...esWords, ...hardCodedWords];
+let arWords = ["الصفحة الرئيسية", "إنشاء" , "جهة الاتصال" , "حول" , "تصفية" ,
+"إعادة تعيين" , "الحد الأدنى" , "الحد الأقصى" , "التكلفة" , "الحالة" , "العلامة التجارية" , "النوع" ,
+"الوقت" , "النصل" , "الكل" , "متاح" , "معلق" , "مباع" , "متداول" ,
+"بيع" , "تداول" , "شراء" , "جديد" , "قديم" , "مباشر" , "مدرب" , "قطع غيار" ,
+"تسجيل الدخول" , "تسجيل الخروج" , "الاشتراك" , "تصفح" , "الاتصال بالدعم" , "مشاركة المستخدم" ,
+"نبذة عنا" , "اللغة" , "العنوان" , "السعر" , "الحالة" , "نوع البيع" ,
+"الوصف" , "تحميل الصورة" , "إرسال" , "بحث" , "الملف الشخصي" ,
+"الإعدادات" , "لا توجد رسائل جديدة" , "لا توجد تنبيهات جديدة" , "تم الإنشاء" ,
+"السابق" , "التالي" , "الاسم الأول" , "اسم العائلة" , "اسم العرض" ,
+"رقم الهاتف" , "Instagram" , "Facebook" , "صورة الملف الشخصي" , "إلغاء" ,
+"تحرير" , "حذف" , "نعم" , "لا" , "هل تريد حذف هذه الرسالة؟" ,
+"لا تتردد في إرسال رسالة إلينا لأي سبب من الأسباب"];
+
+
+const hardCodedWords = ['baliplus', 'squid', 'kershaw', 'bradley', 'brs', 'mw', 'bbbarfly', 'hom', 'bm', 'bs', 'jk', 'nrb', 'svix', 'heibel', 'hypex', 'glidrco', 'mantis', 'theone', 'fellowship', 'biegler', 'flytanium', 'misc',1,2,3,4,5,6,7,8,9,10]
+
+let words = [enWords, esWords, iwWords, arWords];
+
+for (let item of words) {
+    item = [...item, ...hardCodedWords]
+}
+// enWords = [...enWords, ...hardCodedWords];
+// esWords = [...esWords, ...hardCodedWords];
+// iwWords = [...iwWords, ...hardCodedWords];
 
 const t =(() => {
     const english = enWords.reduce((acc, item) => {
@@ -36,11 +69,18 @@ const t =(() => {
         return acc;
     }, {});
     let spanish = {};
+    let hebrew = {};
+    let arabic = {};
     for (let index in enWords){
         spanish[enWords[index]] = esWords[index];
+        hebrew[enWords[index]] = iwWords[index];
+        arabic[enWords[index]] = arWords[index];
     }
+    
+    var englishStr = JSON.stringify(english);
+    var spanishStr = JSON.stringify(spanish);
+    var hebrewStr = JSON.stringify(hebrew);
+    var arabicStr = JSON.stringify(arabic);
 
-    console.log(JSON.stringify(english));
-    console.log("\n\n\n");
-    console.log(JSON.stringify(spanish));
+    console.log(englishStr+"-"+spanishStr+"-"+hebrewStr+"-"+arabicStr);
 })()

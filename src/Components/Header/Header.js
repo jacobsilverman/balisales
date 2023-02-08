@@ -92,6 +92,9 @@ const AccountOptions = ({uid, isAuth, resetAllPopovers, signInWithGoogle, signUs
                 <Button onClick={() => changeLanguage("es")}>
                     Español
                 </Button>
+                <Button onClick={() => changeLanguage("iw")}>
+                    hebrew
+                </Button>
             </Col>
          </Row>
     );
