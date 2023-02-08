@@ -80,7 +80,7 @@ const AccountOptions = ({uid, isAuth, resetAllPopovers, signInWithGoogle, signUs
     const languageCls = `account-dropdown ${showLanguages ? "visible" : 'hidden'}`;
     const languagePopover = (
         <Row className={languageCls}>
-            <Col xs={12} className="popover-container">
+            <Col xs={12} className="popover-language-container">
                 <Button onClick={() => setShowLanguages(false)}>
                     <i size="small" className='material-icons'>arrow_back</i>
                     <span>&nbsp;{t("Language")}</span>
