@@ -81,15 +81,19 @@ const AccountOptions = ({uid, isAuth, resetAllPopovers, signInWithGoogle, signUs
     const languagePopover = (
         <Row className={languageCls}>
             <Col xs={12} className="popover-container">
-                <Button onClick={() => setShowLanguages(false)}><i className='material-icons'>arrow_back</i></Button>
+                <Button onClick={() => setShowLanguages(false)}>
+                    <i size="small" className='material-icons'>arrow_back</i>
+                    <span>&nbsp;{t("Language")}</span>
+                </Button>
+                <hr />
                 <Button onClick={() => changeLanguage("en")}>
-                    english
+                    English
                 </Button>
                 <Button onClick={() => changeLanguage("es")}>
-                    spanish
+                    Español
                 </Button>
             </Col>
-        </Row>
+         </Row>
     );
 
     const accountVisibilityCls = `account-dropdown ${showAccount ? "visible" : 'hidden'}`;
@@ -100,14 +104,15 @@ const AccountOptions = ({uid, isAuth, resetAllPopovers, signInWithGoogle, signUs
                 <Button onClick={() => {setShowLanguages(true);}}>
                     <i className="material-icons">language</i>
                     <span>&nbsp;{t("Language")}</span>
+                    <i className="material-icons">arrow_forward</i>
                 </Button>
                 
-                <Link to={{pathname: '/settings'}} onClick={() => {setShowAccount(show => !show);setPageTitle("Settings")}}>
+                {/* <Link to={{pathname: '/settings'}} onClick={() => {setShowAccount(show => !show);setPageTitle("Settings")}}>
                     <Button>
                         <i className="material-icons">dark_mode</i>
                         <span>&nbsp;Dark Theme</span>
                     </Button>
-                </Link>
+                </Link> */}
                 <hr />
                 {isAuth && <Fragment>
                     <Link to={{pathname: '/profile?id='+uid}} onClick={() => {setShowAccount(show => !show); setPageTitle("Profile")}}>
@@ -127,11 +132,11 @@ const AccountOptions = ({uid, isAuth, resetAllPopovers, signInWithGoogle, signUs
                 <Link to={{pathname: '/'}}>
                     {isAuth ? <Button onClick={signUserOut} color="error">
                         <i className="material-icons">logout</i>
-                        <span>&nbsp;{t("Log Out")}</span>
+                        <span>&nbsp;{t("Logout")}</span>
                     </Button>
                     :<Button onClick={signInWithGoogle}>
                         <i className="material-icons">login</i>
-                        <span>&nbsp;{t("Log In")}</span>
+                        <span>&nbsp;{t("Login")}</span>
                     </Button>}
                 </Link>
             </Col>
@@ -328,8 +333,8 @@ const Header = ({posts}) => {
                         </OverlayTrigger>}
                         {!isAuth && 
                         <Fragment>
-                            <Button variant='outlined' size="medium" onClick={signInWithGoogle}  style={{textTransform: 'none', padding:"5px",margin:"5px"}}>{t("Log In")}</Button>
-                            <Button variant='contained' size="medium" onClick={signInWithGoogle}  style={{textTransform: 'none', padding:"5px",margin:"5px"}}>{t("Sign Up")}</Button>
+                            <Button variant='outlined' size="medium" onClick={signInWithGoogle}  style={{textTransform: 'none', padding:"5px",margin:"5px"}}>{t("Login")}</Button>
+                            <Button variant='contained' size="medium" onClick={signInWithGoogle}  style={{textTransform: 'none', padding:"5px",margin:"5px"}}>{t("Signup")}</Button>
                         </Fragment>}
                         <OverlayTrigger trigger="click" placement="bottom-end" show={showAccount} overlay={accountOptionsPopover}>
                             <Button onClick={() => {resetAllPopovers("account");setShowAccount(show => !show) }}>
