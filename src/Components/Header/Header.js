@@ -86,14 +86,59 @@ const AccountOptions = ({uid, isAuth, resetAllPopovers, signInWithGoogle, signUs
                     <span>&nbsp;{t("Language")}</span>
                 </Button>
                 <hr />
+                <Button onClick={() => changeLanguage("ar")}>
+                    Arabic
+                </Button>
+                <Button onClick={() => changeLanguage("zh")}>
+                    Chinese
+                </Button>
                 <Button onClick={() => changeLanguage("en")}>
                     English
                 </Button>
                 <Button onClick={() => changeLanguage("es")}>
                     Español
                 </Button>
+                <Button onClick={() => changeLanguage("fr")}>
+                    French
+                </Button>
+                <Button onClick={() => changeLanguage("de")}>
+                    German
+                </Button>
                 <Button onClick={() => changeLanguage("iw")}>
-                    hebrew
+                    Hebrew
+                </Button>
+                <Button onClick={() => changeLanguage("hi")}>
+                    Hindi
+                </Button>
+                <Button onClick={() => changeLanguage("is")}>
+                    Icelandic
+                </Button>
+                <Button onClick={() => changeLanguage("id")}>
+                    Indonesian
+                </Button>
+                <Button onClick={() => changeLanguage("it")}>
+                    Italian
+                </Button>
+                <Button onClick={() => changeLanguage("ja")}>
+                    Japanese
+                </Button>
+                <Button onClick={() => changeLanguage("ko")}>
+                    Korean
+                </Button>
+                <Button onClick={() => changeLanguage("pl")}>
+                    Polish
+                </Button>
+                <Button onClick={() => changeLanguage("pt")}>
+                    Portuguese
+                </Button>
+                <Button onClick={() => changeLanguage("ru")}>
+                    Russian
+                </Button>
+                <Button onClick={() => changeLanguage("tr")}>
+                    Turkish
+                </Button>
+                <Button onClick={() => changeLanguage("vi")}>
+                    Vietnamese
                 </Button>
             </Col>
          </Row>
