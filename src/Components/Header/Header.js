@@ -17,6 +17,10 @@ import { Button, TextField } from '@mui/material';
 
 import { useTranslation } from "react-i18next";
 
+
+import Donate from "../Donate";
+import { PayPalScriptProvider } from "@paypal/react-paypal-js";
+
 const SearchBar = ({posts, showSearch, t}) => {
     const [searchValue, setSearchValue] = useState("");
 
@@ -154,13 +158,6 @@ const AccountOptions = ({uid, isAuth, resetAllPopovers, signInWithGoogle, signUs
                     <span>&nbsp;{t("Language")}</span>
                     <i className="material-icons">arrow_forward</i>
                 </Button>
-                
-                {/* <Link to={{pathname: '/settings'}} onClick={() => {setShowAccount(show => !show);setPageTitle("Settings")}}>
-                    <Button>
-                        <i className="material-icons">dark_mode</i>
-                        <span>&nbsp;Dark Theme</span>
-                    </Button>
-                </Link> */}
                 <hr />
                 {isAuth && <Fragment>
                     <Link to={{pathname: '/profile?id='+uid}} onClick={() => {setShowAccount(show => !show); setPageTitle("Profile")}}>
@@ -200,6 +197,7 @@ const Header = ({posts, setShowFilter}) => {
     
     const [isAuth, setIsAuth] = useState(localStorage.getItem("isAuth"));
     const [showAccount, setShowAccount] = useState(false);
+    const [showDonate, setShowDonate] = useState(false);
     const [showInbox, setShowInbox] = useState(false);
     const [showNav, setShowNav] = useState(false);
     const [showNotifications, setShowNotifications] = useState(false);
@@ -207,6 +205,7 @@ const Header = ({posts, setShowFilter}) => {
     const [profilePic, setProfilePic] = useState(localStorage.getItem("profile-picture-"+localStorage.getItem("uid")));
     const [uid, setUid] = useState(localStorage.getItem("uid"));
     const [pageTitle, setPageTitle] = useState(t(pageTitles[window.location.pathname]));
+
 
     const location = useLocation();
 
@@ -283,6 +282,10 @@ const Header = ({posts, setShowFilter}) => {
                             &nbsp;{t("About Us")}
                         </Button>
                     </Link>
+                    <Button onClick={() =>{resetAllPopovers();setShowDonate(cur => !cur)}}>
+                        <i className="material-icons">money</i>
+                        &nbsp;{t("Donate")}
+                    </Button>
                 </Col>
             </Row>
         </Popover>
@@ -334,10 +337,18 @@ const Header = ({posts, setShowFilter}) => {
                 t={t} />
         </Popover>
     );
+    const initialOptions = {
+        "client-id": "AcDvZSxUTgqvgZJPOiePLTCf8ssTgSE3EMUVK_n_tibgu6lifFz9-6ECtEeUMOIq2F-wMzjlZ47dmcaS",
+        currency: "USD",
+        intent: "capture",
+    };
 
     const navBar = useMemo(() =>{
         return (
             <Container>
+                <PayPalScriptProvider options={initialOptions}>
+                    <Donate showDonate={showDonate} setShowDonate={setShowDonate} />
+                </PayPalScriptProvider>
                 <Row>
                     <Col xs={3} sm={3} md={3} lg={2} className="login-container-left">
                         <Link className="white" to={{pathname: '/'}}>
@@ -346,16 +357,14 @@ const Header = ({posts, setShowFilter}) => {
                             </Button>
                         </Link>
                         {location.pathname==='/' ? 
-                        //  <Link className="white">
                             <Button onClick={() =>{resetAllPopovers();setShowFilter(cur => !cur)}}>
                                 {t("Filter")}
                             </Button>
-                        // </Link>
-                        : <Link className="white" to={{pathname: '/'}}>
-                            <Button onClick={() =>{resetAllPopovers();setPageTitle("Home")}}>
-                                {t("Browse")}
-                            </Button>
-                        </Link>}
+                            : <Link className="white" to={{pathname: '/'}}>
+                                <Button onClick={() =>{resetAllPopovers();setPageTitle("Home")}}>
+                                    {t("Browse")}
+                                </Button>
+                            </Link>}
                         <OverlayTrigger trigger="click" placement="bottom-start" show={showNav} overlay={navPopover}>
                             <Button onClick={() =>{resetAllPopovers("nav");setShowNav(show => !show)}}>
                                 <i className="material-icons">format_list_bulleted</i>
@@ -403,7 +412,7 @@ const Header = ({posts, setShowFilter}) => {
                 </Row>
             </Container>
         );
-    }, [profilePic, isAuth, showAccount, showInbox, showNav, showNotifications, showSearch, pageTitle]);
+    }, [profilePic, isAuth, showAccount, showDonate, showInbox, showNav, showNotifications, showSearch, pageTitle]);
 
     return (
         <nav>
