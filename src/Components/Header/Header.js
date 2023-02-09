@@ -283,7 +283,7 @@ const Header = ({posts, setShowFilter}) => {
                         </Button>
                     </Link>
                     <Button onClick={() =>{resetAllPopovers();setShowDonate(cur => !cur)}}>
-                        <i className="material-icons">money</i>
+                        <i className="material-icons">payments</i>
                         &nbsp;{t("Donate")}
                     </Button>
                 </Col>
