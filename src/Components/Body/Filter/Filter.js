@@ -24,7 +24,7 @@ function Filter({getOptions, brand, setBrand, max, setMax, min, setMin, type, se
                 </Col> 
             </Row>
             <Row>
-                <Col xs={12} className='filter-content'>
+                <Col xs={12}>
                     <Row className='filter-item'>
                         <Col xs={6} sm={6} md={3} className="dropdown">
                             <TextField fullWidth label={t("Minimum")} color="" type="number" onChange={(event) => {setMin(event.target.value)}} value={min} />

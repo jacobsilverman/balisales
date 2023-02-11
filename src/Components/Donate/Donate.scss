@@ -2,7 +2,7 @@
     // border: 2px solid black;
     border-radius: 4px;
     background-color: white;
-    padding: 20px;
+    padding: 0px 20px 20px 20px;
     max-height: 80%;
     overflow-y: auto;
     overflow-x: hidden;
@@ -13,7 +13,6 @@
     background: #EFEFEF;
     color: black;
     width: 100%;
-    height: 55px;
     border: none;
     margin-bottom: 15px;
     border-radius: 4px;
@@ -28,49 +27,20 @@
 }
 
 #paypal-exit-button {
-    font-size: 24px;
-    height: 55px;
+    position: sticky;
+    display: flex;
+    z-index: 100;
+    left: 100%;
+    margin-bottom: 20px;
+    margin-top: 10px;
+}
+
+.donate-title {
+    font-size: 2.5rem;    
 }
 
 .edit-modal fieldset {
     border: none;
-}
-
-#USD-paypal-currency-label {
-    color:#2C2E2F;
-    font-size: 22px;
-    font-weight: 400;
-}
-
-#EUR-paypal-currency-label {
-    color:#2C2E2F;
-    font-size: 22px;
-    font-weight: 400;
-}
-#GBP-paypal-currency-label {
-    color:#2C2E2F;
-    font-size: 22px;
-    font-weight: 400;
-}
-#CHF-paypal-currency-label {
-    color:#2C2E2F;
-    font-size: 22px;
-    font-weight: 400;
-}
-#JPY-paypal-currency-label {
-    color:#2C2E2F;
-    font-size: 22px;
-    font-weight: 400;
-}
-#CAD-paypal-currency-label {
-    color:#2C2E2F;
-    font-size: 22px;
-    font-weight: 400;
-}
-#MXN-paypal-currency-label {
-    color:#2C2E2F;
-    font-size: 22px;
-    font-weight: 400;
 }
 
 #paypal-amount-input {
@@ -84,5 +54,4 @@
     border-radius: 4px;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: 500;
-    font-size: 20px;
 }

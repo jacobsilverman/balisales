@@ -6,6 +6,7 @@ import { PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js";
 
 import Spinner from '../../Data/Constants/Spinner.js';
 import { useTranslation } from 'react-i18next';
+import { isMobile } from '../../Data/Constants';
 
 const Donate = ({showDonate, setShowDonate}) => {
     const [{ options, isPending }, dispatch] = usePayPalScriptReducer();
@@ -59,17 +60,26 @@ const Donate = ({showDonate, setShowDonate}) => {
             <Row className="edit-modal">
                 <Col xs={9} className="modal-background-paypal center">
                 {isPending ? <Spinner /> : (
+                    <>    
+                    <Row>                  
+                        <Col>
+                            <h2 className="donate-title">Donate</h2>
+                        </Col>
+                        <Col>
+                            <Button size="small" color="error" variant="contained" id="paypal-exit-button" onClick={() => setShowDonate(false)}>
+                                <i className="material-icons">close</i>
+                            </Button>
+                        </Col>
+                    </Row>  
                     <Row>
                         <Col />
                         <Col xs={12} lg={10}>
                             <Row>
-                                <Col xs={3} sm={2}>
-                                    <Button variant="outlined" id="paypal-exit-button" onClick={() => setShowDonate(false)}>
-                                        <i className="material-icons">close</i>
-                                    </Button>
+                                <Col xs={12} sm={6}>
+                                    <TextField size={isMobile && "small"} autoComplete="off" fullWidth id="paypal-amount-input" min="0" label={t("Amount")} color="" type="number" value={amount} onChange={changeAmount} />
                                 </Col>
-                                <Col xs={9} sm={5}>
-                                    <FormControl fullWidth id="paypal-currency-selector">
+                                <Col xs={12} sm={6}>
+                                    <FormControl size={isMobile && "small"} fullWidth id="paypal-currency-selector">
                                         <InputLabel id={currency+"-paypal-currency-label"}>{paypalIcon}&nbsp;{t("Currency")}</InputLabel>
                                         <Select
                                             defaultValue=""
@@ -88,10 +98,6 @@ const Donate = ({showDonate, setShowDonate}) => {
                                         </Select>
                                     </FormControl>
                                 </Col>
-                                <Col xs={12} sm={5}>
-                                    <TextField autoComplete="off" fullWidth id="paypal-amount-input" min="0" label={t("Amount")} color="" type="number" value={amount} onChange={changeAmount} />
-                                </Col>
-
                             </Row>
                         </Col>
                         <Col />
@@ -101,6 +107,7 @@ const Donate = ({showDonate, setShowDonate}) => {
                             onApprove={(data, actions) => onApproveOrder(data, actions)}
                         />
                     </Row>
+                    </>
                 )}
                 </Col>
             </Row>
