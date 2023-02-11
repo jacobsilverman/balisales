@@ -87,7 +87,8 @@ const AccountOptions = ({uid, isAuth, resetAllPopovers, signInWithGoogle, signUs
             <Col xs={12} className="popover-language-container">
                 <Button onClick={() => setShowLanguages(false)}>
                     <i size="small" className='material-icons'>arrow_back</i>
-                    <span>&nbsp;{t("Language")}</span>
+                    <span>&nbsp;{t("Language")}&nbsp;</span>
+                    <i className="material-icons">language</i>
                 </Button>
                 <hr />
                 <Button onClick={() => changeLanguage("en")}>
