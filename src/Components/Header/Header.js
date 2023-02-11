@@ -90,12 +90,6 @@ const AccountOptions = ({uid, isAuth, resetAllPopovers, signInWithGoogle, signUs
                     <span>&nbsp;{t("Language")}</span>
                 </Button>
                 <hr />
-                <Button onClick={() => changeLanguage("ar")}>
-                    Arabic
-                </Button>
-                <Button onClick={() => changeLanguage("zh")}>
-                    Chinese
-                </Button>
                 <Button onClick={() => changeLanguage("en")}>
                     English
                 </Button>
@@ -103,46 +97,52 @@ const AccountOptions = ({uid, isAuth, resetAllPopovers, signInWithGoogle, signUs
                     Español
                 </Button>
                 <Button onClick={() => changeLanguage("fr")}>
-                    French
+                    Français
                 </Button>
                 <Button onClick={() => changeLanguage("de")}>
-                    German
-                </Button>
-                <Button onClick={() => changeLanguage("iw")}>
-                    Hebrew
-                </Button>
-                <Button onClick={() => changeLanguage("hi")}>
-                    Hindi
-                </Button>
-                <Button onClick={() => changeLanguage("is")}>
-                    Icelandic
+                    Deutsch
                 </Button>
                 <Button onClick={() => changeLanguage("id")}>
-                    Indonesian
+                    Indonesia
+                </Button>
+                <Button onClick={() => changeLanguage("is")}>
+                    íslenskur
                 </Button>
                 <Button onClick={() => changeLanguage("it")}>
-                    Italian
-                </Button>
-                <Button onClick={() => changeLanguage("ja")}>
-                    Japanese
-                </Button>
-                <Button onClick={() => changeLanguage("ko")}>
-                    Korean
+                    Italiano
                 </Button>
                 <Button onClick={() => changeLanguage("pl")}>
-                    Polish
+                    Polski
                 </Button>
                 <Button onClick={() => changeLanguage("pt")}>
-                    Portuguese
-                </Button>
-                <Button onClick={() => changeLanguage("ru")}>
-                    Russian
+                    Português
                 </Button>
                 <Button onClick={() => changeLanguage("tr")}>
-                    Turkish
+                    Türkçe
                 </Button>
                 <Button onClick={() => changeLanguage("vi")}>
-                    Vietnamese
+                    Tiếng Việt
+                </Button>
+                <Button onClick={() => changeLanguage("ru")}>
+                    Русский
+                </Button>
+                <Button onClick={() => changeLanguage("iw")}>
+                    עִברִית
+                </Button>
+                <Button onClick={() => changeLanguage("ja")}>
+                    日本
+                </Button>
+                <Button onClick={() => changeLanguage("zh")}>
+                    中国人
+                </Button>
+                <Button onClick={() => changeLanguage("ko")}>
+                    한국인
+                </Button>
+                <Button onClick={() => changeLanguage("hi")}>
+                    हिंदी
+                </Button>
+                <Button onClick={() => changeLanguage("ar")}>
+                    عربي
                 </Button>
             </Col>
          </Row>
