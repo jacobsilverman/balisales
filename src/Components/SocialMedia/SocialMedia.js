@@ -11,8 +11,7 @@ const SocialMedia = ({instagram, facebook, phoneNumber}) => {
                 </a>
             </Col>
             <Col xs={4} style={{margin: "auto", position: "relative", top:"-2px"}}>
-
-                <Row style={{background:"linear-gradient(#5ced73, #83f28f)", margin:"auto",width:"14vw", height:"14vw", display:"flex", alignItems:"center", justifyContent:"center",  borderRadius:"2vw", filter: "drop-shadow(5px 5px 5px rgba(0,0,0,0.3))"}}>
+                <Row style={{background:"linear-gradient(#5ced73, #83f28f)", margin:"auto",width:"14vw", height:"14vw", cursor:"pointer",display:"flex", alignItems:"center", justifyContent:"center",  borderRadius:"2vw", filter: "drop-shadow(5px 5px 5px rgba(0,0,0,0.3))"}}>
                     <Col style={{display: "flex", justifyContent: "center"}}>
                         <FaPhoneAlt size="70%" color="white" style={{filter: "drop-shadow(5px 5px 5px rgba(0,0,0,0.3))"}}>
                             <a href={"tel:"+phoneNumber}></a>

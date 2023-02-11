@@ -390,12 +390,12 @@ const Header = ({posts, setShowFilter}) => {
                                 <i className="material-icons">notifications</i>
                             </Button>
                         </OverlayTrigger>}
-                        {isAuth && 
+                        {/* {isAuth && 
                         <OverlayTrigger trigger="focus" placement="bottom-end" show={showInbox} overlay={inboxPopover}>
                             <Button onClick={() => {resetAllPopovers("inbox");setShowInbox(show => !show)}}>
                                 <i className="material-icons">inbox</i>
                             </Button>
-                        </OverlayTrigger>}
+                        </OverlayTrigger>} */}
                         {!isAuth && 
                         <Fragment>
                             <Button variant='outlined' size="medium" onClick={signInWithGoogle}  style={{textTransform: 'none', padding:"5px",margin:"5px"}}>{t("Login")}</Button>

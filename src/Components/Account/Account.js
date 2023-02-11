@@ -22,7 +22,7 @@ function Account({user, settingsPage}) {
 	}, []);
 	
 	const setAccountData = () => {
-		if (filterPosts.length === 0) {
+		if (filterPosts?.length === 0) {
 			return (
 				<Spinner /> 
 			);
@@ -36,7 +36,7 @@ function Account({user, settingsPage}) {
 					setFilterPosts={setFilterPosts}
 					openEditModal={openEditModal} 
 					setOpenEditModal={setOpenEditModal} />}
-				{filterPosts.map((item) => {
+				{filterPosts?.map((item) => {
 					const displayUrl =  `url(${item?.urls[0]})`;
 					const queryParam = 'id='+item?.id;
 					return <Post 
