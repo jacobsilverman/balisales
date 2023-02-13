@@ -15,7 +15,6 @@ import Button from '@mui/material/Button';
 
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { display } from '@mui/system';
 
 function SelectPost() {
     const urlSearchParams = new URLSearchParams(window.location.search);
@@ -39,6 +38,9 @@ function SelectPost() {
     }, []);
 
     useEffect(() => {
+        if (!displayPost?.author?.id) {
+            return
+        }
         getProfilePicture(displayPost?.author?.id).then((result) => {
             setProfilePic(result);
         }).catch(() => {
@@ -63,7 +65,7 @@ function SelectPost() {
         <Row className='all-pictures'>
             {displayPost?.urls?.map((image, index) => {
                 return (
-                    <Col className='individual-picture' style={{backgroundImage: `url(${image})`, backgroundSize:'100% 100%', maxWidth: "75px", height: "100px", opacity: (displayImage === index) ? '.5': '1'}} onClick={() => {setDisplayImage(index)}} />
+                    <Col key={image} className='individual-picture' style={{backgroundImage: `url(${image})`, backgroundSize:'100% 100%', maxWidth: "75px", height: "100px", opacity: (displayImage === index) ? '.5': '1'}} onClick={() => {setDisplayImage(index)}} />
                 );
             })}
         </Row>
@@ -88,7 +90,7 @@ function SelectPost() {
             </Row>}
             
             <Row style={{justifyContent:"center"}}>
-                <Col xs={12} sm={12} className="info-container">
+                <Col xs={12} className="info-container">
                     <div style={{display: "flex", justifyContent: "space-evenly"}}>
                         <div className="content-wrapper">
                             <div className="desciption-title">
