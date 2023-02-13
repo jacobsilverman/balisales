@@ -78,7 +78,7 @@ function SelectPost() {
             </Col>
             {displayPost?.urls && postPictures}
             
-            {displayPost?.urls && postBottomPictures}
+            {displayPost?.numberOfImages > 1 && postBottomPictures}
             {displayPost?.numberOfImages > 1 &&
             <Row>
                 <Col xs={6} className="previous-image">
