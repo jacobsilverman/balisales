@@ -14,8 +14,8 @@ const SettingsForm = ({id}) => {
     const [lastName, setLastName] = useState('');
     const [displayName, setDisplayName] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
-    const [instagram, setInstagram] = useState('');
-    const [facebook, setFacebook] = useState('');
+    const [instagram, setInstagram] = useState('instagram.com/');
+    const [facebook, setFacebook] = useState('facebook.com/');
     const [file, setFile] = useState('');
     const [posts, setPosts] = useState([]);
 
@@ -25,7 +25,9 @@ const SettingsForm = ({id}) => {
         firstName: false,
         lastName: false,
         displayName: false,
-        phoneNumber: true
+        phoneNumber: true,
+        instagram: true,
+        facebook: true
     });
 
     const { t } = useTranslation();
@@ -47,7 +49,9 @@ const SettingsForm = ({id}) => {
                 firstName: result.firstName.length > 0,
                 lastName: result.lastName.length > 0,
                 displayName: result.displayName.length > 0,
-                phoneNumber: result.phoneNumber.length === 0 || result.phoneNumber.length === 10
+                phoneNumber: result.phoneNumber.length === 0 || result.phoneNumber.length === 10,
+                instagram:  true,
+                facebook: true
             });
         });
     }, []);
@@ -59,18 +63,27 @@ const SettingsForm = ({id}) => {
 
     const handleFirstNameChange = (event) => {
         const newVal = event.target.value;
+        if (newVal.match(/[%<>\\|$'"]/)) {
+            return
+        }
         setValidation(cur => {return {...cur, firstName: newVal !== ""}});
         setFirstName(newVal);
     }
 
     const handleLastNameChange = (event) => {
         const newVal = event.target.value;
+        if (newVal.match(/[%<>\\|$'"]/)) {
+            return
+        }
         setValidation(cur => {return {...cur, lastName: newVal !== ""}});
         setLastName(newVal);
     }
 
     const handleDisplayNameChange = (event) => {
         const newVal = event.target.value;
+        if (newVal.match(/[%<>\\|$'"]/)) {
+            return
+        }
         setValidation(cur => {return {...cur, displayName: newVal !== ""}});
         setDisplayName(newVal);
     }
@@ -80,6 +93,34 @@ const SettingsForm = ({id}) => {
         let parsedNumber = result.replace("(","").replace(")","").replace(" ","").replace("-","");
         setValidation(cur => {return {...cur, phoneNumber: parsedNumber.length === 0  || parsedNumber.length === 10}});
         setPhoneNumber(parsedNumber);
+    }
+
+    const handleInstagramChange = (event) => {
+        let newVal = event.target.value;
+        if (newVal.match(/['\-"><;:\\+{}!@#$%=^*_|[\]]/)) {
+            return
+        }
+        let subRoute = newVal.split('/')
+        if (typeof subRoute[1] === 'undefined') {
+            return
+        }
+
+        setValidation(cur => {return {...cur, instagram: subRoute[1].length > 0}});
+        setInstagram('instagram.com/'+subRoute[1]);
+    }
+
+    const handleFacebookChange = (event) => {
+        let newVal = event.target.value;
+        if (newVal.match(/['\-"><;:\\+{}!@#$%=^*_|[\]]/)) {
+            return
+        }
+        let subRoute = newVal.split('/')
+        if (typeof subRoute[1] === 'undefined') {
+            return
+        }
+
+        setValidation(cur => {return {...cur, facebook: subRoute[1].length > 0}});
+        setFacebook('facebook.com/'+subRoute[1]);
     }
 
     const displayNumber = (number) => {
@@ -112,11 +153,11 @@ const SettingsForm = ({id}) => {
                 </Col>
         
                 <Col xs={12} md="6" lg={4} className="setting-item">
-                    <TextField fullWidth label={t("Instagram")} color="" type="url" onChange={(event) => setInstagram(event.target.value)} value={instagram} />
+                    <TextField fullWidth label={t("Instagram")} color="" type="url" error={!validation.instagram} onChange={handleInstagramChange} value={instagram} />
                 </Col>
 
                 <Col xs={12} md="6" lg={4} className="setting-item">
-                    <TextField fullWidth label={t("Facebook")} color="" type="url" onChange={(event) => setFacebook(event.target.value)} value={facebook} />
+                    <TextField fullWidth label={t("Facebook")} color="" type="url" error={!validation.facebook} onChange={handleFacebookChange} value={facebook} />
                 </Col>
         
                 <Col xs={12} className="setting-item">
