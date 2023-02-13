@@ -14,8 +14,8 @@ const SettingsForm = ({id}) => {
     const [lastName, setLastName] = useState('');
     const [displayName, setDisplayName] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
-    const [instagram, setInstagram] = useState('instagram.com/');
-    const [facebook, setFacebook] = useState('facebook.com/');
+    const [instagram, setInstagram] = useState('https://www.instagram.com/');
+    const [facebook, setFacebook] = useState('https://www.facebook.com/');
     const [file, setFile] = useState('');
     const [posts, setPosts] = useState([]);
 
@@ -97,30 +97,30 @@ const SettingsForm = ({id}) => {
 
     const handleInstagramChange = (event) => {
         let newVal = event.target.value;
-        if (newVal.match(/['\-"><;:\\+{}!@#$%=^*_|[\]]/)) {
+        if (newVal.match(/['\-"><;\\+{}!@#$%=^*_|[\]]/)) {
             return
         }
         let subRoute = newVal.split('/')
-        if (typeof subRoute[1] === 'undefined') {
+        if (typeof subRoute[3] === 'undefined') {
             return
         }
 
-        setValidation(cur => {return {...cur, instagram: subRoute[1].length > 0}});
-        setInstagram('instagram.com/'+subRoute[1]);
+        setValidation(cur => {return {...cur, instagram: subRoute[3].length > 0}});
+        setInstagram('https://www.instagram.com/'+subRoute[3]);
     }
 
     const handleFacebookChange = (event) => {
         let newVal = event.target.value;
-        if (newVal.match(/['\-"><;:\\+{}!@#$%=^*_|[\]]/)) {
+        if (newVal.match(/['\-"><;\\+{}!@#$%=^*_|[\]]/)) {
             return
         }
         let subRoute = newVal.split('/')
-        if (typeof subRoute[1] === 'undefined') {
+        if (typeof subRoute[3] === 'undefined') {
             return
         }
 
-        setValidation(cur => {return {...cur, facebook: subRoute[1].length > 0}});
-        setFacebook('facebook.com/'+subRoute[1]);
+        setValidation(cur => {return {...cur, facebook: subRoute[3].length > 0}});
+        setFacebook('https://www.facebook.com/'+subRoute[3]);
     }
 
     const displayNumber = (number) => {
