@@ -239,6 +239,15 @@ function CreatePost() {
         setBlade(newValue);
     }
 
+    const handleDescriptionChange = (event) => {
+        let newValue = event.target.value;
+        if (newValue.match(/['\-"><;:\\+{}!@#$%=^*_|[\]]/)) {
+            return;
+        }
+        setDescription(newValue);
+    }
+
+
     return (
         <Container className="create-container">
             <Row>
@@ -307,7 +316,7 @@ function CreatePost() {
             </Row>
             <Row>
                 <Col xs={12}>
-                    <TextareaAutosize style={{width: "100%"}} minRows={5} value={description} placeholder={t("Description")} label={t("Description")} onChange={(event) => setDescription(event.target.value)} />
+                    <TextareaAutosize style={{width: "100%"}} minRows={5} value={description} placeholder={t("Description")} label={t("Description")} onChange={handleDescriptionChange} />
                 </Col>
             </Row>
             <Row>

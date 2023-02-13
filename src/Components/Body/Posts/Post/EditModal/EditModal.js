@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
-import { brands, types } from '../../../../../Data/Constants';
+import { blades, brands, types } from '../../../../../Data/Constants';
 
 import DeleteModal from '../DeleteModal';
 
@@ -22,12 +22,12 @@ const EditModal = ({item, openEditModal, setOpenEditModal, filterPosts, setFilte
     const [title, setTitle] = useState(item?.title);
     const [description, setDescription] = useState(item?.description);
     const [type, setType] = useState(item?.type);
+    const [blade, setBlade] = useState(item?.blade);
     const [brand, setBrand] = useState(item?.brand);
     const [condition, setCondition] = useState(item?.condition);
     const [price, setPrice] = useState(item?.price);
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
     // const [removedImages, setRemovedImages] = useState({});
-
     // State to store uploaded file
     // const [file, setFile] = useState("");
     
@@ -35,17 +35,38 @@ const EditModal = ({item, openEditModal, setOpenEditModal, filterPosts, setFilte
     // function handleChange(event) {
     //     setFile(event.target.files[0]);
     // }
+    const [disableSubmit, setDisableSubmit] = useState(false);
+
+    const [validation, setValidation] = useState({
+        title: true,
+        type: true,
+        blade: true,
+        brand: true,
+        conidition: true,
+        price: true
+    });
 
     const { t } = useTranslation();
 
     useEffect(() => {
-        setTitle(item.title);
-        setDescription(item.description)
-        setType(item.type)
-        setBrand(item.brand)
-        setCondition(item.condition)
-        setPrice(item.price)
+        setTitle(item?.title);
+        setDescription(item?.description)
+        setType(item?.type)
+        setBlade(item?.blade)
+        setBrand(item?.brand)
+        setCondition(item?.condition)
+        setPrice(item?.price)
     }, [item]);
+
+    let isValidated = useMemo(() => {
+        const valid = !Object.values(validation).some((item) => item === false);
+
+        if (valid === true) {
+            setDisableSubmit(false);
+        }
+
+        return valid;
+    }, [validation]);
 
     const getOptions = (options, key) => {
         return options.map((name) => {
@@ -54,6 +75,9 @@ const EditModal = ({item, openEditModal, setOpenEditModal, filterPosts, setFilte
     };
 
     const editPost = async () => {
+        if (!isValidated) {
+            return
+        }
         const postDocRef = doc(db, "posts", item.id);
         await setDoc(postDocRef, {
             title,
@@ -128,6 +152,90 @@ const EditModal = ({item, openEditModal, setOpenEditModal, filterPosts, setFilte
     //     </Row>
     // );
 
+
+    const handleTitleChange = (event) => {
+        let newValue = event.target.value;
+        if (newValue.match(/['\-"><;:\\+{}!@#$%=^*_|[\]]/)) {
+            return
+        }
+
+        setValidation(cur => {return {...cur, title: newValue !== ""}});
+        setTitle(newValue);
+    }
+
+    const handlePriceChange = (event) => {
+        let newValue = event.target.value;
+        if (newValue.match(/['\-"]/)) {
+            return
+        }
+
+        setValidation(cur => {return {...cur, price: newValue !== ""}});
+        setPrice(newValue);
+    }
+
+    const handleBrandChange = (event) => {
+        let newValue = event.target.value;
+        if (newValue !== "") {
+            setValidation(cur => {return {...cur, brand: true}});
+        }
+        
+        setBrand(newValue);
+    }
+
+    const handleTypeChange = (event) => {
+        let newValue = event.target.value;
+        if (newValue !== "") {
+            setValidation(cur => {return {...cur, type: true}});
+        }
+
+        setType(newValue);
+    }
+
+    const handleConditionChange = (event) => {
+        let newValue = event.target.value;
+        if (newValue !== "") {
+            setValidation(cur => {return {...cur, condition: true}});
+        }
+        
+        setCondition(newValue);
+    }
+
+    const handleBladeChange = (event) => {
+        let newValue = event.target.value;
+        if (newValue !== "") {
+            setValidation(cur => {return {...cur, blade: true}});
+        }
+        
+        setBlade(newValue);
+    }
+
+    const handleDescriptionChange = (event) => {
+        let newValue = event.target.value;
+        if (newValue.match(/['\-"><;:\\+{}!@#$%=^*_|[\]]/)) {
+            return;
+        }
+        setDescription(newValue);
+    }
+
+    const handleSubmit = () => {
+        if (!isValidated) {
+            setDisableSubmit(true);
+            return
+        }
+        
+        editPost();
+        setOpenEditModal(false);
+    }
+
+    const handleCancel = (event) => {
+        setOpenEditModal(false);
+    }
+
+    const handleDelete = (event) => {
+        event.preventDefault();
+        setOpenDeleteModal(true);
+    }
+
     return (
         <Modal open={openEditModal}>
             <Row className="edit-modal">
@@ -138,68 +246,83 @@ const EditModal = ({item, openEditModal, setOpenEditModal, filterPosts, setFilte
                             <h2>{t('Edit')}</h2>
                         </Col>
                         <Col xs={6} sm={3}>
-                            <Button variant="danger" onClick={(e) => {e.preventDefault();setOpenDeleteModal(true);}}>{t("Delete")}</Button>
+                            <Button variant="danger" onClick={handleDelete}>{t("Delete")}</Button>
                         </Col>
                     </Row>
                     <Row className="edit-input">
-                        <TextField fullWidth size="small" value={title} label={t("Title")} className="input-width" onChange={(event) => setTitle(event.target.value)} />
+                        <TextField error={!validation.title} fullWidth size="small" value={title} label={t("Title")} className="input-width" onChange={handleTitleChange} />
                     </Row>
                     <Row className="edit-input">
-                        <TextField fullWidth size="small" value={price} label={t("Price")} className="input-width" onChange={(event) => setPrice(event.target.value)} />
+                        <TextField fullWidth size="small" value={price} type="number" label={t("Price")} className="input-width" onChange={handlePriceChange} />
+                    </Row>
+                    <Row className="edit-input">
+                        <FormControl fullWidth error={validation.blade === false && disableSubmit}>
+                            <InputLabel id="blade-edit-label">{t("Blade")}</InputLabel>
+                            <Select
+                                labelId="blade-edit-label"
+                                id="blade-edit-select"
+                                label={t("Blade")}
+                                defaultValue=""
+                                size="small"
+                                value={blade}
+                                onChange={handleBladeChange}>
+                                {getOptions(blades, "blade")}
+                            </Select>
+                        </FormControl>
                     </Row>
                     <Row className="edit-input">
                         <FormControl fullWidth>
-                            <InputLabel size="small" id="brand-edit-label">{t("Brand")}</InputLabel>
+                            <InputLabel error={validation.brand === false && disableSubmit} size="small" id="brand-edit-label">{t("Brand")}</InputLabel>
                             <Select
                                 labelId="brand-edit-label"
                                 id="brand-edit-select"
                                 size="small"
                                 value={brand}
                                 label={t("Brand")}
-                                onChange={(event) => setBrand(event.target.value)}>
+                                onChange={handleBrandChange}>
                                 {getOptions(brands, "brand")}
                             </Select>
                         </FormControl>
                     </Row>
                     <Row className="edit-input">
                         <FormControl fullWidth>
-                            <InputLabel size="small" id="business-edit-label">{t("Sale Type")}</InputLabel>
+                            <InputLabel error={validation.type === false && disableSubmit} size="small" id="business-edit-label">{t("Sale Type")}</InputLabel>
                             <Select
                                 labelId="business-edit-label"
                                 id="business-edit-select"
                                 size="small"
                                 value={type}
                                 label={t("Sale Type")}
-                                onChange={(event) => setType(event.target.value)}>
+                                onChange={handleTypeChange}>
                                 {getOptions(types, "type")}
                             </Select>
                         </FormControl>
                     </Row>
                     <Row className="edit-input">
                         <FormControl fullWidth>
-                            <InputLabel size="small" id="condition-edit-label">{t("Condition")}</InputLabel>
+                            <InputLabel error={validation.condition === false && disableSubmit} size="small" id="condition-edit-label">{t("Condition")}</InputLabel>
                             <Select
                                 labelId="condition-edit-label"
                                 id="condition-edit-select"
                                 size="small"
                                 value={condition}
                                 label={t("Condition")}
-                                onChange={(event) => setCondition(event.target.value)}>
+                                onChange={handleConditionChange}>
                                 {getOptions([1,2,3,4,5,6,7,8,9,10], "condition")}
                             </Select>
                         </FormControl>
                     </Row>
                     <Row className="edit-input">
-                        <TextareaAutosize fullwidth="true" minRows={3} value={description} placeholder={t("Description")} label={t("Description")} onChange={(event) => setDescription(event.target.value)} />
+                        <TextareaAutosize fullwidth="true" minRows={3} value={description} placeholder={t("Description")} label={t("Description")} onChange={handleDescriptionChange} />
                     </Row>
                     {/* {addPicture}
                     {pictures} */}
                     <Row className="edit-input">
                         <Col xs={6}>
-                            <Button onClick={() => setOpenEditModal(false)}>{t("Cancel")}</Button>
+                            <Button onClick={handleCancel}>{t("Cancel")}</Button>
                         </Col>
                         <Col xs={6}>
-                            <Button onClick={() => {editPost();setOpenEditModal(false)}}>{t("Submit")}</Button>
+                            <Button disabled={disableSubmit} onClick={handleSubmit}>{t("Submit")}</Button>
                         </Col>
                     </Row>
                 </Col>
