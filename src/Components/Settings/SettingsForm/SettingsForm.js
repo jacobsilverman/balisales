@@ -63,7 +63,7 @@ const SettingsForm = ({id}) => {
 
     const handleFirstNameChange = (event) => {
         const newVal = event.target.value;
-        if (newVal.match(/[%<>\\|$'"]/)) {
+        if (newVal.match(/['\-"><;:\\+{}!@#$%=^*_|[\]]/)) {
             return
         }
         setValidation(cur => {return {...cur, firstName: newVal !== ""}});
@@ -72,7 +72,7 @@ const SettingsForm = ({id}) => {
 
     const handleLastNameChange = (event) => {
         const newVal = event.target.value;
-        if (newVal.match(/[%<>\\|$'"]/)) {
+        if (newVal.match(/['\-"><;:\\+{}!@#$%=^*_|[\]]/)) {
             return
         }
         setValidation(cur => {return {...cur, lastName: newVal !== ""}});
@@ -81,7 +81,7 @@ const SettingsForm = ({id}) => {
 
     const handleDisplayNameChange = (event) => {
         const newVal = event.target.value;
-        if (newVal.match(/[%<>\\|$'"]/)) {
+        if (newVal.match(/['\-"><;:\\+{}!@#$%=^*_|[\]]/)) {
             return
         }
         setValidation(cur => {return {...cur, displayName: newVal !== ""}});

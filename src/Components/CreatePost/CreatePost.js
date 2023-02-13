@@ -181,7 +181,7 @@ function CreatePost() {
 
     const handleTitleChange = (event) => {
         let newValue = event.target.value;
-        if (newValue.match(/[%<>\\$'"]/)) {
+        if (newValue.match(/['\-"><;:\\+{}!@#$%=^*_|[\]]/)) {
             return
         }
 
