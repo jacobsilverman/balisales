@@ -47,7 +47,8 @@ function CreatePost() {
         brand: false,
         sale: false,
         condition: false,
-        blade: false
+        blade: false,
+        picture: false
     });
 
     const { t } = useTranslation();
@@ -82,6 +83,7 @@ function CreatePost() {
             setShowFiles([URL.createObjectURL(event.target.files[0]), ...showFiles]);
             setFiles(cur => [...cur, event.target.files[0]]);
             setNumberOfUploads(numberOfUploads => numberOfUploads+1);
+            setValidation(cur => {return {...cur, picture: true}});
         }
     }
 
@@ -90,6 +92,9 @@ function CreatePost() {
             setShowFiles(showFiles => showFiles.splice(index, 1));
             setFiles(files => files.splice(index, 1));
             setNumberOfUploads(numberOfUploads => numberOfUploads-1);
+            if (numberOfUploads-1 === 0){
+                setValidation(cur => {return {...cur, picture: false}});
+            }
         }
     }
 
@@ -113,11 +118,10 @@ function CreatePost() {
     }
 
     const createPost = async () => {
+        setDisableSubmit(true);
         if (!isValidated) {
-            setDisableSubmit(true);
             return
         }
-
         if (!files[0]) {
             alert("Please upload an image first!");
             return
