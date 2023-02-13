@@ -109,3 +109,14 @@
     padding:2px 10px;
 }
 
+.all-pictures {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,100px);
+    grid-gap: 0.5rem;
+    justify-content: center;
+}
+
+.individual-picture {
+    cursor: pointer;
+}
+

@@ -15,6 +15,7 @@ import Button from '@mui/material/Button';
 
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { display } from '@mui/system';
 
 function SelectPost() {
     const urlSearchParams = new URLSearchParams(window.location.search);
@@ -45,20 +46,39 @@ function SelectPost() {
         });
     }, [displayPost]);
 
+    const postPictures = displayPost?.urls?.map((image, index) => {
+        const pictureCls = `${index===displayImage ? 'show' : 'hidden'} image-container align-items-end`;
+
+        return (
+            <Col xs={11} sm={11} md={7} style={{backgroundImage: `url(${image})`}} className={pictureCls}>
+                <Link className="link-wrapper" to={{pathname: '/profile', search: "id=" + displayPost?.author?.id}}>
+                    <div className="display-name">{displayPost?.author?.name}</div>
+                    <div className="account-profile center" style={{backgroundImage: `url(${profilePic})`}} />
+                </Link>
+            </Col>
+        );
+    })
+
+    const postBottomPictures = (
+        <Row className='all-pictures'>
+            {displayPost?.urls?.map((image, index) => {
+                return (
+                    <Col className='individual-picture' style={{backgroundImage: `url(${image})`, backgroundSize:'100% 100%', maxWidth: "75px", height: "100px", opacity: (displayImage === index) ? '.5': '1'}} onClick={() => {setDisplayImage(index)}} />
+                );
+            })}
+        </Row>
+    )
 
     const displaySelectedPost = (
         <Fragment>
             <Col xs={12} className="display-title center" >
                 <h1>{displayPost?.title}</h1>
             </Col>
-            {displayPost?.urls && <Col xs={11} sm={11} md={7} style={{backgroundImage: `url(${displayPost?.urls[displayImage]})`}} className="image-container align-items-end">
-                <Link className="link-wrapper" to={{pathname: '/profile', search: "id=" + displayPost?.author?.id}}>
-                    <div className="display-name">{displayPost?.author?.name}</div>
-                    <div className="account-profile center" style={{backgroundImage: `url(${profilePic})`}} />
-                </Link>
-            </Col>}
-
-            {displayPost?.numberOfImages > 1 && <Row>
+            {displayPost?.urls && postPictures}
+            
+            {displayPost?.urls && postBottomPictures}
+            {displayPost?.numberOfImages > 1 &&
+            <Row>
                 <Col xs={6} className="previous-image">
                     <Button variant="contained" onClick={() => setDisplayImage(cur => (cur-1) < 0 ? displayPost?.numberOfImages-1 : (cur-1))}>{t("Previous")}</Button>
                 </Col>
@@ -66,7 +86,6 @@ function SelectPost() {
                     <Button variant="contained" onClick={() => setDisplayImage(cur => (cur+1)%displayPost?.numberOfImages)}>{t("Next")}</Button>
                 </Col>
             </Row>}
-
             
             <Row style={{justifyContent:"center"}}>
                 <Col xs={12} sm={12} className="info-container">
