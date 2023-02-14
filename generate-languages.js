@@ -60,7 +60,7 @@ let fr = ['Accueil','Créer','Contact','À propos','Filtrer',
 'Paramètres', 'pas de nouveaux messages', 'pas de nouvelles alertes', 'Faire un don', 'Créé',
 'Précédent', 'Suivant', 'Prénom', 'Nom', 'Montant', "Nom d'affichage",
 'Numéro de téléphone', 'Instagram', 'Facebook', 'Photo de profil', 'Annuler',
-'Modifier', 'Supprimer', 'Oui', 'Non', 'Voulez-vous supprimer ce message ?',
+'Modifier', 'Supprimer', 'Oui', 'Non', 'Voulezvous supprimer ce message ?',
 "N'hésitez pas à nous envoyer un message pour quelque raison que ce soit"];
 
 let hi = ['होम', 'क्रिएट', 'कॉन्टैक्ट', 'अबाउट', 'फिल्टर',
@@ -172,14 +172,14 @@ let pt = ['Home','Criar','Contato','Sobre','Filtro',
 'Redefinir','Mínimo','Máximo','Custo','Status','Marca','Tipo',
 'Tempo','Blade','Todos','Disponível','Pendente','Vendido','Negociado',
 'Vender','Negociar','Comprar','Novo','Velho','Ao Vivo','Treinador','Peças',
-'Login', 'Sair', 'Inscrever-se', 'Navegar', 'Contactar o Suporte', 'Postagem do Utilizador',
+'Login', 'Sair', 'Inscreverse', 'Navegar', 'Contactar o Suporte', 'Postagem do Utilizador',
 'Sobre nós', 'Idioma', 'Título', 'Preço', 'Condição', 'Tipo de venda',
 'Descrição', 'Carregar imagem', 'Enviar', 'Pesquisar', 'Moeda', 'Perfil',
 'Configurações', 'sem novas mensagens', 'sem novos alertas', 'Doar', 'Criado',
 'Anterior', 'Próximo', 'Nome', 'Sobrenome', 'Valor', 'Nome de exibição',
 'Número de telefone', 'Instagram', 'Facebook', 'Foto do perfil', 'Cancelar',
 'Editar', 'Excluir', 'Sim', 'Não', 'Deseja excluir esta postagem?',
-'Sinta-se à vontade para nos enviar uma mensagem por qualquer motivo'];
+'Sintase à vontade para nos enviar uma mensagem por qualquer motivo'];
 
 let ru = ['Главная', 'Создать', 'Контакты', 'О программе', 'Фильтр',
     'Сброс', 'Минимум', 'Максимум', 'Стоимость', 'Статус', 'Бренд', 'Тип',
