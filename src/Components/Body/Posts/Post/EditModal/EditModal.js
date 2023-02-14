@@ -42,20 +42,27 @@ const EditModal = ({item, openEditModal, setOpenEditModal, filterPosts, setFilte
         type: true,
         blade: true,
         brand: true,
-        conidition: true,
+        condition: true,
         price: true
     });
 
     const { t } = useTranslation();
 
     useEffect(() => {
-        setTitle(item?.title);
-        setDescription(item?.description)
-        setType(item?.type)
-        setBlade(item?.blade)
-        setBrand(item?.brand)
-        setCondition(item?.condition)
-        setPrice(item?.price)
+        let ignore = false;
+        (() => {
+            if (!ignore) {
+                setTitle(item?.title);
+                setDescription(item?.description)
+                setType(item?.type)
+                setBlade(item?.blade)
+                setBrand(item?.brand)
+                setCondition(item?.condition)
+                setPrice(item?.price)
+            }
+        })()
+
+        return () => ignore = true;
     }, [item]);
 
     let isValidated = useMemo(() => {
@@ -82,6 +89,7 @@ const EditModal = ({item, openEditModal, setOpenEditModal, filterPosts, setFilte
         await setDoc(postDocRef, {
             title,
             type,
+            blade,
             brand, 
             condition,
             price,
@@ -227,7 +235,7 @@ const EditModal = ({item, openEditModal, setOpenEditModal, filterPosts, setFilte
         setOpenEditModal(false);
     }
 
-    const handleCancel = (event) => {
+    const handleCancel = () => {
         setOpenEditModal(false);
     }
 
@@ -256,31 +264,32 @@ const EditModal = ({item, openEditModal, setOpenEditModal, filterPosts, setFilte
                         <TextField fullWidth size="small" value={price} type="number" label={t("Price")} className="input-width" onChange={handlePriceChange} />
                     </Row>
                     <Row className="edit-input">
-                        <FormControl fullWidth error={validation.blade === false && disableSubmit}>
-                            <InputLabel id="blade-edit-label">{t("Blade")}</InputLabel>
-                            <Select
-                                labelId="blade-edit-label"
-                                id="blade-edit-select"
-                                label={t("Blade")}
-                                defaultValue=""
-                                size="small"
-                                value={blade}
-                                onChange={handleBladeChange}>
-                                {getOptions(blades, "blade")}
-                            </Select>
-                        </FormControl>
-                    </Row>
-                    <Row className="edit-input">
                         <FormControl fullWidth>
                             <InputLabel error={validation.brand === false && disableSubmit} size="small" id="brand-edit-label">{t("Brand")}</InputLabel>
                             <Select
                                 labelId="brand-edit-label"
                                 id="brand-edit-select"
                                 size="small"
+                                defaultValue={item?.brand}
                                 value={brand}
                                 label={t("Brand")}
                                 onChange={handleBrandChange}>
                                 {getOptions(brands, "brand")}
+                            </Select>
+                        </FormControl>
+                    </Row>
+                    <Row className="edit-input">
+                        <FormControl fullWidth error={validation.blade === false && disableSubmit}>
+                            <InputLabel id="blade-edit-label" size="small">{t("Blade")}</InputLabel>
+                            <Select
+                                labelId="blade-edit-label"
+                                id="blade-edit-select"
+                                size="small"
+                                defaultValue={item?.blade}
+                                value={blade}
+                                label={t("Blade")}
+                                onChange={handleBladeChange}>
+                                {getOptions(blades, "blade")}
                             </Select>
                         </FormControl>
                     </Row>
@@ -291,6 +300,7 @@ const EditModal = ({item, openEditModal, setOpenEditModal, filterPosts, setFilte
                                 labelId="business-edit-label"
                                 id="business-edit-select"
                                 size="small"
+                                defaultValue={item?.type}
                                 value={type}
                                 label={t("Sale Type")}
                                 onChange={handleTypeChange}>
@@ -305,6 +315,7 @@ const EditModal = ({item, openEditModal, setOpenEditModal, filterPosts, setFilte
                                 labelId="condition-edit-label"
                                 id="condition-edit-select"
                                 size="small"
+                                defaultValue={item?.condition}
                                 value={condition}
                                 label={t("Condition")}
                                 onChange={handleConditionChange}>

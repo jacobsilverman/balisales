@@ -177,9 +177,9 @@ function CreatePost() {
         });
     }
 
-    const getOptions = (options, option) => {
+    const getOptions = (options, key) => {
         return options.map((name) => {
-            return <MenuItem key={option+"-"+name} value={name}>{t(name)}</MenuItem>;
+            return <MenuItem key={key+"-"+name} value={name}>{t(name)}</MenuItem>;
         });
     };
 
