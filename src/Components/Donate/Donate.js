@@ -76,10 +76,10 @@ const Donate = ({showDonate, setShowDonate}) => {
                         <Col xs={12} lg={10}>
                             <Row>
                                 <Col xs={12} sm={6}>
-                                    <TextField size={isMobile && "small"} autoComplete="off" fullWidth id="paypal-amount-input" min="0" label={t("Amount")} color="" type="number" value={amount} onChange={changeAmount} />
+                                    <TextField size={isMobile ? "small" : ""} autoComplete="off" fullWidth id="paypal-amount-input" min="0" label={t("Amount")} color="" type="number" value={amount} onChange={changeAmount} />
                                 </Col>
                                 <Col xs={12} sm={6}>
-                                    <FormControl size={isMobile && "small"} fullWidth id="paypal-currency-selector">
+                                    <FormControl size={isMobile ? "small" : ""} fullWidth id="paypal-currency-selector">
                                         <InputLabel id={currency+"-paypal-currency-label"}>{paypalIcon}&nbsp;{t("Currency")}</InputLabel>
                                         <Select
                                             defaultValue=""

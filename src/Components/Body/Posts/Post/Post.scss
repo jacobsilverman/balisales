@@ -7,14 +7,15 @@
     align-items: center;
     min-width: 100px;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
-    border: 1px solid  black;
+    border: 1px solid  lightgrey;
 }
 
 .desktop-hov:hover {
-    box-shadow: -6px 6px rgb(25, 118, 210), -5px 5px rgb(25, 118, 210), -4px 4px rgb(25, 118, 210), -3px 3px rgb(25, 118, 210),
+    box-shadow: -5px 5px rgb(25, 118, 210), -4px 4px rgb(25, 118, 210), -3px 3px rgb(25, 118, 210),
     -2px 2px rgb(25, 118, 210), -1px 1px rgb(25, 118, 210);
     transition: 0.35s;
-    translate: 3.5% -2.5%;
+    translate: 4.5% -3.5%;
+    border: none;
 }
 
 // .fake-background {

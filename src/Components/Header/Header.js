@@ -29,9 +29,9 @@ const SearchBar = ({posts, showSearch, t}) => {
         let result = posts.map((post) => {
             if (!cache[post.author.name.toLowerCase()] && post.author.name.toLowerCase().includes(searchValue.toLowerCase())){
                 cache[post.author.name.toLowerCase()] = true;
-                return (<a href={"/profile?id="+post?.author?.id} key={"search-"+post?.id}>{post?.author.name}</a>)
+                return (<a href={"/profile?id="+post?.author?.id} targe="blank" key={"search-"+post?.id}>{post?.author.name}</a>)
             } else if (post.title.toLowerCase().includes(searchValue)) {
-                return (<a href={"/singlePost?id="+post.id}  key={"search-"+post?.id}>{post.title}</a>);
+                return (<a href={"/singlePost?id="+post.id} targe="blank" key={"search-"+post?.id}>{post.title}</a>);
             }
         });
 
@@ -41,8 +41,10 @@ const SearchBar = ({posts, showSearch, t}) => {
                 val.push((<div>{company}</div>))
             }
             Companies[company].forEach((bali) => {
-                if (bali.toLowerCase().includes(searchValue.toLowerCase())){
+                if (typeof bali === 'string' && bali.toLowerCase().includes(searchValue.toLowerCase())){
                     val.push((<div>{bali+": "+company}</div>))
+                } else if (bali !== 'string' && (bali?.blade?.toLowerCase().includes(searchValue.toLowerCase()) || company.toLowerCase().includes(searchValue.toLowerCase()))) {
+                    val.push((<a href={bali?.url} target="blank">{bali?.blade+": "+company}</a>))
                 }
             })
             return val;

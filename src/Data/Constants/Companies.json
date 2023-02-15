@@ -1,16 +1,15 @@
 {
     "Artisan Cutlery": [
-        "Kinetic tool"
+        {"blade": "Kinetic tool", "price": "$70","url": "https://artisancutlery.net/products/kinetic-tool-atz-1823p-g10"}
     ],
     "Atropos": [
-        "Cleaversong",
-        "Kirat Lite",
-        "Kratos Lite",
-        "Demon Lite",
-        "Demon 2 Lite",
-        "Harley Quin",
-        "Faust Bro blue",
-        "Demon Bro",
+        {"blade":"Cleaversong", "price": "$120", "url": "https://blade-city.com/products/atropos-x-blade-city-d2-cleaversong-2-0"},
+        {"blade":"Kirat Lite", "price": "$180", "url": "https://atroposknifeusa.com/products/kirat-lite"},
+        {"blade":"Demon Lite", "price": "$180", "url": "https://atroposknifeusa.com/products/demon-lite"},
+        {"blade":"Demon 2 Lite", "price": "$180", "url": "https://atroposknifeusa.com/products/demon-2-lite"},
+        {"blade":"Harley Quin", "price": "$200", "url": "https://atroposknifeusa.com/products/harley-quinn"},
+        {"blade":"Faust Bro blue", "price": "$200", "url": "https://atroposknifeusa.com/products/faust-bro-blue-latchless"},
+        {"blade":"Demon Bro", "price": "$185", "url": "https://atroposknifeusa.com/products/demon-bro"},
         "Kirat bro Military",
         "Demon 2 Satin",
         "Gladius Bro black",
@@ -25,7 +24,7 @@
         "Smoke BRO"
     ],
     "B.A Balis (Blake Anstett balis)": [
-        "Segihega"
+        {"blade":"Segihega", "price": "$875", "url": "https://babalis.net/products/seigaiha-live-made-to-order-coming-soon"}
     ],
     "Baliplus": [],
     "BBarfly": [
@@ -222,7 +221,7 @@
         "Tachyon 3",
         "Tachyon 2"
     ],
-    "Nabilus ": [
+    "Nabilus": [
         "Morse",
         "Spaner",
         "Sword Of Light",
@@ -274,7 +273,7 @@
         "Terra"
     ],
     "Terrain 365": [
-        "M390"
+        {"blade":"M390", "price": "$250", "url":"https://terrain365.com/products/mini-butterfly-bohler-m390?variant=29544444035187"}
     ],
     "Theone": [],
     "WB Concept": [
