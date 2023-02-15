@@ -86,7 +86,7 @@ i18n
     },
     fallbackLng: 'en',
     debug: true,
-
+    saveMissing: true,
     interpolation: {
       escapeValue: false,
     }
