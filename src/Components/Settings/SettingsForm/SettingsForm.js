@@ -16,8 +16,20 @@ const SettingsForm = ({id}) => {
     const [phoneNumber, setPhoneNumber] = useState('');
     const [instagram, setInstagram] = useState('https://www.instagram.com/');
     const [facebook, setFacebook] = useState('https://www.facebook.com/');
+    
+    const [address, setAddress] = useState({
+        address: '',
+        unit: '',
+        city: '',
+        state: '',
+        zipcode: ''
+    });
+    
     const [file, setFile] = useState('');
     const [posts, setPosts] = useState([]);
+    const [showRequiredInfo, setShowRequiredInfo] = useState(true);
+    const [showSocialInfo, setShowSocialInfo] = useState(true);
+    const [showLocationInfo, setShowLocationInfo] = useState(true);
 
     const [profilePicture, setProfilePicture] = useState(null);
 
@@ -27,7 +39,13 @@ const SettingsForm = ({id}) => {
         displayName: false,
         phoneNumber: true,
         instagram: true,
-        facebook: true
+        facebook: true,
+        address: true,
+        unit: true,
+        city: true,
+        country: true,
+        state: true,
+        zipcode: true
     });
 
     const { t } = useTranslation();
@@ -44,6 +62,7 @@ const SettingsForm = ({id}) => {
             setPhoneNumber(result.phoneNumber);
             setInstagram(result.instagram);
             setFacebook(result.facebook);
+            setAddress(result.address);
             setPosts(result.posts || []);
             setValidation({
                 firstName: result.firstName.length > 0,
@@ -51,7 +70,13 @@ const SettingsForm = ({id}) => {
                 displayName: result.displayName.length > 0,
                 phoneNumber: result.phoneNumber.length === 0 || result.phoneNumber.length === 10,
                 instagram:  true,
-                facebook: true
+                facebook: true,
+                address: true,
+                unit: true,
+                city: true,
+                country: true,
+                state: true,
+                zipcode: true
             });
         });
     }, []);
@@ -123,6 +148,66 @@ const SettingsForm = ({id}) => {
         setFacebook('https://www.facebook.com/'+subRoute[3]);
     }
 
+    const handleAddressChange = (event) => {
+        let newVal = event.target.value;
+        if (newVal.match(/['\-"><;\\+{}!@#$%=^*_|[\]]/)) {
+            return
+        }
+
+        setValidation(cur => {return {...cur, address: true}});
+        setAddress(cur => {return {...cur, address: newVal}});
+    }
+
+    const handleUnitChange = (event) => {
+        let newVal = event.target.value;
+        if (newVal.match(/['\-"><;\\+{}!@#$%=^*_|[\]]/)) {
+            return
+        }
+
+        setValidation(cur => {return {...cur, unit: true}});
+        setAddress(cur => {return {...cur, unit: newVal}});
+    }
+
+    const handleCityChange = (event) => {
+        let newVal = event.target.value;
+        if (newVal.match(/['\-"><;\\+{}!@#$%=^*_|[\]]/)) {
+            return
+        }
+
+        setValidation(cur => {return {...cur, city: true}});
+        setAddress(cur => {return {...cur, city: newVal}});
+    }
+
+    const handleCountryChange = (event) => {
+        let newVal = event.target.value;
+        if (newVal.match(/['\-"><;\\+{}!@#$%=^*_|[\]]/)) {
+            return
+        }
+
+        setValidation(cur => {return {...cur, country: true}});
+        setAddress(cur => {return {...cur, country: newVal}});
+    }
+
+    const handleStateChange = (event) => {
+        let newVal = event.target.value;
+        if (newVal.match(/['\-"><;\\+{}!@#$%=^*_|[\]]/)) {
+            return
+        }
+
+        setValidation(cur => {return {...cur, state: true}});
+        setAddress(cur => {return {...cur, state: newVal}});
+    }
+
+    const handleZipcodeChange = (event) => {
+        let newVal = event.target.value;
+        if (newVal.match(/['\-"><;\\+{}!@#$%=^*_|[\]]/)) {
+            return
+        }
+
+        setValidation(cur => {return {...cur, zipcode: true}});
+        setAddress(cur => {return {...cur, zipcode: newVal}});
+    }
+
     const displayNumber = (number) => {
         if (isNaN(number)) return "";
         return (number.length >3 ? "(" : "")
@@ -136,29 +221,74 @@ const SettingsForm = ({id}) => {
     return (
         <Col xs={12} className="center settings-container">
             <Row>
-                <Col xs={12} md="6" lg={4} className="setting-item">
-                    <TextField fullWidth label={t("First Name")} error={!validation.firstName} type="search" onChange={handleFirstNameChange} value={firstName} />
+                <Col xs={12}>
+                    <h2 onClick={() => setShowRequiredInfo(cur => !cur)}>
+                        Required Info
+                        <i size="small" className='material-icons'>{showRequiredInfo ? "visibility_off" : "visibility_on"}</i>
+                    </h2>
                 </Col>
+                {showRequiredInfo && <>
+                    <Col xs={12} sm={6} md={4} lg={4} className="setting-item">
+                        <TextField fullWidth label={t("First Name")} error={!validation.firstName} type="search" onChange={handleFirstNameChange} value={firstName} />
+                    </Col>
 
-                <Col xs={12} md="6" lg={4} className="setting-item">
-                    <TextField fullWidth label={t("Last Name")} error={!validation.lastName} type="search" onChange={handleLastNameChange} value={lastName} />
-                </Col>
+                    <Col xs={12} sm={6} md={4} lg={4} className="setting-item">
+                        <TextField fullWidth label={t("Last Name")} error={!validation.lastName} type="search" onChange={handleLastNameChange} value={lastName} />
+                    </Col>
 
-                <Col xs={12} md="6" lg={4} className="setting-item">
-                    <TextField fullWidth label={t("Display Name")} error={!validation.displayName} type="search" onChange={handleDisplayNameChange} value={displayName} />
-                </Col>
-        
-                <Col xs={12} md="6" lg={4} className="setting-item">
-                    <TextField fullWidth label={t("Phone Number")} error={!validation.phoneNumber} onChange={handlePhoneNumberChange} value={displayNumber(phoneNumber)} inputProps={{ maxLength: 14 }} />
-                </Col>
-        
-                <Col xs={12} md="6" lg={4} className="setting-item">
-                    <TextField fullWidth label={t("Instagram")} color="" type="url" error={!validation.instagram} onChange={handleInstagramChange} value={instagram} />
-                </Col>
+                    <Col xs={12} sm={6} md={4} lg={4} className="setting-item">
+                        <TextField fullWidth label={t("Display Name")} error={!validation.displayName} type="search" onChange={handleDisplayNameChange} value={displayName} />
+                    </Col>
+                </>}
 
-                <Col xs={12} md="6" lg={4} className="setting-item">
-                    <TextField fullWidth label={t("Facebook")} color="" type="url" error={!validation.facebook} onChange={handleFacebookChange} value={facebook} />
+                <Col xs={12}>
+                    <h2 onClick={() => setShowSocialInfo(cur => !cur)}>
+                        Social Info
+                        <i size="small" className='material-icons'>{ showSocialInfo ? "visibility_off" : "visibility_on"}</i>
+                    </h2>
                 </Col>
+                {showSocialInfo && <>
+                    <Col xs={12} sm={6} md={4} lg={4} className="setting-item">
+                        <TextField fullWidth label={t("Phone Number")} error={!validation.phoneNumber} onChange={handlePhoneNumberChange} value={displayNumber(phoneNumber)} inputProps={{ maxLength: 14 }} />
+                    </Col>
+            
+                    <Col xs={12} sm={6} md={4} lg={4} className="setting-item">
+                        <TextField fullWidth label={t("Instagram")} color="" type="url" error={!validation.instagram} onChange={handleInstagramChange} value={instagram} />
+                    </Col>
+
+                    <Col xs={12} sm={6} md={4} lg={4} className="setting-item">
+                        <TextField fullWidth label={t("Facebook")} color="" type="url" error={!validation.facebook} onChange={handleFacebookChange} value={facebook} />
+                    </Col>
+                </>}
+
+                <Col xs={12}>
+                    <h2 onClick={() => setShowLocationInfo(cur => !cur)}>
+                        Location Info
+                        <i size="small" className='material-icons'>{ showLocationInfo ? "visibility_off" : "visibility_on"}</i>
+                    </h2>
+                </Col>
+                {showLocationInfo && <>
+                    <Col xs={12} sm={6} md={4} lg={4} className="setting-item">
+                        <TextField fullWidth label={t("Address")} error={!validation.address} value={address?.address} onChange={handleAddressChange} />
+                    </Col>
+                    <Col xs={12} sm={6} md={4} lg={4} className="setting-item">
+                        <TextField fullWidth label={t("Unit")} color="" type="url" error={!validation.unit} value={address?.unit} onChange={handleUnitChange} />
+                    </Col>
+                    <Col xs={12} sm={6} md={4} lg={4} className="setting-item">
+                        <TextField fullWidth label={t("City")} color="" type="url" error={!validation.city} value={address?.city} onChange={handleCityChange} />
+                    </Col>
+                    <Col xs={12} sm={6} md={4} lg={4} className="setting-item">
+                        <TextField fullWidth label={t("Country")} color="" type="url" error={!validation.country} value={address?.country} onChange={handleCountryChange} />
+                    </Col>
+                    <Col xs={12} sm={6} md={4} lg={4} className="setting-item">
+                        <TextField fullWidth label={t("State")} color="" type="url" error={!validation.state}  value={address?.state} onChange={handleStateChange} />
+                    </Col>
+                    <Col xs={12} sm={6} md={4} lg={4} className="setting-item">
+                        <TextField fullWidth label={t("Zipcode")} color="" type="url" error={!validation.zipcode} value={address?.zipcode} onChange={handleZipcodeChange} />
+                    </Col>
+                </>}
+
+
         
                 <Col xs={12} className="setting-item">
                     <label className='profile-label' htmlFor="inputTag">
@@ -171,7 +301,7 @@ const SettingsForm = ({id}) => {
             </Row>
             <Row>
                 <Col xs={12} className="submit-button">
-                    <Button disabled={!isValid} variant="contained" onClick={() => setUserInfo({id, firstName, lastName, displayName, phoneNumber, instagram, facebook, posts}, file)}>
+                    <Button disabled={!isValid} variant="contained" onClick={() => setUserInfo({id, firstName, lastName, displayName, phoneNumber, instagram, facebook, address, posts}, file)}>
                         {t("Submit")}
                     </Button>
                 </Col>
