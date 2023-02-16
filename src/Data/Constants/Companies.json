@@ -1,107 +1,107 @@
 {
     "Artisan Cutlery": [
-        {"blade": "Kinetic tool", "price": "$70","url": "https://artisancutlery.net/products/kinetic-tool-atz-1823p-g10"}
+        {"blade": "Kinetic tool", "price": "70","url": "https://artisancutlery.net/products/kinetic-tool-atz-1823p-g10"}
     ],
     "Atropos": [
-        {"blade":"Cleaversong", "price": "$120", "url": "https://blade-city.com/products/atropos-x-blade-city-d2-cleaversong-2-0"},
-        {"blade":"Kirat Lite", "price": "$180", "url": "https://atroposknifeusa.com/products/kirat-lite"},
-        {"blade":"Demon Lite", "price": "$180", "url": "https://atroposknifeusa.com/products/demon-lite"},
-        {"blade":"Demon classic latchless", "price": "$270", "url": "https://atroposknifeusa.com/products/demon-classic-latchless-shipping-from-russia"},
-        {"blade":"Demon 2 Lite", "price": "$180", "url": "https://atroposknifeusa.com/products/demon-2-lite"},
-        {"blade":"Harley Quin", "price": "$200", "url": "https://atroposknifeusa.com/products/harley-quinn"},
-        {"blade":"Faust", "price": "$279", "url": "https://atroposknifeusa.com/products/faust-shipping-from-russia"},
-        {"blade":"Faust Bro blue", "price": "$200", "url": "https://atroposknifeusa.com/products/faust-bro-blue-latchless"},
-        {"blade":"Demon Bro", "price": "$185", "url": "https://atroposknifeusa.com/products/demon-bro"},
-        {"blade":"Kirat Bro Military", "price": "$185", "url": "https://atroposknifeusa.com/products/kirat-bro-military-latchless?_pos=1&_psq=Kirat+bro+Military&_ss=e&_v=1.0"},
-        {"blade":"Demon 2 Satin", "price": "$275", "url": "https://atroposknifeusa.com/products/demon-2-satin?_pos=2&_psq=Demon+2+Satin&_ss=e&_v=1.0"},
-        {"blade":"Gladius Bro black", "price": "$200", "url": "https://atroposknifeusa.com/products/gladius-bro-black?_pos=1&_psq=Gladius+Bro+black&_ss=e&_v=1.0"},
-        {"blade":"Smoke Bro Military", "price": "$185", "url": "https://atroposknifeusa.com/products/smoke-bro-military?_pos=1&_psq=Smoke+Bro+Military&_ss=e&_v=1.0"},
-        {"blade":"Demon 2 Moon Acid Wash", "price": "$410", "url": "https://atroposknifeusa.com/products/demon-2-moon-acidwash?_pos=2&_sid=cbdaaf0ec&_ss=r"},
-        {"blade":"Demon Slayer Demon", "price": "$1100", "url": "https://atroposknifeusa.com/products/demon-slayer-demon?_pos=1&_psq=Demon+Slayer+Demon&_ss=e&_v=1.0"},
-        {"blade":"Custom Trainer Demon blue", "price": "$199", "url": "https://atroposknifeusa.com/products/custom-trainer-demon-blue-shipping-from-russia"},
-        {"blade":"Stainless steel damascus custom Demon purple", "price": "$499", "url": "https://atroposknifeusa.com/products/stainless-steel-damascus-custom-demon-purple-shipping-from-russia"},
-        {"blade":"Striker", "price": "$199", "url": "https://atroposknifeusa.com/products/striker-shipping-from-russia"},
-        {"blade":"Fortress pink team", "price": "$169", "url": "https://atroposknifeusa.com/products/fortress-pink-team"},
-        {"blade":"Fortress blue", "price": "$170", "url": "https://atroposknifeusa.com/products/fortress-blue-shipping-from-russia"},
-        {"blade":"Fortress 2 spy Classic", "price": "$170", "url": "https://atroposknifeusa.com/products/fortress-2-spy-lclassic-shipping-from-russia?_pos=1&_psq=Fortress+2&_ss=e&_v=1.0"},
-        {"blade":"Kirat 2 Latchless", "price": "$270", "url": "https://atroposknifeusa.com/products/kirat-2-latchless-shipping-from-russia?_pos=1&_psq=Kirat+2&_ss=e&_v=1.0"},
-        {"blade":"Micro Demon Copper Laminate", "price": "$269", "url": "https://atroposknifeusa.com/products/micro-demon-copper-laminate-shipping-from-russia"},
-        {"blade":"Custom Damascus Kris", "price": "$425", "url": "https://atroposknifeusa.com/products/custom-damascus-kris"},
-        {"blade":"Micro Kirat brass", "price": "$199", "url": "https://atroposknifeusa.com/products/micro-kirat-brass-shipping-from-russia"},
-        {"blade":"Pirat lite", "price": "$139", "url": "https://atroposknifeusa.com/products/pirat-lite-shipping-from-russia"},
-        {"blade":"Demon", "price": "$274", "url": "https://atroposknifeusa.com/products/demon-shipping-from-russia"},
-        {"blade":"Cleaver-song yellow", "price": "$100", "url": "https://atroposknifeusa.com/products/cleaver-song-yellow-shipping-from-russia"},
-        {"blade":"Kris LSD", "price": "$666", "url": "https://atroposknifeusa.com/products/kris-lsd"},
-        {"blade":"Custom Demon Set", "price": "$499", "url": "https://atroposknifeusa.com/products/custom-demon-set-shipping-from-russia"},
-        {"blade":"Valorant", "price": "$299", "url": "https://atroposknifeusa.com/products/valorant-shipping-from-russia"},
-        {"blade":"Recon balisong", "price": "$666", "url": "https://atroposknifeusa.com/products/recon-balisong-shipping-from-russia"},
-        {"blade":"Custom Kaiju set", "price": "$666", "url": "https://atroposknifeusa.com/products/custom-kaiju-set-shipping-from-russia"},
-        {"blade": "Trainer Kirat 2", "price": "$159", "url": "https://atroposknifeusa.com/products/trainer-kirat-2-shipping-from-russia?_pos=2&_psq=Kirat+2&_ss=e&_v=1.0"},
-        {"blade":"Demon LDB", "price": "$482", "url": "https://atroposknifeusa.com/products/demon-ldb?_pos=3&_psq=Demon&_ss=e&_v=1.0"},
-        {"blade":"Demon 2", "price": "$245", "url": "https://atroposknifeusa.com/products/demon-2?_pos=2&_psq=Demon&_ss=e&_v=1.0"},
-        {"blade":"Kratos", "price": "$279", "url": "https://atroposknifeusa.com/products/kratos-shipping-from-russia?_pos=3&_psq=kra&_ss=e&_v=1.0"},
-        {"blade":"Custom Kratos Set", "price": "$499", "url": "https://atroposknifeusa.com/products/custom-kratos-set-shipping-from-russia?_pos=1&_psq=kratos&_ss=e&_v=1.0"},
-        {"blade":"Stainless Damascus Kratos moon", "price": "$599", "url": "https://atroposknifeusa.com/products/stainless-damascus-kratos-moon?_pos=2&_psq=kratos&_ss=e&_v=1.0"},
-        {"blade":"Kratos Aluminum", "price": "$177", "url": "https://atroposknifeusa.com/products/kratos-aluminum-latchless-shipping-from-russia?_pos=4&_psq=kratos&_ss=e&_v=1.0"}
+        {"blade":"Cleaversong", "price": "120", "url": "https://blade-city.com/products/atropos-x-blade-city-d2-cleaversong-2-0"},
+        {"blade":"Kirat Lite", "price": "180", "url": "https://atroposknifeusa.com/products/kirat-lite"},
+        {"blade":"Demon Lite", "price": "180", "url": "https://atroposknifeusa.com/products/demon-lite"},
+        {"blade":"Demon classic latchless", "price": "270", "url": "https://atroposknifeusa.com/products/demon-classic-latchless-shipping-from-russia"},
+        {"blade":"Demon 2 Lite", "price": "180", "url": "https://atroposknifeusa.com/products/demon-2-lite"},
+        {"blade":"Harley Quin", "price": "200", "url": "https://atroposknifeusa.com/products/harley-quinn"},
+        {"blade":"Faust", "price": "279", "url": "https://atroposknifeusa.com/products/faust-shipping-from-russia"},
+        {"blade":"Faust Bro blue", "price": "200", "url": "https://atroposknifeusa.com/products/faust-bro-blue-latchless"},
+        {"blade":"Demon Bro", "price": "185", "url": "https://atroposknifeusa.com/products/demon-bro"},
+        {"blade":"Kirat Bro Military", "price": "185", "url": "https://atroposknifeusa.com/products/kirat-bro-military-latchless?_pos=1&_psq=Kirat+bro+Military&_ss=e&_v=1.0"},
+        {"blade":"Demon 2 Satin", "price": "275", "url": "https://atroposknifeusa.com/products/demon-2-satin?_pos=2&_psq=Demon+2+Satin&_ss=e&_v=1.0"},
+        {"blade":"Gladius Bro black", "price": "200", "url": "https://atroposknifeusa.com/products/gladius-bro-black?_pos=1&_psq=Gladius+Bro+black&_ss=e&_v=1.0"},
+        {"blade":"Smoke Bro Military", "price": "185", "url": "https://atroposknifeusa.com/products/smoke-bro-military?_pos=1&_psq=Smoke+Bro+Military&_ss=e&_v=1.0"},
+        {"blade":"Demon 2 Moon Acid Wash", "price": "410", "url": "https://atroposknifeusa.com/products/demon-2-moon-acidwash?_pos=2&_sid=cbdaaf0ec&_ss=r"},
+        {"blade":"Demon Slayer Demon", "price": "1100", "url": "https://atroposknifeusa.com/products/demon-slayer-demon?_pos=1&_psq=Demon+Slayer+Demon&_ss=e&_v=1.0"},
+        {"blade":"Custom Trainer Demon blue", "price": "199", "url": "https://atroposknifeusa.com/products/custom-trainer-demon-blue-shipping-from-russia"},
+        {"blade":"Stainless steel damascus custom Demon purple", "price": "499", "url": "https://atroposknifeusa.com/products/stainless-steel-damascus-custom-demon-purple-shipping-from-russia"},
+        {"blade":"Striker", "price": "199", "url": "https://atroposknifeusa.com/products/striker-shipping-from-russia"},
+        {"blade":"Fortress pink team", "price": "169", "url": "https://atroposknifeusa.com/products/fortress-pink-team"},
+        {"blade":"Fortress blue", "price": "170", "url": "https://atroposknifeusa.com/products/fortress-blue-shipping-from-russia"},
+        {"blade":"Fortress 2 spy Classic", "price": "170", "url": "https://atroposknifeusa.com/products/fortress-2-spy-lclassic-shipping-from-russia?_pos=1&_psq=Fortress+2&_ss=e&_v=1.0"},
+        {"blade":"Kirat 2 Latchless", "price": "270", "url": "https://atroposknifeusa.com/products/kirat-2-latchless-shipping-from-russia?_pos=1&_psq=Kirat+2&_ss=e&_v=1.0"},
+        {"blade":"Micro Demon Copper Laminate", "price": "269", "url": "https://atroposknifeusa.com/products/micro-demon-copper-laminate-shipping-from-russia"},
+        {"blade":"Custom Damascus Kris", "price": "425", "url": "https://atroposknifeusa.com/products/custom-damascus-kris"},
+        {"blade":"Micro Kirat brass", "price": "199", "url": "https://atroposknifeusa.com/products/micro-kirat-brass-shipping-from-russia"},
+        {"blade":"Pirat lite", "price": "139", "url": "https://atroposknifeusa.com/products/pirat-lite-shipping-from-russia"},
+        {"blade":"Demon", "price": "274", "url": "https://atroposknifeusa.com/products/demon-shipping-from-russia"},
+        {"blade":"Cleaver-song yellow", "price": "100", "url": "https://atroposknifeusa.com/products/cleaver-song-yellow-shipping-from-russia"},
+        {"blade":"Kris LSD", "price": "666", "url": "https://atroposknifeusa.com/products/kris-lsd"},
+        {"blade":"Custom Demon Set", "price": "499", "url": "https://atroposknifeusa.com/products/custom-demon-set-shipping-from-russia"},
+        {"blade":"Valorant", "price": "299", "url": "https://atroposknifeusa.com/products/valorant-shipping-from-russia"},
+        {"blade":"Recon balisong", "price": "666", "url": "https://atroposknifeusa.com/products/recon-balisong-shipping-from-russia"},
+        {"blade":"Custom Kaiju set", "price": "666", "url": "https://atroposknifeusa.com/products/custom-kaiju-set-shipping-from-russia"},
+        {"blade": "Trainer Kirat 2", "price": "159", "url": "https://atroposknifeusa.com/products/trainer-kirat-2-shipping-from-russia?_pos=2&_psq=Kirat+2&_ss=e&_v=1.0"},
+        {"blade":"Demon LDB", "price": "482", "url": "https://atroposknifeusa.com/products/demon-ldb?_pos=3&_psq=Demon&_ss=e&_v=1.0"},
+        {"blade":"Demon 2", "price": "245", "url": "https://atroposknifeusa.com/products/demon-2?_pos=2&_psq=Demon&_ss=e&_v=1.0"},
+        {"blade":"Kratos", "price": "279", "url": "https://atroposknifeusa.com/products/kratos-shipping-from-russia?_pos=3&_psq=kra&_ss=e&_v=1.0"},
+        {"blade":"Custom Kratos Set", "price": "499", "url": "https://atroposknifeusa.com/products/custom-kratos-set-shipping-from-russia?_pos=1&_psq=kratos&_ss=e&_v=1.0"},
+        {"blade":"Stainless Damascus Kratos moon", "price": "599", "url": "https://atroposknifeusa.com/products/stainless-damascus-kratos-moon?_pos=2&_psq=kratos&_ss=e&_v=1.0"},
+        {"blade":"Kratos Aluminum", "price": "177", "url": "https://atroposknifeusa.com/products/kratos-aluminum-latchless-shipping-from-russia?_pos=4&_psq=kratos&_ss=e&_v=1.0"}
     ],
     "B.A Balis (Blake Anstett balis)": [
-        {"blade":"Segihega", "price": "$875", "url": "https://babalis.net/products/seigaiha-live-made-to-order-coming-soon"}
+        {"blade":"Segihega", "price": "875", "url": "https://babalis.net/products/seigaiha-live-made-to-order-coming-soon"}
     ],
     "Baliplus": [],
     "BBarfly": [
-        {"blade":"BBarfly Og", "price": "$35", "url": "https://bbbarfly.com/products/"},
-        {"blade":"BBarfly Og 2", "price": "$50", "url": "https://bbbarfly.com/products/"},
-        {"blade":"BBarfly Pro V3", "price": "$125", "url": "https://bbbarfly.com/bbbarfly-pro-v3-knife-style-choose-handle-color-s.html"},
-        {"blade":"BBFirefly", "price": "$170", "url": "https://bbbarfly.com/bbfirefly.html"},
-        {"blade":"Barracuda", "price": "$120", "url": "https://bbbarfly.com/barracuda.html"}
+        {"blade":"BBarfly Og", "price": "35", "url": "https://bbbarfly.com/products/"},
+        {"blade":"BBarfly Og 2", "price": "50", "url": "https://bbbarfly.com/products/"},
+        {"blade":"BBarfly Pro V3", "price": "125", "url": "https://bbbarfly.com/bbbarfly-pro-v3-knife-style-choose-handle-color-s.html"},
+        {"blade":"BBFirefly", "price": "170", "url": "https://bbbarfly.com/bbfirefly.html"},
+        {"blade":"Barracuda", "price": "120", "url": "https://bbbarfly.com/barracuda.html"}
     ],
     "Benchmade": [
-        {"blade":"Benchmade 32 Mini-Morpho", "price": "$238", "url": "https://www.bladehq.com/item--Benchmade-Balisong--912"},
-        {"blade":"Benchmade 85", "price": "$675", "url": "https://www.bladehq.com/item--Benchmade-85-Bali-Song-Butterfly--113577"},
-        {"blade":"Benchmade 51 Orange", "price": "$284.75", "url": "https://www.bladehq.com/item--Benchmade-51-Balisong-Morpho--84224"},
-        {"blade":"Benchmade 51 Black", "price": "$297.50", "url": "https://www.bladehq.com/item--Benchmade-51BK-Balisong-Butterfly--9249"},
-        {"blade":"Benchmade 51", "price": "$297.50", "url": "https://www.bladehq.com/item--Benchmade-Balisong-51--4408"},
-        {"blade":"Benchmade 42", "price": "$375", "url": "https://www.bladehq.com/item--Benchmade-42-Balisong-Knife--8961"},
-        {"blade":"Benchmade 53", "price": "$170", "url": "https://www.bladehq.com/item--Benchmade-Balisong-53--6666"},
-        {"blade":"Benchmade 87", "price": "$552.50", "url": "https://www.bladehq.com/item--Benchmade-87-Ti-Bali-Song-Butterfly--51596"},
-        {"blade":"Benchmade 30", "price": "$285", "url": "https://www.bladehq.com/item--Rare-Vintage-Benchmade-30-SPL-LE--36121"},
-        {"blade":"Benchmade 42 Trainer", "price": "$345", "url": "https://www.bladehq.com/item--Benchmade-42-Balisong--298"},
-        {"blade":"Benchmade 42", "price": "$315", "url": "https://www.bladehq.com/item--Benchmade-42-Balisong-Knife--16309"},
-        {"blade":"Benchmade 63 Bowie", "price": "$361.25", "url": "https://www.bladehq.com/item--Benchmade-63-Bowie-Balisong--14371"},
-        {"blade":"Benchmade 63 Tanto Recurve", "price": "$361.25", "url": "https://www.bladehq.com/item--Benchmade-67-Balisong-Knife--13558"},
-        {"blade":"Benchmade 62T Trainer", "price": "$297.50", "url": "https://www.bladehq.com/item--Benchmade-62T-Balisong-Knife--13557"},
-        {"blade":"Benchmade 62", "price": "$425", "url": "https://www.bladehq.com/item--Benchmade-62-Balisong-Knife--11144"},
-        {"blade":"Benchmade 42 Spring Latch", "price": "$400", "url": "https://www.bladehq.com/item--Benchmade-42-Balisong--166"}
+        {"blade":"Benchmade 32 Mini-Morpho", "price": "238", "url": "https://www.bladehq.com/item--Benchmade-Balisong--912"},
+        {"blade":"Benchmade 85", "price": "675", "url": "https://www.bladehq.com/item--Benchmade-85-Bali-Song-Butterfly--113577"},
+        {"blade":"Benchmade 51 Orange", "price": "284.75", "url": "https://www.bladehq.com/item--Benchmade-51-Balisong-Morpho--84224"},
+        {"blade":"Benchmade 51 Black", "price": "297.50", "url": "https://www.bladehq.com/item--Benchmade-51BK-Balisong-Butterfly--9249"},
+        {"blade":"Benchmade 51", "price": "297.50", "url": "https://www.bladehq.com/item--Benchmade-Balisong-51--4408"},
+        {"blade":"Benchmade 42", "price": "375", "url": "https://www.bladehq.com/item--Benchmade-42-Balisong-Knife--8961"},
+        {"blade":"Benchmade 53", "price": "170", "url": "https://www.bladehq.com/item--Benchmade-Balisong-53--6666"},
+        {"blade":"Benchmade 87", "price": "552.50", "url": "https://www.bladehq.com/item--Benchmade-87-Ti-Bali-Song-Butterfly--51596"},
+        {"blade":"Benchmade 30", "price": "285", "url": "https://www.bladehq.com/item--Rare-Vintage-Benchmade-30-SPL-LE--36121"},
+        {"blade":"Benchmade 42 Trainer", "price": "345", "url": "https://www.bladehq.com/item--Benchmade-42-Balisong--298"},
+        {"blade":"Benchmade 42", "price": "315", "url": "https://www.bladehq.com/item--Benchmade-42-Balisong-Knife--16309"},
+        {"blade":"Benchmade 63 Bowie", "price": "361.25", "url": "https://www.bladehq.com/item--Benchmade-63-Bowie-Balisong--14371"},
+        {"blade":"Benchmade 63 Tanto Recurve", "price": "361.25", "url": "https://www.bladehq.com/item--Benchmade-67-Balisong-Knife--13558"},
+        {"blade":"Benchmade 62T Trainer", "price": "297.50", "url": "https://www.bladehq.com/item--Benchmade-62T-Balisong-Knife--13557"},
+        {"blade":"Benchmade 62", "price": "425", "url": "https://www.bladehq.com/item--Benchmade-62-Balisong-Knife--11144"},
+        {"blade":"Benchmade 42 Spring Latch", "price": "400", "url": "https://www.bladehq.com/item--Benchmade-42-Balisong--166"}
     ],
     "Biegler": [
-        {"blade":"Rockstyle Double Edge Valerii handles", "price": "$945", "url": "http://www.bieglerbladeworks.com/blades"},
-        {"blade":"Rockstyle Soft Tail Orange G10", "price": "$650", "url": "http://www.bieglerbladeworks.com/blades"},
-        {"blade":"Corsair 9 Hole handles Purple interior Ano", "price": "$600", "url": "http://www.bieglerbladeworks.com/blades"},
-        {"blade":"Kuma Amazeballs Damascus", "price": "$2490", "url": "http://www.bieglerbladeworks.com/blades"},
-        {"blade":"Clip Point Hamon Soft Tail Sambar Stag", "price": "$Na", "url": "http://www.bieglerbladeworks.com/blades"},
-        {"blade":"Corsair San Mai Soft Tail inlay", "price": "$Na", "url": "http://www.bieglerbladeworks.com/blades"},
-        {"blade":"Zukuri Nichols carbon damascus", "price": "$Na", "url": "http://www.bieglerbladeworks.com/blades"},
-        {"blade":"KUMA special edition", "price": "$Na", "url": "http://www.bieglerbladeworks.com/blades"},
-        {"blade":"Archon Remix", "price": "$Na", "url": "http://www.bieglerbladeworks.com/blades"},
-        {"blade":"Corsair in Amazeballs handles Xmas Ti balls", "price": "$Na", "url": "http://www.bieglerbladeworks.com/blades"},
-        {"blade":"Corsair in Amazeballs handles", "price": "$Na", "url": "http://www.bieglerbladeworks.com/blades"},
-        {"blade":"Zukuri Balisong W2 Hamon Desert ironwood inserts", "price": "$Na", "url": "http://www.bieglerbladeworks.com/blades"}
+        {"blade":"Rockstyle Double Edge Valerii handles", "price": "945", "url": "http://www.bieglerbladeworks.com/blades"},
+        {"blade":"Rockstyle Soft Tail Orange G10", "price": "650", "url": "http://www.bieglerbladeworks.com/blades"},
+        {"blade":"Corsair 9 Hole handles Purple interior Ano", "price": "600", "url": "http://www.bieglerbladeworks.com/blades"},
+        {"blade":"Kuma Amazeballs Damascus", "price": "2490", "url": "http://www.bieglerbladeworks.com/blades"},
+        {"blade":"Clip Point Hamon Soft Tail Sambar Stag", "price": "Na", "url": "http://www.bieglerbladeworks.com/blades"},
+        {"blade":"Corsair San Mai Soft Tail inlay", "price": "Na", "url": "http://www.bieglerbladeworks.com/blades"},
+        {"blade":"Zukuri Nichols carbon damascus", "price": "Na", "url": "http://www.bieglerbladeworks.com/blades"},
+        {"blade":"KUMA special edition", "price": "Na", "url": "http://www.bieglerbladeworks.com/blades"},
+        {"blade":"Archon Remix", "price": "Na", "url": "http://www.bieglerbladeworks.com/blades"},
+        {"blade":"Corsair in Amazeballs handles Xmas Ti balls", "price": "Na", "url": "http://www.bieglerbladeworks.com/blades"},
+        {"blade":"Corsair in Amazeballs handles", "price": "Na", "url": "http://www.bieglerbladeworks.com/blades"},
+        {"blade":"Zukuri Balisong W2 Hamon Desert ironwood inserts", "price": "Na", "url": "http://www.bieglerbladeworks.com/blades"}
     ],
     "Biteblades": [
-        {"blade":"Titan", "price": "$Na", "url": "https://www.facebook.com/people/BiteBlades/100075912520435/?paipv=0&eav=AfbGVQnanqwNqlnPFQFR9NPH__bQPxrVi6cDf6Y3uKZwkwRgV3mpxhNY1PXwJIAKUOg&_rdr"}
+        {"blade":"Titan", "price": "Na", "url": "https://www.facebook.com/people/BiteBlades/100075912520435/?paipv=0&eav=AfbGVQnanqwNqlnPFQFR9NPH__bQPxrVi6cDf6Y3uKZwkwRgV3mpxhNY1PXwJIAKUOg&_rdr"}
     ],
     "BlackBalisong": [
-        {"blade":"Channel Reaper", "price": "$425", "url": "https://en.blackbalisong.com/"},
-        {"blade":"Sandwhich Reaper", "price": "$414", "url": "https://en.blackbalisong.com/"},
-        {"blade":"Channel Reaper SE", "price": "$1722", "url": "https://en.blackbalisong.com/"},
-        {"blade":"Reaper Blue/Green", "price": "$na", "url": "https://en.blackbalisong.com/"},
-        {"blade":"Channel Da'purge", "price": "$355", "url": "https://en.blackbalisong.com/"},
-        {"blade":"SE Channel Da'purge", "price": "$na", "url": "https://en.blackbalisong.com/"},
-        {"blade":"Channel Da'purge V2", "price": "$347", "url": "https://en.blackbalisong.com/"},
-        {"blade":"Channel Da'purge Rock Textured", "price": "$672", "url": "https://en.blackbalisong.com/"},
-        {"blade":"Rebola", "price": "$Na", "url": "https://en.blackbalisong.com/"},
-        {"blade":"Xolo", "price": "$Na", "url": "https://en.blackbalisong.com/"},
-        {"blade":"Valkiria", "price": "$Na", "url": "https://en.blackbalisong.com/"}
+        {"blade":"Channel Reaper", "price": "425", "url": "https://en.blackbalisong.com/"},
+        {"blade":"Sandwhich Reaper", "price": "414", "url": "https://en.blackbalisong.com/"},
+        {"blade":"Channel Reaper SE", "price": "1722", "url": "https://en.blackbalisong.com/"},
+        {"blade":"Reaper Blue/Green", "price": "na", "url": "https://en.blackbalisong.com/"},
+        {"blade":"Channel Da'purge", "price": "355", "url": "https://en.blackbalisong.com/"},
+        {"blade":"SE Channel Da'purge", "price": "na", "url": "https://en.blackbalisong.com/"},
+        {"blade":"Channel Da'purge V2", "price": "347", "url": "https://en.blackbalisong.com/"},
+        {"blade":"Channel Da'purge Rock Textured", "price": "672", "url": "https://en.blackbalisong.com/"},
+        {"blade":"Rebola", "price": "Na", "url": "https://en.blackbalisong.com/"},
+        {"blade":"Xolo", "price": "Na", "url": "https://en.blackbalisong.com/"},
+        {"blade":"Valkiria", "price": "Na", "url": "https://en.blackbalisong.com/"}
     ],
     "BladeRunner Systems": [
         "Replicant",
@@ -138,8 +138,8 @@
         "ELB Mamba"
     ],
     "EOS": [
-        {"blade":"Trident", "price": "$419.95", "url": "https://www.bladehq.com/item--EOS-Trident-Balisong-Butterfly--135853"},
-        {"blade":"Serpent", "price": "$244.95", "url": "https://www.bladehq.com/item--EOS-Serpent-Balisong-Butterfly--111062"}
+        {"blade":"Trident", "price": "419.95", "url": "https://www.bladehq.com/item--EOS-Trident-Balisong-Butterfly--135853"},
+        {"blade":"Serpent", "price": "244.95", "url": "https://www.bladehq.com/item--EOS-Serpent-Balisong-Butterfly--111062"}
     ],
     "EPS Knives": [
         "Wraith"
@@ -162,8 +162,8 @@
         "Talisong Z"
     ],
     "Frankenforgeblade": [
-        {"blade":"Voltaic", "price": "$475", "url": "https://frankenforgeblades.com/products/voltaic-blem"},
-        {"blade":"Galvanis v2", "price": "$250", "url": "https://frankenforgeblades.com/products/galvanis-v2"}
+        {"blade":"Voltaic", "price": "475", "url": "https://frankenforgeblades.com/products/voltaic-blem"},
+        {"blade":"Galvanis v2", "price": "250", "url": "https://frankenforgeblades.com/products/galvanis-v2"}
     ],
     "Geofrey Dumas": [
         "Ex-10",
@@ -176,7 +176,7 @@
         "Bermuda"
     ],
     "GP_Blades": [
-        {"blade":"Customs", "price": "$500", "url": "https://www.instagram.com/gp_blades/?hl=en"}
+        {"blade":"Customs", "price": "500", "url": "https://www.instagram.com/gp_blades/?hl=en"}
     ],
     "Hansen Metals": [
         "Monarch"
@@ -283,90 +283,90 @@
         "Nemesis"
     ],
     "OSP": [
-        {"blade":"Matrix", "price": "$795", "url":"https://www.arizonacustomknives.com/knives-by-maker/osp-balisong/"}
+        {"blade":"Matrix", "price": "795", "url":"https://www.arizonacustomknives.com/knives-by-maker/osp-balisong/"}
     ],
     "Pena knives": [
-        {"blade":"Mid-Tech Penasong", "price": "$475", "url":"https://www.bladehq.com/item--Protech-FlyFather-Balisong--15974"},
-        {"blade":"Mid-Tech Penasong Blue", "price": "$475", "url":"https://www.bladehq.com/item--Pena-Knives-Mid-Tech-Penasong--95351"},
-        {"blade":"Penasong Bronze", "price": "$950", "url":"https://www.bladehq.com/item--Pena-Knives-Custom-Penasong--94610"},
-        {"blade":"Penasong Blue", "price": "$950", "url":"https://www.bladehq.com/item--Pena-Knives-Custom-Penasong--94609"}
+        {"blade":"Mid-Tech Penasong", "price": "475", "url":"https://www.bladehq.com/item--Protech-FlyFather-Balisong--15974"},
+        {"blade":"Mid-Tech Penasong Blue", "price": "475", "url":"https://www.bladehq.com/item--Pena-Knives-Mid-Tech-Penasong--95351"},
+        {"blade":"Penasong Bronze", "price": "950", "url":"https://www.bladehq.com/item--Pena-Knives-Custom-Penasong--94610"},
+        {"blade":"Penasong Blue", "price": "950", "url":"https://www.bladehq.com/item--Pena-Knives-Custom-Penasong--94609"}
     ],
     "ProTech Knives": [
-        {"blade":"Flyfather", "price": "$499", "url":"https://www.bladehq.com/item--Protech-FlyFather-Balisong--15974"}
+        {"blade":"Flyfather", "price": "499", "url":"https://www.bladehq.com/item--Protech-FlyFather-Balisong--15974"}
     ],
     "Ryworx": [
-        {"blade":"Setsuna", "price": "$240", "url":"https://www.shopsoet.com/collections/knives/products/ryworx-setsuna"},
-        {"blade":"Omeme", "price": "$400", "url":"https://www.pvk.vegas/Ryworx-Custom-Omeme-1-Titanium-Balisong-p/zrw-1.htm"},
-        {"blade":"Konohishi", "price": "$650", "url":"https://www.reddit.com/r/balisong/comments/7q64j5/nkd_ryworx_konohishi_shinogi_5/"},
-        {"blade":"GA", "price": "$240", "url":"https://www.instagram.com/ryworx/?hl=en"}
+        {"blade":"Setsuna", "price": "240", "url":"https://www.shopsoet.com/collections/knives/products/ryworx-setsuna"},
+        {"blade":"Omeme", "price": "400", "url":"https://www.pvk.vegas/Ryworx-Custom-Omeme-1-Titanium-Balisong-p/zrw-1.htm"},
+        {"blade":"Konohishi", "price": "650", "url":"https://www.reddit.com/r/balisong/comments/7q64j5/nkd_ryworx_konohishi_shinogi_5/"},
+        {"blade":"GA", "price": "240", "url":"https://www.instagram.com/ryworx/?hl=en"}
     ],
     "Spyderco": [
-        {"blade":"SmallFly 2", "price": "$360", "url":"https://www.spyderco.com/catalog/details/B02G2/1920"},
-        {"blade":"BaliYo", "price": "$35", "url":"https://www.bladehq.com/item--BaliYo-by-Spyderco-Butterfly-Pen--71878"},
-        {"blade":"Spyderfly", "price": "$350", "url":"https://www.bladehq.com/item--Spyderco-SpyderFly-Butterfly-Bali--9353"},
-        {"blade":"SmallFly Blue G10", "price": "$200", "url":"https://www.bladehq.com/item--Spyderco-Blue-SpyderFly-Butterfly--8984"},
-        {"blade":"Spyderfly Spectrum Stainless Steel", "price": "$199", "url":"https://www.bladehq.com/item--Spyderco-Spyderfly--557"},
-        {"blade":"SpyderFly 440C", "price": "$340", "url":"https://www.bladehq.com/item--Spyderco-SpyderFly-Butterfly-Bali--34060"},
-        {"blade":"Szabofly", "price": "$950", "url":"https://www.bladehq.com/item--Spyderco-Szabofly--2894"},
-        {"blade":"SmallFly Black", "price": "$189.99", "url":"https://www.bladehq.com/item--Spyderco-SpyderFly--2519"},
-        {"blade":"SmallFly 2 Gray G10", "price": "$231", "url":"https://www.bladehq.com/item--Spyderco-SmallFly-2-Butterfly-Knife--151860"},
-        {"blade":"SmallFly 2 Black G10", "price": "$252", "url":"https://www.bladehq.com/item--Spyderco-SmallFly-2-Balisong--116286"},
-        {"blade":"SmallFly 2 Foliage Green G10", "price": "$290", "url":"https://www.bladehq.com/item--Spyderco-Foliage-Green-SmallFly--10305"}
+        {"blade":"SmallFly 2", "price": "360", "url":"https://www.spyderco.com/catalog/details/B02G2/1920"},
+        {"blade":"BaliYo", "price": "35", "url":"https://www.bladehq.com/item--BaliYo-by-Spyderco-Butterfly-Pen--71878"},
+        {"blade":"Spyderfly", "price": "350", "url":"https://www.bladehq.com/item--Spyderco-SpyderFly-Butterfly-Bali--9353"},
+        {"blade":"SmallFly Blue G10", "price": "200", "url":"https://www.bladehq.com/item--Spyderco-Blue-SpyderFly-Butterfly--8984"},
+        {"blade":"Spyderfly Spectrum Stainless Steel", "price": "199", "url":"https://www.bladehq.com/item--Spyderco-Spyderfly--557"},
+        {"blade":"SpyderFly 440C", "price": "340", "url":"https://www.bladehq.com/item--Spyderco-SpyderFly-Butterfly-Bali--34060"},
+        {"blade":"Szabofly", "price": "950", "url":"https://www.bladehq.com/item--Spyderco-Szabofly--2894"},
+        {"blade":"SmallFly Black", "price": "189.99", "url":"https://www.bladehq.com/item--Spyderco-SpyderFly--2519"},
+        {"blade":"SmallFly 2 Gray G10", "price": "231", "url":"https://www.bladehq.com/item--Spyderco-SmallFly-2-Butterfly-Knife--151860"},
+        {"blade":"SmallFly 2 Black G10", "price": "252", "url":"https://www.bladehq.com/item--Spyderco-SmallFly-2-Balisong--116286"},
+        {"blade":"SmallFly 2 Foliage Green G10", "price": "290", "url":"https://www.bladehq.com/item--Spyderco-Foliage-Green-SmallFly--10305"}
 
     ],
     "Squid Industries": [
-        {"blade":"Triton V2", "price": "$134.99", "url":"https://www.squidindustries.co/collections/all-trainers/products/triton-v2-balisong-trainer-butterfly-knife-practice-flipping-techniques-skills"},
-        {"blade":"Triton Inked V2", "price": "$149.99", "url":"https://www.squidindustries.co/collections/all-trainers/products/inked-triton-v2"},
-        {"blade":"Dual-Tone Triton V2", "price": "$149.99", "url":"https://www.squidindustries.co/collections/all-trainers/products/dual-tone-triton-v2"},
-        {"blade":"Mako V4.5", "price": "$99.99", "url":"https://www.squidindustries.co/collections/all-trainers/products/mako-bottle-opener-v4-5-balisong-trainer"},
-        {"blade":"Mako Inked V4.5", "price": "$114.99", "url":"https://www.squidindustries.co/collections/all-trainers/products/mako-bottle-opener-v4-5-balisong-trainer"},
-        {"blade":"Squidtrainer V4", "price": "$174.99", "url":"https://www.squidindustries.co/collections/all-trainers/products/squidtrainer-v4-best-balisong-butterfly-knife-trainer-flipping-tool"},
-        {"blade":"Dual-Tone Squidtrainer V4", "price": "$189.99", "url":"https://www.squidindustries.co/collections/all-trainers/products/dual-tone-squidtrainer-v4"},
-        {"blade":"Titanium Mod Squidtrainer V4", "price": "$189.99", "url":"https://www.squidindustries.co/collections/all-trainers/products/titanium-mod-squidtrainer-v4"},
-        {"blade":"Inked Squidtrainer V4", "price": "$194.99", "url":"https://www.squidindustries.co/collections/all-trainers/products/inked-squidtrainer-v4"},
-        {"blade":"Nautilus V2", "price": "$229.99", "url":"https://www.squidindustries.co/collections/all-trainers/products/nautilus-v2"},
-        {"blade":"Winter Nautilus V2", "price": "$244.99", "url":"https://www.squidindustries.co/collections/all-trainers/products/winter-nautilus-v2"},
-        {"blade":"Inked Nautilus V2", "price": "$253.99", "url":"https://www.squidindustries.co/collections/all-trainers/products/inked-nautilus-v2"},
-        {"blade":"Krake Raken Bowie V2.5", "price": "$284.99", "url":"https://www.bladehq.com/item--Squid-Industries-Krake-Raken-Bowie--180383"},
-        {"blade":"Dual-Tone Krake Raken Bowie V2.5", "price": "$249.99", "url":"https://www.bladehq.com/item--Squid-Industries-Krake-Raken-Bowie--180382"},
-        {"blade":"Inked Krake Raken Bowie V2.5", "price": "$284.99", "url":"https://www.bladehq.com/item--Squid-Industries-Krake-Raken-Bowie--180385"},
-        {"blade":"Krake Raken Tanto V2.5", "price": "$249.99", "url":"https://www.bladehq.com/item--Squid-Industries-Krake-Raken-Tanto--180380"},
-        {"blade":"Dual-Tone Krake Raken Tanto V2.5", "price": "$274.99", "url":"https://www.bladehq.com/item--Squid-Industries-Krake-Raken-Tanto--134797"},
-        {"blade":"Inked Krake Raken Tanto V2.5", "price": "$274.99", "url":"https://www.bladehq.com/item--Squid-Industries-Krake-Raken-Tanto--180388"},
-        {"blade":"Krake Raken Trainer V2.5", "price": "$208.99", "url":"https://www.squidindustries.co/collections/all-trainers/products/krake-raken-trainer-v2-5"},
-        {"blade":"Titanium Mod Krake Raken Trainer V2.5", "price": "$234.99", "url":"https://www.squidindustries.co/collections/all-trainers/products/titanium-mod-krake-raken-trainer-v2-5"},
-        {"blade":"Dual-Tone Krake Raken Trainer V2.5", "price": "$227.99", "url":"https://www.squidindustries.co/collections/all-trainers/products/dual-tone-krake-raken-trainer-v2-5"},
-        {"blade":"Inked Krake Raken Trainer V2.5", "price": "$231.80", "url":"https://www.squidindustries.co/collections/all-trainers/products/inked-series-krake-raken-trainer-v2-5"},
-        {"blade":"Artic Krake Raken Trainer V2.5 2022", "price": "$239.99", "url":"https://www.squidindustries.co/collections/all-trainers/products/arctic-krake-raken-v2-5-2022"},
-        {"blade":"Swordfish", "price": "$174.99", "url":"https://www.squidindustries.co/collections/all-trainers/products/swordfish"},
-        {"blade":"Blemished Swordfish", "price": "$157.50", "url":"https://www.squidindustries.co/collections/all-trainers/products/blemished-swordfish"},
-        {"blade":"Swordfish (Blue Blade)", "price": "$174.99", "url":"https://www.squidindustries.co/collections/all-trainers/products/swordfish-blue-blade"},
-        {"blade":"Swordfish (Silver Blade)", "price": "$174.99", "url":"https://www.squidindustries.co/collections/all-trainers/products/swordfish-silver-blade"},
-        {"blade":"Squiddy", "price": "$44.99", "url":"https://www.squidindustries.co/collections/all-trainers/products/squiddy"},
-        {"blade":"Squiddy-B", "price": "$54.99", "url":"https://www.squidindustries.co/collections/all-trainers/products/squiddy-b"},
-        {"blade":"Titanium Mod Squiddy-B", "price": "$68.99", "url":"https://www.squidindustries.co/collections/all-trainers/products/titanium-mod-squiddy-b"},
-        {"blade":"Squiddy-U", "price": "$59.99", "url":"https://www.squidindustries.co/collections/all-trainers/products/squiddy-u"},
-        {"blade":"Squiddy-A", "price": "$74.99", "url":"https://www.squidindustries.co/collections/all-trainers/products/squiddy-a"},
-        {"blade":"Tsunami", "price": "$750", "url":"https://squidindustriesknives.co/products/tsunami-1"}
+        {"blade":"Triton V2", "price": "134.99", "url":"https://www.squidindustries.co/collections/all-trainers/products/triton-v2-balisong-trainer-butterfly-knife-practice-flipping-techniques-skills"},
+        {"blade":"Triton Inked V2", "price": "149.99", "url":"https://www.squidindustries.co/collections/all-trainers/products/inked-triton-v2"},
+        {"blade":"Dual-Tone Triton V2", "price": "149.99", "url":"https://www.squidindustries.co/collections/all-trainers/products/dual-tone-triton-v2"},
+        {"blade":"Mako V4.5", "price": "99.99", "url":"https://www.squidindustries.co/collections/all-trainers/products/mako-bottle-opener-v4-5-balisong-trainer"},
+        {"blade":"Mako Inked V4.5", "price": "114.99", "url":"https://www.squidindustries.co/collections/all-trainers/products/mako-bottle-opener-v4-5-balisong-trainer"},
+        {"blade":"Squidtrainer V4", "price": "174.99", "url":"https://www.squidindustries.co/collections/all-trainers/products/squidtrainer-v4-best-balisong-butterfly-knife-trainer-flipping-tool"},
+        {"blade":"Dual-Tone Squidtrainer V4", "price": "189.99", "url":"https://www.squidindustries.co/collections/all-trainers/products/dual-tone-squidtrainer-v4"},
+        {"blade":"Titanium Mod Squidtrainer V4", "price": "189.99", "url":"https://www.squidindustries.co/collections/all-trainers/products/titanium-mod-squidtrainer-v4"},
+        {"blade":"Inked Squidtrainer V4", "price": "194.99", "url":"https://www.squidindustries.co/collections/all-trainers/products/inked-squidtrainer-v4"},
+        {"blade":"Nautilus V2", "price": "229.99", "url":"https://www.squidindustries.co/collections/all-trainers/products/nautilus-v2"},
+        {"blade":"Winter Nautilus V2", "price": "244.99", "url":"https://www.squidindustries.co/collections/all-trainers/products/winter-nautilus-v2"},
+        {"blade":"Inked Nautilus V2", "price": "253.99", "url":"https://www.squidindustries.co/collections/all-trainers/products/inked-nautilus-v2"},
+        {"blade":"Krake Raken Bowie V2.5", "price": "284.99", "url":"https://www.bladehq.com/item--Squid-Industries-Krake-Raken-Bowie--180383"},
+        {"blade":"Dual-Tone Krake Raken Bowie V2.5", "price": "249.99", "url":"https://www.bladehq.com/item--Squid-Industries-Krake-Raken-Bowie--180382"},
+        {"blade":"Inked Krake Raken Bowie V2.5", "price": "284.99", "url":"https://www.bladehq.com/item--Squid-Industries-Krake-Raken-Bowie--180385"},
+        {"blade":"Krake Raken Tanto V2.5", "price": "249.99", "url":"https://www.bladehq.com/item--Squid-Industries-Krake-Raken-Tanto--180380"},
+        {"blade":"Dual-Tone Krake Raken Tanto V2.5", "price": "274.99", "url":"https://www.bladehq.com/item--Squid-Industries-Krake-Raken-Tanto--134797"},
+        {"blade":"Inked Krake Raken Tanto V2.5", "price": "274.99", "url":"https://www.bladehq.com/item--Squid-Industries-Krake-Raken-Tanto--180388"},
+        {"blade":"Krake Raken Trainer V2.5", "price": "208.99", "url":"https://www.squidindustries.co/collections/all-trainers/products/krake-raken-trainer-v2-5"},
+        {"blade":"Titanium Mod Krake Raken Trainer V2.5", "price": "234.99", "url":"https://www.squidindustries.co/collections/all-trainers/products/titanium-mod-krake-raken-trainer-v2-5"},
+        {"blade":"Dual-Tone Krake Raken Trainer V2.5", "price": "227.99", "url":"https://www.squidindustries.co/collections/all-trainers/products/dual-tone-krake-raken-trainer-v2-5"},
+        {"blade":"Inked Krake Raken Trainer V2.5", "price": "231.80", "url":"https://www.squidindustries.co/collections/all-trainers/products/inked-series-krake-raken-trainer-v2-5"},
+        {"blade":"Artic Krake Raken Trainer V2.5 2022", "price": "239.99", "url":"https://www.squidindustries.co/collections/all-trainers/products/arctic-krake-raken-v2-5-2022"},
+        {"blade":"Swordfish", "price": "174.99", "url":"https://www.squidindustries.co/collections/all-trainers/products/swordfish"},
+        {"blade":"Blemished Swordfish", "price": "157.50", "url":"https://www.squidindustries.co/collections/all-trainers/products/blemished-swordfish"},
+        {"blade":"Swordfish (Blue Blade)", "price": "174.99", "url":"https://www.squidindustries.co/collections/all-trainers/products/swordfish-blue-blade"},
+        {"blade":"Swordfish (Silver Blade)", "price": "174.99", "url":"https://www.squidindustries.co/collections/all-trainers/products/swordfish-silver-blade"},
+        {"blade":"Squiddy", "price": "44.99", "url":"https://www.squidindustries.co/collections/all-trainers/products/squiddy"},
+        {"blade":"Squiddy-B", "price": "54.99", "url":"https://www.squidindustries.co/collections/all-trainers/products/squiddy-b"},
+        {"blade":"Titanium Mod Squiddy-B", "price": "68.99", "url":"https://www.squidindustries.co/collections/all-trainers/products/titanium-mod-squiddy-b"},
+        {"blade":"Squiddy-U", "price": "59.99", "url":"https://www.squidindustries.co/collections/all-trainers/products/squiddy-u"},
+        {"blade":"Squiddy-A", "price": "74.99", "url":"https://www.squidindustries.co/collections/all-trainers/products/squiddy-a"},
+        {"blade":"Tsunami", "price": "750", "url":"https://squidindustriesknives.co/products/tsunami-1"}
     ],
     "Stitchedsteel": [
-        {"blade":"Paradigm", "price": "$1000", "url":"https://www.instagram.com/stitchedsteel/?hl=en"}
+        {"blade":"Paradigm", "price": "1000", "url":"https://www.instagram.com/stitchedsteel/?hl=en"}
     ],
     "Svix Co": [
-        {"blade":"Zephyr v4.5", "price": "$195", "url":"https://www.thesvix.com/products/v4-5-zephyr-trainer"},
-        {"blade":"Gale v4", "price": "$310", "url":"https://www.thesvix.com/products/v4-gale-trainer-preorder"},
-        {"blade":"Terra", "price": "$140", "url":"https://www.thesvix.com/products/terra-trainer"}
+        {"blade":"Zephyr v4.5", "price": "195", "url":"https://www.thesvix.com/products/v4-5-zephyr-trainer"},
+        {"blade":"Gale v4", "price": "310", "url":"https://www.thesvix.com/products/v4-gale-trainer-preorder"},
+        {"blade":"Terra", "price": "140", "url":"https://www.thesvix.com/products/terra-trainer"}
     ],
     "Terrain 365": [
-        {"blade":"M390", "price": "$250", "url":"https://terrain365.com/products/mini-butterfly-bohler-m390?variant=29544444035187"}
+        {"blade":"M390", "price": "250", "url":"https://terrain365.com/products/mini-butterfly-bohler-m390?variant=29544444035187"}
     ],
     "Theone": [],
     "WB Concept": [
-        {"blade":"Giga", "price": "$1100", "url":"https://www.instagram.com/wb.concept/?hl=en"}
+        {"blade":"Giga", "price": "1100", "url":"https://www.instagram.com/wb.concept/?hl=en"}
     ],
     "Zippy balisong": [
-        {"blade":"Cycloid", "price": "$30", "url":"https://zippybalisong.com/collections/diyode-balisong-trainer"},
-        {"blade":"Zipper", "price": "$100", "url":"https://zippybalisong.com/collections/zipper-balisong-trainer"},
-        {"blade":"Cycloid", "price": "$84", "url":"https://zippybalisong.com/collections/cycloid-balisong-trainer"}
+        {"blade":"Cycloid", "price": "30", "url":"https://zippybalisong.com/collections/diyode-balisong-trainer"},
+        {"blade":"Zipper", "price": "100", "url":"https://zippybalisong.com/collections/zipper-balisong-trainer"},
+        {"blade":"Cycloid", "price": "84", "url":"https://zippybalisong.com/collections/cycloid-balisong-trainer"}
     ]
 }

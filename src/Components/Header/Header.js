@@ -17,7 +17,6 @@ import { Button, TextField } from '@mui/material';
 
 import { useTranslation } from "react-i18next";
 
-
 import Donate from "../Donate";
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 
@@ -27,11 +26,16 @@ const SearchBar = ({posts, showSearch, t}) => {
     const searchFilter = useMemo(() => {
         let cache = {}
         let result = posts.map((post) => {
+            const price = (<Popover>${post?.price}</Popover>);
             if (!cache[post.author.name.toLowerCase()] && post.author.name.toLowerCase().includes(searchValue.toLowerCase())){
                 cache[post.author.name.toLowerCase()] = true;
                 return (<a href={"/profile?id="+post?.author?.id} targe="blank" key={"search-"+post?.id}>{post?.author.name}</a>)
             } else if (post.title.toLowerCase().includes(searchValue)) {
-                return (<a href={"/singlePost?id="+post.id} targe="blank" key={"search-"+post?.id}>{post.title}</a>);
+                return (
+                    <OverlayTrigger  trigger="hover" overlay={price}>
+                        <a href={"/singlePost?id="+post.id} targe="blank" key={"search-"+post?.id}>{post.title}</a>
+                    </OverlayTrigger>
+                );
             }
         });
 
@@ -44,9 +48,16 @@ const SearchBar = ({posts, showSearch, t}) => {
                 if (typeof bali === 'string' && bali.toLowerCase().includes(searchValue.toLowerCase())){
                     val.push((<div>{bali+": "+company}</div>))
                 } else if (bali !== 'string' && (bali?.blade?.toLowerCase().includes(searchValue.toLowerCase()) || company.toLowerCase().includes(searchValue.toLowerCase()))) {
-                    val.push((<a href={bali?.url} target="blank">{bali?.blade+": "+company}</a>))
+                    const price = (<Popover>${bali?.price}</Popover>);
+                    val.push((
+                        <OverlayTrigger trigger="hover" overlay={price}>
+                            <a href={bali?.url} target="blank">{bali?.blade+": "+company}</a>
+                        </OverlayTrigger>
+                    ))
                 }
             })
+
+
             return val;
         })]
 
