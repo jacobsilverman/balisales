@@ -221,12 +221,13 @@ const SettingsForm = ({id}) => {
     return (
         <Col xs={12} className="center settings-container">
             <Row>
-                <Col xs={12}>
+                <Col xs={12} className="info-dropdown">
                     <h2 onClick={() => setShowRequiredInfo(cur => !cur)}>
-                        Required Info
+                        Required Info&nbsp;&nbsp;
                         <i size="small" className='material-icons'>{showRequiredInfo ? "visibility_off" : "visibility_on"}</i>
                     </h2>
                 </Col>
+                <hr />
                 {showRequiredInfo && <>
                     <Col xs={12} sm={6} md={4} lg={4} className="setting-item">
                         <TextField fullWidth label={t("First Name")} error={!validation.firstName} type="search" onChange={handleFirstNameChange} value={firstName} />
@@ -241,32 +242,13 @@ const SettingsForm = ({id}) => {
                     </Col>
                 </>}
 
-                <Col xs={12}>
-                    <h2 onClick={() => setShowSocialInfo(cur => !cur)}>
-                        Social Info
-                        <i size="small" className='material-icons'>{ showSocialInfo ? "visibility_off" : "visibility_on"}</i>
-                    </h2>
-                </Col>
-                {showSocialInfo && <>
-                    <Col xs={12} sm={6} md={4} lg={4} className="setting-item">
-                        <TextField fullWidth label={t("Phone Number")} error={!validation.phoneNumber} onChange={handlePhoneNumberChange} value={displayNumber(phoneNumber)} inputProps={{ maxLength: 14 }} />
-                    </Col>
-            
-                    <Col xs={12} sm={6} md={4} lg={4} className="setting-item">
-                        <TextField fullWidth label={t("Instagram")} color="" type="url" error={!validation.instagram} onChange={handleInstagramChange} value={instagram} />
-                    </Col>
-
-                    <Col xs={12} sm={6} md={4} lg={4} className="setting-item">
-                        <TextField fullWidth label={t("Facebook")} color="" type="url" error={!validation.facebook} onChange={handleFacebookChange} value={facebook} />
-                    </Col>
-                </>}
-
-                <Col xs={12}>
+                <Col xs={12} className="info-dropdown">
                     <h2 onClick={() => setShowLocationInfo(cur => !cur)}>
-                        Location Info
+                        Location Info&nbsp;&nbsp;
                         <i size="small" className='material-icons'>{ showLocationInfo ? "visibility_off" : "visibility_on"}</i>
                     </h2>
                 </Col>
+                <hr />
                 {showLocationInfo && <>
                     <Col xs={12} sm={6} md={4} lg={4} className="setting-item">
                         <TextField fullWidth label={t("Address")} error={!validation.address} value={address?.address} onChange={handleAddressChange} />
@@ -288,7 +270,26 @@ const SettingsForm = ({id}) => {
                     </Col>
                 </>}
 
+                <Col xs={12} className="info-dropdown">
+                    <h2 onClick={() => setShowSocialInfo(cur => !cur)}>
+                        Social Info&nbsp;&nbsp;
+                        <i size="small" className='material-icons'>{ showSocialInfo ? "visibility_off" : "visibility_on"}</i>
+                    </h2>
+                </Col>
+                <hr />
+                {showSocialInfo && <>
+                    <Col xs={12} sm={6} md={4} lg={4} className="setting-item">
+                        <TextField fullWidth label={t("Phone Number")} error={!validation.phoneNumber} onChange={handlePhoneNumberChange} value={displayNumber(phoneNumber)} inputProps={{ maxLength: 14 }} />
+                    </Col>
+            
+                    <Col xs={12} sm={6} md={4} lg={4} className="setting-item">
+                        <TextField fullWidth label={t("Instagram")} color="" type="url" error={!validation.instagram} onChange={handleInstagramChange} value={instagram} />
+                    </Col>
 
+                    <Col xs={12} sm={6} md={4} lg={4} className="setting-item">
+                        <TextField fullWidth label={t("Facebook")} color="" type="url" error={!validation.facebook} onChange={handleFacebookChange} value={facebook} />
+                    </Col>
+                </>}
         
                 <Col xs={12} className="setting-item">
                     <label className='profile-label' htmlFor="inputTag">
