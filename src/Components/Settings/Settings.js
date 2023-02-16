@@ -2,7 +2,6 @@
 import { Container, Row } from 'react-bootstrap';
 
 import SettingsForm from './SettingsForm';
-
 import Account from '../Account';
 
 import './Settings.scss';

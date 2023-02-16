@@ -4,7 +4,7 @@ import { Col, Row } from 'react-bootstrap';
 import { getUserInfo, setUserInfo } from '../../../Data/Services/userInfo.js';
 
 import { FaImage } from "react-icons/fa";
-
+import Map from '../../Map/Map.js';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import { useTranslation } from 'react-i18next';
@@ -22,6 +22,7 @@ const SettingsForm = ({id}) => {
         unit: '',
         city: '',
         state: '',
+        country: '',
         zipcode: ''
     });
     
@@ -250,23 +251,34 @@ const SettingsForm = ({id}) => {
                 </Col>
                 <hr />
                 {showLocationInfo && <>
-                    <Col xs={12} sm={6} md={4} lg={4} className="setting-item">
-                        <TextField fullWidth label={t("Address")} error={!validation.address} value={address?.address} onChange={handleAddressChange} />
+                    <Col xs={12} md={5} className="map-container">
+                        <Map />
                     </Col>
-                    <Col xs={12} sm={6} md={4} lg={4} className="setting-item">
-                        <TextField fullWidth label={t("Unit")} color="" type="url" error={!validation.unit} value={address?.unit} onChange={handleUnitChange} />
-                    </Col>
-                    <Col xs={12} sm={6} md={4} lg={4} className="setting-item">
-                        <TextField fullWidth label={t("City")} color="" type="url" error={!validation.city} value={address?.city} onChange={handleCityChange} />
-                    </Col>
-                    <Col xs={12} sm={6} md={4} lg={4} className="setting-item">
-                        <TextField fullWidth label={t("Country")} color="" type="url" error={!validation.country} value={address?.country} onChange={handleCountryChange} />
-                    </Col>
-                    <Col xs={12} sm={6} md={4} lg={4} className="setting-item">
-                        <TextField fullWidth label={t("State")} color="" type="url" error={!validation.state}  value={address?.state} onChange={handleStateChange} />
-                    </Col>
-                    <Col xs={12} sm={6} md={4} lg={4} className="setting-item">
-                        <TextField fullWidth label={t("Zipcode")} color="" type="url" error={!validation.zipcode} value={address?.zipcode} onChange={handleZipcodeChange} />
+                    <Col xs={12} md={7}>
+                        <Row>
+                            <Col xs={12} md={6} className="setting-item">
+                                <TextField fullWidth label={t("Address")} error={!validation.address} value={address?.address} onChange={handleAddressChange} />
+                            </Col>
+                            <Col xs={12} md={6} className="setting-item">
+                                <TextField fullWidth label={t("Unit")} color="" type="url" error={!validation.unit} value={address?.unit} onChange={handleUnitChange} />
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col xs={12} md={6} className="setting-item">
+                                <TextField fullWidth label={t("City")} color="" type="url" error={!validation.city} value={address?.city} onChange={handleCityChange} />
+                            </Col>
+                            <Col xs={12} md={6} className="setting-item">
+                                <TextField fullWidth label={t("Country")} color="" type="url" error={!validation.country} value={address?.country} onChange={handleCountryChange} />
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col xs={12} md={6} className="setting-item">
+                                <TextField fullWidth label={t("State")} color="" type="url" error={!validation.state}  value={address?.state} onChange={handleStateChange} />
+                            </Col>
+                            <Col xs={12} md={6} className="setting-item">
+                                <TextField fullWidth label={t("Zipcode")} color="" type="url" error={!validation.zipcode} value={address?.zipcode} onChange={handleZipcodeChange} />
+                            </Col>
+                        </Row>
                     </Col>
                 </>}
 
