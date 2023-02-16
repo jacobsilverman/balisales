@@ -4,7 +4,7 @@ import { getUserInfo, getProfilePicture } from '../../Data/Services/userInfo.js'
 import defaultProfile from '../../Data/Images/default-profile.jpg';
 
 import Account from '../Account/Account';
-
+import Map from '../Map';
 import SocialMedia from '../SocialMedia/SocialMedia.js';
 
 import { Container, Col, Row } from 'react-bootstrap';
@@ -55,6 +55,15 @@ const Profile = () => {
             </Row>
             <hr />
             <Account user={params.id} accountView={false} settingsPage={false} />
+            {userData?.address &&
+            <>
+                <hr />
+                <Row>
+                    <Col style={{display:'flex', justifyContent:'center', padding: "30px"}}>
+                        <Map address={userData.address} width="80vw" height="80vw" />
+                    </Col>
+                </Row>
+            </>}
         </Container>
     );
 }
