@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { Col, Row } from 'react-bootstrap';
 
 import { getUserInfo, setUserInfo } from '../../../Data/Services/userInfo.js';
+import { getLongitudeLatitude } from '../../../Data/Services/geocode.js';
 
 import { FaImage } from "react-icons/fa";
 import Map from '../../Map/Map.js';
@@ -10,6 +11,8 @@ import TextField from '@mui/material/TextField';
 import { useTranslation } from 'react-i18next';
 
 const SettingsForm = ({id}) => {
+    const [initial, setInitial] = useState(true); //initial page load
+
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [displayName, setDisplayName] = useState('');
@@ -31,7 +34,7 @@ const SettingsForm = ({id}) => {
     const [showRequiredInfo, setShowRequiredInfo] = useState(true);
     const [showSocialInfo, setShowSocialInfo] = useState(true);
     const [showLocationInfo, setShowLocationInfo] = useState(true);
-
+    const [longitudeLatitudeLocation, setLongitudeLatitudeLocation] = useState([]);
     const [profilePicture, setProfilePicture] = useState(null);
 
     const [validation, setValidation] = useState({
@@ -50,6 +53,20 @@ const SettingsForm = ({id}) => {
     });
 
     const { t } = useTranslation();
+
+    useEffect(() => {
+        if (initial) {
+            setInitial(false);
+            return;
+        }
+        if (address?.address && address?.city){
+            const location = `${address?.address} ${address?.unit} ${address?.city} ${address?.state} ${address?.country} ${address?.zipcode}`;
+            getLongitudeLatitude(location).then((result) => {
+                setLongitudeLatitudeLocation(result);
+            });
+        }
+
+    }, [address]);
 
     const isValid = useMemo(() => {
         return !Object.values(validation).some((item) => item === false);
@@ -251,10 +268,7 @@ const SettingsForm = ({id}) => {
                 </Col>
                 <hr />
                 {showLocationInfo && <>
-                    <Col xs={12} md={5} className="map-container">
-                        <Map />
-                    </Col>
-                    <Col xs={12} md={7}>
+                    <Col xs={12} md={7} lg={9}>
                         <Row>
                             <Col xs={12} md={6} className="setting-item">
                                 <TextField fullWidth label={t("Address")} error={!validation.address} value={address?.address} onChange={handleAddressChange} />
@@ -279,6 +293,9 @@ const SettingsForm = ({id}) => {
                                 <TextField fullWidth label={t("Zipcode")} color="" type="url" error={!validation.zipcode} value={address?.zipcode} onChange={handleZipcodeChange} />
                             </Col>
                         </Row>
+                    </Col>
+                    <Col xs={12} md={5} lg={3} className="map-container">
+                        <Map longitudeLatitude={longitudeLatitudeLocation} />
                     </Col>
                 </>}
 
