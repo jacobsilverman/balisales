@@ -25,13 +25,14 @@ var AboutUs = () => {
             </Row>
             <Row>
                 <Col>
-                    I want to thank you for using this website and hope you are actively enjoying it, along with finding/making deals with ease. With more time continued improvements for the site are within reach. The ultimate goal is to 
-                    reduce the risk involved and cut out all potential of scamming or sour transactions taking place.
+                    Our mission is to enable balisong enthusiasts to buy, sell and trade off the market balisongs. The ultimate goal is to 
+                    reduce the risk involved and cut out all potential scammers or potential sour transactions. This website is an ongoing effort that 
+                    utilizes user feedback to continuously improve the website.
                 </Col>
             </Row>
             <Row>
                 <Col>
-                    Anyways, I hope you have a wonderful day and take care. <span className="waving-hand">👋</span>
+                I want to thank you for using this website and hope you are actively enjoying it, along with finding/making deals with ease. Anyways, I hope you have a wonderful day and take care. <span className="waving-hand">👋</span>
                 </Col>
             </Row>
         </Container>

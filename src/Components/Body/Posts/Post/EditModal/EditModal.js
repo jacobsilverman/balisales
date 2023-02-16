@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 
-import { blades, brands, types } from '../../../../../Data/Constants';
+import { blades, brands, statuses, types } from '../../../../../Data/Constants';
 
 import DeleteModal from '../DeleteModal';
 
@@ -26,6 +26,7 @@ const EditModal = ({item, openEditModal, setOpenEditModal, filterPosts, setFilte
     const [brand, setBrand] = useState(item?.brand);
     const [condition, setCondition] = useState(item?.condition);
     const [price, setPrice] = useState(item?.price);
+    const [status, setStatus] = useState(item?.status);
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
     // const [removedImages, setRemovedImages] = useState({});
     // State to store uploaded file
@@ -43,7 +44,8 @@ const EditModal = ({item, openEditModal, setOpenEditModal, filterPosts, setFilte
         blade: true,
         brand: true,
         condition: true,
-        price: true
+        price: true,
+        status: true
     });
 
     const { t } = useTranslation();
@@ -59,6 +61,7 @@ const EditModal = ({item, openEditModal, setOpenEditModal, filterPosts, setFilte
                 setBrand(item?.brand)
                 setCondition(item?.condition)
                 setPrice(item?.price)
+                setStatus(item?.status)
             }
         })()
 
@@ -94,6 +97,7 @@ const EditModal = ({item, openEditModal, setOpenEditModal, filterPosts, setFilte
             condition,
             price,
             description,
+            status,
             timeStamp: Date.now(),
             numberOfImages: item.numberOfImages,
             author: {name: item.author.name, id: item.author.id }
@@ -208,6 +212,15 @@ const EditModal = ({item, openEditModal, setOpenEditModal, filterPosts, setFilte
         setCondition(newValue);
     }
 
+    const handleStatusChange = (event) => {
+        let newValue = event.target.value;
+        if (newValue !== "") {
+            setValidation(cur => {return {...cur, status: true}});
+        }
+        
+        setStatus(newValue);
+    }
+
     const handleBladeChange = (event) => {
         let newValue = event.target.value;
         if (newValue !== "") {
@@ -320,6 +333,21 @@ const EditModal = ({item, openEditModal, setOpenEditModal, filterPosts, setFilte
                                 label={t("Condition")}
                                 onChange={handleConditionChange}>
                                 {getOptions([1,2,3,4,5,6,7,8,9,10], "condition")}
+                            </Select>
+                        </FormControl>
+                    </Row>
+                    <Row className="edit-input">
+                        <FormControl fullWidth>
+                            <InputLabel error={validation.status === false && disableSubmit} size="small" id="status-edit-label">{t("Status")}</InputLabel>
+                            <Select
+                                labelId="status-edit-label"
+                                id="status-edit-select"
+                                size="small"
+                                defaultValue={item?.status}
+                                value={status}
+                                label={t("Status")}
+                                onChange={handleStatusChange}>
+                                {getOptions(statuses, "status")}
                             </Select>
                         </FormControl>
                     </Row>
