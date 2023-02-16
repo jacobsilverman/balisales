@@ -20,21 +20,20 @@ function ContactUs() {
 
     return (
         <Container className="contact-container">
-            <Row>
+            <Row id="contact-header">
                 <Col className="center">
                     <h5>{t("Please feel free to send us a message for any reason")}</h5>
                 </Col>
             </Row>
-            <Row>
-                <Col className="center">
-                    <TextField fullWidth label={t("Title")} color="" onChange={(event) => assignText(event, setTitle)}/>
-                
+            <Row id="contact-title-input">
+                <Col className="center" xs={12} md={6}>
+                    <TextField fullWidth  label={t("Title")} color="" onChange={(event) => assignText(event, setTitle)}/>
                     {/* <textarea maxLength="2000" rows="1" cols="60" name="contact us" autoFocus={true} placeholder="title" onChange={(event) => assignText(event, setTitle)} /> */}
                     {/* <TextField fullWidth label="Title" size="60" onChange={(event) => assignText(event, setTitle)} /> */}
                 </Col>
             </Row>
-            <Row>
-                <Col className="center">
+            <Row  id="contact-description-input">
+                <Col className="center" xs={12} md={6}>
                     <TextareaAutosize style={{width: "100%"}} minRows={5} placeholder={t("Description")} label={t("Description")} onChange={(event) => assignText(event, setMessage)} />
                     {/* <textarea maxLength="2000" rows="5" cols="60" name="contact us" placeholder="message" onChange={(event) => assignText(event, setMessage)} /> */}
                     {/* <TextareaAutosize fullWidth minRows="5" label="Message" onChange={(event) => assignText(event, setMessage)} /> */}
