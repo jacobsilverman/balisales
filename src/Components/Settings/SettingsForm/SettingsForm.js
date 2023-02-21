@@ -55,7 +55,7 @@ const SettingsForm = ({id}) => {
     }, [validation]);
     
     useEffect(() => {
-        getUserInfo().then((result) => {
+        getUserInfo(id).then((result) => {
             setFirstName(result.firstName);
             setLastName(result.lastName);
             setDisplayName(result.displayName);
@@ -309,7 +309,7 @@ const SettingsForm = ({id}) => {
                         <label className={(!profilePicture) ? 'profile-label' : ''} htmlFor="inputTag">
                             {(!profilePicture) ? <span style={{color:"black"}}>{t('Profile Picture')}</span> : null}
                             <input id="inputTag" className='profile-input' type="file" onChange={handleProfileChange} accept="image/*" />
-                            {(!profilePicture) ? <><br /><FaImage size={40} /></> : <img src={profilePicture} className="upload-image" alt="profile image" />}
+                            {(!profilePicture) ? <><br /><FaImage size={40} /></> : <img src={profilePicture} className="upload-image" alt="profile display" />}
                         </label>
                     </Col>
                 

@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
+import { GoogleMap, Marker } from '@react-google-maps/api';
 import { getLongitudeLatitude } from '../../Data/Services/geocode';
 
 const Map = ({address, width, height}) => {
@@ -25,20 +25,14 @@ const Map = ({address, width, height}) => {
     }, [address]);
 
     const render = useMemo(() => {
-        if (initial) {
-            setInitial(false);
-            return
-        }
-
         return (
-
-                <GoogleMap
-                    icon="here"
-                    mapContainerStyle={mapStyles}
-                    zoom={10}
-                    center={longitudeLatitude}>
-                        <Marker key="5" position={longitudeLatitude} />
-                </GoogleMap>
+            <GoogleMap
+                icon="here"
+                mapContainerStyle={mapStyles}
+                zoom={10}
+                center={longitudeLatitude}>
+                    <Marker key="5" position={longitudeLatitude} />
+            </GoogleMap>
         )
     }, [longitudeLatitude]);
 

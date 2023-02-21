@@ -37,6 +37,7 @@ const SearchBar = ({posts, showSearch, t}) => {
                     </OverlayTrigger>
                 );
             }
+            return;
         });
 
         result = [...result, ...Object.keys(Companies).map((company) => {
@@ -318,18 +319,18 @@ const Header = ({posts, setShowFilter}) => {
         </Popover>
     );
 
-    const inboxCls = `account-dropdown ${showInbox ? "visible" : 'hidden'}`;
+    // const inboxCls = `account-dropdown ${showInbox ? "visible" : 'hidden'}`;
 
-    const inboxPopover = (
-        <Popover id="popover-inbox" title="Account Info">
-            <Row className={inboxCls}>
-                <Button xs={3} className="popover-container">
-                    <i className="material-icons">message</i>
-                    &nbsp;{t("no new messages")}
-                </Button>
-            </Row>
-        </Popover>
-    );
+    // const inboxPopover = (
+    //     <Popover id="popover-inbox" title="Account Info">
+    //         <Row className={inboxCls}>
+    //             <Button xs={3} className="popover-container">
+    //                 <i className="material-icons">message</i>
+    //                 &nbsp;{t("no new messages")}
+    //             </Button>
+    //         </Row>
+    //     </Popover>
+    // );
 
     const accountOptionsPopover = (
         <Popover id="popover-account" title="Account Info">
