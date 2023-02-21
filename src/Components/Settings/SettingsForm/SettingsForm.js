@@ -31,7 +31,7 @@ const SettingsForm = ({id}) => {
     const [showRequiredInfo, setShowRequiredInfo] = useState(true);
     const [showSocialInfo, setShowSocialInfo] = useState(true);
     const [showLocationInfo, setShowLocationInfo] = useState(true);
-    const [profilePicture, setProfilePicture] = useState(null);
+    const [profilePicture, setProfilePicture] = useState(localStorage.getItem("profile-picture-"+localStorage.getItem("uid")));
 
     const [validation, setValidation] = useState({
         firstName: false,
@@ -49,7 +49,6 @@ const SettingsForm = ({id}) => {
     });
 
     const { t } = useTranslation();
-
 
     const isValid = useMemo(() => {
         return !Object.values(validation).some((item) => item === false);
