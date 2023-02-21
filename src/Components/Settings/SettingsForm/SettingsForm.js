@@ -223,7 +223,7 @@ const SettingsForm = ({id}) => {
             <Row>
                 <Col xs={12} className="info-dropdown">
                     <h2 onClick={() => setShowRequiredInfo(cur => !cur)}>
-                        Required Info&nbsp;&nbsp;
+                        Basic Info&nbsp;&nbsp;
                         <i size="small" className='material-icons'>{showRequiredInfo ? "visibility_off" : "visibility_on"}</i>
                     </h2>
                 </Col>
@@ -289,27 +289,31 @@ const SettingsForm = ({id}) => {
                 </Col>
                 <hr />
                 {showSocialInfo && <>
-                    <Col xs={12} sm={6} md={4} lg={4} className="setting-item">
-                        <TextField fullWidth label={t("Phone Number")} error={!validation.phoneNumber} onChange={handlePhoneNumberChange} value={displayNumber(phoneNumber)} inputProps={{ maxLength: 14 }} />
-                    </Col>
-            
-                    <Col xs={12} sm={6} md={4} lg={4} className="setting-item">
-                        <TextField fullWidth label={t("Instagram")} color="" type="url" error={!validation.instagram} onChange={handleInstagramChange} value={instagram} />
-                    </Col>
+                    <Col xs={12} md={7}>
+                        <Row>
+                            <Col xs={12} className="setting-item">
+                                <TextField fullWidth label={t("Phone Number")} error={!validation.phoneNumber} onChange={handlePhoneNumberChange} value={displayNumber(phoneNumber)} inputProps={{ maxLength: 14 }} />
+                            </Col>
+                    
+                            <Col xs={12} className="setting-item">
+                                <TextField fullWidth label={t("Instagram")} color="" type="url" error={!validation.instagram} onChange={handleInstagramChange} value={instagram} />
+                            </Col>
 
-                    <Col xs={12} sm={6} md={4} lg={4} className="setting-item">
-                        <TextField fullWidth label={t("Facebook")} color="" type="url" error={!validation.facebook} onChange={handleFacebookChange} value={facebook} />
+                            <Col xs={12} className="setting-item">
+                                <TextField fullWidth label={t("Facebook")} color="" type="url" error={!validation.facebook} onChange={handleFacebookChange} value={facebook} />
+                            </Col>
+                        </Row>
                     </Col>
-                </>}
         
-                <Col xs={12} className="setting-item">
-                    <label className='profile-label' htmlFor="inputTag">
-                        <span style={{color:"black"}}>{t('Profile Picture')}</span>
-                        <input id="inputTag" className='profile-input' type="file" onChange={handleProfileChange} accept="/image/*" />
-                        <br />
-                        {(!profilePicture) ? <FaImage size={40} /> : <img src={profilePicture} className="upload-image" alt="preview image" />}
-                    </label>
-                </Col>
+                    <Col xs={5} className="setting-item profile-image-update">
+                        <label className={(!profilePicture) ? 'profile-label' : ''} htmlFor="inputTag">
+                            {(!profilePicture) ? <span style={{color:"black"}}>{t('Profile Picture')}</span> : null}
+                            <input id="inputTag" className='profile-input' type="file" onChange={handleProfileChange} accept="image/*" />
+                            {(!profilePicture) ? <><br /><FaImage size={40} /></> : <img src={profilePicture} className="upload-image" alt="profile image" />}
+                        </label>
+                    </Col>
+                
+                </>}
             </Row>
             <Row>
                 <Col xs={12} className="submit-button">

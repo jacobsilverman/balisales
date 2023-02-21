@@ -224,16 +224,12 @@ const Header = ({posts, setShowFilter}) => {
     const location = useLocation();
 
     useEffect(() => {
-        let ignore = false;
-        if (!ignore && !profilePic) {
-            getProfilePicture(uid).then((result) => {
-                setProfilePic(result);
-                localStorage.setItem("profile-picture-"+uid, result);
-            }).catch(() => {
-                setProfilePic(defaultProfile);
-            });
-        }
-        return () => { ignore = true };
+        getProfilePicture(uid).then((result) => {
+            setProfilePic(result);
+            localStorage.setItem("profile-picture-"+uid, result);
+        }).catch(() => {
+            setProfilePic(defaultProfile);
+        });
     }, [uid]);
 
     const signUserOut = () => {
@@ -245,7 +241,7 @@ const Header = ({posts, setShowFilter}) => {
             localStorage.removeItem("uid");
             localStorage.removeItem("profile-picture-"+uid);
             localStorage.removeItem("displayName");
-            console.log("user id: ",localStorage.getItem("uid"));
+            setProfilePic(null);
             setUid("");
         })
     }
@@ -254,11 +250,9 @@ const Header = ({posts, setShowFilter}) => {
         signInWithPopup(auth, provider).then((result) => {
             setIsAuth(true);
             localStorage.setItem("isAuth", true);
-            console.log(result?.user?.displayName);
             setUserLogin(result.user);
             localStorage.setItem("uid", result?.user?.uid);
             localStorage.setItem("displayName", result?.user?.displayName);
-            console.log("user id: ",localStorage.getItem("uid"));
             setUid(result?.user?.uid);
         })
     }
