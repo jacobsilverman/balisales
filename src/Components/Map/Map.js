@@ -22,7 +22,6 @@ const Map = ({address, width, height}) => {
                 setLongitudeLatitude(result);
             });
         }
-
     }, [address]);
 
     const render = useMemo(() => {
@@ -32,8 +31,7 @@ const Map = ({address, width, height}) => {
         }
 
         return (
-            <LoadScript
-                googleMapsApiKey='AIzaSyDwxyCrcshK6kl2ICi5UCtepIqNgPz36T4'>
+
                 <GoogleMap
                     icon="here"
                     mapContainerStyle={mapStyles}
@@ -41,7 +39,6 @@ const Map = ({address, width, height}) => {
                     center={longitudeLatitude}>
                         <Marker key="5" position={longitudeLatitude} />
                 </GoogleMap>
-            </LoadScript>
         )
     }, [longitudeLatitude]);
 

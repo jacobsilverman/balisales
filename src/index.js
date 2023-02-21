@@ -2,13 +2,16 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import Routing from './Routing';
+import { LoadScript } from '@react-google-maps/api';
 import reportWebVitals from './reportWebVitals';
 import './i18n';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Routing />
+    <LoadScript googleMapsApiKey='AIzaSyDwxyCrcshK6kl2ICi5UCtepIqNgPz36T4'>
+      <Routing />
+    </LoadScript>
   </React.StrictMode>
 );
 
