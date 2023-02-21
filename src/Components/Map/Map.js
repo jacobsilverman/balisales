@@ -25,6 +25,11 @@ const Map = ({address, width, height}) => {
     }, [address]);
 
     const render = useMemo(() => {
+        if (initial) {
+            setInitial(false);
+            return
+        }
+
         return (
             <GoogleMap
                 icon="here"
