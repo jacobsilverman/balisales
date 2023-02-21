@@ -102,7 +102,9 @@
 }
 
 .search-results-container {
-  border: 1px solid black;
+  padding: 10px;
+  max-height: 190px;
+  overflow-y: auto;
 }
 
 .left {

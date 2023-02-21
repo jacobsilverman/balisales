@@ -32,7 +32,7 @@ const SearchBar = ({posts, showSearch, t}) => {
                 return (<a href={"/profile?id="+post?.author?.id} targe="blank" key={"search-"+post?.id}>{post?.author.name}</a>)
             } else if (post.title.toLowerCase().includes(searchValue)) {
                 return (
-                    <OverlayTrigger  trigger="hover" overlay={price}>
+                    <OverlayTrigger  trigger="hover" overlay={price} placement="left">
                         <a href={"/singlePost?id="+post.id} targe="blank" key={"search-"+post?.id}>{post.title}</a>
                     </OverlayTrigger>
                 );
@@ -50,13 +50,12 @@ const SearchBar = ({posts, showSearch, t}) => {
                 } else if (bali !== 'string' && (bali?.blade?.toLowerCase().includes(searchValue.toLowerCase()) || company.toLowerCase().includes(searchValue.toLowerCase()))) {
                     const price = (<Popover>${bali?.price}</Popover>);
                     val.push((
-                        <OverlayTrigger trigger="hover" overlay={price}>
+                        <OverlayTrigger trigger="hover" overlay={price} placement="left">
                             <a href={bali?.url} target="blank">{bali?.blade+": "+company}</a>
                         </OverlayTrigger>
                     ))
                 }
             })
-
 
             return val;
         })]
@@ -77,7 +76,8 @@ const SearchBar = ({posts, showSearch, t}) => {
                     <TextField autoComplete="off" fullWidth label={t("Search")} color="" type="search" defaultValue={searchValue} onChange={searchAbility} />
                 </Col>
             </Row>
-            {searchValue !== "" && searchFilter.length > 0 && <div className="search-results-container">
+            {searchValue !== "" && searchFilter.length > 0 && 
+            <div className="search-results-container">
                 {searchFilter}
             </div>}
         </Fragment>
