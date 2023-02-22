@@ -48,6 +48,11 @@
         {"blade":"Segihega", "price": "875", "url": "https://babalis.net/products/seigaiha-live-made-to-order-coming-soon"}
     ],
     "Baliplus": [],
+    "BalisongFlipping": [
+        {"blade":"Polaris", "price": "150", "url": "https://www.balisongflipping.com/product-page/polaris"},
+        {"blade":"Glow Mod", "price": "20", "url": "https://www.balisongflipping.com/product-page/glo-mod-classic"}
+
+    ],
     "BBarfly": [
         {"blade":"BBarfly Og", "price": "35", "url": "https://bbbarfly.com/products/"},
         {"blade":"BBarfly Og 2", "price": "50", "url": "https://bbbarfly.com/products/"},
@@ -131,7 +136,7 @@
         "Genesis"
     ],
     "Dogbite Knives": [
-        "DB3.1"
+        {"blade":"DB3.1", "price": "229", "url": "https://www.bladehq.com/item--Midwest-Knifemakers-Dog-Bite--35284"}
     ],
     "ELB (emmanuel_le_brun)": [
         "Proflipper V3",
@@ -142,24 +147,25 @@
         {"blade":"Serpent", "price": "244.95", "url": "https://www.bladehq.com/item--EOS-Serpent-Balisong-Butterfly--111062"}
     ],
     "EPS Knives": [
-        "Wraith"
+        {"blade":"Wraith", "price": "280", "url": "https://fellowshipblades.com/"}
     ],
     "Fellowship Blades": [
-        "Pit viper",
-        "Medusa",
-        "Medusa V2"
+        {"blade":"Pit viper", "price": "300", "url": "https://fellowshipblades.com/"},
+        {"blade":"Medusa", "price": "500", "url": "https://fellowshipblades.com/"},
+        {"blade":"Empress", "price": "600", "url": "https://fellowshipblades.com/"}
     ],
     "Fiore": [
-        "Fiore Trainer",
-        "Logan",
-        "Model 9265"
+        {"blade":"Fiore Trainer", "price": "300", "url": "https://www.fioreknives.com/"},
+        {"blade":"Logan", "price": "300", "url": "https://www.fioreknives.com/"},
+        {"blade":"Model 9265", "price": "300", "url": "https://www.fioreknives.com/"}
     ],
     "FLS Balisong": [
-        "Liminal"
+        {"blade":"Astral", "price": "NA", "url": "https://www.flsbalisongs.com/items"},
+        {"blade":"Liminal", "price": "400", "url": "https://www.flsbalisongs.com/items"}
     ],
     "Flytanium": [
-        "Tater-song",
-        "Talisong Z"
+        {"blade":"Tater-song", "price": "NA", "url": "https://www.flytanium.com/products/talisong-z-balisong-knife"},
+        {"blade":"Talisong Z", "price": "300", "url": "https://www.flytanium.com/products/talisong-z-balisong-knife"}
     ],
     "Frankenforgeblade": [
         {"blade":"Voltaic", "price": "475", "url": "https://frankenforgeblades.com/products/voltaic-blem"},
@@ -170,25 +176,27 @@
         "Ex-11"
     ],
     "Glider Co": [
-        "Artic",
-        "Sahara",
-        "Original",
-        "Bermuda"
+        {"blade":"Artic", "price": "116", "url": "https://glidr.co/collections/arctic"},
+        {"blade":"Sahara", "price": "120", "url": "https://glidr.co/"},
+        {"blade":"Original", "price": "155", "url": "https://glidr.co/collections/original-4"},
+        {"blade":"Bermuda", "price": "45", "url": "https://glidr.co/collections/bermuda"}
     ],
     "GP_Blades": [
         {"blade":"Customs", "price": "500", "url": "https://www.instagram.com/gp_blades/?hl=en"}
     ],
     "Hansen Metals": [
-        "Monarch"
+        {"blade":"Solo", "price": "1000", "url": "https://www.hansenmetals.com/shop/p/2vyooev1zmsbos2g9w3x6w6w41alz8"},
+        {"blade":"Monarch", "price": "1150", "url": "https://www.hansenmetals.com/shop/p/monarch-balisong"}
     ],
     "HazeTech": [
-        "Devil"
+        {"blade":"Devil", "price": "500", "url": "https://hazetac.com/"}
     ],
     "Heibel": [
-        "Invictus",
-        "Menace",
-        "Sapient",
-        "Valor"
+        {"blade":"Invictus", "price": "500", "url": "https://heibel-knives.com/invictus/"},
+        {"blade":"Menace", "price": "500", "url": "https://heibel-knives.com/menace/"},
+        {"blade":"Sapient", "price": "500", "url": "https://heibel-knives.com/sapient/"},
+        {"blade":"Valor", "price": "500", "url": "https://heibel-knives.com/valor/"},
+        {"blade":"Custom", "price": "NA", "url": "https://heibel-knives.com/order/"}
     ],
     "Henninger Designs": [
         "Telesto"
@@ -270,17 +278,19 @@
         "Morse",
         "Spaner",
         "Sword Of Light",
-        " Parallelogram",
+        "Parallelogram",
         "Rhinofly",
         "Exquiste",
         "Lightning",
         "Vulp"
     ],
     "NRB (NotArealboy)": [
-        "Kong",
-        "Vortex",
-        "Ultralight",
-        "Nemesis"
+        {"blade":"Kong", "price": "150", "url":"https://nrbknives.com/collections/balisongs"},
+        {"blade":"Kong trainer", "price": "190", "url":"https://nrbknives.com/collections/balisongs"},
+        {"blade":"Vortex", "price": "120", "url":"https://nrbknives.com/collections/balisongs"},
+        {"blade":"Ultralight trainer", "price": "185", "url":"https://nrbknives.com/collections/balisongs"},
+        {"blade":"Ultralight", "price": "410", "url":"https://nrbknives.com/collections/balisongs"},
+        {"blade":"Nemesis", "price": "300", "url":"https://nrbknives.com/collections/balisongs"}
     ],
     "OSP": [
         {"blade":"Matrix", "price": "795", "url":"https://www.arizonacustomknives.com/knives-by-maker/osp-balisong/"}
