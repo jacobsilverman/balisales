@@ -250,7 +250,7 @@ const SettingsForm = ({id}) => {
                 </Col>
                 <hr />
                 {showLocationInfo && <>
-                    <Col xs={12} md={7} lg={9}>
+                    <Col xs={12} md={7} lg={8}>
                         <Row>
                             <Col xs={12} md={6} className="setting-item">
                                 <TextField fullWidth label={t("Address")} error={!validation.address} value={address?.address} onChange={handleAddressChange} />
@@ -276,7 +276,7 @@ const SettingsForm = ({id}) => {
                             </Col>
                         </Row>
                     </Col>
-                    <Col xs={12} md={5} lg={3} className="map-container">
+                    <Col xs={12} md={5} lg={4} className="map-container">
                         <Map address={address} width="280px"  height="210px" />
                     </Col>
                 </>}
@@ -289,7 +289,7 @@ const SettingsForm = ({id}) => {
                 </Col>
                 <hr />
                 {showSocialInfo && <>
-                    <Col xs={12} md={7}>
+                    <Col xs={12} md={7} lg={8}>
                         <Row>
                             <Col xs={12} className="setting-item">
                                 <TextField fullWidth label={t("Phone Number")} error={!validation.phoneNumber} onChange={handlePhoneNumberChange} value={displayNumber(phoneNumber)} inputProps={{ maxLength: 14 }} />
@@ -305,7 +305,7 @@ const SettingsForm = ({id}) => {
                         </Row>
                     </Col>
         
-                    <Col xs={5} className="setting-item profile-image-update">
+                    <Col xs={12} md={5} lg={4} className="setting-item profile-image-update">
                         <label className={(!profilePicture) ? 'profile-label' : ''} htmlFor="inputTag">
                             {(!profilePicture) ? <span style={{color:"black"}}>{t('Profile Picture')}</span> : null}
                             <input id="inputTag" className='profile-input' type="file" onChange={handleProfileChange} accept="image/*" />
