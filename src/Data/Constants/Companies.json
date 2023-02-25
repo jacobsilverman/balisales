@@ -109,38 +109,47 @@
         {"blade":"Valkiria", "price": "Na", "url": "https://en.blackbalisong.com/"}
     ],
     "BladeRunner Systems": [
-        "Replicant",
-        "Alpha Beast",
-        "Aluminum Barebones"
+        {"blade":"Replicant", "price": "280", "url": "https://www.bladerunnerssystems.com/collections/blades/brs"},
+        {"blade":"Alpha Beast", "price": "350", "url": "https://www.bladerunnerssystems.com/collections/blades/brs"},
+        {"blade":"Channel Alpha Beast", "price": "400", "url": "https://www.bladerunnerssystems.com/collections/blades/brs"},
+        {"blade":"Barebones", "price": "200", "url": "https://www.bladerunnerssystems.com/collections/blades/brs"},
+        {"blade":"Aluminum Barebones", "price": "150", "url": "https://www.bladerunnerssystems.com/collections/blades/brs"},
+        {"blade":"Tibones", "price": "300", "url": "https://www.bladerunnerssystems.com/collections/blades/brs"},
+        {"blade":"Infinity", "price": "370", "url": "https://www.bladerunnerssystems.com/collections/blades/brs"}
     ],
     "Boker": [
-        "Boker Plus",
-        "Boker Plus Mini",
-        "Boker Plus tctical",
-        "Boker Plus Papilon",
-        "Boker Magnum"
+        {"blade":"Balicomb", "price": "27.95", "url": "https://www.bokerusa.com/pocket-knives/balisongs"},
+        {"blade":"Trainer", "price": "89.95", "url": "https://www.bokerusa.com/pocket-knives/balisongs"},
+        {"blade":"Trainer 2nd Gen", "price": "34.95", "url": "https://www.bokerusa.com/pocket-knives/balisongs"},
+        {"blade":"G10 Large D2", "price": "119.95", "url": "https://www.bokerusa.com/pocket-knives/balisongs"},
+        {"blade":"Tactical Big D2", "price": "119.95", "url": "https://www.bokerusa.com/pocket-knives/balisongs"},
+        {"blade":"G10 Small D2", "price": "104.95", "url": "https://www.bokerusa.com/pocket-knives/balisongs"},
+        {"blade":"Tactical Small D2", "price": "104.95", "url": "https://www.bokerusa.com/pocket-knives/balisongs"},
+        {"blade":"Papillon", "price": "135.95", "url": "https://www.bokerusa.com/pocket-knives/balisongs"},
+        {"blade":"Papillon Trainer", "price": "97.95", "url": "https://www.bokerusa.com/pocket-knives/balisongs"}
     ],
     "Bradley": [
-        "Kimura"
+        {"blade":"Kimura", "price": "120", "url": "https://www.bladehq.com/cat--Bradley-Butterfly--129"}
     ],
     "Brous Blades": [
-        "Balisong B3"
+        {"blade":"B3", "price": "219.99", "url": "https://www.bladehq.com/cat--Brous-Blades-Butterfly--2180"}
     ],
     "Cantogroup": [
-        "Origin"
+        {"blade":"Origin Trainer", "price": "189.99", "url": "https://cantogroup.store/products/origin-trainer-prototype-run"}
     ],
     "Cold Steel": [
-        "92EAA FGX"
+        {"blade":"92EAA FGX", "price": "16.99", "url": "https://www.coldsteel.com/fgx-balisong/"},
+        {"blade":"Arc-Angel", "price": "399", "url": "https://www.bladehq.com/item--Cold-Steel-Arc-Angel-Spear-Point--22778"}
     ],
     "DC_Bladeworks (DCB)": [
-        "Genesis"
+        {"blade":"Genesis", "price": "1000", "url": "https://www.instagram.com/p/CoqHlOVvhMh/?hl=en"}
     ],
     "Dogbite Knives": [
         {"blade":"DB3.1", "price": "229", "url": "https://www.bladehq.com/item--Midwest-Knifemakers-Dog-Bite--35284"}
     ],
     "ELB (emmanuel_le_brun)": [
-        "Proflipper V3",
-        "ELB Mamba"
+        {"blade":"Proflipper V3", "price": "1000", "url": "https://www.instagram.com/p/CNUQa7nDlhV/?hl=en"},
+        {"blade":"ELB Mamba", "price": "1000", "url": "https://www.instagram.com/emmanuel_le_brun/?hl=en"}
     ],
     "EOS": [
         {"blade":"Trident", "price": "419.95", "url": "https://www.bladehq.com/item--EOS-Trident-Balisong-Butterfly--135853"},
@@ -172,8 +181,9 @@
         {"blade":"Galvanis v2", "price": "250", "url": "https://frankenforgeblades.com/products/galvanis-v2"}
     ],
     "Geofrey Dumas": [
-        "Ex-10",
-        "Ex-11"
+        {"blade":"Ex-9", "price": "650", "url": "https://gdktllc.com/"},
+        {"blade":"Ex-10", "price": "650", "url": "https://www.bladehq.com/item--Geof-Dumas-Rotten-EX10-Balisong--49632"},
+        {"blade":"Ex-11", "price": "650", "url": "https://gdktllc.com/"}
     ],
     "Glider Co": [
         {"blade":"Artic", "price": "116", "url": "https://glidr.co/collections/arctic"},
@@ -199,90 +209,104 @@
         {"blade":"Custom", "price": "NA", "url": "https://heibel-knives.com/order/"}
     ],
     "Henninger Designs": [
-        "Telesto"
+        {"blade":"Telesto", "price": "700", "url": "https://www.instagram.com/henninger.designs/?hl=en"}
     ],
     "Hinderer": [
-        "Nieves"
+        {"blade":"Nieves V2", "price": "325", "url": "https://www.bladehq.com/item--Hinderer-Knives-Nieves-Balisong--98898"}
     ],
     "HOM Designs (Jerry Hom Designs)": [
-        "Basilisk",
-        "Chimera",
-        "Specter"
+        {"blade":"Chimera", "price": "325", "url": "https://www.homdesign.com/pages/chimera-balisong"},
+        {"blade":"Balisilisk", "price": "325", "url": "https://www.homdesign.com/pages/basilisk-balisong"},
+        {"blade":"I-Basilisk", "price": "325", "url": "https://www.homdesign.com/pages/basilisk-balisong"},
+        {"blade":"Specter", "price": "325", "url": "https://www.homdesign.com/pages/specter-balisong"},
+        {"blade":"Prodigy", "price": "325", "url": "https://www.homdesign.com/pages/prodigy-trainer"},
+        {"blade":"Rhapsody", "price": "325", "url": "https://www.homdesign.com/pages/rhapsody-trainer"}
     ],
     "Hypex": [
-        "Graviton",
-        "Hypex Trainer V3"
+        {"blade":"Graviton", "price": "150", "url": "https://www.instagram.com/hypex.co/?hl=en"},
+        {"blade":"Hypex Trainer", "price": "120", "url": "https://www.instagram.com/hypex.co/?hl=en"}
     ],
     "Jimpy Designs": [
-        "Sentinel",
-        "Tux"
+        {"blade":"Sentinel", "price": "425", "url": "https://www.jimpydesigns.com/shop/p/jimpy-sentinel"},
+        {"blade":"Tux", "price": "120", "url": "https://www.jimpydesigns.com/shop/p/tux-cm-by-jimpy"}
     ],
     "JK Design (Julian Klein Design)": [
-        "Orca",
-        "Monarch",
-        "Litetech",
-        "Embargo ",
-        "Emissary"
+        {"blade":"Orca", "price": "1350", "url": "https://www.knifecenter.com/item/JKDORCA115/jk-designs-custom-orca-115-butterfly-knife-s35vn-low-polished-blade-integral-stonewashed-teal-anodized-titanium-handles-with-milled-accents-bushing-pivot"},
+        {"blade":"Monarch", "price": "1350", "url": "https://www.arizonacustomknives.com/products/1051819/"},
+        {"blade":"Litetech", "price": "1295", "url": "https://www.knifecenter.com/reviews/JKDEMLT066/jk-designs-custom-emissary-litetech-066-butterfly-knife-s35vn-acid-washed-blade-green-g10-and-titanium-handles-bushing-pivot"},
+        {"blade":"Embargo", "price": "1450", "url": "https://www.knifecenter.com/brand/811/JK-Design"},
+        {"blade":"Emissary", "price": "1000", "url": "https://www.pvk.com/JK-Design-Custom-Emissary-D-E-Balisong-43-p/jk043.htm"},
+        {"blade":"Trainer", "price": "525", "url": "https://www.knifecenter.com/brand/811/JK-Design"}
     ],
     "Kershaw": [
-        "Lucha"
+        {"blade":"Lucha", "price": "149.95", "url": "https://www.bladehq.com/item--Kershaw-Lucha-Butterfly-Knife--105983"}
     ],
     "LDY_Balisongs": [
-        "Vixen",
-        "Cygnus ",
-        "Sirius V3"
+        {"blade":"Vixen", "price": "549.95", "url": "https://www.instagram.com/ldy_balisong/?hl=en"},
+        {"blade":"Cygnus", "price": "249.95", "url": "https://www.instagram.com/ldy_balisong/?hl=en"},
+        {"blade":"Sirius", "price": "159.95", "url": "https://www.instagram.com/ldy_balisong/?hl=en"}
     ],
     "Les Voorhies": [
-        "Model 1"
+        {"blade":"Model 1", "price": "499", "url": "https://www.bladehq.com/cat--Les-Voorhies-Butterfly--408"},
+        {"blade":"Model 2", "price": "700", "url": "https://www.bladehq.com/cat--Les-Voorhies-Butterfly--408"},
+        {"blade":"Havoc", "price": "765.95", "url": "https://www.bladehq.com/cat--Les-Voorhies-Butterfly--408"}
     ],
     "Log Design": [
-        "Jian"
+        {"blade":"Jian", "price": "160", "url": "https://www.instagram.com/log_design_official/?hl=en"},
+        {"blade":"Banzhan", "price": "500", "url": "https://www.instagram.com/log_design_official/?hl=en"}
     ],
     "M3K": [
-        "The Verdict"
+        {"blade":"The Verdict", "price": "550", "url": "https://www.instagram.com/miiiknives/?hl=en"}
     ],
     "MachineWise": [
-        "Delta FifT",
-        "Delta Sixt",
-        "Maryn Lite",
-        "Maryn",
-        "Slift",
-        "Serif",
-        "Opus",
-        "Prysma"
+        {"blade":"Delta FifT", "price": "200", "url": "https://machinewise.store/"},
+        {"blade":"Delta Sixt", "price": "350", "url": "https://machinewise.store/"},
+        {"blade":"Maryn Lite", "price": "200", "url": "https://machinewise.store/"},
+        {"blade":"Maryn", "price": "400", "url": "https://machinewise.store/"},
+        {"blade":"Slift", "price": "400", "url": "https://machinewise.store/"},
+        {"blade":"Serif", "price": "700", "url": "https://machinewise.store/"},
+        {"blade":"Opus", "price": "700", "url": "https://machinewise.store/"},
+        {"blade":"Prysma", "price": "140", "url": "https://machinewise.store/"}
     ],
     "Mantis Bladeworks": [
-        "Idolos",
-        "Thistle"
+        {"blade":"Idolo", "price": "Na", "url": "https://www.instagram.com/mantis_bladeworks/?hl=en"},
+        {"blade":"Thistle", "price": "Na", "url": "https://www.instagram.com/mantis_bladeworks/?hl=en"}
+    ],
+    "Mantis BladeXchange": [
+        {"blade":"Flyswitch", "price": "195.95", "url": "https://www.knifecenter.com/series/mantis-knives/mantis-bladexchange-balisongs"},
+        {"blade":"Flux", "price": "195.95", "url": "https://www.knifecenter.com/series/mantis-knives/mantis-bladexchange-balisongs"},
+        {"blade":"Deexter", "price": "195.95", "url": "https://www.knifecenter.com/series/mantis-knives/mantis-bladexchange-balisongs"},
+        {"blade":"Mothra", "price": "195.95", "url": "https://www.knifecenter.com/series/mantis-knives/mantis-bladexchange-balisongs"}
     ],
     "Marcolo": [
-        "C116",
-        "Comet",
-        "Rep clone",
-        "AB clone"
+        {"blade":"C116", "price": "55.99", "url": "https://www.amazon.com/MARCOLO-Aluminum-Integral-Effective-Bushings/dp/B0BBV64LQ8"},
+        {"blade":"Comet", "price": "60.99", "url": "https://www.amazon.com/MARCOLO-Effective-Aluminum-Replaceable-Boyfriend/dp/B0BCPN5S79"},
+        {"blade":"AB clone", "price": "14.99", "url": "https://www.amazon.com/MARCOLO-Spring-Latch-Screwdrivers-Black/dp/B09KCMX58J"}
     ],
     "Maxace": [
-        "Obisidian",
-        "Serpent Striker",
-        "Banshee",
-        "Phantom",
-        "Pelican",
-        "Pian",
-        "Shi"
+        {"blade":"Obisidian", "price": "380", "url": "https://knifeworks.com/maxace-knives-obsidian-balisong-mco04-4-cpm-s90v-satin-tanto-blade-gray-sand-titanium-carbon-fiber-handles/"},
+        {"blade":"Serpent Striker", "price": "154.95", "url": "https://slash2gash.com/products/maxace-serpent-striker-ii-butterfly-knife-w-bearings-balisong-g10-black?variant=36577591885991"},
+        {"blade":"Banshee", "price": "155", "url": "https://www.tacticalelements.com/maxace-knives-mbiv-banshee-v2-butterfly-knife-drop-point-stonewash-satin-blade-w-g-10-handle/"},
+        {"blade":"Apostle", "price": "450", "url": "https://knifeworks.com/maxace-apostle-channel-balisong-ti-cf-4-7-m390-mcap01/"},
+        {"blade":"Phantom", "price": "68", "url": "https://www.bladehq.com/item--Maxace-Phantom-Balisong-Butterfly--180483"},
+        {"blade":"Pelican", "price": "328", "url": "https://knifeworks.com/maxace-pelican-m-balisong-blue-ti-tc4-3-54-bohler-m390-satin-mcpm02/"},
+        {"blade":"Pian", "price": "258", "url": "https://knifeworks.com/maxace-pian-bailsong-gray-ti-4-6-m390-satin-harpoon-mpn01/"},
+        {"blade":"Loran", "price": "258", "url": "https://knifeworks.com/maxace-loran-mini-bailsong-gray-ti-gold-cf-3-3-m390-double-edge-mlr01/"},
+        {"blade":"Shi", "price": "350", "url": "https://knifeworks.com/maxace-shi-balisong-sw-cf-ti-4-33-bohler-m390-satin-msch201/"}
     ],
     "Microtech": [
-        "Tachyon 3",
-        "Tachyon 2"
+        {"blade":"Tachyon 2", "price": "400", "url": "https://thehollowgrind.com/store/microtech-knives-titanium-tachyon-ii-te-butterfly-knife-4-5in-black-plain-154-cm-cmt-0001.html"},
+        {"blade":"Tachyon 3", "price": "289", "url": "https://www.bladehq.com/item--Microtech-Tachyon-III-Balisong--30344"}
     ],
     "Nabilus": [
-        "Morse",
-        "Spaner",
-        "Sword Of Light",
-        "Parallelogram",
-        "Rhinofly",
-        "Exquiste",
-        "Lightning",
-        "Vulp"
+        {"blade":"Morse", "price": "59.99", "url": "https://www.amazon.com/Nabalis-Bushing-Aluminum-Integral-Stainless/dp/B09YVFZ8Z3"},
+        {"blade":"Spaner", "price": "25.99", "url": "https://www.amazon.com/NaBalis-Ultra-Lightweight-Bearing-Durable-Crowbar/dp/B08QCLNNS9"},
+        {"blade":"Sword Of Light", "price": "27.99", "url": "https://www.amazon.com/Nabalis-Multifunctional-Screwdriver-Beautiful-Practical/dp/B09JNPHJ8D"},
+        {"blade":"Parallelogram", "price": "21.99", "url": "https://www.amazon.com/Nabalis-Parallelogram-Multifunctional-Screwdriver-Beautiful/dp/B09JNP192R"},
+        {"blade":"Rhinofly", "price": "18.99", "url": "https://www.amazon.com/Nabalis-Rhinofly-Bottle-Opener-Useful/dp/B09L8F5J7R"},
+        {"blade":"Exquiste", "price": "15.99", "url": "https://www.amazon.com/Nabalis-Exquisite-Retro-Peculiar-Multitool/dp/B09HZQRF56?source=ps-sl-shoppingads-lpcontext&ref_=fplfs&psc=1&smid=A28GHHIW61VZNZ"},
+        {"blade":"Lightning", "price": "44.99", "url": "https://www.amazon.com/Nabalis-Lightning-Systerm-Aluminum-Stainless/dp/B0BR6XR7HW"},
+        {"blade":"Vulp", "price": "64.99", "url": "https://www.amazon.com/Nabalis-Bushing-Aluminum-Integral-Stainless/dp/B0B7BHLBW5"}
     ],
     "NRB (NotArealboy)": [
         {"blade":"Kong", "price": "150", "url":"https://nrbknives.com/collections/balisongs"},
