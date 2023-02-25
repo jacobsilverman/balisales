@@ -12,6 +12,7 @@ function Account({user, settingsPage}) {
 	const [filterPosts, setFilterPosts] = useState([]);
 	const [openEditModal, setOpenEditModal] = useState(false);
 	const [selectedPost, setSelectedPost] = useState({});
+	const [loaded, setLoaded] = useState(false);
 
 	useEffect(() => {
         getUserPosts(user).then((result) => {
@@ -21,13 +22,15 @@ function Account({user, settingsPage}) {
             setFilterPosts(result);
         }).catch(() => {
             console.error("cant get user posts");
-        });
+        }).finally(() => {
+			setLoaded(true);
+		});
 	}, []);
 	
 	const setAccountData = () => {
 		if (filterPosts?.length === 0) {
 			return (
-				<Spinner /> 
+				(!loaded) ? <Spinner /> : null
 			);
 		} 
 

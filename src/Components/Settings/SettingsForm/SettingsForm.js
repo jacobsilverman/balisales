@@ -229,15 +229,15 @@ const SettingsForm = ({id}) => {
                 </Col>
                 <hr />
                 {showRequiredInfo && <>
-                    <Col xs={12} sm={6} md={4} lg={4} className="setting-item">
+                    <Col xs={12} sm={4} className="setting-item">
                         <TextField fullWidth label={t("First Name")} error={!validation.firstName} type="search" onChange={handleFirstNameChange} value={firstName} />
                     </Col>
 
-                    <Col xs={12} sm={6} md={4} lg={4} className="setting-item">
+                    <Col xs={12} sm={4} className="setting-item">
                         <TextField fullWidth label={t("Last Name")} error={!validation.lastName} type="search" onChange={handleLastNameChange} value={lastName} />
                     </Col>
 
-                    <Col xs={12} sm={6} md={4} lg={4} className="setting-item">
+                    <Col xs={12} sm={4} className="setting-item">
                         <TextField fullWidth label={t("Display Name")} error={!validation.displayName} type="search" onChange={handleDisplayNameChange} value={displayName} />
                     </Col>
                 </>}
