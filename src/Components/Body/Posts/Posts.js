@@ -22,14 +22,13 @@ const Posts = ({min, max, brand, posts, type, sort, time, blade, status}) => {
     };
     
     const validFilter = (post) => {
-        return post?.price >= min 
-            && post?.price <= max 
+        return post?.price >= +min 
+            && post?.price <= +max 
             && (post?.brand?.toLowerCase() === brand?.toLowerCase() || brand === 'All') 
             && (post?.type?.toLowerCase() === type?.toLowerCase() || type === 'All')
             && (post?.blade?.toLowerCase() === blade?.toLowerCase() || blade === 'All')
             && (post?.status?.toLowerCase() === status?.toLowerCase() || status === 'All');
     };
-
 
     const divideData = useMemo(() => {
         if (posts.length === 0) {

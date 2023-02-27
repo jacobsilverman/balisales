@@ -250,7 +250,7 @@ const SettingsForm = ({id}) => {
                 </Col>
                 <hr />
                 {showLocationInfo && <>
-                    <Col xs={12} md={7} lg={8}>
+                    <Col xs={12} md={address && 7} lg={address && 8}>
                         <Row>
                             <Col xs={12} md={6} className="setting-item">
                                 <TextField fullWidth label={t("Address")} error={!validation.address} value={address?.address} onChange={handleAddressChange} />
@@ -276,9 +276,9 @@ const SettingsForm = ({id}) => {
                             </Col>
                         </Row>
                     </Col>
-                    <Col xs={12} md={5} lg={4} className="map-container">
+                    {address && <Col xs={12} md={5} lg={4} className="map-container">
                         <Map address={address} width="280px"  height="210px" />
-                    </Col>
+                    </Col>}
                 </>}
 
                 <Col xs={12} className="info-dropdown">
@@ -296,11 +296,11 @@ const SettingsForm = ({id}) => {
                             </Col>
                     
                             <Col xs={12} className="setting-item">
-                                <TextField fullWidth label={t("Instagram")} color="" type="url" error={!validation.instagram} onChange={handleInstagramChange} value={instagram} />
+                                <TextField fullWidth label={t(" ")} color="" type="url" error={!validation.instagram} onChange={handleInstagramChange} value={instagram} />
                             </Col>
 
                             <Col xs={12} className="setting-item">
-                                <TextField fullWidth label={t("Facebook")} color="" type="url" error={!validation.facebook} onChange={handleFacebookChange} value={facebook} />
+                                <TextField fullWidth label={t(" ")} color="" type="url" error={!validation.facebook} onChange={handleFacebookChange} value={facebook} />
                             </Col>
                         </Row>
                     </Col>
