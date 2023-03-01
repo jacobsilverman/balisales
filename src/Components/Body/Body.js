@@ -7,6 +7,8 @@ import Posts from './Posts';
 import './Body.scss';
 import Filter from './Filter';
 import MenuItem from '@mui/material/MenuItem';
+import SelectModal from './Posts/Post/SelectModal';
+
 
 import { useTranslation } from "react-i18next";
 
@@ -19,6 +21,8 @@ function Body({posts, showFilter, setShowFilter}) {
     const [time, setTime] = useState('New');
     const [blade, setBlade] = useState('All');
     const [status, setStatus] = useState('All');
+
+    const [openSelectModal, setOpenSelectModal] = useState({show:false,item:null});
 
     const {t} = useTranslation();
     // const [windowScroll, setWindowScroll] = useState(0); 
@@ -76,6 +80,10 @@ function Body({posts, showFilter, setShowFilter}) {
     return (
         <Container className='body-container'>
             <Row>
+                {openSelectModal.show && <SelectModal t={t} 
+                item={openSelectModal.item} 
+                openSelectModal={openSelectModal.show} 
+                setOpenSelectModal={setOpenSelectModal} />}
                 {(showFilter && filter)}
                 <Posts 
                     min={min} 
@@ -86,7 +94,8 @@ function Body({posts, showFilter, setShowFilter}) {
                     sort={sort}
                     time={time}
                     blade={blade}
-                    status={status} />
+                    status={status}
+                    setOpenSelectModal={setOpenSelectModal} />
             </Row>
         </Container>
     )

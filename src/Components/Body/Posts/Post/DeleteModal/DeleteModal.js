@@ -1,5 +1,4 @@
 import { Modal } from '@mui/material';
-import { useTransition } from 'react';
 import { Button, Col, Row } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 

@@ -6,7 +6,7 @@ import Spinner from '../../../Data/Constants/Spinner';
 
 import Post from './Post';
 
-const Posts = ({min, max, brand, posts, type, sort, time, blade, status}) => {
+const Posts = ({min, max, brand, posts, type, sort, time, blade, status, setOpenSelectModal}) => {
     const sortData = (data) => {
         const sortedByTime = [...data].sort((a, b) => {
             if (time === "New") return (a.timeStamp <= b.timeStamp) ? 1 : -1;
@@ -46,7 +46,8 @@ const Posts = ({min, max, brand, posts, type, sort, time, blade, status}) => {
                         displayUrl={displayUrl} 
                         item={item} 
                         queryParam={queryParam}
-                        key={item.id} />
+                        key={item.id}
+                        setOpenSelectModal={setOpenSelectModal} />
                 })}
             </div>
         );
