@@ -100,10 +100,11 @@ function CreatePost() {
 
     function pictureInputs() {
         let allInputs = [];
+        const divideCols = Math.floor(12/(numberOfUploads+1));
 
         for (let i = 0; i <= numberOfUploads; i++) {
             allInputs.push(
-                <Col xs="12" sm={(numberOfUploads > 0) ? 6 : 12} className="setting-item center" key={i+"+"+numberOfUploads}>
+                <Col xs="12" sm={(numberOfUploads > 0) ? 6 : 12} lg={(numberOfUploads > 2) ? 4 : divideCols} xxl={(numberOfUploads > 3) ? 3 : divideCols} className="setting-item center" key={i+"+"+numberOfUploads}>
                     <label className='profile-label' htmlFor={"inputPicture-"+i} onClick={(i !==0)  ? () => removePicture(i) : null}>
                         <span>{files[numberOfUploads-i]?.name || t("Upload Image")}</span>
                         {(i===0) && <input id={"inputPicture-"+i} className="profile-input" type="file" onChange={e => handlePictureChange(e, i)} accept="/image/*" />}
