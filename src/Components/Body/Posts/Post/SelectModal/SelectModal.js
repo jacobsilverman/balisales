@@ -80,25 +80,25 @@ const SelectModal = ({t, item, openSelectModal, setOpenSelectModal}) => {
             <Row>
                 <Col className="modal-background">
 
-                    <Button id="select-modal-exit-button" color="error" variant="contained" onClick={() => setOpenSelectModal({show:false})}>
+                    <Button id="select-modal-exit-button" color="error" onClick={() => setOpenSelectModal({show:false})}>
                         X
                     </Button>  
                     <Link className="link-wrapper" to={{pathname: '/profile', search: "id=" + displayPost?.author?.id}}>
-                                <div className="display-name">{displayPost?.author?.name}</div>
-                                <div className="account-profile center" style={{backgroundImage: `url(${profilePic})`}} />
-                            </Link>
+                        <div className="display-name">{displayPost?.author?.name}</div>
+                        <div className="account-profile center" style={{backgroundImage: `url(${profilePic})`}} />
+                    </Link>
                     <Row>
                         <Col xs={12} className="display-title center">
                             <h1>{displayPost?.title}</h1>
                         </Col>
                     </Row>
                     <Row className="content-container">
-                        {displayPost?.numberOfImages > 1 && <Col xs={1} className="previous-image">
-                            <Button variant="contained" onClick={handlePreviousImage}>{"<"}</Button>
+                        {displayPost?.numberOfImages > 1 && <Col xs={1} className="traverse-container">
+                            <Button id="traverse-prev-button" onClick={handlePreviousImage}>{"<"}</Button>
                         </Col>}
                         {displayPost?.urls && postPictures}
-                        {displayPost?.numberOfImages > 1 && <Col xs={1} className="next-image">
-                            <Button variant="contained" onClick={handleNextImage}>{">"}</Button>
+                        {displayPost?.numberOfImages > 1 && <Col xs={1} className="traverse-container">
+                            <Button id="traverse-next-button" onClick={handleNextImage}>{">"}</Button>
                         </Col>}
                     </Row>
                     
@@ -112,35 +112,38 @@ const SelectModal = ({t, item, openSelectModal, setOpenSelectModal}) => {
                             <Button variant="contained" onClick={handleNextImage}>{t("Next")}</Button>
                         </Col>
                     </Row>} */}
-
-                                        
-                    
                     <Row style={{justifyContent:"center"}}>
                         <Col xs={12} className="info-container">
                             <div style={{display: "flex", justifyContent: "space-evenly"}}>
-                                <div className="content-wrapper">
-                                    <div className="desciption-title">
+                                <div className="created">
+                                    {/* <div className="desciption-title">
                                         {t("Created")}
-                                    </div>
+                                    </div> */}
                                     {createdDate}
                                 </div>
                                 <div className="content-wrapper">
-                                    <div className="desciption-title">
+                                    <div className={"desciption-title "+((displayPost?.type === "Buying") ? "bg" : (displayPost?.type === "Selling") ? "br" : null)}>
                                         {t(displayPost?.type)}
                                     </div>
-                                    {displayPost?.price}
+                                    ${displayPost?.price}
                                 </div>
                                 <div className="content-wrapper">
                                     <div className="desciption-title">
-                                        {displayPost?.condition}
+                                        {t("Brand")}
                                     </div>
                                     {displayPost?.brand}
                                 </div>
-                            </div>
-                            <Row className="content-wrapper">
-                                <div className="desciption-title">
-                                    {t("Description")}
+                                <div className="content-wrapper">
+                                    <div className="desciption-title">
+                                        {t("Condition")}
+                                    </div>
+                                    {displayPost?.condition}
                                 </div>
+                            </div>
+                            <Row className="description-wrapper">
+                                {/* <div className="desciption-title">
+                                    {t("Description")}
+                                </div> */}
                                 <Col xs={12}>
                                     {displayPost?.description}
                                 </Col>
