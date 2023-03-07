@@ -6,10 +6,10 @@ import Spinner from '../../../Data/Constants/Spinner';
 
 import Post from './Post';
 
-const Posts = ({min, max, brand, posts, type, sort, time, blade, status, setOpenSelectModal}) => {
+const Posts = ({min, max, brand, condition, posts, type, sort, blade, status, setOpenSelectModal}) => {
     const sortData = (data) => {
         const sortedByTime = [...data].sort((a, b) => {
-            if (time === "New") return (a.timeStamp <= b.timeStamp) ? 1 : -1;
+            if (sort === "New") return (a.timeStamp <= b.timeStamp) ? 1 : -1;
             else return (b.timeStamp < a.timeStamp) ? 1 : -1;
         })
 
@@ -22,8 +22,10 @@ const Posts = ({min, max, brand, posts, type, sort, time, blade, status, setOpen
     };
     
     const validFilter = (post) => {
+        const stripCondition = (condition === "10") ? +condition : +condition[0];
         return post?.price >= +min 
             && post?.price <= +max 
+            && (post?.condition >= stripCondition || condition === 'All') 
             && (post?.brand?.toLowerCase() === brand?.toLowerCase() || brand === 'All') 
             && (post?.type?.toLowerCase() === type?.toLowerCase() || type === 'All')
             && (post?.blade?.toLowerCase() === blade?.toLowerCase() || blade === 'All')
@@ -51,7 +53,7 @@ const Posts = ({min, max, brand, posts, type, sort, time, blade, status, setOpen
                 })}
             </div>
         );
-    }, [min, max, brand, type, sort, time, blade, status, posts])
+    }, [min, max, brand, condition, type, sort, blade, status, posts])
 
 
     return (

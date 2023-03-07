@@ -1,6 +1,6 @@
 import { Fragment } from 'react';
 
-import { blades, brands, times, sorts, statuses, types } from '../../../Data/Constants';
+import { blades, brands, conditions, sorts, statuses, types } from '../../../Data/Constants';
 
 import { Col, Row } from 'react-bootstrap';
 import Button from '@mui/material/Button';
@@ -12,7 +12,7 @@ import Select from '@mui/material/Select';
 
 import './Filter.scss';
 
-function Filter({getOptions, brand, setBrand, max, setMax, min, setMin, type, setType, setDisplayFilter, resetFilter, sort, setSort, time, setTime, blade, setBlade, status, setStatus, t}) {
+function Filter({getOptions, brand, setBrand, max, setMax, min, setMin, type, setType, setDisplayFilter, resetFilter, sort, setSort, condition, setCondition, blade, setBlade, status, setStatus, t}) {
     return (
         <Fragment>
             <Row className='filter-item'>
@@ -34,7 +34,7 @@ function Filter({getOptions, brand, setBrand, max, setMax, min, setMin, type, se
                         </Col>
                         <Col xs={6} sm={6} md={3}  className="dropdown">
                             <FormControl fullWidth>
-                                <InputLabel id="filter-sort-select-label">Cost</InputLabel>
+                                <InputLabel id="filter-sort-select-label">{t("Sort By")}</InputLabel>
                                 <Select
                                     labelId="filter-sort-select-label"
                                     id="filter-sort-select"
@@ -91,14 +91,15 @@ function Filter({getOptions, brand, setBrand, max, setMax, min, setMin, type, se
             
                         <Col xs={6} sm={6} md={3}>
                             <FormControl fullWidth>
-                                <InputLabel id="filter-time-select-label">{t("Time")}</InputLabel>
+                                <InputLabel id="filter-time-select-label">{t("Condition")}</InputLabel>
                                 <Select
                                     labelId="filter-time-select-label"
                                     id="filter-time-select"
-                                    value={time}
-                                    label={t("Time")}
-                                    onChange={(event) => setTime(event.target.value)}>
-                                    {getOptions(times, "time")}
+                                    value={condition}
+                                    label={t("Condition")}
+                                    onChange={(event) => setCondition(event.target.value)}>
+                                    <MenuItem value="All">{t("All")}</MenuItem>
+                                    {getOptions(conditions, "condition")}
                                 </Select>
                             </FormControl>
                         </Col>

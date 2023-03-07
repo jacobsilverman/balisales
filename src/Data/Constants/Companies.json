@@ -298,7 +298,7 @@
         {"blade":"Tachyon 2", "price": "400", "url": "https://thehollowgrind.com/store/microtech-knives-titanium-tachyon-ii-te-butterfly-knife-4-5in-black-plain-154-cm-cmt-0001.html"},
         {"blade":"Tachyon 3", "price": "289", "url": "https://www.bladehq.com/item--Microtech-Tachyon-III-Balisong--30344"}
     ],
-    "Misc/Other": "Na",
+    "Misc/Other": [],
     "Nabilus": [
         {"blade":"Morse", "price": "59.99", "url": "https://www.amazon.com/Nabalis-Bushing-Aluminum-Integral-Stainless/dp/B09YVFZ8Z3"},
         {"blade":"Spaner", "price": "25.99", "url": "https://www.amazon.com/NaBalis-Ultra-Lightweight-Bearing-Durable-Crowbar/dp/B08QCLNNS9"},

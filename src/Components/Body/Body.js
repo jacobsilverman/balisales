@@ -18,7 +18,7 @@ function Body({posts, showFilter, setShowFilter}) {
     const [brand, setBrand] = useState('All');
     const [type, setType] = useState('All');
     const [sort, setSort] = useState('All');
-    const [time, setTime] = useState('New');
+    const [condition, setCondition] = useState('All');
     const [blade, setBlade] = useState('All');
     const [status, setStatus] = useState('All');
 
@@ -41,7 +41,7 @@ function Body({posts, showFilter, setShowFilter}) {
         setType('All');
         setSort('All');
         setStatus('All');
-        setTime('New');
+        setCondition('All');
     };
 
     const getOptions = (options, option) => {
@@ -70,7 +70,7 @@ function Body({posts, showFilter, setShowFilter}) {
                 setDisplayFilter={setShowFilter} 
                 resetFilter={resetFilter}
                 sort={sort} setSort={setSort} 
-                time={time} setTime={setTime}
+                condition={condition} setCondition={setCondition}
                 blade={blade} setBlade={setBlade}
                 status={status} setStatus={setStatus}
                 t={t} />
@@ -89,10 +89,10 @@ function Body({posts, showFilter, setShowFilter}) {
                     min={min} 
                     max={max} 
                     brand={brand} 
+                    condition={condition}
                     posts={posts}
                     type={type}
                     sort={sort}
-                    time={time}
                     blade={blade}
                     status={status}
                     setOpenSelectModal={setOpenSelectModal} />

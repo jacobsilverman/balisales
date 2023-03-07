@@ -11,9 +11,9 @@ export const types = ['Selling', 'Trading', 'Buying'];
 
 export const blades = ['Live', 'Trainer', 'Parts'];
 
-export const sorts = ['Minimum', 'Maximum'];
+export const sorts = ['Minimum', 'Maximum', 'New', 'Old'];
 
-export const times = ["New", "Old"];
+export const conditions = ["1+", "2+", "3+", "4+", "5+", "6+", "7+", "8+", "9+", "10"];
 
 export const statuses = ['Available', 'Pending', 'Sold', 'Traded'];
 
