@@ -243,6 +243,39 @@ const SettingsForm = ({id}) => {
                 </>}
 
                 <Col xs={12} className="info-dropdown">
+                    <h2 onClick={() => setShowSocialInfo(cur => !cur)}>
+                        Social Info&nbsp;&nbsp;
+                        <i size="small" className='material-icons'>{ showSocialInfo ? "visibility_off" : "visibility_on"}</i>
+                    </h2>
+                </Col>
+                <hr />
+                {showSocialInfo && <>
+                    <Col xs={12} md={7} lg={8}>
+                        <Row>
+                            <Col xs={12} className="setting-item">
+                                <TextField fullWidth label={t("Phone Number")} error={!validation.phoneNumber} onChange={handlePhoneNumberChange} value={displayNumber(phoneNumber)} inputProps={{ maxLength: 14 }} />
+                            </Col>
+                    
+                            <Col xs={12} className="setting-item">
+                                <TextField fullWidth label={t(" ")} color="" type="url" error={!validation.instagram} onChange={handleInstagramChange} value={instagram} />
+                            </Col>
+
+                            <Col xs={12} className="setting-item">
+                                <TextField fullWidth label={t(" ")} color="" type="url" error={!validation.facebook} onChange={handleFacebookChange} value={facebook} />
+                            </Col>
+                        </Row>
+                    </Col>
+        
+                    <Col xs={12} md={5} lg={4} className="setting-item profile-image-update">
+                        <label className={(!profilePicture) ? 'profile-label' : ''} htmlFor="inputTag">
+                            {(!profilePicture) ? <span style={{color:"black"}}>{t('Profile Picture')}</span> : null}
+                            <input id="inputTag" className='profile-input' type="file" onChange={handleProfileChange} accept="image/*" />
+                            {(!profilePicture) ? <><br /><FaImage size={40} /></> : <img src={profilePicture} className="upload-image" alt="profile display" />}
+                        </label>
+                    </Col>
+                
+                </>}
+                <Col xs={12} className="info-dropdown">
                     <h2 onClick={() => setShowLocationInfo(cur => !cur)}>
                         Location Info&nbsp;&nbsp;
                         <i size="small" className='material-icons'>{ showLocationInfo ? "visibility_off" : "visibility_on"}</i>
@@ -279,40 +312,6 @@ const SettingsForm = ({id}) => {
                     {address && <Col xs={12} md={5} lg={4} className="map-container">
                         <Map address={address} width="280px"  height="210px" />
                     </Col>}
-                </>}
-
-                <Col xs={12} className="info-dropdown">
-                    <h2 onClick={() => setShowSocialInfo(cur => !cur)}>
-                        Social Info&nbsp;&nbsp;
-                        <i size="small" className='material-icons'>{ showSocialInfo ? "visibility_off" : "visibility_on"}</i>
-                    </h2>
-                </Col>
-                <hr />
-                {showSocialInfo && <>
-                    <Col xs={12} md={7} lg={8}>
-                        <Row>
-                            <Col xs={12} className="setting-item">
-                                <TextField fullWidth label={t("Phone Number")} error={!validation.phoneNumber} onChange={handlePhoneNumberChange} value={displayNumber(phoneNumber)} inputProps={{ maxLength: 14 }} />
-                            </Col>
-                    
-                            <Col xs={12} className="setting-item">
-                                <TextField fullWidth label={t(" ")} color="" type="url" error={!validation.instagram} onChange={handleInstagramChange} value={instagram} />
-                            </Col>
-
-                            <Col xs={12} className="setting-item">
-                                <TextField fullWidth label={t(" ")} color="" type="url" error={!validation.facebook} onChange={handleFacebookChange} value={facebook} />
-                            </Col>
-                        </Row>
-                    </Col>
-        
-                    <Col xs={12} md={5} lg={4} className="setting-item profile-image-update">
-                        <label className={(!profilePicture) ? 'profile-label' : ''} htmlFor="inputTag">
-                            {(!profilePicture) ? <span style={{color:"black"}}>{t('Profile Picture')}</span> : null}
-                            <input id="inputTag" className='profile-input' type="file" onChange={handleProfileChange} accept="image/*" />
-                            {(!profilePicture) ? <><br /><FaImage size={40} /></> : <img src={profilePicture} className="upload-image" alt="profile display" />}
-                        </label>
-                    </Col>
-                
                 </>}
             </Row>
             <Row>
