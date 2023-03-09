@@ -20,7 +20,7 @@ var AboutUs = () => {
                     my aim is to completely eliminate these problems by actively enhancing this website based on the communities preferences and ideas.*/}
             <Row>
                 <Col>
-                    Please check out the <a href="/discuss">Discussion Page</a> to contribute to the growth of this website!
+                    Please check out the <a href="/contactUs">Contact Us Page</a> to offer suggestions, advise, help contribute to the growth of this website, or for any reason you might see fit!
                 </Col>
             </Row>
             <Row>

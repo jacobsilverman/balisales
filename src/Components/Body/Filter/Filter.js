@@ -93,8 +93,8 @@ function Filter({getOptions, brand, setBrand, max, setMax, min, setMin, type, se
                             <FormControl fullWidth>
                                 <InputLabel id="filter-time-select-label">{t("Condition")}</InputLabel>
                                 <Select
-                                    labelId="filter-time-select-label"
-                                    id="filter-time-select"
+                                    labelId="filter-condition-select-label"
+                                    id="filter-condition-select"
                                     value={condition}
                                     label={t("Condition")}
                                     onChange={(event) => setCondition(event.target.value)}>

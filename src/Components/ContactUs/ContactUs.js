@@ -6,6 +6,8 @@ import { Button, TextField } from '@mui/material';
 import { TextareaAutosize } from '@mui/base';
 import { useTranslation } from 'react-i18next';
 
+import { createContactUs } from '../../Data/Services/Contact';
+
 function ContactUs() {
     const [title, setTitle] = useState('');
     const [message, setMessage] = useState('');
@@ -13,10 +15,18 @@ function ContactUs() {
 
     const { t } = useTranslation();
 
-
     const assignText = (event, setter) => {
         setter(event.target.value);
     };
+
+    const submitContactUsMessage = () => {
+        createContactUs(title, message).then((res) => {
+            alert("You have succesfully sent a message to our data base.\nThank you for contacting us!");
+            console.log(res);
+        }).catch((err) => {
+            console.log(err);
+        });
+    }
 
     return (
         <Container className="contact-container">
@@ -42,7 +52,7 @@ function ContactUs() {
             <Row>
                 <Col className="center">
                     <Button variant="outlined">
-                        <a href={email}>
+                        <a href={email} onClick={submitContactUsMessage}>
                             {t("Submit")}
                         </a>
                     </Button>
