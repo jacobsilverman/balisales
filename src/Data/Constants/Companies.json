@@ -44,7 +44,7 @@
         {"blade":"Stainless Damascus Kratos moon", "price": "599", "url": "https://atroposknifeusa.com/products/stainless-damascus-kratos-moon?_pos=2&_psq=kratos&_ss=e&_v=1.0"},
         {"blade":"Kratos Aluminum", "price": "177", "url": "https://atroposknifeusa.com/products/kratos-aluminum-latchless-shipping-from-russia?_pos=4&_psq=kratos&_ss=e&_v=1.0"}
     ],
-    "B.A Balis (Blake Anstett balis)": [
+    "B.A Balis": [
         {"blade":"Segihega", "price": "875", "url": "https://babalis.net/products/seigaiha-live-made-to-order-coming-soon"}
     ],
     "Baliplus": [],
@@ -141,13 +141,13 @@
         {"blade":"92EAA FGX", "price": "16.99", "url": "https://www.coldsteel.com/fgx-balisong/"},
         {"blade":"Arc-Angel", "price": "399", "url": "https://www.bladehq.com/item--Cold-Steel-Arc-Angel-Spear-Point--22778"}
     ],
-    "DC_Bladeworks (DCB)": [
+    "DC_Bladeworks": [
         {"blade":"Genesis", "price": "1000", "url": "https://www.instagram.com/p/CoqHlOVvhMh/?hl=en"}
     ],
     "Dogbite Knives": [
         {"blade":"DB3.1", "price": "229", "url": "https://www.bladehq.com/item--Midwest-Knifemakers-Dog-Bite--35284"}
     ],
-    "ELB (emmanuel_le_brun)": [
+    "ELB": [
         {"blade":"Proflipper V3", "price": "1000", "url": "https://www.instagram.com/p/CNUQa7nDlhV/?hl=en"},
         {"blade":"ELB Mamba", "price": "1000", "url": "https://www.instagram.com/emmanuel_le_brun/?hl=en"}
     ],
@@ -230,7 +230,7 @@
         {"blade":"Sentinel", "price": "425", "url": "https://www.jimpydesigns.com/shop/p/jimpy-sentinel"},
         {"blade":"Tux", "price": "120", "url": "https://www.jimpydesigns.com/shop/p/tux-cm-by-jimpy"}
     ],
-    "JK Design (Julian Klein Design)": [
+    "JK Design": [
         {"blade":"Orca", "price": "1350", "url": "https://www.knifecenter.com/item/JKDORCA115/jk-designs-custom-orca-115-butterfly-knife-s35vn-low-polished-blade-integral-stonewashed-teal-anodized-titanium-handles-with-milled-accents-bushing-pivot"},
         {"blade":"Monarch", "price": "1350", "url": "https://www.arizonacustomknives.com/products/1051819/"},
         {"blade":"Litetech", "price": "1295", "url": "https://www.knifecenter.com/reviews/JKDEMLT066/jk-designs-custom-emissary-litetech-066-butterfly-knife-s35vn-acid-washed-blade-green-g10-and-titanium-handles-bushing-pivot"},
@@ -309,7 +309,7 @@
         {"blade":"Lightning", "price": "44.99", "url": "https://www.amazon.com/Nabalis-Lightning-Systerm-Aluminum-Stainless/dp/B0BR6XR7HW"},
         {"blade":"Vulp", "price": "64.99", "url": "https://www.amazon.com/Nabalis-Bushing-Aluminum-Integral-Stainless/dp/B0B7BHLBW5"}
     ],
-    "NRB (NotArealboy)": [
+    "NRB": [
         {"blade":"Kong", "price": "150", "url":"https://nrbknives.com/collections/balisongs"},
         {"blade":"Kong trainer", "price": "190", "url":"https://nrbknives.com/collections/balisongs"},
         {"blade":"Vortex", "price": "120", "url":"https://nrbknives.com/collections/balisongs"},

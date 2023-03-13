@@ -39,7 +39,7 @@ function Filter({getOptions, brand, setBrand, max, setMax, min, setMin, type, se
                                     labelId="filter-sort-select-label"
                                     id="filter-sort-select"
                                     value={sort}
-                                    label={t("Cost")}
+                                    label={t("Sort By")}
                                     onChange={(event) => setSort(event.target.value)}>
                                     <MenuItem value="All">{t("All")}</MenuItem>
                                     {getOptions(sorts, "sort")}

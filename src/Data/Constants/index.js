@@ -7,7 +7,7 @@ export const brands = Object.keys(Companies).map((item)=>item);
 
 export const usernames = ['flipwrists', 'drigk', 'santa', 'gregg', 'sammy', 'retail'];
 
-export const types = ['Selling', 'Trading', 'Buying'];
+export const types = ['Buying', 'Selling', 'Trading', 'Selling/Trading'];
 
 export const blades = ['Live', 'Trainer', 'Parts'];
 
