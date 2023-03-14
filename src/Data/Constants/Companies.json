@@ -241,6 +241,9 @@
     "Kershaw": [
         {"blade":"Lucha", "price": "149.95", "url": "https://www.bladehq.com/item--Kershaw-Lucha-Butterfly-Knife--105983"}
     ],
+    "Lanier Knives": [
+        {"blade":"SL", "price": "850", "url": "https://lanier-knives.mozello.com/products/"}
+    ],
     "LDY_Balisongs": [
         {"blade":"Vixen", "price": "549.95", "url": "https://www.instagram.com/ldy_balisong/?hl=en"},
         {"blade":"Cygnus", "price": "249.95", "url": "https://www.instagram.com/ldy_balisong/?hl=en"},
@@ -316,6 +319,9 @@
         {"blade":"Ultralight trainer", "price": "185", "url":"https://nrbknives.com/collections/balisongs"},
         {"blade":"Ultralight", "price": "410", "url":"https://nrbknives.com/collections/balisongs"},
         {"blade":"Nemesis", "price": "300", "url":"https://nrbknives.com/collections/balisongs"}
+    ],
+    "Olympus Industries": [
+        {"blade":"Prime", "price": "100", "url":"https://kolisong.com/products/hx-prime"}
     ],
     "OSP": [
         {"blade":"Matrix", "price": "795", "url":"https://www.arizonacustomknives.com/knives-by-maker/osp-balisong/"}

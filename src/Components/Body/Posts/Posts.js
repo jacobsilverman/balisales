@@ -9,8 +9,8 @@ import Post from './Post';
 const Posts = ({min, max, brand, condition, posts, type, sort, blade, status, setOpenSelectModal}) => {
     const sortData = (data) => {
         const sortedByTime = [...data].sort((a, b) => {
-            if (sort === "New") return (a.timeStamp <= b.timeStamp) ? 1 : -1;
-            else return (b.timeStamp < a.timeStamp) ? 1 : -1;
+            if (sort === "Old") return (b.timeStamp < a.timeStamp) ? 1 : -1;
+            else return (a.timeStamp <= b.timeStamp) ? 1 : -1;
         })
 
         if (sort === 'All') return sortedByTime;
