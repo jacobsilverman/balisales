@@ -10,7 +10,6 @@
 }
 
 .info-container{
-    margin: 15px;
     width: 90%;
 }
 
@@ -61,7 +60,7 @@
     }
 }
 
-@media only screen and (min-width: 700px){
+@media only screen and (min-width: 600px){
     .modal-background {
         // border: 2px solid black;
         width: 500px;
@@ -71,19 +70,6 @@
         position:relative;
     }
 }
-
-@media only screen and (max-width: 600px){
-    .modal-background {
-        // border: 2px solid black;
-        width: 350px;
-        border-radius: 4px;
-        background-color: white;
-        padding: 20px;
-        overflow-y: auto;
-        position:relative;
-    }
-}
-
 
 .select-modal {
     margin-left: 0px;

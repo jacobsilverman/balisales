@@ -36,7 +36,7 @@ let en = ['Home','Create','Contact','About','Filter',
     'Previous', 'Next', 'First Name', 'Last Name', 'Amount', 'Display Name',
     'Phone Number', 'Instagram', 'Facebook', 'Profile Picture', 'Cancel',
     'Edit', 'Delete', 'Yes', 'No', 'Do you want to delete this post?',
-    'Please feel free to send us a message for any reason', 'Sort By'];
+    'Please feel free to send us a message for any reason', 'Sort By', 'More'];
 
 let es = ['Inicio','Crear','Contacto','Acerca de','Filtrar',
     'Reiniciar','Mínimo','Máximo','Costo','Estado','Marca','Tipo',

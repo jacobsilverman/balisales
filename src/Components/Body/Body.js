@@ -6,13 +6,14 @@ import { Col, Container, Row } from 'react-bootstrap';
 import Posts from './Posts';
 import './Body.scss';
 import Filter from './Filter';
+import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import SelectModal from './Posts/Post/SelectModal';
 
-
 import { useTranslation } from "react-i18next";
+import Spinner from '../../Data/Constants/Spinner';
 
-function Body({posts, showFilter, setShowFilter}) {
+function Body({posts, loadMoreData, loadingMoreData, showFilter, setShowFilter}) {
     const [min, setMin] = useState(0);
     const [max, setMax] = useState(10000);
     const [brand, setBrand] = useState('All');
@@ -96,6 +97,7 @@ function Body({posts, showFilter, setShowFilter}) {
                     blade={blade}
                     status={status}
                     setOpenSelectModal={setOpenSelectModal} />
+                {(!loadingMoreData) ? posts.length > 0 && <Button onClick={loadMoreData}>{t("More")}</Button> : <Spinner />}
             </Row>
         </Container>
     )
