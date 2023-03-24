@@ -58,7 +58,7 @@ export const getPostsQuery = async (order, lim) => {
   })
 }
 
-export const getPostsQuery2 = async (order, lim, start) => {
+export const getPostsQueryStart = async (order, lim, start) => {
   const postsCollectionRef = collection(db, "posts");
   
   const q = query(postsCollectionRef, orderBy(order, "desc"), limit(lim), startAfter(start));

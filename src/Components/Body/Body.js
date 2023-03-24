@@ -13,7 +13,7 @@ import SelectModal from './Posts/Post/SelectModal';
 import { useTranslation } from "react-i18next";
 import Spinner from '../../Data/Constants/Spinner';
 
-function Body({posts, loadMoreData, loadingMoreData, showFilter, setShowFilter}) {
+function Body({posts, loadAllData, loadMoreData, loadingMoreData, showFilter, setShowFilter}) {
     const [min, setMin] = useState(0);
     const [max, setMax] = useState(10000);
     const [brand, setBrand] = useState('All');
@@ -23,6 +23,9 @@ function Body({posts, loadMoreData, loadingMoreData, showFilter, setShowFilter})
     const [blade, setBlade] = useState('All');
     const [status, setStatus] = useState('All');
 
+
+    const [postsLength, setPostsLength] = useState(0);
+    const [showMoreAllButtons, setShowMoreAllButtons] = useState(true);
     const [openSelectModal, setOpenSelectModal] = useState({show:false,item:null});
 
     const {t} = useTranslation();
@@ -60,6 +63,34 @@ function Body({posts, loadMoreData, loadingMoreData, showFilter, setShowFilter})
     //         </Button>
     //     </span>
     // );
+    const moreButton = () =>{
+        loadMoreData(posts.length, setShowMoreAllButtons);
+        setPostsLength(posts.length);
+    }
+
+    const allButton = () => {
+        loadAllData();
+        setShowMoreAllButtons(false);
+    }
+
+    const postAmountSelectors = () => {
+        if (loadingMoreData){
+            return <Spinner />
+        }
+        if (!showMoreAllButtons || posts.length <=0) {
+            return;
+        }
+
+        return (<Row>
+            <Col xs={6} className="center">
+                <Button onClick={moreButton}>{t("More")}</Button>
+            </Col>
+            <Col xs={6} className="center">
+                <Button onClick={allButton}>{t("All")}</Button>
+            </Col>
+        </Row>);
+    }
+
     const filter = (
         <Col xs={12} className="filter-container">
             <Filter 
@@ -81,10 +112,11 @@ function Body({posts, loadMoreData, loadingMoreData, showFilter, setShowFilter})
     return (
         <Container className='body-container'>
             <Row>
-                {openSelectModal.show && <SelectModal t={t} 
-                item={openSelectModal.item} 
-                openSelectModal={openSelectModal.show} 
-                setOpenSelectModal={setOpenSelectModal} />}
+                {openSelectModal.show && 
+                    <SelectModal t={t} 
+                        item={openSelectModal.item} 
+                        openSelectModal={openSelectModal.show} 
+                        setOpenSelectModal={setOpenSelectModal} />}
                 {(showFilter && filter)}
                 <Posts 
                     min={min} 
@@ -97,7 +129,7 @@ function Body({posts, loadMoreData, loadingMoreData, showFilter, setShowFilter})
                     blade={blade}
                     status={status}
                     setOpenSelectModal={setOpenSelectModal} />
-                {(!loadingMoreData) ? posts.length > 0 && <Button onClick={loadMoreData}>{t("More")}</Button> : <Spinner />}
+                {postAmountSelectors()}
             </Row>
         </Container>
     )
