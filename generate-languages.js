@@ -36,7 +36,9 @@ let en = ['Home','Create','Contact','About','Filter',
     'Previous', 'Next', 'First Name', 'Last Name', 'Amount', 'Display Name',
     'Phone Number', 'Instagram', 'Facebook', 'Profile Picture', 'Cancel',
     'Edit', 'Delete', 'Yes', 'No', 'Do you want to delete this post?',
-    'Please feel free to send us a message for any reason', 'Sort By', 'More'];
+    'Please feel free to send us a message for any reason', 'Sort By', 'More',
+    'Address', 'Unit', 'City', 'Country', 'State', 'Zipcode'
+];
 
 let es = ['Inicio','Crear','Contacto','Acerca de','Filtrar',
     'Reiniciar','Mínimo','Máximo','Costo','Estado','Marca','Tipo',
@@ -234,7 +236,7 @@ let zh = ['首页', '创建', '联系', '关于', '筛选',
     '请随时给我们发送消息，以任何原因', '排序方式'];
 
 
-let hardCodedWords = ['Artisan Cutlery', 'Atropos', 'B.A Balis (Blake Anstett balis)', 'Baliplus', 'BalisongFlipping', 'BBarfly', 'Benchmade', 'Biegler', 'Biteblades', 'BlackBalisong', 'BladeRunner Systems', 'Boker', 'Bradley', 'Brous Blades', 'Cantogroup', 'Cold Steel', 'DC_Bladeworks (DCB)', 'Dogbite Knives', 'ELB (emmanuel_le_brun)', 'EOS', 'EPS Knives', 'Fellowship Blades', 'Fiore', 'FLS Balisong', 'Flytanium', 'Frankenforgeblade', 'Geofrey Dumas', 'Glider Co', 'GP_Blades', 'Hansen Metals', 'HazeTech', 'Heibel', 'Henninger Designs', 'Hinderer', 'HOM Designs (Jerry Hom Designs)', 'Hypex', 'Jimpy Designs', 'JK Design (Julian Klein Design)', 'Kershaw', 'LDY_Balisongs', 'Les Voorhies', 'Log Design', 'M3K', 'MachineWise', 'Mantis Bladeworks', 'Mantis BladeXchange', 'Marcolo', 'Maxace', 'Microtech', 'Misc/Other', 'Nabilus', 'NRB (NotArealboy)', 'OSP', 'Pena knives', 'ProTech Knives', 'Ryworx', 'Spyderco', 'Squid Industries', 'Stitchedsteel', 'Svix Co', 'Terrain 365', 'Theone', 'WB Concept', 'Zippy balisong'];
+let hardCodedWords = ['Artisan Cutlery', 'Atropos', 'B.A Balis', 'Baliplus', 'BalisongFlipping', 'BBarfly', 'Benchmade', 'Biegler', 'Biteblades', 'BlackBalisong', 'BladeRunner Systems', 'Boker', 'Bradley', 'Brous Blades', 'Cantogroup', 'Cold Steel', 'DC_Bladeworks', 'Dogbite Knives', 'ELB', 'EOS', 'EPS Knives', 'Fellowship Blades', 'Fiore', 'FLS Balisong', 'Flytanium', 'Frankenforgeblade', 'Geofrey Dumas', 'Glider Co', 'GP_Blades', 'Hansen Metals', 'HazeTech', 'Heibel', 'Henninger Designs', 'Hinderer', 'HOM Designs (Jerry Hom Designs)', 'Hypex', 'Jimpy Designs', 'JK Design', 'Kershaw', 'Lanier Knives', 'LDY_Balisongs', 'Les Voorhies', 'Log Design', 'M3K', 'MachineWise', 'Mantis Bladeworks', 'Mantis BladeXchange', 'Marcolo', 'Maxace', 'Microtech', 'Misc/Other', 'Nabilus', 'NRB', 'Olympus Industries', 'OSP', 'Pena knives', 'ProTech Knives', 'Ryworx', 'Spyderco', 'Squid Industries', 'Stitchedsteel', 'Svix Co', 'Terrain 365', 'Theone', 'WB Concept', 'Zippy balisong'];
 hardCodedWords.push(...[1,2,3,4,5,6,7,8,9,10,'1+','2+','3+','4+','5+','6+','7+','8+','9+']);
 
 const t =(() => {
