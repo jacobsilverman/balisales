@@ -3,9 +3,10 @@ import { db } from '../../firebase-config';
 
 const uid = localStorage.getItem("uid");
 const displayName = localStorage.getItem("displayName");
+const dbPath = process.env.REACT_APP_ENVIRONMENT+"-discussions";
 
 export const createDiscussion = async (body) => {
-    const discussionCollectionRef = collection(db, "discussions");
+    const discussionCollectionRef = collection(db, dbPath);
     await addDoc(discussionCollectionRef, {
         body,
         comments: [],
@@ -20,7 +21,7 @@ export const createDiscussion = async (body) => {
 }
 
 export const getDiscussions = async () => {
-    const discussionCollectionRef = collection(db, "discussions");
+    const discussionCollectionRef = collection(db, dbPath);
     const data = await getDocs(discussionCollectionRef);
     let allData = data.docs.map(async (doc) => {
         return { ...doc.data(), id: doc.id};
@@ -30,7 +31,7 @@ export const getDiscussions = async () => {
 };
 
 export const addComment = async (item, comment) => {
-    const discussionRef = doc(db, "discussions", item.id);
+    const discussionRef = doc(db, dbPath, item.id);
 
     await setDoc(discussionRef, {
         ...item,
@@ -41,7 +42,7 @@ export const addComment = async (item, comment) => {
 };
 
 export const deleteComment = async (item, index) => {
-    const discussionRef = doc(db, "discussions", item.id);
+    const discussionRef = doc(db, dbPath, item.id);
     item.comments.splice(index, 1);
     await setDoc(discussionRef, item).then((result) => {
         console.log("result: ", result);

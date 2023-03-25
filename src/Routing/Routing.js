@@ -59,17 +59,6 @@ function Routing() {
       })
     }
 
-    // const filterConditions = () => {
-    //   setLoadingMoreData(true);
-    //   getPostsQuery3("condition", 10, 7).then((allPosts) => {
-    //     setPosts(allPosts);
-    //   }).catch((error) => {
-    //     console.log("error getting posts => ", error);
-    //   }).finally(() => {
-    //     setLoadingMoreData(false);
-    //   })
-    // }
-
     return (
         <BrowserRouter>
             <Header posts={posts} setShowFilter={setShowFilter} />

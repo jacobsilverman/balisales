@@ -128,7 +128,7 @@ function CreatePost() {
             return
         }
         
-        const postsCollectionRef = collection(db, "posts");
+        const postsCollectionRef = collection(db, process.env.REACT_APP_ENVIRONMENT+"-posts");
         await addDoc(postsCollectionRef, {
             title,
             type,
@@ -144,7 +144,7 @@ function CreatePost() {
             const promises = [];
             
             files.map((file, index) => {
-                const storageRef = ref(storage, `/PostImages/${result.id}/image-${index}`);
+                const storageRef = ref(storage, `/${process.env.REACT_APP_ENVIRONMENT}-postImages/${result.id}/image-${index}`);
                 const uploadTask = uploadBytesResumable(storageRef, file);
                 promises.push(uploadTask);
 

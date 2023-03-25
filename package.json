@@ -14,6 +14,7 @@
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^13.5.0",
     "bootstrap": "^5.2.0",
+    "env-cmd": "^10.1.0",
     "firebase": "^9.9.2",
     "i18next": "^22.4.9",
     "i18next-browser-languagedetector": "^7.0.1",
@@ -37,6 +38,8 @@
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
+    "dev": "env-cmd -f dev.env npm start",
+    "build:beta": "env-cmd -f stag.env npm run build",
     "generate": "node generate-languages.js"
   },
   "eslintConfig": {
