@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react';
 import { Button, Col, Container, Row } from 'react-bootstrap';
 
-import { brands, blades, types } from '../../Data/Constants';
+import { brands, blades, environment, types } from '../../Data/Constants';
 
 import { addUserPost } from '../../Data/Services/userInfo';
 
@@ -144,7 +144,7 @@ function CreatePost() {
             const promises = [];
             
             files.map((file, index) => {
-                const storageRef = ref(storage, `/${process.env.REACT_APP_ENVIRONMENT}-postImages/${result.id}/image-${index}`);
+                const storageRef = ref(storage, `/${environment()}-postImages/${result.id}/image-${index}`);
                 const uploadTask = uploadBytesResumable(storageRef, file);
                 promises.push(uploadTask);
 

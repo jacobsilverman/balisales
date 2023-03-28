@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 
-import { blades, brands, statuses, types } from '../../../../../Data/Constants';
+import { blades, brands, environment, statuses, types } from '../../../../../Data/Constants';
 
 import DeleteModal from '../DeleteModal';
 
@@ -13,7 +13,7 @@ import { Button, Col, Row } from 'react-bootstrap';
 
 import { doc, deleteDoc, setDoc } from 'firebase/firestore';
 import { db } from '../../../../../firebase-config';
-import { deleteUserPost } from '../../../../../Data/Services/userInfo';
+import { deleteUserPost } from '../../../../../Data/Services/userInfo.js';
 
 import { ref, deleteObject, getStorage } from "firebase/storage";
 import { useTranslation } from 'react-i18next';
@@ -102,7 +102,7 @@ const EditModal = ({item, openEditModal, setOpenEditModal, filterPosts, setFilte
             numberOfImages: item.numberOfImages,
             author: {name: item.author.name, id: item.author.id }
         }).then(() => {
-            const pictureRef = ref(getStorage(), `PostImages/${item.id}/image-0`);
+            const pictureRef = ref(getStorage(), `postImages/${item.id}/image-0`);
             console.log("pictureRef: ", pictureRef);
             // uploadBytesResumable(pictureRef, file);
         }).catch((error) => {
@@ -118,7 +118,7 @@ const EditModal = ({item, openEditModal, setOpenEditModal, filterPosts, setFilte
 		await deleteDoc(postDoc);
 		deleteUserPost(item.id);
 		for (var i = 0; i < item.numberOfImages; i++) {
-			const pictureRef = ref(storage, `PostImages/${item.id}/image-${i}`);
+			const pictureRef = ref(storage, `${environment()}-postImages/${item.id}/image-${i}`);
 			await deleteObject(pictureRef);
 		}
 

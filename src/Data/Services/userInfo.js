@@ -2,11 +2,13 @@ import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { db, storage } from '../../firebase-config';
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 
+import { environment } from '../../Data/Constants/index';
+
 const uid = localStorage.getItem("uid");
 
 export const setUserLogin = async (user) => {
     try {
-        const currentUserDoc = doc(db, process.env.REACT_APP_ENVIRONMENT+"-accounts", user?.uid);
+        const currentUserDoc = doc(db, environment()+"-accounts", user?.uid);
         const userData = await getDoc(currentUserDoc);
         if (!userData.data()) {
             await setDoc(currentUserDoc, {
@@ -26,12 +28,12 @@ export const getUserPosts = async (userId) => {
         }
         
         const allUserPost = info.posts.map(async (id) => {
-            const postDoc = doc(db, process.env.REACT_APP_ENVIRONMENT+"-posts", id);
+            const postDoc = doc(db, environment()+"-posts", id);
             const val = await getDoc(postDoc).then(async (doc) => {
                 let parsedDoc = {...doc.data(), id: doc.id, urls: []};
                 for (var i = 0; i<parsedDoc.numberOfImages; i++) {
                     const storage = await getStorage();
-                    const listRef = ref(storage, `/${process.env.REACT_APP_ENVIRONMENT}-PostImages/${id}/image-${i}`);
+                    const listRef = ref(storage, `/${environment()}-postImages/${id}/image-${i}`);
                     await getDownloadURL(listRef)
                       .then((url) => {
                         parsedDoc.urls.push(url);
@@ -51,14 +53,14 @@ export const getUserPosts = async (userId) => {
 }
 
 export const getUserInfo = async (id) => {
-    const currentUserDoc = doc(db, process.env.REACT_APP_ENVIRONMENT+"-accounts", id || uid);
+    const currentUserDoc = doc(db, environment()+"-accounts", id || uid);
     const docSnap = await getDoc(currentUserDoc);
     return docSnap.data();
 }
 
 export const addUserPost = async (postId) => {
     getUserInfo().then(async (userInfo) => {
-        const currentUserDoc = doc(db, process.env.REACT_APP_ENVIRONMENT+"-accounts", uid);
+        const currentUserDoc = doc(db, environment()+"-accounts", uid);
         const payload = {...userInfo, posts: [...userInfo.posts, postId]}
         await setDoc(currentUserDoc, payload);
     });
@@ -66,7 +68,7 @@ export const addUserPost = async (postId) => {
 
 export const deleteUserPost = async (postId) => {
     getUserInfo().then(async (userInfo) => {
-        const currentUserDoc = doc(db, process.env.REACT_APP_ENVIRONMENT+"-accounts", uid);
+        const currentUserDoc = doc(db, environment()+"-accounts", uid);
         const payload = {...userInfo, posts: userInfo.posts.filter((item) => item !== postId)}
         await setDoc(currentUserDoc, payload);
     });
@@ -74,17 +76,17 @@ export const deleteUserPost = async (postId) => {
 
 export const setUserInfo = async (payload, file) => {
     if (file !== '') {
-        const pictureRef = ref(storage, `/${process.env.REACT_APP_ENVIRONMENT}-profiles/${uid}`);
+        const pictureRef = ref(storage, `/${environment()}-profiles/${uid}`);
         await uploadBytesResumable(pictureRef, file);
     }
     
-    const currentUserDoc = doc(db, process.env.REACT_APP_ENVIRONMENT+"-accounts", uid);
+    const currentUserDoc = doc(db, environment()+"-accounts", uid);
     await setDoc(currentUserDoc, payload);
     
     window.location.reload(false);
 }
 
 export const getProfilePicture = async (id) => {
-    const pictureRef = ref(storage, `/${process.env.REACT_APP_ENVIRONMENT}-profiles/${id}`);
+    const pictureRef = ref(storage, `/${environment()}-profiles/${id}`);
     return await getDownloadURL(pictureRef);
 }

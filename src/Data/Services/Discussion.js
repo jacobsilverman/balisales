@@ -1,9 +1,11 @@
 import { doc, addDoc, collection, getDocs, setDoc } from 'firebase/firestore';
 import { db } from '../../firebase-config';
 
+import { environment } from '../../Data/Constants/index';
+
 const uid = localStorage.getItem("uid");
 const displayName = localStorage.getItem("displayName");
-const dbPath = process.env.REACT_APP_ENVIRONMENT+"-discussions";
+const dbPath = environment()+"-discussions";
 
 export const createDiscussion = async (body) => {
     const discussionCollectionRef = collection(db, dbPath);

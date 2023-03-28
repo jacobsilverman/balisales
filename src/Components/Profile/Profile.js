@@ -54,7 +54,7 @@ const Profile = () => {
                 </Col>
             </Row>
             <hr />
-            <Account user={params.id} accountView={false} settingsPage={false} />
+            <Account user={params.id} settingsPage={false} />
             {userData?.address &&
             <>
                 <hr />

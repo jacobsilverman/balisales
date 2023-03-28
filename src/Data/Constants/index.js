@@ -17,6 +17,17 @@ export const conditions = ["1+", "2+", "3+", "4+", "5+", "6+", "7+", "8+", "9+",
 
 export const statuses = ['Available', 'Pending', 'Sold', 'Traded'];
 
+export const environment = () => {
+    let environment = process.env.REACT_APP_ENVIRONMENT;
+    const url = window.location.href;
+
+    if (url.includes('environment=development')) {
+        environment = 'development';
+    }
+
+    return environment;
+}
+
 export const pageTitles = {
     // '/': <img alt="Sale" style={{maxWidth:"170px", maxHeight:"170px", display:"inline"}} src={balilogo} />,
     '/': 'Home',
