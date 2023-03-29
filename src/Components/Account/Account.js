@@ -64,9 +64,11 @@ function Account({user, settingsPage}) {
 						item={item}
 						key={item.id}
 						queryParam={queryParam}
-						settingsPage={false}
+						settingsPage={settingsPage}
 						openSelectModal={openSelectModal}
 						setOpenSelectModal={setOpenSelectModal}
+						openEditModal={openEditModal}
+						setOpenEditModal={setOpenEditModal}
 						selectedPost={selectedPost}
 						setSelectedPost={setSelectedPost} />
 						
