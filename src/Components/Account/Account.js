@@ -6,13 +6,20 @@ import Spinner from '../../Data/Constants/Spinner.js';
 import Post from '../Body/Posts/Post';
 
 import { getUserPosts } from '../../Data/Services/userInfo';
+import { useTranslation } from 'react-i18next';
+
 const EditModal  = React.lazy(() => import('../../Components/Body/Posts/Post/EditModal'));
+const SelectModal  = React.lazy(() => import('../../Components/Body/Posts/Post/SelectModal'));
 
 function Account({user, settingsPage}) {
 	const [filterPosts, setFilterPosts] = useState([]);
 	const [openEditModal, setOpenEditModal] = useState(false);
+	const [openSelectModal, setOpenSelectModal] = useState({show: false, item: null});
+
 	const [selectedPost, setSelectedPost] = useState({});
+
 	const [loaded, setLoaded] = useState(false);
+	const { t } = useTranslation();
 
 	useEffect(() => {
         getUserPosts(user).then((result) => {
@@ -36,6 +43,13 @@ function Account({user, settingsPage}) {
 
 		return (
 			<div style={{padding:'20px'}} className="grid-container-posts">
+				
+				{openSelectModal.show && 
+                    <SelectModal t={t} 
+                        item={openSelectModal.item} 
+                        openSelectModal={openSelectModal.show} 
+                        setOpenSelectModal={setOpenSelectModal} />}
+				
 				{settingsPage && <EditModal 
 					item={selectedPost} 
 					filterPosts={filterPosts}
@@ -50,9 +64,9 @@ function Account({user, settingsPage}) {
 						item={item}
 						key={item.id}
 						queryParam={queryParam}
-						settingsPage={settingsPage}
-						openEditModal={openEditModal}
-						setOpenEditModal={setOpenEditModal}
+						settingsPage={false}
+						openSelectModal={openSelectModal}
+						setOpenSelectModal={setOpenSelectModal}
 						selectedPost={selectedPost}
 						setSelectedPost={setSelectedPost} />
 						

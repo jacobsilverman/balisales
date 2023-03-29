@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
  
 import { isMobile } from '../../../../Data/Constants';
 
-function Post({displayUrl, item, queryParam, settingsPage, setOpenEditModal, setSelectedPost, setOpenSelectModal}) {
+function Post({displayUrl, item, queryParam, settingsPage, setOpenEditModal, setSelectedPost, setOpenSelectModal=()=>{}}) {
     const containerCls = `post-container ${!isMobile && "desktop-hov" }`;
     const handleSelectPost = (e) => {
         if (settingsPage) {
