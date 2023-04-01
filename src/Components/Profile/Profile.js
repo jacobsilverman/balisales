@@ -6,6 +6,7 @@ import defaultProfile from '../../Data/Images/default-profile.jpg';
 import Account from '../Account/Account';
 import Map from '../Map';
 import SocialMedia from '../SocialMedia/SocialMedia.js';
+import { SocialIcon } from 'react-social-icons';
 
 import { Container, Col, Row } from 'react-bootstrap';
 
@@ -31,39 +32,77 @@ const Profile = () => {
 
     return (
         <Container className="user-profile-container">
-            <Row className="center">
-                <Col xs={3}>
-                     <h2>{userData.displayName}</h2>
+            <Row>
+                <Col xs={4} sm={3} className="user-account-profile-col">
+                    <Row className="center">
+                        <Col>
+                            <h2>{userData.displayName}</h2>
+                        </Col>
+                    </Row>
+
+                    <Row>
+                        <Col className="profile-image center">
+                            <div className="user-account-profile center" style={{backgroundImage: `url(${profilePic})`}} />
+                        </Col>
+                    </Row>
+                    <Row className="center">
+                        <Col>
+                            <h3>{userData.firstName} {userData.lastName}</h3>
+                        </Col>
+                    </Row>
+                    <Row className="center social-media-container">
+                        {userData?.instagram && <Col sm={6} lg={3}  className="item">
+                            <SocialIcon url={userData.instagram} />
+                        </Col>}
+                        {userData?.facebook && <Col sm={6} lg={3} className="item">
+                            <SocialIcon url={userData.facebook} />
+                        </Col>}
+                        {userData?.phoneNumber && <Col sm={6} lg={3} className="item">
+                            <SocialIcon url={"tel:"+userData.phoneNumber} network="telegram" />
+                        </Col>}
+                        <Col sm={6} lg={3} className="item">
+                            <SocialIcon url="https://discord.com/channels/@jacoboson#8145" />
+                        </Col>
+                        <Col sm={6} lg={3} className="item">
+                            <SocialIcon url="https://twitter.com/imVkohli" />
+                        </Col>
+                        <Col sm={6} lg={3} className="item">
+                            <SocialIcon url="https://www.youtube.com/channel/UCWzKQGtfgLhCBdXsFORsoTA" />
+                        </Col>
+                        <Col sm={6} lg={3} className="item">
+                            <SocialIcon url="https://www.twitch.tv/dank_satan" />
+                        </Col>
+                        <Col sm={6} lg={3} className="item">
+                            <SocialIcon url="https://www.twitch.tv/dank_satan" />
+                        </Col>
+                    </Row>
+                </Col>
+                <Col xs={8} sm={9}>
+                    {userData?.address &&
+                    <Row>
+                        <Col style={{display:'flex', justifyContent:'center', padding: "30px"}}>
+                            <Map address={userData.address} width="800px" height="400px" />
+                        </Col>
+                    </Row>}
                 </Col>
             </Row>
 
-            <Row>
-                <Col xs={3} className="profile-image center">
-                    <div className="user-account-profile center" style={{backgroundImage: `url(${profilePic})`}} />
-                </Col>
-                <Col xs={9}>
+
+                {/* <Col xs={9}>
                     <SocialMedia 
                         instagram={userData.instagram}
                         facebook={userData.facebook}
                         phoneNumber={userData.phoneNumber} />
                 </Col>
-            </Row>
-            <Row className="center">
+            </Row> */}
+            {/* <Row className="center">
                 <Col xs={12}>
                      <h3>{userData.firstName} {userData.lastName}</h3>
                 </Col>
-            </Row>
-            <hr />
+            </Row> */}
+            
+            <hr style={{margin:"0"}} />
             <Account user={params.id} settingsPage={false} />
-            {userData?.address &&
-            <>
-                <hr />
-                <Row>
-                    <Col style={{display:'flex', justifyContent:'center', padding: "30px"}}>
-                        <Map address={userData.address} width="80vw" height="80vw" />
-                    </Col>
-                </Row>
-            </>}
         </Container>
     );
 }
