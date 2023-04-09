@@ -11,6 +11,7 @@ import Map from '../Map';
 import { SocialIcon } from 'react-social-icons';
 
 import { Container, Col, Row } from 'react-bootstrap';
+import { isMobile } from '../../Data/Constants/index.js';
 
 const Profile = () => {
     const [userData, setUserData] = useState({});
@@ -36,7 +37,7 @@ const Profile = () => {
     return (
         <Container className="user-profile-container">
             <Row>
-                <Col xs={4} sm={3} className="user-account-profile-col">
+                <Col xs={5} sm={3} className="user-account-profile-col">
                     <Row className="center">
                         <Col>
                             <h2>{userData.displayName}</h2>
@@ -48,43 +49,48 @@ const Profile = () => {
                             <div className="user-account-profile center" style={{backgroundImage: `url(${profilePic})`}} />
                         </Col>
                     </Row>
-                    <Row className="center social-media-container">
-                        {userData?.facebook && <Col sm={6} md={4} className="item">
-                            <SocialIcon url={userData.facebook} />
-                        </Col>}
-                        {userData?.phoneNumber && <Col sm={6} md={4} className="item">
-                            <SocialIcon url={"tel:"+userData.phoneNumber} network="telegram" />
-                        </Col>}
-                        {userData?.instagram && <Col sm={6} md={4}  className="item">
-                            <SocialIcon url={userData.instagram} />
-                        </Col>}
-                        <Col sm={6} md={4} className="item">
-                            <SocialIcon url="https://discord.com/channels/@jacoboson#8145" />
-                        </Col>
-                        <Col sm={6} md={4} className="item">
-                            <SocialIcon url="https://twitter.com/imVkohli" />
-                        </Col>
-                        <Col sm={6} md={4} className="item">
-                            <SocialIcon url="https://www.youtube.com/channel/UCWzKQGtfgLhCBdXsFORsoTA" />
+                    <Row>
+                        <Col className="outer-container">
+                            <Row className="center social-media-container">
+                                {userData?.facebook && <Col xs={6} md={4} className="item">
+                                    <SocialIcon url={userData.facebook} />
+                                </Col>}
+                                {userData?.phoneNumber && <Col xs={6} md={4} className="item">
+                                    <SocialIcon url={"tel:"+userData.phoneNumber} network="telegram" />
+                                </Col>}
+                                {userData?.instagram && <Col xs={6} md={4}  className="item">
+                                    <SocialIcon url={userData.instagram} />
+                                </Col>}
+                                <Col xs={6} md={4} className="item">
+                                    <SocialIcon url="https://discord.com/channels/@jacoboson#8145" />
+                                </Col>
+                                <Col xs={6} md={4} className="item">
+                                    <SocialIcon url="https://twitter.com/imVkohli" />
+                                </Col>
+                                <Col xs={6} md={4} className="item">
+                                    <SocialIcon url="https://www.youtube.com/channel/UCWzKQGtfgLhCBdXsFORsoTA" />
+                                </Col>
+                            </Row>
+                        
                         </Col>
                     </Row>
+
                 </Col>
-                <Col xs={8} sm={9}>
+                <Col xs={7} sm={9}>
                     <div className="user-full-name-loc">
                         <div className="user-full-name">
                             <h2>{userData?.firstName} {userData?.lastName}</h2>
                         </div>
                         <div className="loc-pin">
                             <FaLocationArrow/>
-                        </div>
-                        <div className="city-state">
+                            &nbsp;&nbsp;&nbsp;
                             {userData?.address?.city}, {userData?.address?.state}
                         </div>
                     </div>
                     {userData?.address &&
                     <Row>
                         <Col className="map-container">
-                            <Map address={userData.address} width="800px" height="400px" />
+                            <Map address={userData.address} width="2000px" height="40vh" />
                         </Col>
                     </Row>}
                 </Col>

@@ -134,8 +134,8 @@
 
 .user-account-profile {
   background-size: 100% 100%;
-  width: 15vw;
-  height: 15vw;
+  width: max(10vw, 10vh);
+  height: max(10vw, 10vh);
   border-radius: 2vw;
   margin: auto;
   background-repeat: no-repeat;
@@ -147,11 +147,17 @@
   border-right: 1px solid black;
 }
 
-.social-media-container {
-  display:flex;
+.outer-container {
+  display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.social-media-container {
+  display:flex;
+  align-items: center;
   min-height: 220px;
+  max-width: 250px;
   .item {
     margin-top: 0px;
   }
@@ -175,24 +181,17 @@
 .map-container {
   display: flex;
   justify-content: center;
-  padding: 30px;
+  padding: 0px 30px 30px 30px;
 }
 
 .loc-pin {
   display: flex;
-  flex: 0 0 auto;
+  flex: 1;
   align-items: center;
   padding-left: 15px;
   padding-right: 5px;
   color: lightgrey;
   font-size: 12px;
-}
-
-.city-state {
-  display: flex;
-  align-items: center;
-  color: lightgrey;
-  flex: 1;
 }
 
 .user-full-name {
