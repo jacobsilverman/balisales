@@ -49,14 +49,14 @@ const Profile = () => {
                         </Col>
                     </Row>
                     <Row className="center social-media-container">
-                        {userData?.instagram && <Col sm={6} md={4}  className="item">
-                            <SocialIcon url={userData.instagram} />
-                        </Col>}
                         {userData?.facebook && <Col sm={6} md={4} className="item">
                             <SocialIcon url={userData.facebook} />
                         </Col>}
                         {userData?.phoneNumber && <Col sm={6} md={4} className="item">
                             <SocialIcon url={"tel:"+userData.phoneNumber} network="telegram" />
+                        </Col>}
+                        {userData?.instagram && <Col sm={6} md={4}  className="item">
+                            <SocialIcon url={userData.instagram} />
                         </Col>}
                         <Col sm={6} md={4} className="item">
                             <SocialIcon url="https://discord.com/channels/@jacoboson#8145" />
