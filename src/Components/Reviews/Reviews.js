@@ -51,7 +51,7 @@ const Reviews = (userData) => {
             </div>
         </Col> */}
         <Col xs={(userData?.reports) ? 6 : 12}>
-            <h4 className="center">Reviews</h4>
+            <h3>Reviews</h3>
             <hr style={{margin:"0"}} />
             {allR}
         </Col>

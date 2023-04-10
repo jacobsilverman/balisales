@@ -75,14 +75,13 @@ const Profile = () => {
                             </Row>
                         </Col>
                     </Row>
-                    <Row className="center">
-                    <Col xs={6}>  
+                    <Row className="center report-vouch-buttons">
+                        <Col style={{paddingLeft:"0px"}} xs={6}>  
                             <Button color="error">Report</Button>
                         </Col>
                         <Col style={{paddingLeft:"0px"}} xs={6}>  
                             <Button>Vouch</Button>
                         </Col>
-
                     </Row>
                 </Col>
                 <Col xs={7} sm={9}  xl={10}>
@@ -99,7 +98,7 @@ const Profile = () => {
                     {userData?.address &&
                     <Row>
                         <Col className="map-container">
-                            <Map address={userData.address} width="2500px" height={isMobile ? "45vh" : "min(45vh, 45vw)"} />
+                            <Map address={userData.address} width="2500px" height={isMobile ? "45vh" : "max(max(33vh, 330px), 15vw)"} />
                         </Col>
                     </Row>}
                 </Col>

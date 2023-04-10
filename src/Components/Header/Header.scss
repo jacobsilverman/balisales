@@ -146,6 +146,7 @@
 .user-account-profile-col {
   border-right: 1px solid black;
   min-height: 35vh;
+  position: relative;
 }
 
 .outer-container {
@@ -177,6 +178,14 @@
   &:hover {
     background-color: rgba(#1976d2, .3)
   }
+}
+
+.report-vouch-buttons {
+  width: 95%;
+  position: absolute;
+  bottom: 0;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 .map-container {
