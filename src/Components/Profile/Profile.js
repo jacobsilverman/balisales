@@ -98,7 +98,7 @@ const Profile = () => {
                     {userData?.address &&
                     <Row>
                         <Col className="map-container">
-                            <Map address={userData.address} width="2500px" height={isMobile ? "45vh" : "max(max(33vh, 330px), 15vw)"} />
+                            <Map address={userData.address} width="2500px" height={isMobile ? "45vh" : "max(max(37vh, 430px), min(19vw, 500px))"} />
                         </Col>
                     </Row>}
                 </Col>
