@@ -42,14 +42,12 @@ function Account({user, settingsPage}) {
 		} 
 
 		return (
-			<div style={{padding:'20px'}} className="grid-container-posts">
-				
+			<div className="grid-container-posts">
 				{openSelectModal.show && 
                     <SelectModal t={t} 
                         item={openSelectModal.item} 
                         openSelectModal={openSelectModal.show} 
                         setOpenSelectModal={setOpenSelectModal} />}
-				
 				{settingsPage && <EditModal 
 					item={selectedPost} 
 					filterPosts={filterPosts}
@@ -71,7 +69,6 @@ function Account({user, settingsPage}) {
 						setOpenEditModal={setOpenEditModal}
 						selectedPost={selectedPost}
 						setSelectedPost={setSelectedPost} />
-						
 				})}
 			</div>
         );

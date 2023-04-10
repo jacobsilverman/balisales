@@ -145,6 +145,7 @@
 
 .user-account-profile-col {
   border-right: 1px solid black;
+  min-height: 35vh;
 }
 
 .outer-container {
@@ -182,6 +183,7 @@
   display: flex;
   justify-content: center;
   padding: 0px 30px 30px 30px;
+  max-height: 500px;
 }
 
 .loc-pin {
@@ -191,7 +193,7 @@
   padding-left: 15px;
   padding-right: 5px;
   color: lightgrey;
-  font-size: 12px;
+  font-size: 16px;
 }
 
 .user-full-name {

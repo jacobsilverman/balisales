@@ -12,6 +12,8 @@ import { SocialIcon } from 'react-social-icons';
 
 import { Container, Col, Row } from 'react-bootstrap';
 import { isMobile } from '../../Data/Constants/index.js';
+import { Button } from '@mui/material';
+import Reviews from '../Reviews/Reviews.js';
 
 const Profile = () => {
     const [userData, setUserData] = useState({});
@@ -37,7 +39,7 @@ const Profile = () => {
     return (
         <Container className="user-profile-container">
             <Row>
-                <Col xs={5} sm={3} className="user-account-profile-col">
+                <Col xs={5} sm={3} xl={2} className="user-account-profile-col">
                     <Row className="center">
                         <Col>
                             <h2>{userData.displayName}</h2>
@@ -52,31 +54,38 @@ const Profile = () => {
                     <Row>
                         <Col className="outer-container">
                             <Row className="center social-media-container">
-                                {userData?.facebook && <Col xs={6} md={4} className="item">
-                                    <SocialIcon url={userData.facebook} />
+                                {userData?.instagram && <Col xs={6} md={4}  className="item">
+                                    <SocialIcon url={userData.instagram} />
                                 </Col>}
                                 {userData?.phoneNumber && <Col xs={6} md={4} className="item">
                                     <SocialIcon url={"tel:"+userData.phoneNumber} network="telegram" />
                                 </Col>}
-                                {userData?.instagram && <Col xs={6} md={4}  className="item">
-                                    <SocialIcon url={userData.instagram} />
+                                {userData?.facebook && <Col xs={6} md={4} className="item">
+                                    <SocialIcon url={userData.facebook} />
                                 </Col>}
                                 <Col xs={6} md={4} className="item">
-                                    <SocialIcon url="https://discord.com/channels/@jacoboson#8145" />
+                                    <SocialIcon url="https://www.youtube.com/channel/UCWzKQGtfgLhCBdXsFORsoTA" />
                                 </Col>
                                 <Col xs={6} md={4} className="item">
                                     <SocialIcon url="https://twitter.com/imVkohli" />
                                 </Col>
                                 <Col xs={6} md={4} className="item">
-                                    <SocialIcon url="https://www.youtube.com/channel/UCWzKQGtfgLhCBdXsFORsoTA" />
+                                    <SocialIcon url="https://discord.com/channels/@jacoboson#8145" />
                                 </Col>
                             </Row>
-                        
                         </Col>
                     </Row>
+                    <Row className="center">
+                    <Col xs={6}>  
+                            <Button color="error">Report</Button>
+                        </Col>
+                        <Col style={{paddingLeft:"0px"}} xs={6}>  
+                            <Button>Vouch</Button>
+                        </Col>
 
+                    </Row>
                 </Col>
-                <Col xs={7} sm={9}>
+                <Col xs={7} sm={9}  xl={10}>
                     <div className="user-full-name-loc">
                         <div className="user-full-name">
                             <h2>{userData?.firstName} {userData?.lastName}</h2>
@@ -90,7 +99,7 @@ const Profile = () => {
                     {userData?.address &&
                     <Row>
                         <Col className="map-container">
-                            <Map address={userData.address} width="2000px" height="40vh" />
+                            <Map address={userData.address} width="2500px" height={isMobile ? "45vh" : "min(45vh, 45vw)"} />
                         </Col>
                     </Row>}
                 </Col>
@@ -112,6 +121,8 @@ const Profile = () => {
             
             <hr style={{margin:"0"}} />
             <Account user={params.id} settingsPage={false} />
+            <hr style={{margin:"0"}} />
+            <Reviews userData={userData} />
         </Container>
     );
 }
