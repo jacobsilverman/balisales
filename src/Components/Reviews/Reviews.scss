@@ -25,8 +25,7 @@
     position: relative;
     padding: 1rem;
     background-color: white;
-    // border: 1px solid #ccc;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;    // margin-right: 1rem;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px -50px 36px -28px inset, rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
     max-width: 310px;
     min-height: 200px;
     max-height: 250px;
@@ -35,15 +34,6 @@
   .review-author {
     font-weight: bold;
     margin-bottom: 0.5rem;
-  }
-  
-  .review-rating {
-    font-size: 1rem;
-    font-style: italic;
-    color: #888;
-    .review-rating-number {
-        color: gold;
-    }
   }
   
   .review-date {

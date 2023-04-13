@@ -145,24 +145,31 @@
 
 .user-account-profile-col {
   border-right: 1px solid black;
-  min-height: 35vh;
+  // min-height: 35vh;
   position: relative;
 }
 
 .outer-container {
-  min-height: 300px;
+  // height: calc(100% - 225px);
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .social-media-container {
-  display:flex;
-  align-items: center;
-  min-height: 220px;
-  max-width: 250px;
+  // display:flex;
+  // align-items: center;
+  // min-height: 220px;
+  // max-width: 250px;
+  // padding-left: 10px;
+  // padding-right: 15px;
+  // margin-top: auto;
+  // margin-top: bottom;
+  // padding-bottom: auto;
+  // padding-top: auto;
+  padding-top: 5px;
   .item {
-    margin-top: 0px;
+    margin-top: 15px;
   }
 }
 

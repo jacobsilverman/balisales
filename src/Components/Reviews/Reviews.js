@@ -1,11 +1,13 @@
 import "./Reviews.scss";
 import {Col, Row} from "react-bootstrap";
 
+import { Rating } from "@mui/material";
+
 const Review = ({ name, id, message, date, rating }) => {
     return (
         <article className="review">
             <a className="review-author" href={"/profile?id="+id}>{name}</a>
-            <div className="review-rating">Rating: <b className="review-rating-number">{rating}</b></div>
+            <Rating name="read-only" value={rating} readOnly />
             <div className="review-date">{date.toDateString()}</div>
             <div className="review-message">{message}</div>
         </article>

@@ -14,27 +14,38 @@ import { Container, Col, Row } from 'react-bootstrap';
 import { isMobile } from '../../Data/Constants/index.js';
 import { Button } from '@mui/material';
 import Reviews from '../Reviews/Reviews.js';
+import ReportReview from './ReportReview/ReportReview.js';
+import { useTranslation } from 'react-i18next';
 
 const Profile = () => {
     const [userData, setUserData] = useState({});
     const [profilePic, setProfilePic] = useState(null);
+    const [reference, setReference] = useState({
+        open: false
+    });
 
     const urlSearchParams = new URLSearchParams(window.location.search);
     const params = Object.fromEntries(urlSearchParams.entries());
 
+    const { t } = useTranslation();
+
     useEffect(() => {
-        getUserInfo(params.id).then((result) => {
+        getUserInfo(params?.id).then((result) => {
             setUserData(result);
-            console.log("result:",result);
         });
 
-        getProfilePicture(params.id).then((result) => {
+        getProfilePicture(params?.id).then((result) => {
             setProfilePic(result);
         }).catch(() => {
             setProfilePic(defaultProfile);
         });
     }, []);
 
+    const handleWriteReference = (type, message) => {
+        setReference({type: type, 
+            message: message,
+            open: true});
+    }
 
     return (
         <Container className="user-profile-container">
@@ -77,10 +88,10 @@ const Profile = () => {
                     </Row>
                     <Row className="center report-vouch-buttons">
                         <Col style={{paddingLeft:"0px"}} xs={6}>  
-                            <Button color="error">Report</Button>
+                            <Button color="error" onClick={() => handleWriteReference("Report", "test")}>{t("Report")}</Button>
                         </Col>
                         <Col style={{paddingLeft:"0px"}} xs={6}>  
-                            <Button>Vouch</Button>
+                            <Button onClick={() => handleWriteReference("Reference", "test1")}>{t("Vouch")}</Button>
                         </Col>
                     </Row>
                 </Col>
@@ -98,28 +109,13 @@ const Profile = () => {
                     {userData?.address &&
                     <Row>
                         <Col className="map-container">
-                            <Map address={userData.address} width="2500px" height={isMobile ? "45vh" : "max(max(37vh, 430px), min(19vw, 500px))"} />
+                            <Map address={userData.address} width="2500px" height={isMobile ? "45vh" : "max(max(30vh, 230px), min(19vw, 500px))"} />
                         </Col>
                     </Row>}
                 </Col>
             </Row>
-
-
-                {/* <Col xs={9}>
-                    <SocialMedia 
-                        instagram={userData.instagram}
-                        facebook={userData.facebook}
-                        phoneNumber={userData.phoneNumber} />
-                </Col>
-            </Row> */}
-            {/* <Row className="center">
-                <Col xs={12}>
-                     <h3>{userData.firstName} {userData.lastName}</h3>
-                </Col>
-            </Row> */}
-            
-            <hr style={{margin:"0"}} />
-            <Account user={params.id} settingsPage={false} />
+            {(reference?.open && <ReportReview t={t} reference={reference} setReference={setReference} />) || <hr style={{margin:"0"}} />}
+            <Account user={params?.id} settingsPage={false} />
             <hr style={{margin:"0"}} />
             <Reviews userData={userData} />
         </Container>
