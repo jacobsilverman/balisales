@@ -12,3 +12,48 @@
     border-left: 1px solid lightgrey;
     padding: 20px;
 }
+
+// Define styles for the parent container
+.reviews-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); // Use grid layout to create responsive columns
+    gap: 1rem;
+  }
+  
+  // Define styles for the individual review
+  .review {
+    position: relative;
+    padding: 1rem;
+    background-color: white;
+    // border: 1px solid #ccc;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;    // margin-right: 1rem;
+    max-width: 310px;
+    min-height: 200px;
+    max-height: 250px;
+  }
+  
+  .review-author {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+  
+  .review-rating {
+    font-size: 1rem;
+    font-style: italic;
+    color: #888;
+    .review-rating-number {
+        color: gold;
+    }
+  }
+  
+  .review-date {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    font-size: 0.8rem;
+    color: #888;
+  }
+  
+  .review-message {
+    margin-top: 0.5rem;
+  }
