@@ -272,13 +272,13 @@ const Header = ({posts, setShowFilter}) => {
         <Popover id="popover-nav" title="Account Info">
             <Row className={navCls}>
                 <Col xs={12} className="popover-container">
-                    <Link className="white" to={{pathname: '/createPost'}}>
-                        <Button  onClick={() =>{resetAllPopovers("create");setPageTitle("Create")}}>
+                    {isAuth && <><Link className="white" to={{pathname: '/createPost'}}>
+                        <Button onClick={() =>{resetAllPopovers("create");setPageTitle("Create")}}>
                             <i className="material-icons">add</i>
                             &nbsp;{t("Create")}
                         </Button>
-                    </Link>
-                    <hr />
+                    </Link> 
+                    <hr /></>}
                     <Link className="white" to={{pathname: '/contactUs'}}>
                         <Button onClick={() =>{resetAllPopovers("contact");setPageTitle("Contact")}}>
                             <i className="material-icons">contact_support</i>

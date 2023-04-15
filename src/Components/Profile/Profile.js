@@ -18,20 +18,20 @@ import ReportReview from './ReportReview/ReportReview.js';
 import { useTranslation } from 'react-i18next';
 
 const Profile = () => {
+    const urlSearchParams = new URLSearchParams(window.location.search);
+    const params = Object.fromEntries(urlSearchParams.entries());
+    const loggedInUser = localStorage.getItem("uid");
+
     const [userData, setUserData] = useState({});
     const [profilePic, setProfilePic] = useState(null);
     const [reference, setReference] = useState({
         rating: 0,
         open: false,
         author: {
-            id: localStorage.getItem("uid"),
+            id: loggedInUser,
             displayName: localStorage.getItem("displayName")
         }
     });
-
-    const urlSearchParams = new URLSearchParams(window.location.search);
-    const params = Object.fromEntries(urlSearchParams.entries());
-
 
     const { t } = useTranslation();
 
@@ -95,12 +95,12 @@ const Profile = () => {
                                 </Col>}
                             </Row>
                         </Col>
-                        <Col className="center" style={{paddingTop:"20px"}} xs={12} xxl={6}>  
+                        {loggedInUser && <><Col className="center" style={{paddingTop:"20px"}} xs={12} xxl={6}>  
                             <Button color="error" onClick={() => handleWriteReference("Report")}>{t("Report")}</Button>
                         </Col>
                         <Col className="center" style={{paddingTop:"20px"}} xs={12} xxl={6}>  
                             <Button onClick={() => handleWriteReference("Reference")}>{t("Write Review")}</Button>
-                        </Col>
+                        </Col></>}
                     </Row>
                     {/* <Row className="center report-vouch-buttons">
                         <Col style={{paddingLeft:"0px"}} xs={12} md={5}>  

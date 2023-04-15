@@ -268,12 +268,12 @@ const SettingsForm = ({id}) => {
         
                     <Col xs={12} md={5} lg={4} className="setting-item profile-image-update">
                         <label className={(!profilePicture) ? 'profile-label' : ''} htmlFor="inputTag">
+                            <div>Change Profile Picture</div>
                             {(!profilePicture) ? <span style={{color:"black"}}>{t('Profile Picture')}</span> : null}
                             <input id="inputTag" className='profile-input' type="file" onChange={handleProfileChange} accept="image/*" />
                             {(!profilePicture) ? <><br /><FaImage size={40} /></> : <img src={profilePicture} className="upload-image" alt="profile display" />}
                         </label>
                     </Col>
-                
                 </>}
                 <Col xs={12} className="info-dropdown">
                     <h2 onClick={() => setShowLocationInfo(cur => !cur)}>

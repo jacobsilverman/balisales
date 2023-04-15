@@ -1,7 +1,7 @@
 import { Col, Container, Row } from 'react-bootstrap';
 import './AboutUs.scss';
 
-import assrock from '../../Data/Images/assrock.svg';
+// import assrock from '../../Data/Images/assrock.svg';
  
 var AboutUs = () => {
     return (
@@ -34,10 +34,16 @@ var AboutUs = () => {
             </Row>
             <Row>
                 <Col>
+                    To access all aspects of this website please make sure to log in or sign up. Once you are logged in you will be able to create posts
+                    and write reviews on other peoples accounts.
+                </Col>
+            </Row>
+            <Row>
+                <Col>
                 We want to thank you for using this website and hope you are actively enjoying it, along with finding/making deals with ease. Anyways, were hope you have a wonderful day and take care. <span className="waving-hand">👋</span>
                 </Col>
             </Row>
-           <img src={assrock} className="rocket" />
+           {/* <img src={assrock} className="rocket" /> */}
         </Container>
     );
 };
