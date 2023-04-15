@@ -2,7 +2,7 @@ import { Fragment, useEffect, useMemo, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 import './Header.scss';
-import { setUserLogin, getProfilePicture } from '../../Data/Services/userInfo.js';
+import { getUserInfo, setUserLogin, setUserInfo, getProfilePicture } from '../../Data/Services/userInfo.js';
 import { pageTitles } from '../../Data/Constants';
 import Companies from '../../Data/Constants/Companies.json';
 
@@ -221,7 +221,6 @@ const Header = ({posts, setShowFilter}) => {
     const [uid, setUid] = useState(localStorage.getItem("uid"));
     const [pageTitle, setPageTitle] = useState(t(pageTitles[window.location.pathname]));
 
-
     const location = useLocation();
 
     useEffect(() => {
@@ -242,6 +241,7 @@ const Header = ({posts, setShowFilter}) => {
             localStorage.removeItem("uid");
             localStorage.removeItem("profile-picture-"+uid);
             localStorage.removeItem("displayName");
+            localStorage.setItem("isAuth", false);
             setProfilePic(null);
             setUid("");
         })
@@ -250,12 +250,21 @@ const Header = ({posts, setShowFilter}) => {
     const signInWithGoogle = () => {
         signInWithPopup(auth, provider).then((result) => {
             setIsAuth(true);
-            localStorage.setItem("isAuth", true);
+            setUid(result?.user?.uid);
             setUserLogin(result.user);
+
+            localStorage.setItem("isAuth", true);
             localStorage.setItem("uid", result?.user?.uid);
             localStorage.setItem("displayName", result?.user?.displayName);
-            setUid(result?.user?.uid);
-        })
+
+            return result;
+        }).then((result) => {
+            getUserInfo(result?.user?.uid).then((userInfo) => {
+                if (!userInfo?.firstName || !userInfo?.lastName || !userInfo?.displayName) {
+                    setUserInfo({...userInfo, firstName: result?._tokenResponse?.firstName, lastName: result?._tokenResponse?.lastName, displayName: result?.user?.displayName})
+                }
+            })
+        });
     }
 
     const resetAllPopovers = (ignore) => {

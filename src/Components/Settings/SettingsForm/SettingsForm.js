@@ -14,11 +14,11 @@ const SettingsForm = ({id}) => {
     const [lastName, setLastName] = useState('');
     const [displayName, setDisplayName] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
-    const [instagram, setInstagram] = useState('https://www.instagram.com/');
-    const [facebook, setFacebook] = useState('https://www.facebook.com/');
-    const [discord, setDiscord] = useState('https://www.discord.com/');
-    const [youtube, setYoutube] = useState('https://www.youtube.com/');
-    const [twitter, setTwitter] = useState('https://www.twitter.com/');
+    const [instagram, setInstagram] = useState('');
+    const [facebook, setFacebook] = useState('');
+    const [discord, setDiscord] = useState('');
+    const [youtube, setYoutube] = useState('');
+    const [twitter, setTwitter] = useState('');
     
     const [address, setAddress] = useState({
         address: '',
@@ -137,13 +137,8 @@ const SettingsForm = ({id}) => {
         if (newVal.match(/['\-"><;\\+{}!@#$%=^*_|[\]]/)) {
             return
         }
-        let subRoute = newVal.split('/')
-        if (typeof subRoute[3] === 'undefined') {
-            return
-        }
 
-        setValidation(cur => {return {...cur, instagram: subRoute[3].length > 0}});
-        setInstagram('https://www.instagram.com/'+subRoute[3]);
+        setInstagram(newVal);
     }
 
     const handleFacebookChange = (event) => {
@@ -151,28 +146,18 @@ const SettingsForm = ({id}) => {
         if (newVal.match(/['\-"><;\\+{}!@#$%=^*_|[\]]/)) {
             return
         }
-        let subRoute = newVal.split('/')
-        if (typeof subRoute[3] === 'undefined') {
-            return
-        }
 
-        setValidation(cur => {return {...cur, facebook: subRoute[3].length > 0}});
-        setFacebook('https://www.facebook.com/'+subRoute[3]);
+        setFacebook(newVal);
     }
 
 
     const handleDiscordChange = (event) => {
         let newVal = event.target.value;
-        if (newVal.match(/['\-"><;\\+{}!@#$%=^*_|[\]]/)) {
-            return
-        }
-        let subRoute = newVal.split('/')
-        if (typeof subRoute[3] === 'undefined') {
+        if (newVal.match(/['\-"><;\\+{}!@$%=^*_|[\]]/)) {
             return
         }
 
-        setValidation(cur => {return {...cur, discord: subRoute[3].length > 0}});
-        setDiscord('https://www.discord.com/'+subRoute[3]);
+        setDiscord(newVal);
     }
 
     const handleYoutubeChange = (event) => {
@@ -180,13 +165,8 @@ const SettingsForm = ({id}) => {
         if (newVal.match(/['\-"><;\\+{}!@#$%=^*_|[\]]/)) {
             return
         }
-        let subRoute = newVal.split('/')
-        if (typeof subRoute[3] === 'undefined') {
-            return
-        }
 
-        setValidation(cur => {return {...cur, youtube: subRoute[3].length > 0}});
-        setYoutube('https://www.youtube.com/'+subRoute[3]);
+        setYoutube(newVal);
     }
 
     const handleTwitterChange = (event) => {
@@ -194,13 +174,8 @@ const SettingsForm = ({id}) => {
         if (newVal.match(/['\-"><;\\+{}!@#$%=^*_|[\]]/)) {
             return
         }
-        let subRoute = newVal.split('/')
-        if (typeof subRoute[3] === 'undefined') {
-            return
-        }
 
-        setValidation(cur => {return {...cur, twitter: subRoute[3].length > 0}});
-        setTwitter('https://www.twitter.com/'+subRoute[3]);
+        setTwitter(newVal);
     }
 
     const handleAddressChange = (event) => {
@@ -319,11 +294,11 @@ const SettingsForm = ({id}) => {
                                 <TextField fullWidth label={t("www.facebook.com/")} color="" type="url" error={!validation.facebook} onChange={handleFacebookChange} value={facebook} />
                             </Col>
                             <Col xs={12} md={6} className="setting-item">
-                                <TextField fullWidth label={t("www.discord.com/")} color="" type="url" error={!validation.discord} onChange={handleDiscordChange} value={discord} />
+                                <TextField fullWidth label={t("www.discord.com/channel/")} color="" type="url" error={!validation.discord} onChange={handleDiscordChange} value={discord} />
                             </Col>
                     
                             <Col xs={12} md={6} className="setting-item">
-                                <TextField fullWidth label={t("www.youtube.com/")} color="" type="url" error={!validation.youtube} onChange={handleYoutubeChange} value={youtube} />
+                                <TextField fullWidth label={t("www.youtube.com/channel/")} color="" type="url" error={!validation.youtube} onChange={handleYoutubeChange} value={youtube} />
                             </Col>
 
                             <Col xs={12} md={6} className="setting-item">
@@ -334,10 +309,10 @@ const SettingsForm = ({id}) => {
         
                     <Col xs={12} md={5} lg={4} className="setting-item profile-image-update">
                         <label className={(!profilePicture) ? 'profile-label' : ''} htmlFor="inputTag">
-                            <div>Change Profile Picture</div>
                             {(!profilePicture) ? <span style={{color:"black"}}>{t('Profile Picture')}</span> : null}
                             <input id="inputTag" className='profile-input' type="file" onChange={handleProfileChange} accept="image/*" />
                             {(!profilePicture) ? <><br /><FaImage size={40} /></> : <img src={profilePicture} className="upload-image" alt="profile display" />}
+                            <div>Change Profile Picture</div>
                         </label>
                     </Col>
                 </>}

@@ -28,6 +28,9 @@
 .info-dropdown {
     display: flex;
     padding: 10px;
+    h2 {
+        cursor: pointer;
+    }
 }
 
 .submit-button {

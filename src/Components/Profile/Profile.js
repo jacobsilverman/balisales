@@ -76,22 +76,22 @@ const Profile = () => {
                         <Col className="outer-container" xs={12}>
                             <Row className="center social-media-container">
                                 {userData?.instagram && <Col xs={6}  className="item">
-                                    <SocialIcon url={userData?.instagram} />
+                                    <SocialIcon url={"https://www.instagram.com/"+userData?.instagram} />
                                 </Col>}
                                 {userData?.youtube && <Col xs={6}  className="item">
-                                    <SocialIcon url={userData?.youtube} />
+                                    <SocialIcon url={"https://www.youtube.com/channel/"+userData?.youtube} />
                                 </Col>}
                                 {userData?.twitter && <Col xs={6}  className="item">
-                                    <SocialIcon url={userData?.twitter} />
+                                    <SocialIcon url={"https://www.twitter.com/"+userData?.twitter} />
                                 </Col>}
                                 {userData?.phoneNumber && <Col xs={6}className="item">
                                     <SocialIcon url={"tel:"+userData?.phoneNumber} network="telegram" />
                                 </Col>}
                                 {userData?.discord && <Col xs={6} className="item">
-                                    <SocialIcon url={userData?.discord} />
+                                    <SocialIcon url={"https://www.discord.com/users/"+userData?.discord} />
                                 </Col>}
                                 {userData?.facebook && <Col xs={6}  className="item">
-                                    <SocialIcon url={userData?.facebook} />
+                                    <SocialIcon url={"https://www.facebook.com/"+userData?.facebook} />
                                 </Col>}
                             </Row>
                         </Col>
@@ -116,11 +116,11 @@ const Profile = () => {
                         <div className="user-full-name">
                             <h2>{userData?.firstName} {userData?.lastName}</h2>
                         </div>
-                        <div className="loc-pin">
+                        {userData?.address && <div className="loc-pin">
                             <FaLocationArrow/>
                             &nbsp;&nbsp;&nbsp;
                             {userData?.address?.city}, {userData?.address?.state}
-                        </div>
+                        </div>}
                     </div>
                     {userData?.address &&
                     <Row>
