@@ -134,8 +134,8 @@
 
 .user-account-profile {
   background-size: 100% 100%;
-  width: max(10vw, 10vh);
-  height: max(10vw, 10vh);
+  width: max(7vw, 9vh);
+  height: max(7vw, 9vh);
   border-radius: 2vw;
   margin: auto;
   background-repeat: no-repeat;
@@ -145,6 +145,7 @@
 
 .user-account-profile-col {
   border-right: 1px solid black;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px -50px 36px -28px inset, rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em;
   // min-height: 35vh;
   position: relative;
 }

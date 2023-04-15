@@ -1,4 +1,4 @@
-import { doc, getDoc, setDoc } from 'firebase/firestore';
+import { doc, getDoc, setDoc, updateDoc } from 'firebase/firestore';
 import { db, storage } from '../../firebase-config';
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 
@@ -87,6 +87,23 @@ export const setUserInfo = async (payload, file) => {
 }
 
 export const getProfilePicture = async (id) => {
-    const pictureRef = ref(storage, `/${environment()}-profiles/${id}`);
-    return await getDownloadURL(pictureRef);
+    try{
+        const pictureRef = ref(storage, `/${environment()}-profiles/${id}`);
+        return await getDownloadURL(pictureRef);
+    }
+    catch (error) {
+        console.error("Error getting profile pic: ", error);
+    }
+}
+
+export const updateUser = async (id, payload) => {
+    try {
+        const currentUserDoc = doc(db, `${environment()}-accounts`, id || uid);
+        await updateDoc(currentUserDoc, payload);
+        
+        console.log("Review successfully added!");
+    }
+    catch (error) {
+        console.error("Error adding review: ", error);
+    }
 }

@@ -21,11 +21,17 @@ const Profile = () => {
     const [userData, setUserData] = useState({});
     const [profilePic, setProfilePic] = useState(null);
     const [reference, setReference] = useState({
-        open: false
+        rating: 0,
+        open: false,
+        author: {
+            id: localStorage.getItem("uid"),
+            displayName: localStorage.getItem("displayName")
+        }
     });
 
     const urlSearchParams = new URLSearchParams(window.location.search);
     const params = Object.fromEntries(urlSearchParams.entries());
+
 
     const { t } = useTranslation();
 
@@ -41,10 +47,14 @@ const Profile = () => {
         });
     }, []);
 
-    const handleWriteReference = (type, message) => {
-        setReference({type: type, 
-            message: message,
-            open: true});
+    const handleWriteReference = (type) => {
+        setReference(cur => {
+            return {
+                ...cur,
+                type: type,
+                open: true
+            }
+        });
     }
 
     return (
@@ -63,37 +73,43 @@ const Profile = () => {
                         </Col>
                     </Row>
                     <Row>
-                        <Col className="outer-container">
+                        <Col className="outer-container" xs={12}>
                             <Row className="center social-media-container">
-                                {userData?.instagram && <Col xs={6} md={4}  className="item">
+                                {userData?.instagram && <Col xs={6}  className="item">
                                     <SocialIcon url={userData.instagram} />
                                 </Col>}
-                                {userData?.phoneNumber && <Col xs={6} md={4} className="item">
-                                    <SocialIcon url={"tel:"+userData.phoneNumber} network="telegram" />
-                                </Col>}
-                                {userData?.facebook && <Col xs={6} md={4} className="item">
-                                    <SocialIcon url={userData.facebook} />
-                                </Col>}
-                                <Col xs={6} md={4} className="item">
+                                <Col xs={6}  className="item">
                                     <SocialIcon url="https://www.youtube.com/channel/UCWzKQGtfgLhCBdXsFORsoTA" />
                                 </Col>
-                                <Col xs={6} md={4} className="item">
+                                <Col xs={6}  className="item">
                                     <SocialIcon url="https://twitter.com/imVkohli" />
                                 </Col>
-                                <Col xs={6} md={4} className="item">
+                                {userData?.phoneNumber && <Col xs={6}className="item">
+                                    <SocialIcon url={"tel:"+userData.phoneNumber} network="telegram" />
+                                </Col>}
+                                <Col xs={6} className="item">
                                     <SocialIcon url="https://discord.com/channels/@jacoboson#8145" />
                                 </Col>
+                                {userData?.facebook && <Col xs={6}  className="item">
+                                    <SocialIcon url={userData.facebook} />
+                                </Col>}
                             </Row>
                         </Col>
+                        <Col className="center" style={{paddingTop:"20px"}} xs={12} xxl={6}>  
+                            <Button color="error" onClick={() => handleWriteReference("Report")}>{t("Report")}</Button>
+                        </Col>
+                        <Col className="center" style={{paddingTop:"20px"}} xs={12} xxl={6}>  
+                            <Button onClick={() => handleWriteReference("Reference")}>{t("Write Review")}</Button>
+                        </Col>
                     </Row>
-                    <Row className="center report-vouch-buttons">
-                        <Col style={{paddingLeft:"0px"}} xs={6}>  
+                    {/* <Row className="center report-vouch-buttons">
+                        <Col style={{paddingLeft:"0px"}} xs={12} md={5}>  
                             <Button color="error" onClick={() => handleWriteReference("Report", "test")}>{t("Report")}</Button>
                         </Col>
-                        <Col style={{paddingLeft:"0px"}} xs={6}>  
-                            <Button onClick={() => handleWriteReference("Reference", "test1")}>{t("Vouch")}</Button>
+                        <Col style={{paddingLeft:"0px"}} xs={12} md={7}>  
+                            <Button onClick={() => handleWriteReference("Reference", "test1")}>{t("Write Review")}</Button>
                         </Col>
-                    </Row>
+                    </Row> */}
                 </Col>
                 <Col xs={7} sm={9}  xl={10}>
                     <div className="user-full-name-loc">
@@ -109,12 +125,12 @@ const Profile = () => {
                     {userData?.address &&
                     <Row>
                         <Col className="map-container">
-                            <Map address={userData.address} width="2500px" height={isMobile ? "45vh" : "max(max(30vh, 230px), min(19vw, 500px))"} />
+                            <Map address={userData.address} width="2500px" height={isMobile ? "43vh" : "max(32vh, 390px)"} />
                         </Col>
                     </Row>}
                 </Col>
             </Row>
-            {(reference?.open && <ReportReview t={t} reference={reference} setReference={setReference} />) || <hr style={{margin:"0"}} />}
+            {(reference?.open && <ReportReview t={t} id={params?.id} userData={userData} reference={reference} setReference={setReference} />) || <hr style={{margin:"0"}} />}
             <Account user={params?.id} settingsPage={false} />
             <hr style={{margin:"0"}} />
             <Reviews userData={userData} />
