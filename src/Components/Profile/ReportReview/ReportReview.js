@@ -23,7 +23,7 @@ const ReportReview = ({t, id, userData, reference, setReference}) => {
             payload[type] = [];
         }
 
-        payload[type].push(reference);
+        payload[type].push({...reference, date: Date.now()});
         
         updateUser(id , {[type]: payload[type]}).then((r) => {
             console.log(r);
@@ -31,6 +31,7 @@ const ReportReview = ({t, id, userData, reference, setReference}) => {
             alert("something went wrong adding your review - ", err);
         }).finally(() => {
             setReference(cur => {return {...cur, open:false}});
+            window.location.reload();
         });
     }
 

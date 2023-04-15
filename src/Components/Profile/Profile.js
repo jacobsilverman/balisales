@@ -133,7 +133,7 @@ const Profile = () => {
             {(reference?.open && <ReportReview t={t} id={params?.id} userData={userData} reference={reference} setReference={setReference} />) || <hr style={{margin:"0"}} />}
             <Account user={params?.id} settingsPage={false} />
             <hr style={{margin:"0"}} />
-            <Reviews userData={userData} />
+            {userData?.reviews?.length > 0 && <Reviews userData={userData} />}
         </Container>
     );
 }
