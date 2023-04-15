@@ -52,7 +52,7 @@ const ReportReview = ({t, id, userData, reference, setReference}) => {
                             <TextareaAutosize 
                                 style={{width: "100%"}} 
                                 minRows={3} 
-                                maxLength={84}
+                                maxLength={100}
                                 placeholder={t("Description")} 
                                 label={t("Description")}
                                 onChange={(event) => {

@@ -96,10 +96,10 @@ const Profile = () => {
                             </Row>
                         </Col>
                         {loggedInUser && <><Col className="center" style={{paddingTop:"20px"}} xs={12} xxl={6}>  
-                            <Button color="error" onClick={() => handleWriteReference("Report")}>{t("Report")}</Button>
+                            <Button disabled={params?.id === loggedInUser} color="error" onClick={() => handleWriteReference("Report")}>{t("Report")}</Button>
                         </Col>
                         <Col className="center" style={{paddingTop:"20px"}} xs={12} xxl={6}>  
-                            <Button onClick={() => handleWriteReference("Reference")}>{t("Write Review")}</Button>
+                            <Button disabled={params?.id === loggedInUser} onClick={() => handleWriteReference("Reference")}>{t("Write Review")}</Button>
                         </Col></>}
                     </Row>
                     {/* <Row className="center report-vouch-buttons">
