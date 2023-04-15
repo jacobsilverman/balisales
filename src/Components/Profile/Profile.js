@@ -76,22 +76,22 @@ const Profile = () => {
                         <Col className="outer-container" xs={12}>
                             <Row className="center social-media-container">
                                 {userData?.instagram && <Col xs={6}  className="item">
-                                    <SocialIcon url={userData.instagram} />
+                                    <SocialIcon url={userData?.instagram} />
                                 </Col>}
-                                <Col xs={6}  className="item">
-                                    <SocialIcon url="https://www.youtube.com/channel/UCWzKQGtfgLhCBdXsFORsoTA" />
-                                </Col>
-                                <Col xs={6}  className="item">
-                                    <SocialIcon url="https://twitter.com/imVkohli" />
-                                </Col>
+                                {userData?.youtube && <Col xs={6}  className="item">
+                                    <SocialIcon url={userData?.youtube} />
+                                </Col>}
+                                {userData?.twitter && <Col xs={6}  className="item">
+                                    <SocialIcon url={userData?.twitter} />
+                                </Col>}
                                 {userData?.phoneNumber && <Col xs={6}className="item">
-                                    <SocialIcon url={"tel:"+userData.phoneNumber} network="telegram" />
+                                    <SocialIcon url={"tel:"+userData?.phoneNumber} network="telegram" />
                                 </Col>}
-                                <Col xs={6} className="item">
-                                    <SocialIcon url="https://discord.com/channels/@jacoboson#8145" />
-                                </Col>
+                                {userData?.discord && <Col xs={6} className="item">
+                                    <SocialIcon url={userData?.discord} />
+                                </Col>}
                                 {userData?.facebook && <Col xs={6}  className="item">
-                                    <SocialIcon url={userData.facebook} />
+                                    <SocialIcon url={userData?.facebook} />
                                 </Col>}
                             </Row>
                         </Col>

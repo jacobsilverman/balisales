@@ -75,15 +75,21 @@ export const deleteUserPost = async (postId) => {
 }
 
 export const setUserInfo = async (payload, file) => {
-    if (file !== '') {
-        const pictureRef = ref(storage, `/${environment()}-profiles/${uid}`);
-        await uploadBytesResumable(pictureRef, file);
+    try {
+        if (file !== '') {
+            const pictureRef = ref(storage, `/${environment()}-profiles/${uid}`);
+            await uploadBytesResumable(pictureRef, file);
+        }
+        
+        const currentUserDoc = doc(db, environment()+"-accounts", uid);
+        await setDoc(currentUserDoc, payload);
+        
+        window.location.reload(false);
     }
-    
-    const currentUserDoc = doc(db, environment()+"-accounts", uid);
-    await setDoc(currentUserDoc, payload);
-    
-    window.location.reload(false);
+    catch (error) {
+        console.error("Error getting profile pic: ", error);
+    }
+
 }
 
 export const getProfilePicture = async (id) => {

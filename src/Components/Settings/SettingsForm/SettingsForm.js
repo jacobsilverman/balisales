@@ -16,6 +16,9 @@ const SettingsForm = ({id}) => {
     const [phoneNumber, setPhoneNumber] = useState('');
     const [instagram, setInstagram] = useState('https://www.instagram.com/');
     const [facebook, setFacebook] = useState('https://www.facebook.com/');
+    const [discord, setDiscord] = useState('https://www.discord.com/');
+    const [youtube, setYoutube] = useState('https://www.youtube.com/');
+    const [twitter, setTwitter] = useState('https://www.twitter.com/');
     
     const [address, setAddress] = useState({
         address: '',
@@ -40,6 +43,9 @@ const SettingsForm = ({id}) => {
         phoneNumber: true,
         instagram: true,
         facebook: true,
+        discord: true,
+        youtube: true,
+        twitter: true,
         address: true,
         unit: true,
         city: true,
@@ -62,6 +68,9 @@ const SettingsForm = ({id}) => {
             setPhoneNumber(result.phoneNumber);
             setInstagram(result.instagram);
             setFacebook(result.facebook);
+            setDiscord(result.discord);
+            setYoutube(result.youtube);
+            setTwitter(result.twitter);
             setAddress(result.address);
             setPosts(result.posts || []);
             setValidation({
@@ -71,6 +80,9 @@ const SettingsForm = ({id}) => {
                 phoneNumber: result.phoneNumber.length === 0 || result.phoneNumber.length === 10,
                 instagram:  true,
                 facebook: true,
+                discord: true,
+                youtube: true,
+                twitter: true,
                 address: true,
                 unit: true,
                 city: true,
@@ -146,6 +158,49 @@ const SettingsForm = ({id}) => {
 
         setValidation(cur => {return {...cur, facebook: subRoute[3].length > 0}});
         setFacebook('https://www.facebook.com/'+subRoute[3]);
+    }
+
+
+    const handleDiscordChange = (event) => {
+        let newVal = event.target.value;
+        if (newVal.match(/['\-"><;\\+{}!@#$%=^*_|[\]]/)) {
+            return
+        }
+        let subRoute = newVal.split('/')
+        if (typeof subRoute[3] === 'undefined') {
+            return
+        }
+
+        setValidation(cur => {return {...cur, discord: subRoute[3].length > 0}});
+        setDiscord('https://www.discord.com/'+subRoute[3]);
+    }
+
+    const handleYoutubeChange = (event) => {
+        let newVal = event.target.value;
+        if (newVal.match(/['\-"><;\\+{}!@#$%=^*_|[\]]/)) {
+            return
+        }
+        let subRoute = newVal.split('/')
+        if (typeof subRoute[3] === 'undefined') {
+            return
+        }
+
+        setValidation(cur => {return {...cur, youtube: subRoute[3].length > 0}});
+        setYoutube('https://www.youtube.com/'+subRoute[3]);
+    }
+
+    const handleTwitterChange = (event) => {
+        let newVal = event.target.value;
+        if (newVal.match(/['\-"><;\\+{}!@#$%=^*_|[\]]/)) {
+            return
+        }
+        let subRoute = newVal.split('/')
+        if (typeof subRoute[3] === 'undefined') {
+            return
+        }
+
+        setValidation(cur => {return {...cur, twitter: subRoute[3].length > 0}});
+        setTwitter('https://www.twitter.com/'+subRoute[3]);
     }
 
     const handleAddressChange = (event) => {
@@ -252,16 +307,27 @@ const SettingsForm = ({id}) => {
                 {showSocialInfo && <>
                     <Col xs={12} md={7} lg={8}>
                         <Row>
-                            <Col xs={12} className="setting-item">
+                            <Col xs={12} md={6} className="setting-item">
                                 <TextField fullWidth label={t("Phone Number")} error={!validation.phoneNumber} onChange={handlePhoneNumberChange} value={displayNumber(phoneNumber)} inputProps={{ maxLength: 14 }} />
                             </Col>
                     
-                            <Col xs={12} className="setting-item">
-                                <TextField fullWidth label={t(" ")} color="" type="url" error={!validation.instagram} onChange={handleInstagramChange} value={instagram} />
+                            <Col xs={12} md={6} className="setting-item">
+                                <TextField fullWidth label={t("www.instagram.com/")} color="" type="url" error={!validation.instagram} onChange={handleInstagramChange} value={instagram} />
                             </Col>
 
-                            <Col xs={12} className="setting-item">
-                                <TextField fullWidth label={t(" ")} color="" type="url" error={!validation.facebook} onChange={handleFacebookChange} value={facebook} />
+                            <Col xs={12} md={6} className="setting-item">
+                                <TextField fullWidth label={t("www.facebook.com/")} color="" type="url" error={!validation.facebook} onChange={handleFacebookChange} value={facebook} />
+                            </Col>
+                            <Col xs={12} md={6} className="setting-item">
+                                <TextField fullWidth label={t("www.discord.com/")} color="" type="url" error={!validation.discord} onChange={handleDiscordChange} value={discord} />
+                            </Col>
+                    
+                            <Col xs={12} md={6} className="setting-item">
+                                <TextField fullWidth label={t("www.youtube.com/")} color="" type="url" error={!validation.youtube} onChange={handleYoutubeChange} value={youtube} />
+                            </Col>
+
+                            <Col xs={12} md={6} className="setting-item">
+                                <TextField fullWidth label={t("www.twitter.com/")} color="" type="url" error={!validation.twitter} onChange={handleTwitterChange} value={twitter} />
                             </Col>
                         </Row>
                     </Col>
@@ -316,7 +382,7 @@ const SettingsForm = ({id}) => {
             </Row>
             <Row>
                 <Col xs={12} className="submit-button">
-                    <Button disabled={!isValid} variant="contained" onClick={() => setUserInfo({id, firstName, lastName, displayName, phoneNumber, instagram, facebook, address, posts}, file)}>
+                    <Button disabled={!isValid} variant="contained" onClick={() => setUserInfo({id, firstName, lastName, displayName, phoneNumber, instagram, facebook, discord, youtube, twitter, address, posts}, file)}>
                         {t("Submit")}
                     </Button>
                 </Col>
