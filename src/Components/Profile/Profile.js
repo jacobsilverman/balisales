@@ -122,18 +122,24 @@ const Profile = () => {
                             {userData?.address?.city}, {userData?.address?.state}
                         </div>}
                     </div>
-                    {userData?.address &&
+                    {userData?.address ?
                     <Row>
                         <Col className="map-container">
                             <Map address={userData.address} width="2500px" height={isMobile ? "43vh" : "max(32vh, 390px)"} />
                         </Col>
-                    </Row>}
+                    </Row>
+                    : <div style={{marginLeft: "25px"}}>
+                        No address is saved
+                     </div>}
                 </Col>
             </Row>
             {(reference?.open && <ReportReview t={t} id={params?.id} userData={userData} reference={reference} setReference={setReference} />) || <hr style={{margin:"0"}} />}
             <Account user={params?.id} settingsPage={false} />
-            <hr style={{margin:"0"}} />
-            {userData?.reviews?.length > 0 && <Reviews userData={userData} />}
+            
+            {userData?.reviews?.length > 0 && <>
+                <hr style={{margin:"0"}} />
+                <Reviews userData={userData} />
+            </>}
         </Container>
     );
 }

@@ -229,6 +229,7 @@ const Header = ({posts, setShowFilter}) => {
             localStorage.setItem("profile-picture-"+uid, result);
         }).catch(() => {
             setProfilePic(defaultProfile);
+            localStorage.setItem("profile-picture-"+uid, defaultProfile);
         });
     }, [uid]);
 

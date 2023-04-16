@@ -37,7 +37,7 @@ function Account({user, settingsPage}) {
 	const setAccountData = () => {
 		if (filterPosts?.length === 0) {
 			return (
-				(!loaded) ? <Spinner /> : null
+				(!loaded) ? <Spinner /> : <h4 className="center">No Posts Available</h4>
 			);
 		} 
 
