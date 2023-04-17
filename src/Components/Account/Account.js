@@ -37,19 +37,17 @@ function Account({user, settingsPage}) {
 	const setAccountData = () => {
 		if (filterPosts?.length === 0) {
 			return (
-				(!loaded) ? <Spinner /> : null
+				(!loaded) ? <Spinner /> : <h4 className="center">No Posts Available</h4>
 			);
 		} 
 
 		return (
-			<div style={{padding:'20px'}} className="grid-container-posts">
-				
+			<div className="grid-container-posts">
 				{openSelectModal.show && 
                     <SelectModal t={t} 
                         item={openSelectModal.item} 
                         openSelectModal={openSelectModal.show} 
                         setOpenSelectModal={setOpenSelectModal} />}
-				
 				{settingsPage && <EditModal 
 					item={selectedPost} 
 					filterPosts={filterPosts}
@@ -71,7 +69,6 @@ function Account({user, settingsPage}) {
 						setOpenEditModal={setOpenEditModal}
 						selectedPost={selectedPost}
 						setSelectedPost={setSelectedPost} />
-						
 				})}
 			</div>
         );

@@ -14,8 +14,11 @@ const SettingsForm = ({id}) => {
     const [lastName, setLastName] = useState('');
     const [displayName, setDisplayName] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
-    const [instagram, setInstagram] = useState('https://www.instagram.com/');
-    const [facebook, setFacebook] = useState('https://www.facebook.com/');
+    const [instagram, setInstagram] = useState('');
+    const [facebook, setFacebook] = useState('');
+    const [discord, setDiscord] = useState('');
+    const [youtube, setYoutube] = useState('');
+    const [twitter, setTwitter] = useState('');
     
     const [address, setAddress] = useState({
         address: '',
@@ -34,12 +37,15 @@ const SettingsForm = ({id}) => {
     const [profilePicture, setProfilePicture] = useState(localStorage.getItem("profile-picture-"+localStorage.getItem("uid")));
 
     const [validation, setValidation] = useState({
-        firstName: false,
-        lastName: false,
-        displayName: false,
+        firstName: true,
+        lastName: true,
+        displayName: true,
         phoneNumber: true,
         instagram: true,
         facebook: true,
+        discord: true,
+        youtube: true,
+        twitter: true,
         address: true,
         unit: true,
         city: true,
@@ -62,6 +68,9 @@ const SettingsForm = ({id}) => {
             setPhoneNumber(result.phoneNumber);
             setInstagram(result.instagram);
             setFacebook(result.facebook);
+            setDiscord(result.discord);
+            setYoutube(result.youtube);
+            setTwitter(result.twitter);
             setAddress(result.address);
             setPosts(result.posts || []);
             setValidation({
@@ -71,6 +80,9 @@ const SettingsForm = ({id}) => {
                 phoneNumber: result.phoneNumber.length === 0 || result.phoneNumber.length === 10,
                 instagram:  true,
                 facebook: true,
+                discord: true,
+                youtube: true,
+                twitter: true,
                 address: true,
                 unit: true,
                 city: true,
@@ -125,13 +137,8 @@ const SettingsForm = ({id}) => {
         if (newVal.match(/['\-"><;\\+{}!@#$%=^*_|[\]]/)) {
             return
         }
-        let subRoute = newVal.split('/')
-        if (typeof subRoute[3] === 'undefined') {
-            return
-        }
 
-        setValidation(cur => {return {...cur, instagram: subRoute[3].length > 0}});
-        setInstagram('https://www.instagram.com/'+subRoute[3]);
+        setInstagram(newVal);
     }
 
     const handleFacebookChange = (event) => {
@@ -139,13 +146,36 @@ const SettingsForm = ({id}) => {
         if (newVal.match(/['\-"><;\\+{}!@#$%=^*_|[\]]/)) {
             return
         }
-        let subRoute = newVal.split('/')
-        if (typeof subRoute[3] === 'undefined') {
+
+        setFacebook(newVal);
+    }
+
+
+    const handleDiscordChange = (event) => {
+        let newVal = event.target.value;
+        if (newVal.match(/['\-"><;\\+{}!@$%=^*_|[\]]/)) {
             return
         }
 
-        setValidation(cur => {return {...cur, facebook: subRoute[3].length > 0}});
-        setFacebook('https://www.facebook.com/'+subRoute[3]);
+        setDiscord(newVal);
+    }
+
+    const handleYoutubeChange = (event) => {
+        let newVal = event.target.value;
+        if (newVal.match(/['\-"><;\\+{}!@#$%=^*_|[\]]/)) {
+            return
+        }
+
+        setYoutube(newVal);
+    }
+
+    const handleTwitterChange = (event) => {
+        let newVal = event.target.value;
+        if (newVal.match(/['\-"><;\\+{}!@#$%=^*_|[\]]/)) {
+            return
+        }
+
+        setTwitter(newVal);
     }
 
     const handleAddressChange = (event) => {
@@ -218,6 +248,18 @@ const SettingsForm = ({id}) => {
         + number.substring(6, 10);
     }
 
+    const handleSubmit = (payload, profilePicture) => {
+        let temp = {...payload}
+        
+        Object.keys(temp).forEach((key) => {
+            if (typeof temp[key] === "undefined"){
+                temp[key] = '';
+            }
+        })
+
+        setUserInfo(temp, profilePicture)
+    }
+
     return (
         <Col xs={12} className="center settings-container">
             <Row>
@@ -252,16 +294,27 @@ const SettingsForm = ({id}) => {
                 {showSocialInfo && <>
                     <Col xs={12} md={7} lg={8}>
                         <Row>
-                            <Col xs={12} className="setting-item">
+                            <Col xs={12} md={6} className="setting-item">
                                 <TextField fullWidth label={t("Phone Number")} error={!validation.phoneNumber} onChange={handlePhoneNumberChange} value={displayNumber(phoneNumber)} inputProps={{ maxLength: 14 }} />
                             </Col>
                     
-                            <Col xs={12} className="setting-item">
-                                <TextField fullWidth label={t(" ")} color="" type="url" error={!validation.instagram} onChange={handleInstagramChange} value={instagram} />
+                            <Col xs={12} md={6} className="setting-item">
+                                <TextField fullWidth label={t("www.instagram.com/")} color="" type="url" error={!validation.instagram} onChange={handleInstagramChange} value={instagram} />
                             </Col>
 
-                            <Col xs={12} className="setting-item">
-                                <TextField fullWidth label={t(" ")} color="" type="url" error={!validation.facebook} onChange={handleFacebookChange} value={facebook} />
+                            <Col xs={12} md={6} className="setting-item">
+                                <TextField fullWidth label={t("www.facebook.com/")} color="" type="url" error={!validation.facebook} onChange={handleFacebookChange} value={facebook} />
+                            </Col>
+                            <Col xs={12} md={6} className="setting-item">
+                                <TextField fullWidth label={t("www.discord.com/channel/")} color="" type="url" error={!validation.discord} onChange={handleDiscordChange} value={discord} />
+                            </Col>
+                    
+                            <Col xs={12} md={6} className="setting-item">
+                                <TextField fullWidth label={t("www.youtube.com/channel/")} color="" type="url" error={!validation.youtube} onChange={handleYoutubeChange} value={youtube} />
+                            </Col>
+
+                            <Col xs={12} md={6} className="setting-item">
+                                <TextField fullWidth label={t("www.twitter.com/")} color="" type="url" error={!validation.twitter} onChange={handleTwitterChange} value={twitter} />
                             </Col>
                         </Row>
                     </Col>
@@ -271,9 +324,9 @@ const SettingsForm = ({id}) => {
                             {(!profilePicture) ? <span style={{color:"black"}}>{t('Profile Picture')}</span> : null}
                             <input id="inputTag" className='profile-input' type="file" onChange={handleProfileChange} accept="image/*" />
                             {(!profilePicture) ? <><br /><FaImage size={40} /></> : <img src={profilePicture} className="upload-image" alt="profile display" />}
+                            <div>Change Profile Picture</div>
                         </label>
                     </Col>
-                
                 </>}
                 <Col xs={12} className="info-dropdown">
                     <h2 onClick={() => setShowLocationInfo(cur => !cur)}>
@@ -316,7 +369,7 @@ const SettingsForm = ({id}) => {
             </Row>
             <Row>
                 <Col xs={12} className="submit-button">
-                    <Button disabled={!isValid} variant="contained" onClick={() => setUserInfo({id, firstName, lastName, displayName, phoneNumber, instagram, facebook, address, posts}, file)}>
+                    <Button disabled={!isValid} variant="contained" onClick={() => handleSubmit({id, firstName, lastName, displayName, phoneNumber, instagram, facebook, discord, youtube, twitter, address, posts}, file)}>
                         {t("Submit")}
                     </Button>
                 </Col>

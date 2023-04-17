@@ -11,32 +11,56 @@ import Map from '../Map';
 import { SocialIcon } from 'react-social-icons';
 
 import { Container, Col, Row } from 'react-bootstrap';
+import { isMobile } from '../../Data/Constants/index.js';
+import { Button } from '@mui/material';
+import Reviews from '../Reviews/Reviews.js';
+import ReportReview from './ReportReview/ReportReview.js';
+import { useTranslation } from 'react-i18next';
 
 const Profile = () => {
-    const [userData, setUserData] = useState({});
-    const [profilePic, setProfilePic] = useState(null);
-
     const urlSearchParams = new URLSearchParams(window.location.search);
     const params = Object.fromEntries(urlSearchParams.entries());
+    const loggedInUser = localStorage.getItem("uid");
+
+    const [userData, setUserData] = useState({});
+    const [profilePic, setProfilePic] = useState(null);
+    const [reference, setReference] = useState({
+        rating: 0,
+        open: false,
+        author: {
+            id: loggedInUser,
+            displayName: localStorage.getItem("displayName")
+        }
+    });
+
+    const { t } = useTranslation();
 
     useEffect(() => {
-        getUserInfo(params.id).then((result) => {
+        getUserInfo(params?.id).then((result) => {
             setUserData(result);
-            console.log("result:",result);
         });
 
-        getProfilePicture(params.id).then((result) => {
+        getProfilePicture(params?.id).then((result) => {
             setProfilePic(result);
         }).catch(() => {
             setProfilePic(defaultProfile);
         });
     }, []);
 
+    const handleWriteReference = (type) => {
+        setReference(cur => {
+            return {
+                ...cur,
+                type: type,
+                open: true
+            }
+        });
+    }
 
     return (
         <Container className="user-profile-container">
             <Row>
-                <Col xs={4} sm={3} className="user-account-profile-col">
+                <Col xs={5} sm={3} xl={2} className="user-account-profile-col">
                     <Row className="center">
                         <Col>
                             <h2>{userData.displayName}</h2>
@@ -48,64 +72,74 @@ const Profile = () => {
                             <div className="user-account-profile center" style={{backgroundImage: `url(${profilePic})`}} />
                         </Col>
                     </Row>
-                    <Row className="center social-media-container">
-                        {userData?.facebook && <Col sm={6} md={4} className="item">
-                            <SocialIcon url={userData.facebook} />
-                        </Col>}
-                        {userData?.phoneNumber && <Col sm={6} md={4} className="item">
-                            <SocialIcon url={"tel:"+userData.phoneNumber} network="telegram" />
-                        </Col>}
-                        {userData?.instagram && <Col sm={6} md={4}  className="item">
-                            <SocialIcon url={userData.instagram} />
-                        </Col>}
-                        <Col sm={6} md={4} className="item">
-                            <SocialIcon url="https://discord.com/channels/@jacoboson#8145" />
+                    <Row>
+                        <Col className="outer-container" xs={12}>
+                            <Row className="center social-media-container">
+                                {userData?.instagram && <Col xs={6}  className="item">
+                                    <SocialIcon url={"https://www.instagram.com/"+userData?.instagram} />
+                                </Col>}
+                                {userData?.youtube && <Col xs={6}  className="item">
+                                    <SocialIcon url={"https://www.youtube.com/channel/"+userData?.youtube} />
+                                </Col>}
+                                {userData?.twitter && <Col xs={6}  className="item">
+                                    <SocialIcon url={"https://www.twitter.com/"+userData?.twitter} />
+                                </Col>}
+                                {userData?.phoneNumber && <Col xs={6}className="item">
+                                    <SocialIcon url={"tel:"+userData?.phoneNumber} network="telegram" />
+                                </Col>}
+                                {userData?.discord && <Col xs={6} className="item">
+                                    <SocialIcon url={"https://www.discord.com/users/"+userData?.discord} />
+                                </Col>}
+                                {userData?.facebook && <Col xs={6}  className="item">
+                                    <SocialIcon url={"https://www.facebook.com/"+userData?.facebook} />
+                                </Col>}
+                            </Row>
                         </Col>
-                        <Col sm={6} md={4} className="item">
-                            <SocialIcon url="https://twitter.com/imVkohli" />
+                        {loggedInUser && <><Col className="center" style={{paddingTop:"20px"}} xs={12} xxl={6}>  
+                            <Button disabled={params?.id === loggedInUser} color="error" onClick={() => handleWriteReference("Report")}>{t("Report")}</Button>
                         </Col>
-                        <Col sm={6} md={4} className="item">
-                            <SocialIcon url="https://www.youtube.com/channel/UCWzKQGtfgLhCBdXsFORsoTA" />
-                        </Col>
+                        <Col className="center" style={{paddingTop:"20px"}} xs={12} xxl={6}>  
+                            <Button disabled={params?.id === loggedInUser} onClick={() => handleWriteReference("Reference")}>{t("Write Review")}</Button>
+                        </Col></>}
                     </Row>
+                    {/* <Row className="center report-vouch-buttons">
+                        <Col style={{paddingLeft:"0px"}} xs={12} md={5}>  
+                            <Button color="error" onClick={() => handleWriteReference("Report", "test")}>{t("Report")}</Button>
+                        </Col>
+                        <Col style={{paddingLeft:"0px"}} xs={12} md={7}>  
+                            <Button onClick={() => handleWriteReference("Reference", "test1")}>{t("Write Review")}</Button>
+                        </Col>
+                    </Row> */}
                 </Col>
-                <Col xs={8} sm={9}>
+                <Col xs={7} sm={9}  xl={10}>
                     <div className="user-full-name-loc">
                         <div className="user-full-name">
                             <h2>{userData?.firstName} {userData?.lastName}</h2>
                         </div>
-                        <div className="loc-pin">
+                        {userData?.address && <div className="loc-pin">
                             <FaLocationArrow/>
-                        </div>
-                        <div className="city-state">
+                            &nbsp;&nbsp;&nbsp;
                             {userData?.address?.city}, {userData?.address?.state}
-                        </div>
+                        </div>}
                     </div>
-                    {userData?.address &&
+                    {userData?.address ?
                     <Row>
                         <Col className="map-container">
-                            <Map address={userData.address} width="800px" height="400px" />
+                            <Map address={userData.address} width="2500px" height={isMobile ? "43vh" : "max(32vh, 390px)"} />
                         </Col>
-                    </Row>}
+                    </Row>
+                    : <div style={{marginLeft: "25px"}}>
+                        No address is saved
+                     </div>}
                 </Col>
             </Row>
-
-
-                {/* <Col xs={9}>
-                    <SocialMedia 
-                        instagram={userData.instagram}
-                        facebook={userData.facebook}
-                        phoneNumber={userData.phoneNumber} />
-                </Col>
-            </Row> */}
-            {/* <Row className="center">
-                <Col xs={12}>
-                     <h3>{userData.firstName} {userData.lastName}</h3>
-                </Col>
-            </Row> */}
+            {(reference?.open && <ReportReview t={t} id={params?.id} userData={userData} reference={reference} setReference={setReference} />) || <hr style={{margin:"0"}} />}
+            <Account user={params?.id} settingsPage={false} />
             
-            <hr style={{margin:"0"}} />
-            <Account user={params.id} settingsPage={false} />
+            {userData?.reviews?.length > 0 && <>
+                <hr style={{margin:"0"}} />
+                <Reviews userData={userData} />
+            </>}
         </Container>
     );
 }

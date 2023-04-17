@@ -134,8 +134,8 @@
 
 .user-account-profile {
   background-size: 100% 100%;
-  width: 15vw;
-  height: 15vw;
+  width: max(7vw, 9vh);
+  height: max(7vw, 9vh);
   border-radius: 2vw;
   margin: auto;
   background-repeat: no-repeat;
@@ -145,15 +145,32 @@
 
 .user-account-profile-col {
   border-right: 1px solid black;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px -50px 36px -28px inset, rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em;
+  // min-height: 35vh;
+  position: relative;
+}
+
+.outer-container {
+  // height: calc(100% - 225px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .social-media-container {
-  display:flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 220px;
+  // display:flex;
+  // align-items: center;
+  // min-height: 220px;
+  // max-width: 250px;
+  // padding-left: 10px;
+  // padding-right: 15px;
+  // margin-top: auto;
+  // margin-top: bottom;
+  // padding-bottom: auto;
+  // padding-top: auto;
+  padding-top: 5px;
   .item {
-    margin-top: 0px;
+    margin-top: 15px;
   }
 }
 
@@ -172,27 +189,29 @@
   }
 }
 
+.report-vouch-buttons {
+  width: 95%;
+  position: absolute;
+  bottom: 0;
+  margin-right: auto;
+  margin-left: auto;
+}
+
 .map-container {
   display: flex;
   justify-content: center;
-  padding: 30px;
+  padding: 0px 30px 30px 30px;
+  max-height: 500px;
 }
 
 .loc-pin {
   display: flex;
-  flex: 0 0 auto;
+  flex: 1;
   align-items: center;
   padding-left: 15px;
   padding-right: 5px;
   color: lightgrey;
-  font-size: 12px;
-}
-
-.city-state {
-  display: flex;
-  align-items: center;
-  color: lightgrey;
-  flex: 1;
+  font-size: 16px;
 }
 
 .user-full-name {

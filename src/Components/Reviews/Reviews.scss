@@ -1,0 +1,50 @@
+.reviews-container {
+    padding: 20px;
+}
+
+.right-border-md {
+    border-right: 1px solid black;
+    height: 30vh;
+}
+
+.review-item {
+    border-right: 1px solid lightgrey;
+    border-left: 1px solid lightgrey;
+    padding: 20px;
+}
+
+// Define styles for the parent container
+.reviews-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); // Use grid layout to create responsive columns
+    gap: 1rem;
+  }
+  
+  // Define styles for the individual review
+  .review {
+    position: relative;
+    padding: 1rem;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px -50px 36px -28px inset, rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
+    max-width: 310px;
+    min-height: 200px;
+    max-height: 250px;
+  }
+  
+  .review-author {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+  
+  .review-date {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    font-size: 0.8rem;
+    color: #888;
+  }
+  
+  .review-message {
+    margin-top: 0.5rem;
+    font-size: 14px;
+  }

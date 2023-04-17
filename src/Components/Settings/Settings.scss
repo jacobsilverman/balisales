@@ -28,6 +28,9 @@
 .info-dropdown {
     display: flex;
     padding: 10px;
+    h2 {
+        cursor: pointer;
+    }
 }
 
 .submit-button {
@@ -35,14 +38,16 @@
 }
 
 .upload-image {
-    min-width: 200px;
-    min-height: 200px;
-    max-width: 300px;
-    max-height: 300px;
+    width: 200px;
+    height: 200px;
 }
 
 .profile-image-update {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.profile-image-update label {
+    cursor: pointer;
 }
