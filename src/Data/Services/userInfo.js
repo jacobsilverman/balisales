@@ -99,6 +99,7 @@ export const getProfilePicture = async (id) => {
     }
     catch (error) {
         console.error("Error getting profile pic: ", error);
+        throw error;
     }
 }
 
