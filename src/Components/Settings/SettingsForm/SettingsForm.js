@@ -37,9 +37,9 @@ const SettingsForm = ({id}) => {
     const [profilePicture, setProfilePicture] = useState(localStorage.getItem("profile-picture-"+localStorage.getItem("uid")));
 
     const [validation, setValidation] = useState({
-        firstName: false,
-        lastName: false,
-        displayName: false,
+        firstName: true,
+        lastName: true,
+        displayName: true,
         phoneNumber: true,
         instagram: true,
         facebook: true,
@@ -248,6 +248,18 @@ const SettingsForm = ({id}) => {
         + number.substring(6, 10);
     }
 
+    const handleSubmit = (payload, profilePicture) => {
+        let temp = {...payload}
+        
+        Object.keys(temp).forEach((key) => {
+            if (typeof temp[key] === "undefined"){
+                temp[key] = '';
+            }
+        })
+
+        setUserInfo(temp, profilePicture)
+    }
+
     return (
         <Col xs={12} className="center settings-container">
             <Row>
@@ -357,7 +369,7 @@ const SettingsForm = ({id}) => {
             </Row>
             <Row>
                 <Col xs={12} className="submit-button">
-                    <Button disabled={!isValid} variant="contained" onClick={() => setUserInfo({id, firstName, lastName, displayName, phoneNumber, instagram, facebook, discord, youtube, twitter, address, posts}, file)}>
+                    <Button disabled={!isValid} variant="contained" onClick={() => handleSubmit({id, firstName, lastName, displayName, phoneNumber, instagram, facebook, discord, youtube, twitter, address, posts}, file)}>
                         {t("Submit")}
                     </Button>
                 </Col>
