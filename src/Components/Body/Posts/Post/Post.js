@@ -12,7 +12,6 @@ function Post({displayUrl, item, queryParam, settingsPage, setOpenEditModal, set
             setSelectedPost(item);
             setOpenEditModal(true);
         }else {
-            // e.preventDefault();
             setOpenSelectModal({show:true,item:item})
         }
     }

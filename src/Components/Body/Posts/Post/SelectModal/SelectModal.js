@@ -13,24 +13,25 @@ import { Link } from 'react-router-dom';
 
 const SelectModal = ({t, item, openSelectModal, setOpenSelectModal}) => {
     
-    const [createdDate, setCreatedData] = useState(null);
+    const [createdDate, setCreatedData] = useState(new Date(item?.timeStamp).toLocaleDateString());
 
     const [displayImage, setDisplayImage] = useState(0);
-    const [displayPost, setDisplayPost] = useState({});
+    const [displayPost, setDisplayPost] = useState({...item});
 
     const [profilePic, setProfilePic] = useState();
 
-    useEffect(() => {
-        if (!item?.id) {
-            return;
-        }
-        getPost(item?.id).then((data) => {
-            var dateCreated = new Date(data?.timeStamp).toLocaleDateString();
+    // useEffect(() => {
+    //     if (!item?.id) {
+    //         return;
+    //     }
+    //     console.log(item);
+    //     getPost(item?.id).then((data) => {
+    //         var dateCreated = new Date(data?.timeStamp).toLocaleDateString();
 
-            setDisplayPost(data);
-            setCreatedData(dateCreated);
-        });
-    }, [item]);
+    //         setDisplayPost(data);
+    //         setCreatedData(dateCreated);
+    //     });
+    // }, [item]);
 
     useEffect(() => {
         if (!displayPost?.author?.id) {
