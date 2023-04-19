@@ -23,19 +23,11 @@ function Body({posts, loadAllData, loadMoreData, loadingMoreData, showFilter, se
     const [blade, setBlade] = useState('All');
     const [status, setStatus] = useState('All');
 
-
     const [postsLength, setPostsLength] = useState(0);
     const [showMoreAllButtons, setShowMoreAllButtons] = useState(true);
     const [openSelectModal, setOpenSelectModal] = useState({show:false,item:null});
 
     const {t} = useTranslation();
-    // const [windowScroll, setWindowScroll] = useState(0); 
-
-    // useEffect(() => {
-    //     document.addEventListener('scroll', () => {
-    //         setWindowScroll(window.pageYOffset > 99);
-    //     });
-    // }, [])
 
     const resetFilter = () => {
         setMin(0);
@@ -54,15 +46,6 @@ function Body({posts, loadAllData, loadMoreData, loadingMoreData, showFilter, se
         });
     };
 
-    // const topFix = (windowScroll) ? 'fixed-top filter-container' : 'filter-container';
-    // const topMargin = (windowScroll && displayFilter) ? 'remove-padding post-margin' : 'remove-padding';
-    // const openFilterButton = (
-    //     <span className="filter-button-container">
-    //         <Button className="filter-button" onClick={() => {setShowFilter(true)}}>
-    //             <b>{t("Filter")}</b>
-    //         </Button>
-    //     </span>
-    // );
     const moreButton = () =>{
         loadMoreData(posts.length, setShowMoreAllButtons);
         setPostsLength(posts.length);
