@@ -42,7 +42,7 @@
     max-width: 500px;
     background-repeat: none;
     background-size: 100% 100%;
-    @media only screen and (max-width: 400px){
+    @media only screen and (max-width: 600px){
         min-height: 450px;
     }
 }
@@ -54,7 +54,7 @@
     max-width: 500px;
     background-repeat: none;
     background-size: 100% 100%;
-    @media only screen and (max-width: 400px){
+    @media only screen and (max-width: 600px){
         min-height: 300px;
         max-width: 250px;
     }
@@ -62,7 +62,6 @@
 
 @media only screen and (min-width: 600px){
     .modal-background {
-        // border: 2px solid black;
         width: 500px;
         border-radius: 4px;
         background-color: white;
@@ -112,16 +111,19 @@
 }
 
 .link-wrapper {
-    padding-top: 5px;
-    width: auto;
-    height: auto;
+    position: absolute;
+    top: 0px;
+    left: 0px;
 }
 
 .link-wrapper .account-profile {
-    position:absolute;
     width: 70px;
     height: 70px;
-    border-radius: 20px;
+    border-radius: 0px 10px 10px 10px;
+    @media only screen and (max-width: 600px){
+        width: 60px;
+        height: 60px;
+    }
 }
 
 .link-wrapper a {
@@ -130,6 +132,7 @@
 }
 
 .link-wrapper .display-name {
+    white-space: nowrap;
     z-index: 1000;
     position:absolute;
     margin-top:-20px;
@@ -138,7 +141,6 @@
     font-size: 0.875rem;
     line-height: 1.75;
     letter-spacing: 0.02857em;
-    min-width: 64px;
     color:white;
     background:#1976d2;
     border-radius:10px;

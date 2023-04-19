@@ -21,9 +21,17 @@ function Routing() {
     const [showFilter, setShowFilter] = useState(false);
     const [loadingMoreData, setLoadingMoreData] = useState(false);
 
+    function load(){                
+      var isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+      if (isSafari){
+          alert("This website has known issues with Safari, to have the best experience please switch to Chrome. To download Chrome for, go to - http://www.google.com/ and download Chrome.");
+      }
+    }
+
     useEffect(() => {
         let ignore = false;
         if (!ignore) {
+          load();
           getPostsQuery("timeStamp", 20, 0).then((allPosts) => {
             setPosts(allPosts);
           }).catch((error) => {

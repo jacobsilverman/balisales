@@ -59,9 +59,7 @@ const SelectModal = ({t, item, openSelectModal, setOpenSelectModal}) => {
         const pictureCls = `${index===displayImage ? 'show' : 'hidden'} select-image-container align-items-end`;
 
         return (
-                <Col xs={11} sm={11} md={7} style={{backgroundImage: `url(${image})`}} className={pictureCls} key={"post-"+image}>
-
-                </Col>
+            <Col xs={11} sm={11} md={7} style={{backgroundImage: `url(${image})`}} className={pictureCls} key={"post-"+image} />
         );
     })
 
