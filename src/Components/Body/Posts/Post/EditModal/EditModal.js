@@ -52,18 +52,17 @@ const EditModal = ({item, openEditModal, setOpenEditModal, filterPosts, setFilte
 
     useEffect(() => {
         let ignore = false;
-        (() => {
-            if (!ignore) {
-                setTitle(item?.title);
-                setDescription(item?.description)
-                setType(item?.type)
-                setBlade(item?.blade)
-                setBrand(item?.brand)
-                setCondition(item?.condition)
-                setPrice(item?.price)
-                setStatus(item?.status)
-            }
-        })()
+
+        if (!ignore) {
+            setTitle(item?.title);
+            setDescription(item?.description)
+            setType(item?.type)
+            setBlade(item?.blade)
+            setBrand(item?.brand)
+            setCondition(item?.condition)
+            setPrice(item?.price)
+            setStatus(item?.status)
+        }
 
         return () => ignore = true;
     }, [item]);

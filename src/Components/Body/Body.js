@@ -15,7 +15,7 @@ import Spinner from '../../Data/Constants/Spinner';
 
 function Body({posts, loadAllData, loadMoreData, loadingMoreData, showFilter, setShowFilter}) {
     const [min, setMin] = useState(0);
-    const [max, setMax] = useState(10000);
+    const [max, setMax] = useState(10000000000);
     const [brand, setBrand] = useState('All');
     const [type, setType] = useState('All');
     const [sort, setSort] = useState('All');
@@ -31,7 +31,7 @@ function Body({posts, loadAllData, loadMoreData, loadingMoreData, showFilter, se
 
     const resetFilter = () => {
         setMin(0);
-        setMax(10000);
+        setMax(10000000000);
         setBrand('All');
         setBlade('All');
         setType('All');
