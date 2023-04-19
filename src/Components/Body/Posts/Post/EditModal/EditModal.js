@@ -114,7 +114,7 @@ const EditModal = ({item, openEditModal, setOpenEditModal, filterPosts, setFilte
 
     const deletePost = async (item) => {
 		const storage = getStorage();
-        const postDoc = doc(db, "posts", item.id);
+        const postDoc = doc(db, `${environment()}-posts`, item.id);
 		await deleteDoc(postDoc);
 		deleteUserPost(item.id);
 		for (var i = 0; i < item.numberOfImages; i++) {
