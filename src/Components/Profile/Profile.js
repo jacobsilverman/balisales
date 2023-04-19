@@ -37,6 +37,10 @@ const Profile = () => {
     const { t } = useTranslation();
 
     useEffect(() => {
+        if (!params?.id) {
+            return
+        }
+
         getUserInfo(params?.id).then((result) => {
             setUserData(result);
         });
