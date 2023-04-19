@@ -249,15 +249,15 @@ const SettingsForm = ({id}) => {
     }
 
     const handleSubmit = (payload, profilePicture) => {
-        let temp = {...payload}
+        let parsedPayload = {...payload}
         
-        Object.keys(temp).forEach((key) => {
-            if (typeof temp[key] === "undefined"){
-                temp[key] = '';
+        Object.keys(parsedPayload).forEach((key) => {
+            if (typeof parsedPayload[key] === "undefined"){
+                parsedPayload[key] = '';
             }
         })
 
-        setUserInfo(temp, profilePicture)
+        setUserInfo(parsedPayload, profilePicture)
     }
 
     return (
