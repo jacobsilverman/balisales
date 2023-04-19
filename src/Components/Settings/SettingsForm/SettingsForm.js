@@ -134,7 +134,7 @@ const SettingsForm = ({id}) => {
 
     const handleInstagramChange = (event) => {
         let newVal = event.target.value;
-        if (newVal.match(/['\-"><;\\+{}!@#$%=^*_|[\]]/)) {
+        if (newVal.match(/['\-"><;.\\+/{}!@#$%=^*_|[\]]/)) {
             return
         }
 
@@ -143,7 +143,7 @@ const SettingsForm = ({id}) => {
 
     const handleFacebookChange = (event) => {
         let newVal = event.target.value;
-        if (newVal.match(/['\-"><;\\+{}!@#$%=^*_|[\]]/)) {
+        if (newVal.match(/['\-"><;.\\+/{}!@#$%=^*_|[\]]/)) {
             return
         }
 
@@ -153,7 +153,7 @@ const SettingsForm = ({id}) => {
 
     const handleDiscordChange = (event) => {
         let newVal = event.target.value;
-        if (newVal.match(/['\-"><;\\+{}!@$%=^*_|[\]]/)) {
+        if (newVal.match(/['\-"><;.\\+/{}!@#$%=^*_|[\]]/)) {
             return
         }
 
@@ -162,7 +162,7 @@ const SettingsForm = ({id}) => {
 
     const handleYoutubeChange = (event) => {
         let newVal = event.target.value;
-        if (newVal.match(/['\-"><;\\+{}!@#$%=^*_|[\]]/)) {
+        if (newVal.match(/['\-"><;.\\+/{}!@#$%=^*_|[\]]/)) {
             return
         }
 
@@ -171,7 +171,7 @@ const SettingsForm = ({id}) => {
 
     const handleTwitterChange = (event) => {
         let newVal = event.target.value;
-        if (newVal.match(/['\-"><;\\+{}!@#$%=^*_|[\]]/)) {
+        if (newVal.match(/['\-"><;.\\+/{}!@#$%=^*_|[\]]/)) {
             return
         }
 
@@ -180,7 +180,7 @@ const SettingsForm = ({id}) => {
 
     const handleAddressChange = (event) => {
         let newVal = event.target.value;
-        if (newVal.match(/['\-"><;\\+{}!@#$%=^*_|[\]]/)) {
+        if (newVal.match(/['\-"><;.\\+/{}!@#$%=^*_|[\]]/)) {
             return
         }
 
@@ -190,7 +190,7 @@ const SettingsForm = ({id}) => {
 
     const handleUnitChange = (event) => {
         let newVal = event.target.value;
-        if (newVal.match(/['\-"><;\\+{}!@#$%=^*_|[\]]/)) {
+        if (newVal.match(/['\-"><;.\\+/{}!@#$%=^*_|[\]]/)) {
             return
         }
 
@@ -200,7 +200,7 @@ const SettingsForm = ({id}) => {
 
     const handleCityChange = (event) => {
         let newVal = event.target.value;
-        if (newVal.match(/['\-"><;\\+{}!@#$%=^*_|[\]]/)) {
+        if (newVal.match(/['\-"><;.\\+/{}!@#$%=^*_|[\]]/)) {
             return
         }
 
@@ -210,7 +210,7 @@ const SettingsForm = ({id}) => {
 
     const handleCountryChange = (event) => {
         let newVal = event.target.value;
-        if (newVal.match(/['\-"><;\\+{}!@#$%=^*_|[\]]/)) {
+        if (newVal.match(/['\-"><;.\\+/{}!@#$%=^*_|[\]]/)) {
             return
         }
 
@@ -220,7 +220,7 @@ const SettingsForm = ({id}) => {
 
     const handleStateChange = (event) => {
         let newVal = event.target.value;
-        if (newVal.match(/['\-"><;\\+{}!@#$%=^*_|[\]]/)) {
+        if (newVal.match(/['\-"><;.\\+/{}!@#$%=^*_|[\]]/)) {
             return
         }
 
@@ -230,7 +230,7 @@ const SettingsForm = ({id}) => {
 
     const handleZipcodeChange = (event) => {
         let newVal = event.target.value;
-        if (newVal.match(/['\-"><;\\+{}!@#$%=^*_|[\]]/)) {
+        if (newVal.match(/['\-"><;.\\+/{}!@#$%=^*_|[\]]/)) {
             return
         }
 

@@ -22,6 +22,7 @@ const Profile = () => {
     const params = Object.fromEntries(urlSearchParams.entries());
     const loggedInUser = localStorage.getItem("uid");
 
+    const [showPosts, setShowPosts] = useState(true);
     const [userData, setUserData] = useState({});
     const [profilePic, setProfilePic] = useState(null);
     const [reference, setReference] = useState({
@@ -134,7 +135,13 @@ const Profile = () => {
                 </Col>
             </Row>
             {(reference?.open && <ReportReview t={t} id={params?.id} userData={userData} reference={reference} setReference={setReference} />) || <hr style={{margin:"0"}} />}
-            <Account user={params?.id} settingsPage={false} />
+            <Col xs={12} className="info-dropdown">
+                <h2 onClick={() => setShowPosts(cur => !cur)}>
+                    Posts&nbsp;&nbsp;
+                    <i size="small" className='material-icons'>{ showPosts ? "visibility_off" : "visibility_on"}</i>
+                </h2>
+            </Col>
+            {showPosts && <Account user={params?.id} settingsPage={false} />}
             
             {userData?.reviews?.length > 0 && <>
                 <hr style={{margin:"0"}} />

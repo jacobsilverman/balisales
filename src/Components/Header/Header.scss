@@ -204,6 +204,15 @@
   max-height: 500px;
 }
 
+.info-dropdown {
+  display: flex;
+  padding-left: 10px;
+  padding-top: 10px;
+  h2 {
+      cursor: pointer;
+  }
+}
+
 .loc-pin {
   display: flex;
   flex: 1;

@@ -32,11 +32,17 @@ const ReviewsList = (reviews) => {
 };
 
 const Reviews = ({userData}) => {
-    return userData?.reviews?.length > 0 && (<Row className="reviews-container">
+    return userData?.reviews?.length > 0 && (<>
+    <Row className="reviews-title-container">
         <Col xs={12}>
-            <h3>Reviews</h3>
+            <h2>Reviews</h2>
+        </Col>
+    </Row>
+    <Row className="reviews-container">
+        <Col xs={12}>
             {ReviewsList([...(userData?.reviews || []), ...(userData?.reports || [])])}
         </Col>
-    </Row>);
+    </Row>
+    </>);
 }
 export default Reviews;
