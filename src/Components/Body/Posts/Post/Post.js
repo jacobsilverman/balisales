@@ -1,6 +1,4 @@
 import './Post.scss';
-
-import { Link } from 'react-router-dom';
  
 import { isMobile } from '../../../../Data/Constants';
 
