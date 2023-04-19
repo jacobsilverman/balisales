@@ -22,8 +22,8 @@ function Routing() {
   const [loadingMoreData, setLoadingMoreData] = useState(false);
 
   function load(){                
-    var isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-    if (isSafari){
+    var ua = navigator.userAgent.toLowerCase();
+    if (ua.indexOf('safari') != -1 && !(ua.indexOf('chrome') > -1)){
       alert("Performance with Safari is known to be slow, for the best experience please switch to Chrome. To download Chrome for, go to - http://www.google.com/ and download Chrome.");
     }
   }
