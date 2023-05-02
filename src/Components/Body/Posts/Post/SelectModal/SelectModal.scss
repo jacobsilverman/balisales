@@ -60,13 +60,22 @@
     }
 }
 
-@media only screen and (min-width: 600px){
-    .modal-background {
-        width: 500px;
-        border-radius: 4px;
-        background-color: white;
-        padding: 20px;
-        position:relative;
+.modal-background {
+    overflow-y: auto;
+    width: 95vw;
+    height: 95vh;
+    max-width: 95vw;
+    max-height: 95vh;
+    border-radius: 4px;
+    background-color: white;
+    padding: 20px;
+    position:relative;
+    @media (pointer:none), (pointer:coarse) {
+        position: absolute;
+        max-height: 85vh;
+        height: 85vh;
+        bottom: 2.5vh;
+        left: 2.5vw;
     }
 }
 
@@ -87,9 +96,7 @@
     position: absolute;
     right: 0;
     top: 0;
-    color: #1976d2;
-    font-size: 22px;
-
+    font-size: 26px;
 }
 
 .display-title {
@@ -97,10 +104,38 @@
 }
 
 .description-wrapper {
-    padding-top: 10px;
+    padding: 1vh;
     text-align: center;
-    font-size: 16px;
+    font-size: 22px;
 }
+
+.multi-content {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    background: rgba(0,0,0,0.8); 
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+}
+::-webkit-scrollbar-thumb:window-inactive {
+    background: rgba(0,0,0,0.4); 
+}
+
 
 .content-wrapper .desciption-title.br {
     background-color: red;
@@ -111,9 +146,12 @@
 }
 
 .link-wrapper {
-    position: absolute;
-    top: 0px;
-    left: 0px;
+    display: flex;
+    justify-content: center;
+}
+
+.user-profile-selected-post{
+    padding-top: 25px;
 }
 
 .link-wrapper .account-profile {
@@ -132,28 +170,21 @@
 }
 
 .link-wrapper .display-name {
-    white-space: nowrap;
-    z-index: 1000;
-    position:absolute;
-    margin-top:-20px;
     font-family: "Roboto","Helvetica","Arial",sans-serif;
     font-weight: 500;
-    font-size: 0.875rem;
-    line-height: 1.75;
+    font-size: 1.575rem;
     letter-spacing: 0.02857em;
-    color:white;
-    background:#1976d2;
-    border-radius:10px;
-    padding:2px 10px;
+    color:#1976d2;
 }
-
 
 .content-wrapper {
     min-width: 100px;
-    padding: 10px;
+    padding: 15px;
+    font-size: 18px;
     position: relative;
     height: auto;
-    border: 1px solid #1976d2;
+    border: 1px solid black;
+    border-radius: 5px;
     margin-top: 30px;
     text-align: center;
 }
@@ -165,19 +196,17 @@
     width: auto;
     font-family: "Roboto","Helvetica","Arial",sans-serif;
     font-weight: 500;
-    font-size: 0.775rem;
+    font-size: 0.8rem;
     line-height: 1.75;
     letter-spacing: 0.02857em;
     color:white;
     background:#1976d2;
     border-radius: 10px;
-    padding: 2px 2px;
+    padding: 2px;
 }
 
 .created {
-    position: absolute;
-    bottom: 0;
-    right: 5px;
+    margin-top: 15px;
 }
 
 .all-pictures {
