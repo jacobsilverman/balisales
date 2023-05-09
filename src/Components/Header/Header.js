@@ -29,7 +29,11 @@ const SearchBar = ({posts, showSearch, t}) => {
             const price = (<Popover>${post?.price}</Popover>);
             if (!cache[post.author.name.toLowerCase()] && post.author.name.toLowerCase().includes(searchValue.toLowerCase())){
                 cache[post.author.name.toLowerCase()] = true;
-                return (<a href={"/profile?id="+post?.author?.id} targe="blank" key={"search-"+post?.id}>{post?.author.name}</a>)
+                return (
+                    <OverlayTrigger  trigger="hover" overlay={<Popover>User Info</Popover>} placement="left">
+                        <a href={"/profile?id="+post?.author?.id} targe="blank" key={"search-"+post?.id}>{post?.author.name}</a>
+                    </OverlayTrigger>
+                );
             } else if (post.title.toLowerCase().includes(searchValue)) {
                 return (
                     <OverlayTrigger  trigger="hover" overlay={price} placement="left">
@@ -280,7 +284,7 @@ const Header = ({posts, setShowFilter}) => {
     const navCls = `account-dropdown ${showNav ? "visible" : 'hidden'}`;
 
     const navPopover = (
-        <Popover id="popover-nav" title="Account Info">
+        <Popover id="popover-nav">
             <Row className={navCls}>
                 <Col xs={12} className="popover-container">
                     {isAuth && <><Link className="white" to={{pathname: '/createPost'}}>
@@ -312,7 +316,7 @@ const Header = ({posts, setShowFilter}) => {
     );
 
     const searchPopover = (
-        <Popover id="popover-search" title="Account Info">
+        <Popover id="popover-search">
             <SearchBar posts={posts} showSearch={showSearch} t={t} />
         </Popover>
     );
@@ -320,7 +324,7 @@ const Header = ({posts, setShowFilter}) => {
     const notificationCls = `account-dropdown ${showNotifications ? "visible" : 'hidden'}`;
 
     const notificationPopover = (
-        <Popover id="popover-notications" title="Account Info">
+        <Popover id="popover-notications">
             <Row className={notificationCls}>
                 <Button xs={3} className="popover-container">
                     <i className="material-icons">highlight</i>
@@ -344,7 +348,7 @@ const Header = ({posts, setShowFilter}) => {
     // );
 
     const accountOptionsPopover = (
-        <Popover id="popover-account" title="Account Info">
+        <Popover id="popover-account">
             <AccountOptions 
                 uid={uid} 
                 isAuth={isAuth} 
