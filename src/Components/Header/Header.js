@@ -60,8 +60,9 @@ const SearchBar = ({posts, showSearch, t}) => {
 
             return val;
         })]
+        result = result.filter(element => element !== undefined && element.length !== 0);
 
-        return result;
+        return result.length > 0 ? result : "No Results Found";
     }, [searchValue])
     
     const searchCls = `account-dropdown ${showSearch ? "visible" : 'hidden'}`;
