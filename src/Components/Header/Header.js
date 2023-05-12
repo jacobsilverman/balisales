@@ -17,6 +17,8 @@ import { Button, TextField } from '@mui/material';
 
 import { useTranslation } from "react-i18next";
 
+import SelectModal from '../Body/Posts/Post/SelectModal';
+
 import Donate from "../Donate";
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 
@@ -29,11 +31,16 @@ const SearchBar = ({posts, showSearch, t}) => {
             const price = (<Popover>${post?.price}</Popover>);
             if (!cache[post.author.name.toLowerCase()] && post.author.name.toLowerCase().includes(searchValue.toLowerCase())){
                 cache[post.author.name.toLowerCase()] = true;
-                return (<a href={"/profile?id="+post?.author?.id} targe="blank" key={"search-"+post?.id}>{post?.author.name}</a>)
+                return (
+                    <OverlayTrigger  trigger="hover" overlay={<Popover>User Info</Popover>} placement="left">
+                        <a href={"/profile?id="+post?.author?.id} targe="blank" key={"search-"+post?.id}>{post?.author.name}</a>
+                    </OverlayTrigger>
+                );
             } else if (post.title.toLowerCase().includes(searchValue)) {
                 return (
                     <OverlayTrigger  trigger="hover" overlay={price} placement="left">
-                        <a href={"/singlePost?id="+post.id} targe="blank" key={"search-"+post?.id}>{post.title}</a>
+                        <a className="post-link" key={"search-"+post?.id} onClick={()=>setOpenPost({open:true,post:post})}>{post.title}</a>
+                        {/* <a href={"/singlePost?id="+post.id} targe="blank" key={"search-"+post?.id}>{post.title}</a> */}
                     </OverlayTrigger>
                 );
             }
@@ -60,8 +67,9 @@ const SearchBar = ({posts, showSearch, t}) => {
 
             return val;
         })]
+        result = result.filter(element => element !== undefined && element.length !== 0);
 
-        return result;
+        return result.length > 0 ? result : "No Results Found";
     }, [searchValue])
     
     const searchCls = `account-dropdown ${showSearch ? "visible" : 'hidden'}`;
@@ -69,9 +77,14 @@ const SearchBar = ({posts, showSearch, t}) => {
         let newValue = event.target.value;
         setSearchValue(newValue);
     }
+    const [openPost, setOpenPost] = useState(false);
   
     return (
         <Fragment>
+            <SelectModal t={t} 
+                item={openPost.post} 
+                openSelectModal={openPost.open} 
+                setOpenSelectModal={setOpenPost} />
             <Row className={searchCls}>
                 <Col xs={12} className="popover-container">
                     <TextField autoComplete="off" fullWidth label={t("Search")} color="" type="search" defaultValue={searchValue} onChange={searchAbility} />
@@ -279,7 +292,7 @@ const Header = ({posts, setShowFilter}) => {
     const navCls = `account-dropdown ${showNav ? "visible" : 'hidden'}`;
 
     const navPopover = (
-        <Popover id="popover-nav" title="Account Info">
+        <Popover id="popover-nav">
             <Row className={navCls}>
                 <Col xs={12} className="popover-container">
                     {isAuth && <><Link className="white" to={{pathname: '/createPost'}}>
@@ -311,7 +324,7 @@ const Header = ({posts, setShowFilter}) => {
     );
 
     const searchPopover = (
-        <Popover id="popover-search" title="Account Info">
+        <Popover id="popover-search">
             <SearchBar posts={posts} showSearch={showSearch} t={t} />
         </Popover>
     );
@@ -319,7 +332,7 @@ const Header = ({posts, setShowFilter}) => {
     const notificationCls = `account-dropdown ${showNotifications ? "visible" : 'hidden'}`;
 
     const notificationPopover = (
-        <Popover id="popover-notications" title="Account Info">
+        <Popover id="popover-notications">
             <Row className={notificationCls}>
                 <Button xs={3} className="popover-container">
                     <i className="material-icons">highlight</i>
@@ -343,7 +356,7 @@ const Header = ({posts, setShowFilter}) => {
     // );
 
     const accountOptionsPopover = (
-        <Popover id="popover-account" title="Account Info">
+        <Popover id="popover-account">
             <AccountOptions 
                 uid={uid} 
                 isAuth={isAuth} 
