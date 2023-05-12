@@ -223,7 +223,7 @@ const Header = ({posts, setShowFilter}) => {
     let navigate = useNavigate();
     const { t } = useTranslation();
     
-    const [isAuth, setIsAuth] = useState(localStorage.getItem("isAuth"));
+    const [isAuth, setIsAuth] = useState(localStorage.getItem("isAuth")==="true");
     const [showAccount, setShowAccount] = useState(false);
     const [showDonate, setShowDonate] = useState(false);
     const [showInbox, setShowInbox] = useState(false);
@@ -375,7 +375,7 @@ const Header = ({posts, setShowFilter}) => {
         intent: "capture",
     };
 
-    const navBar = useMemo(() =>{
+    const navBar = useMemo(() => {
         return (
             <Container>
                 <PayPalScriptProvider options={initialOptions}>
@@ -383,20 +383,16 @@ const Header = ({posts, setShowFilter}) => {
                 </PayPalScriptProvider>
                 <Row>
                     <Col xs={3} sm={3} md={3} lg={2} className="login-container-left">
-                        <Link className="white" to={{pathname: '/'}}>
-                            <Button onClick={() =>{resetAllPopovers();setPageTitle("Home")}}>
-                                <i className="material-icons">home</i>
-                            </Button>
-                        </Link>
+                        <Button href="/" onClick={() =>{resetAllPopovers();setPageTitle("Home")}}>
+                            <i className="material-icons">home</i>
+                        </Button>
                         {location.pathname==='/' ? 
                             <Button onClick={() =>{resetAllPopovers();setShowFilter(cur => !cur)}}>
                                 {t("Filter")}
                             </Button>
-                            : <Link className="white" to={{pathname: '/'}}>
-                                <Button onClick={() =>{resetAllPopovers();setPageTitle("Home")}}>
-                                    {t("Browse")}
-                                </Button>
-                            </Link>}
+                            : <Button href="/" onClick={() =>{resetAllPopovers();setPageTitle("Home")}}>
+                                {t("Browse")}
+                            </Button>}
                         <OverlayTrigger trigger="click" placement="bottom-start" show={showNav} overlay={navPopover}>
                             <Button onClick={() =>{resetAllPopovers("nav");setShowNav(show => !show)}}>
                                 <i className="material-icons">format_list_bulleted</i>
