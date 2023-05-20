@@ -186,7 +186,7 @@ function CreatePost() {
 
     const handleTitleChange = (event) => {
         let newValue = event.target.value;
-        if (newValue.length > 12 || newValue.match(/['\-"><;:\\+{}!@#$%=^*_|[\]]/)) {
+        if (newValue.length > 25 || newValue.match(/['\-"><;:\\+{}!@#$%=^*_|[\]]/)) {
             return
         }
 
@@ -242,7 +242,7 @@ function CreatePost() {
 
     const handleDescriptionChange = (event) => {
         let newValue = event.target.value;
-        if (newValue.match(/['\-"><;:\\+{}!@#$%=^*_|[\]]/)) {
+        if (newValue.length > 425 || newValue.match(/['\-"><;:\\+{}!@#$%=^*_|[\]]/)) {
             return;
         }
         setDescription(newValue);

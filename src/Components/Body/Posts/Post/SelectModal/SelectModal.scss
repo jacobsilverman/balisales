@@ -9,8 +9,16 @@
     margin-bottom: 15px;
 }
 
+.horizontal-center {
+    display: flex;
+    justify-content: center;
+}
+
 .info-container{
-    width: 90%;
+    padding: 30px;
+    border-radius: 15px;
+    max-width: 600px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .traverse-container {
@@ -51,7 +59,7 @@
     margin-bottom: 15px;
     border-radius: 10px;
     min-height: 340px;
-    max-width: 500px;
+    max-width: 400px;
     background-repeat: none;
     background-size: 100% 100%;
     @media only screen and (max-width: 600px){
@@ -61,15 +69,15 @@
 }
 
 .modal-background {
+    position:relative;
     overflow-y: auto;
     width: 95vw;
     height: 95vh;
-    max-width: 95vw;
+    max-width: 700px;
     max-height: 95vh;
     border-radius: 4px;
     background-color: white;
     padding: 20px;
-    position:relative;
     @media (pointer:none), (pointer:coarse) {
         position: absolute;
         max-height: 85vh;
@@ -89,6 +97,15 @@
     align-items: center;
 }
 
+.full-center {
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
 #select-modal-exit-button:hover {
     color: red;
 } 
@@ -99,14 +116,38 @@
     font-size: 26px;
 }
 
+.selected-post-image-container {
+    margin: 40px 0 40px 0;
+}
+
 .display-title {
-    margin-bottom: 10px;
+    h1 {
+        font-size: 60px;
+        font-weight: 700;
+    }
+}
+
+.brand-title {
+    h3 {
+        font-size: 30px;
+        font-weight: 600;
+    }
+}
+
+.date-created {
+    font-size: 15px;
+    color: black;
+}
+
+.condition-text { 
+    color: grey;
+    font-size: 25px;
 }
 
 .description-wrapper {
-    padding: 1vh;
-    text-align: center;
+    margin-top: 10px;
     font-size: 22px;
+    font-weight: 500;
 }
 
 .multi-content {
@@ -137,12 +178,12 @@
 }
 
 
-.content-wrapper .desciption-title.br {
-    background-color: red;
+.selling-price-wrapper .br {
+    color: red;
 }
 
-.content-wrapper .desciption-title.bg {
-    background-color: green;
+.selling-price-wrapper .bg {
+   color: green;
 }
 
 .link-wrapper {
@@ -154,10 +195,15 @@
     padding-top: 25px;
 }
 
-.link-wrapper .account-profile {
+.vertical-center {
+    display: flex;
+    align-items: center;
+}
+
+.link .account-profile {
     width: 70px;
     height: 70px;
-    border-radius: 0px 10px 10px 10px;
+    border-radius: 10px 10px 10px 10px;
     @media only screen and (max-width: 600px){
         width: 60px;
         height: 60px;
@@ -169,40 +215,27 @@
     height: 0px;
 }
 
-.link-wrapper .display-name {
+.display-name {
     font-family: "Roboto","Helvetica","Arial",sans-serif;
     font-weight: 500;
-    font-size: 1.575rem;
+    font-size: 1.675rem;
     letter-spacing: 0.02857em;
     color:#1976d2;
 }
 
-.content-wrapper {
+.selling-price-wrapper {
+    margin: 0px;
     min-width: 100px;
-    padding: 15px;
-    font-size: 18px;
-    position: relative;
+    font-size: 1.675rem;
+    letter-spacing: 0.02857em;
+    font-weight: 800;
     height: auto;
-    border: 1px solid black;
-    border-radius: 5px;
-    margin-top: 30px;
-    text-align: center;
+    border-radius: 15px;
 }
 
-.content-wrapper .desciption-title{
-    position: absolute;
-    margin-top: -30px;
-    margin-left: -10px;
-    width: auto;
-    font-family: "Roboto","Helvetica","Arial",sans-serif;
-    font-weight: 500;
-    font-size: 0.8rem;
-    line-height: 1.75;
-    letter-spacing: 0.02857em;
-    color:white;
-    background:#1976d2;
-    border-radius: 10px;
-    padding: 2px;
+
+.selling-price-wrapper .desciption-title{
+    font-size: 15px;
 }
 
 .created {

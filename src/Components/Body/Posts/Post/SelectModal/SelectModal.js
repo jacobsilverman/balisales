@@ -58,103 +58,106 @@ const SelectModal = ({t, item, openSelectModal, setOpenSelectModal}) => {
         </Row>
     )
 
-    const buySellTradeClass = "desciption-title "+((displayPost?.type === "Buying") ? "bg" : (displayPost?.type === "Selling") ? "br" : "");
+    const buySellTradeClass = "desciption-title horizontal-center";
+    const colorPriceClass = "price-title horizontal-center "+((displayPost?.type === "Buying") ? "bg" : (displayPost?.type === "Selling") ? "br" : "");
+
+    
     const displaySelectedPost = (
         <Modal open={openSelectModal} className="select-modal">
             <Row>
-                <Col className="modal-background">
-                    <Button id="select-modal-exit-button" color="error" onClick={() => setOpenSelectModal({show:false})}>
-                        X
-                    </Button>  
-                    <Row>
-                        <Col xs={12} className="display-title center">
-                            <h1>{displayPost?.title}</h1>
+                <Col className="modal-background" xs={12}>
+                    <Row className="full-center">
+                        <Col xs={12} className="selected-post-image-container">
+                            <Button id="select-modal-exit-button" color="error" onClick={() => setOpenSelectModal({show:false})}>
+                                X
+                            </Button>  
+
+                            <Row className="content-container">
+                                {displayPost?.numberOfImages > 1 && <Col xs={1} className="traverse-container">
+                                    <Button id="traverse-prev-button" onClick={handlePreviousImage}>{"<"}</Button>
+                                </Col>}
+                                {displayPost?.urls && postPictures}
+                                {displayPost?.numberOfImages > 1 && <Col xs={1} className="traverse-container">
+                                    <Button id="traverse-next-button" onClick={handleNextImage}>{">"}</Button>
+                                </Col>}
+                            </Row>
+                            
+                            {displayPost?.numberOfImages > 1 && postBottomPictures}
                         </Col>
-                    </Row>
-                    <Row className="content-container">
-                        {displayPost?.numberOfImages > 1 && <Col xs={1} className="traverse-container">
-                            <Button id="traverse-prev-button" onClick={handlePreviousImage}>{"<"}</Button>
-                        </Col>}
-                        {displayPost?.urls && postPictures}
-                        {displayPost?.numberOfImages > 1 && <Col xs={1} className="traverse-container">
-                            <Button id="traverse-next-button" onClick={handleNextImage}>{">"}</Button>
-                        </Col>}
-                    </Row>
-                    
-                    {displayPost?.numberOfImages > 1 && postBottomPictures}
-                    {/* {displayPost?.numberOfImages > 1 &&
-                    <Row>
-                        <Col xs={6} className="previous-image">
-                            <Button variant="contained" onClick={handlePreviousImage}>{t("Previous")}</Button>
-                        </Col>
-                        <Col xs={6} className="next-image">
-                            <Button variant="contained" onClick={handleNextImage}>{t("Next")}</Button>
-                        </Col>
-                    </Row>} */}
-                    <Row style={{justifyContent:"center"}}>
-                        <Col xs={12} className="info-container">
-                            <Row className="description-wrapper">
-                                {/* <div className="desciption-title">
-                                    {t("Description")}
-                                </div> */}
-                                <Col xs={12}>
-                                    {displayPost?.description}
+                        
+                            {/* {displayPost?.numberOfImages > 1 &&
+                            <Row>
+                                <Col xs={6} className="previous-image">
+                                    <Button variant="contained" onClick={handlePreviousImage}>{t("Previous")}</Button>
+                                </Col>
+                                <Col xs={6} className="next-image">
+                                    <Button variant="contained" onClick={handleNextImage}>{t("Next")}</Button>
+                                </Col>
+                            </Row>} */}
+                        <Col xs={12} >
+                            <Row className="horizontal-center">
+                                <Col xs={12} className="info-container">
+                                    <Row>
+                                        <Col xs={12}  className="brand-title">
+                                            <h3>{displayPost?.brand}</h3>
+                                        </Col>
+                                    </Row>
+                                    <Row>
+                                        <Col xs={12} className="display-title">
+                                            <h1>{displayPost?.title}</h1>
+                                        </Col>
+                                    </Row>
+                                    <Row>
+                                        <Col xs={12} className="condition-text">
+                                            {t("Condition")}: {displayPost?.condition}
+                                        </Col>
+                                    </Row>
+                                    <Row className="description-wrapper">
+                                        <Col xs={12}>
+                                            {displayPost?.description}
+                                        </Col>
+                                    </Row>
+                                    <hr />
+                                    <Row>
+                                        <Col xs={7}>
+                                            <Row>
+                                                <Col xs={4}>
+                                                    <Link className="link" to={{pathname: '/profile', search: "id=" + displayPost?.author?.id}}>
+                                                        <div className="account-profile" style={{backgroundImage: `url(${profilePic})`}} />
+                                                    </Link>
+                                                </Col>
+                                                <Col xs={8}>
+                                                    <Link to={{pathname: '/profile', search: "id=" + displayPost?.author?.id}}>
+                                                        <div className="display-name">
+                                                            {displayPost?.author?.name}
+                                                        </div>
+                                                        <div className="date-created">
+                                                            <b>{t("Date Created")}</b>: {createdDate}
+                                                        </div>
+                                                    </Link>
+                                                </Col>
+                                            </Row>
+                                        </Col>
+                                        <Col xs={5}>
+                                            <Row className="multi-content selling-price-wrapper">
+                                                <Col xs={12} className={colorPriceClass}>
+                                                    ${displayPost?.price}
+                                                </Col>
+                                                <Col xs={12}  className={buySellTradeClass}>
+                                                    <b>{t(displayPost?.type)}</b>
+                                                </Col>
+                                            </Row>
+                                        </Col>
+                                    </Row>
                                 </Col>
                             </Row>
-                            <div className="multi-content">
-                                <div className="content-wrapper">
-                                    <div className={buySellTradeClass}>
-                                        {t(displayPost?.type)}
-                                    </div>
-                                    ${displayPost?.price}
-                                </div>
-
-                                <div className="content-wrapper">
-                                    <div className="desciption-title">
-                                        {t("Condition")}
-                                    </div>
-                                    {displayPost?.condition}
-                                </div>
-                            </div>
-                            <div className="multi-content">
-                                <div className="content-wrapper">
-                                    <div className="desciption-title">
-                                        {t("Brand")}
-                                    </div>
-                                    {displayPost?.brand}
-                                </div>
-                            </div>
-                            <div className="user-profile-selected-post">
-                                <Link className="link-wrapper" to={{pathname: '/profile', search: "id=" + displayPost?.author?.id}}>
-                                    <div className="account-profile" style={{backgroundImage: `url(${profilePic})`}} />
-                                </Link>
-                                <Link className="link-wrapper" to={{pathname: '/profile', search: "id=" + displayPost?.author?.id}}>
-                                    <div className="display-name">{displayPost?.author?.name}</div>
-                                </Link>
-                            </div>
-                            <div className="created center">
-                                {/* <div className="desciption-title">
-                                    {t("Created")}
-                                </div> */}
-                                <b>Date Created</b>: {createdDate}
-                            </div>
+                            {/* <Row>
+                                <Col>
+                                    <Button>Contact</Button>
+                                </Col>
+                            </Row> */}
                         </Col>
                     </Row>
-                    {/* <Row>
-                        <Col xs={3}>
-                        
-                            <Link className="link-wrapper" to={{pathname: '/profile', search: "id=" + displayPost?.author?.id}}>
-                                <div className="display-name">{displayPost?.author?.name}</div>
-                                <div className="account-profile center" style={{backgroundImage: `url(${profilePic})`}} />
-                            </Link>
-
-                        </Col>
-                        <Col xs={4}>
-                            <Link className="link-wrapper" to={{pathname: '/profile', search: "id=" + displayPost?.author?.id}}>
-                                <div className="display-name">{displayPost?.author?.name}</div>
-                            </Link>
-                        </Col>
-                    </Row> */}
                 </Col>
             </Row>
         </Modal>
