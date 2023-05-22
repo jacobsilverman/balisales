@@ -21,17 +21,17 @@ function Routing() {
   const [showFilter, setShowFilter] = useState(false);
   const [loadingMoreData, setLoadingMoreData] = useState(false);
 
-  function load(){                
-    var ua = navigator.userAgent.toLowerCase();
-    if (ua.indexOf('safari') != -1 && !(ua.indexOf('chrome') > -1)){
-      alert("Performance with Safari is known to be slow, for the best experience please switch to Chrome. To download Chrome for, go to - http://www.google.com/ and download Chrome.");
-    }
-  }
+  // function loadWarning(){                
+  //   var ua = navigator.userAgent.toLowerCase();
+  //   if (ua.indexOf('safari') != -1 && !(ua.indexOf('chrome') > -1)){
+  //     alert("Performance with Safari is known to be slow, for the best experience please switch to Chrome. To download Chrome for, go to - http://www.google.com/ and download Chrome.");
+  //   }
+  // }
 
   useEffect(() => {
     let ignore = false;
     if (!ignore) {
-      load();
+      // loadWarning();
       getPostsQuery("timeStamp", 20, 0).then((allPosts) => {
         setPosts(allPosts);
       }).catch((error) => {
