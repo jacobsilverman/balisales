@@ -22,7 +22,7 @@ var AboutUs = () => {
                                 With recent dilemmas on the instagram sales channel I thought it would be a wonderful opporunity to start this project. Even though there are already plenty of alternative markets for Balisongs I find they dont satisfy 
                     all the possible areas of contention when it comes to balisong deals. Whether it be surcharges, unknown identities/potential scams, difficulties with filtering to find your desired balisongs, or any issues a user can face 
                     my aim is to completely eliminate these problems by actively enhancing this website based on the communities preferences and ideas.*/}
-            <Row className="">
+            <Row>
                 <Col>
                     <h2>Mission</h2>
                 </Col>
@@ -60,19 +60,18 @@ var AboutUs = () => {
            <Row>
                 <Col>
                     <Card>
-                        <div style={{ display:'flex', justifyContent:'center', alignItems: "center"}}>
+                        <div className="full-center">
                             <CardMedia
                                 sx={{ height: 200, width:200 }}
-                                
                                 image={defaultProfile}
                                 title="Jacob's Image"
                                 />
                         </div>
                         <CardContent>
-                            <Typography gutterBottom variant="h5" component="div">
+                            <Typography gutterBottom variant="h5" component="div" className="full-center">
                                 Jacob Silverman
                             </Typography>
-                            <Typography variant="body2" color="text.secondary">
+                            <Typography variant="body2" color="text.secondary" className="full-center">
                                 Founder, Web Developer
                             </Typography>
                         </CardContent>
@@ -80,19 +79,18 @@ var AboutUs = () => {
                 </Col>
                 <Col>
                     <Card>
-                        <div style={{ display:'flex', justifyContent:'center', alignItems: "center"}}>
+                        <div className="full-center">
                             <CardMedia
                                 sx={{ height: 200, width:200 }}
-                                style={{ display:'flex', justifyContent:'center' }}
                                 image={defaultProfile}
                                 title="Nathan's Image"
                                 />
                         </div>
                         <CardContent>
-                            <Typography gutterBottom variant="h5" component="div">
+                            <Typography gutterBottom variant="h5" component="div" className="full-center">
                                 Nathan Lewtschuk
                             </Typography>
-                            <Typography variant="body2" color="text.secondary">
+                            <Typography variant="body2" color="text.secondary" className="full-center">
                                 Designer
                             </Typography>
                         </CardContent>
