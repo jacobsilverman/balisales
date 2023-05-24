@@ -9,6 +9,7 @@ import './SelectModal.scss';
 import { Col, Row } from 'react-bootstrap';
 
 import { Link } from 'react-router-dom';
+import { isMobile } from '../../../../../Data/Constants/index.js';
 
 const SelectModal = ({t, item, openSelectModal, setOpenSelectModal}) => {
     const [profilePic, setProfilePic] = useState();
@@ -98,13 +99,13 @@ const SelectModal = ({t, item, openSelectModal, setOpenSelectModal}) => {
                             <Row className="horizontal-center">
                                 <Col xs={12} className="info-container">
                                     <Row>
-                                        <Col xs={12}  className="brand-title">
-                                            <h3>{displayPost?.brand}</h3>
+                                        <Col xs={12} className="display-title">
+                                            <h1>{displayPost?.title}</h1>
                                         </Col>
                                     </Row>
                                     <Row>
-                                        <Col xs={12} className="display-title">
-                                            <h1>{displayPost?.title}</h1>
+                                        <Col xs={12}  className="brand-title">
+                                            <h3>{displayPost?.brand}</h3>
                                         </Col>
                                     </Row>
                                     <Row>
@@ -119,14 +120,24 @@ const SelectModal = ({t, item, openSelectModal, setOpenSelectModal}) => {
                                     </Row>
                                     <hr />
                                     <Row>
-                                        <Col xs={7}>
-                                            <Row>
-                                                <Col xs={12} lg={4}>
+                                        <Col xs={isMobile ? 12 : 3} md={5}>
+                                            <Row className="multi-content selling-price-wrapper">
+                                                <Col xs={12} className={colorPriceClass}>
+                                                    ${displayPost?.price}
+                                                </Col>
+                                                <Col xs={12}  className={buySellTradeClass}>
+                                                    <b>{t(displayPost?.type)}</b>
+                                                </Col>
+                                            </Row>
+                                        </Col>
+                                        <Col xs={isMobile ? 12 : 9} md={7}>
+                                            <Row className="profile-link">
+                                                <Col xs={3}>
                                                     <Link className="link" to={{pathname: '/profile', search: "id=" + displayPost?.author?.id}}>
                                                         <div className="account-profile" style={{backgroundImage: `url(${profilePic})`}} />
                                                     </Link>
                                                 </Col>
-                                                <Col xs={12} lg={8}>
+                                                <Col xs={9}>
                                                     <Link to={{pathname: '/profile', search: "id=" + displayPost?.author?.id}}>
                                                         <div className="display-name">
                                                             {displayPost?.author?.name}
@@ -138,16 +149,7 @@ const SelectModal = ({t, item, openSelectModal, setOpenSelectModal}) => {
                                                 </Col>
                                             </Row>
                                         </Col>
-                                        <Col xs={5}>
-                                            <Row className="multi-content selling-price-wrapper">
-                                                <Col xs={12} className={colorPriceClass}>
-                                                    ${displayPost?.price}
-                                                </Col>
-                                                <Col xs={12}  className={buySellTradeClass}>
-                                                    <b>{t(displayPost?.type)}</b>
-                                                </Col>
-                                            </Row>
-                                        </Col>
+                                        
                                     </Row>
                                 </Col>
                             </Row>
