@@ -1,7 +1,9 @@
 import { Col, Container, Row } from 'react-bootstrap';
+import { Card, CardContent, CardMedia, Typography } from "@mui/material";
 import './AboutUs.scss';
 
 // import assrock from '../../Data/Images/assrock.svg';
+import defaultProfile from '../../Data/Images/default-profile.jpg';
  
 var AboutUs = () => {
     return (
@@ -20,6 +22,11 @@ var AboutUs = () => {
                                 With recent dilemmas on the instagram sales channel I thought it would be a wonderful opporunity to start this project. Even though there are already plenty of alternative markets for Balisongs I find they dont satisfy 
                     all the possible areas of contention when it comes to balisong deals. Whether it be surcharges, unknown identities/potential scams, difficulties with filtering to find your desired balisongs, or any issues a user can face 
                     my aim is to completely eliminate these problems by actively enhancing this website based on the communities preferences and ideas.*/}
+            <Row className="">
+                <Col>
+                    <h2>Mission</h2>
+                </Col>
+           </Row>
             <Row>
                 <Col>
                     Please check out the <a href="/contactUs">Contact Us Page</a> to offer suggestions, advise, help contribute to the growth of this website, or for any reason you might see fit!
@@ -27,7 +34,7 @@ var AboutUs = () => {
             </Row>
             <Row>
                 <Col>
-                    Our mission is to enable balisong enthusiasts to buy, sell and trade off the market balisongs. The ultimate goal is to 
+                    Our mission is to enable balisong enthusiasts to buy, sell and trade their balisongs. The ultimate goal is to 
                     reduce the risk involved and cut out all potential scammers or potential sour transactions. This website is an ongoing effort that 
                     utilizes user feedback to continuously improve.
                 </Col>
@@ -44,6 +51,54 @@ var AboutUs = () => {
                 </Col>
             </Row>
            {/* <img src={assrock} className="rocket" /> */}
+
+           <Row className="team-container">
+                <Col>
+                    <h3>Meet the Team</h3>
+                </Col>
+           </Row>
+           <Row>
+                <Col>
+                    <Card>
+                        <div style={{ display:'flex', justifyContent:'center', alignItems: "center"}}>
+                            <CardMedia
+                                sx={{ height: 200, width:200 }}
+                                
+                                image={defaultProfile}
+                                title="Jacob's Image"
+                                />
+                        </div>
+                        <CardContent>
+                            <Typography gutterBottom variant="h5" component="div">
+                                Jacob Silverman
+                            </Typography>
+                            <Typography variant="body2" color="text.secondary">
+                                Founder, Web Developer
+                            </Typography>
+                        </CardContent>
+                    </Card>
+                </Col>
+                <Col>
+                    <Card>
+                        <div style={{ display:'flex', justifyContent:'center', alignItems: "center"}}>
+                            <CardMedia
+                                sx={{ height: 200, width:200 }}
+                                style={{ display:'flex', justifyContent:'center' }}
+                                image={defaultProfile}
+                                title="Nathan's Image"
+                                />
+                        </div>
+                        <CardContent>
+                            <Typography gutterBottom variant="h5" component="div">
+                                Nathan Lewtschuk
+                            </Typography>
+                            <Typography variant="body2" color="text.secondary">
+                                Designer
+                            </Typography>
+                        </CardContent>
+                    </Card>
+                </Col>
+           </Row>
         </Container>
     );
 };
