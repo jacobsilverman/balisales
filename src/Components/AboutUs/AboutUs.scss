@@ -1,11 +1,32 @@
 .about-container {
-    padding: 5vw 10vw 10vw 10vw;
+    padding: 10px 10vw 0vw 10vw;
     .row {
         margin-bottom: 20px;
     }
     a {
         display: inline;
     }
+}
+
+.about-header {
+    color: white;
+    padding: 35px 10vw 10vw 10vw;
+}
+
+.full-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.about-header-container {
+    background-color: lightblue;
+    width: 100%;
+    height: 100px;
+}
+
+.team-container {
+    margin-top: 50px;;
 }
 
 @keyframes wave {
