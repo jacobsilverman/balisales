@@ -1,5 +1,17 @@
 .contact-container {
+    // display: flex;
+    // justify-content: center;
     margin-top: 5vh;
+    background-repeat: no-repeat;
+    background-size: 100vw 100vh; 
+    height: 88vh;
+}
+
+.contact-card {
+    padding: 20px;
+    width: 600px;
+    height: 375px;
+    background-color: rgba(255, 255, 255, .2);
 }
 
 #contact-header {

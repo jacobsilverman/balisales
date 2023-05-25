@@ -4,9 +4,20 @@ import './AboutUs.scss';
 
 // import assrock from '../../Data/Images/assrock.svg';
 import defaultProfile from '../../Data/Images/default-profile.jpg';
+import { useTranslation } from 'react-i18next';
  
 var AboutUs = () => {
+    const { t } = useTranslation();
+
     return (
+        <>
+        <Container className="about-header-container">
+            <Row>
+                <Col className="about-header">
+                    <h2>{t("Mission")}</h2>
+                </Col>
+            </Row>
+        </Container>
         <Container className="about-container">
             {/* <Row>
                 <Col>
@@ -22,11 +33,11 @@ var AboutUs = () => {
                                 With recent dilemmas on the instagram sales channel I thought it would be a wonderful opporunity to start this project. Even though there are already plenty of alternative markets for Balisongs I find they dont satisfy 
                     all the possible areas of contention when it comes to balisong deals. Whether it be surcharges, unknown identities/potential scams, difficulties with filtering to find your desired balisongs, or any issues a user can face 
                     my aim is to completely eliminate these problems by actively enhancing this website based on the communities preferences and ideas.*/}
-            <Row>
+            {/* <Row>
                 <Col>
                     <h2>Mission</h2>
                 </Col>
-           </Row>
+           </Row> */}
             <Row>
                 <Col>
                     Please check out the <a href="/contactUs">Contact Us Page</a> to offer suggestions, advise, help contribute to the growth of this website, or for any reason you might see fit!
@@ -47,14 +58,14 @@ var AboutUs = () => {
             </Row>
             <Row>
                 <Col>
-                We want to thank you for using this website and hope you are actively enjoying it, along with finding/making deals with ease. Anyways, were hope you have a wonderful day and take care. <span className="waving-hand">👋</span>
+                We want to thank you for using this website and hope you are actively enjoying it, along with finding/making deals with ease. Anyways, we hope you have a wonderful day and take care. <span className="waving-hand">👋</span>
                 </Col>
             </Row>
            {/* <img src={assrock} className="rocket" /> */}
 
            <Row className="team-container">
                 <Col>
-                    <h3>Meet the Team</h3>
+                    <h3>{t("Meet the Team")}</h3>
                 </Col>
            </Row>
            <Row>
@@ -72,7 +83,7 @@ var AboutUs = () => {
                                 Jacob Silverman
                             </Typography>
                             <Typography variant="body2" color="text.secondary" className="full-center">
-                                Founder, Web Developer
+                                {t("Founder, Web Developer")}
                             </Typography>
                         </CardContent>
                     </Card>
@@ -91,13 +102,14 @@ var AboutUs = () => {
                                 Nathan Lewtschuk
                             </Typography>
                             <Typography variant="body2" color="text.secondary" className="full-center">
-                                Designer
+                                {t("Designer")}
                             </Typography>
                         </CardContent>
                     </Card>
                 </Col>
            </Row>
         </Container>
+        </>
     );
 };
 
