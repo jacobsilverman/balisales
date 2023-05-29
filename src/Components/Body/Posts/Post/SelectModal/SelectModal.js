@@ -67,7 +67,7 @@ const SelectModal = ({t, item, openSelectModal, setOpenSelectModal}) => {
         <Modal open={openSelectModal} className="select-modal">
             <Row>
                 <Col className="modal-background" xs={12}>
-                    <Row className="full-center">
+                    <Row className="center-start">
                         <Col xs={12} className="selected-post-image-container">
                             <Button id="select-modal-exit-button" color="error" onClick={() => setOpenSelectModal({show:false})}>
                                 X

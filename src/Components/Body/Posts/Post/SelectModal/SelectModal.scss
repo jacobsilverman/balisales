@@ -15,7 +15,7 @@
 }
 
 .info-container{
-    padding: 30px;
+    padding: 10px 30px 20px 30px;
     border-radius: 15px;
     max-width: 600px;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
@@ -100,13 +100,13 @@
     align-items: center;
 }
 
-.full-center {
+.center-start {
     margin: 0;
     height: 100%;
     width: 100%;
     display:flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
 }
 
 #select-modal-exit-button:hover {
@@ -125,14 +125,14 @@
 
 .display-title {
     h1 {
-        font-size: 45px;
+        font-size: 35px;
         font-weight: 500;
     }
 }
 
 .brand-title {
     h3 {
-        font-size: 25px;
+        font-size: 20px;
         font-weight: 400;
     }
 }
@@ -144,12 +144,12 @@
 
 .condition-text { 
     color: grey;
-    font-size: 20px;
+    font-size: 15px;
 }
 
 .description-wrapper {
     margin-top: 5px;
-    font-size: 22px;
+    font-size: 18px;
     font-weight: 500;
 }
 
