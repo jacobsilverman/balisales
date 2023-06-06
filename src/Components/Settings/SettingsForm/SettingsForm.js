@@ -134,7 +134,7 @@ const SettingsForm = ({id}) => {
 
     const handleInstagramChange = (event) => {
         let newVal = event.target.value;
-        if (newVal.match(/['\-"><;.\\+/{}!@#$%=^*_|[\]]/)) {
+        if (newVal.match(/['\-"><;\\+/{}!@%=^*|[\]]/)) {
             return
         }
 
@@ -143,7 +143,7 @@ const SettingsForm = ({id}) => {
 
     const handleFacebookChange = (event) => {
         let newVal = event.target.value;
-        if (newVal.match(/['\-"><;.\\+/{}!@#$%=^*_|[\]]/)) {
+        if (newVal.match(/['\-"><;\\+/{}!@%=^*|[\]]/)) {
             return
         }
 
@@ -153,7 +153,7 @@ const SettingsForm = ({id}) => {
 
     const handleDiscordChange = (event) => {
         let newVal = event.target.value;
-        if (newVal.match(/['\-"><;.\\+/{}!@#$%=^*_|[\]]/)) {
+        if (newVal.match(/['\-"><;.\\+/{}!@$%=^*_|[\]]/)) {
             return
         }
 

@@ -43,11 +43,9 @@ const Posts = ({min, max, brand, condition, posts, type, sort, blade, status, se
             <div className="grid-container-posts">
                 {allValidPostsSorted.map((item) => {
                     const displayUrl =  `url(${item?.urls[0]})`;
-                    const queryParam = 'id='+item?.id;
                     return <Post 
                         displayUrl={displayUrl} 
                         item={item} 
-                        queryParam={queryParam}
                         key={item.id}
                         setOpenSelectModal={setOpenSelectModal} />
                 })}

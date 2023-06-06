@@ -56,12 +56,10 @@ function Account({user, settingsPage}) {
 					setOpenEditModal={setOpenEditModal} />}
 				{filterPosts?.map((item) => {
 					const displayUrl =  `url(${item?.urls[0]})`;
-					const queryParam = 'id='+item?.id;
 					return <Post 
 						displayUrl={displayUrl}
 						item={item}
 						key={item.id}
-						queryParam={queryParam}
 						settingsPage={settingsPage}
 						openSelectModal={openSelectModal}
 						setOpenSelectModal={setOpenSelectModal}

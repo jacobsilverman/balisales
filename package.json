@@ -40,7 +40,7 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "dev": "env-cmd -f dev.env npm start",
-    "build:beta": "env-cmd -f stag.env npm run build",
+    "beta": "env-cmd -f .env npm start",
     "generate": "node generate-languages.js"
   },
   "eslintConfig": {

@@ -29,8 +29,9 @@ const SearchBar = ({posts, showSearch, t}) => {
         let cache = {}
         let result = posts.map((post) => {
             const price = (<Popover>${post?.price}</Popover>);
-            if (!cache[post.author.name.toLowerCase()] && post.author.name.toLowerCase().includes(searchValue.toLowerCase())){
-                cache[post.author.name.toLowerCase()] = true;
+            const name = post.author.name.toLowerCase();
+            if (!cache[name] && name.includes(searchValue.toLowerCase())){
+                cache[name] = true;
                 return (
                     <OverlayTrigger  trigger="hover" overlay={<Popover>User Info</Popover>} placement="left">
                         <a href={"/profile?id="+post?.author?.id} targe="blank" key={"search-"+post?.id}>{post?.author.name}</a>
@@ -275,7 +276,7 @@ const Header = ({posts, setShowFilter}) => {
         }).then((result) => {
             getUserInfo(result?.user?.uid).then((userInfo) => {
                 if (!userInfo?.firstName || !userInfo?.lastName || !userInfo?.displayName) {
-                    setUserInfo({...userInfo, firstName: result?._tokenResponse?.firstName, lastName: result?._tokenResponse?.lastName, displayName: result?.user?.displayName})
+                    setUserInfo({...userInfo, firstName: result?._tokenResponse?.firstName, lastName: result?._tokenResponse?.lastName, displayName: result?.user?.displayName, posts:[]})
                 }
             })
         });
@@ -408,7 +409,7 @@ const Header = ({posts, setShowFilter}) => {
                     </Col> : <Col />}
                     <Col xs={8} sm={5} md={3} lg={2} className="login-container-right">
                         <OverlayTrigger trigger="click" placement="bottom-end" show={showSearch} overlay={searchPopover}>
-                            <Button  onClick={() => {resetAllPopovers("search");setShowSearch(show => !show)}}>
+                             <Button  onClick={() => {resetAllPopovers("search");setShowSearch(show => !show)}}>
                                 <i className="material-icons">search</i>
                             </Button>
                         </OverlayTrigger>

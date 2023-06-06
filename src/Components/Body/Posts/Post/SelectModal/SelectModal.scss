@@ -58,14 +58,14 @@
 .select-image-container {
     margin-bottom: 15px;
     border-radius: 10px;
-    min-height: 340px;
-    max-width: 400px;
+    min-height: 300px;
+    max-width: 250px;
     background-repeat: none;
     background-size: 100% 100%;
-    @media only screen and (max-width: 600px){
-        min-height: 300px;
-        max-width: 250px;
-    }
+    // @media only screen and (max-width: 600px){
+    //     min-height: 300px;
+    //     max-width: 250px;
+    // }
 }
 
 .modal-background {
@@ -120,7 +120,7 @@
 }
 
 .selected-post-image-container {
-    margin: 40px 0 40px 0;
+    margin: 30px;
 }
 
 .display-title {
@@ -239,13 +239,10 @@
     font-weight: 500;
     height: auto;
     border-radius: 15px;
-    
     @media (pointer:none), (pointer:coarse) {
         font-size: 2.075rem;
     }
-
 }
-
 
 .selling-price-wrapper .desciption-title{
     font-size: 15px;
@@ -266,3 +263,6 @@
     cursor: pointer;
 }
 
+.contact {
+    margin: 10px;
+}
