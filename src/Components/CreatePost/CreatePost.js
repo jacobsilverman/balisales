@@ -242,7 +242,7 @@ function CreatePost() {
 
     const handleDescriptionChange = (event) => {
         let newValue = event.target.value;
-        if (newValue.length > 425 || newValue.match(/['\-"><;:\\+{}!@#$%=^*_|[\]]/)) {
+        if (newValue.length > 425 || newValue.match(/[\-><;:\\+{}@%=^*_|[\]]/)) {
             return;
         }
         setDescription(newValue);

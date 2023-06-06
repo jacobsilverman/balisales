@@ -1,12 +1,13 @@
 import { Button, Modal } from '@mui/material';
 import { useEffect, useState } from 'react';
 
-import { getProfilePicture } from '../../../../../Data/Services/userInfo.js';
+import { getProfilePicture, getUserInfo } from '../../../../../Data/Services/userInfo.js';
 import defaultProfile from '../../../../../Data/Images/default-profile.jpg';
 
 import './SelectModal.scss';
 
 import { Col, Row } from 'react-bootstrap';
+import { SocialIcon } from 'react-social-icons';
 
 import { Link } from 'react-router-dom';
 import { isMobile } from '../../../../../Data/Constants/index.js';
@@ -14,20 +15,25 @@ import { isMobile } from '../../../../../Data/Constants/index.js';
 const SelectModal = ({t, item, openSelectModal, setOpenSelectModal}) => {
     const [profilePic, setProfilePic] = useState();
     const [displayImage, setDisplayImage] = useState(0);
+    const [userInfo, setUserInfo] = useState({});
+    const [showContact, setShowContact] = useState(false);
     
     const createdDate = new Date(item?.timeStamp).toLocaleDateString();
     const displayPost = {...item};
 
     useEffect(() => {
-        if (!displayPost?.author?.id) {
-            return
-        }
         getProfilePicture(displayPost?.author?.id).then((result) => {
             setProfilePic(result);
         }).catch(() => {
             setProfilePic(defaultProfile);
         });
-    }, [displayPost]);
+
+        getUserInfo(displayPost?.author?.id).then((result) => {
+            setUserInfo(result);
+        }).catch((err) => {
+            console.log(err);
+        })
+    }, []);
 
     const handlePreviousImage = () => {
         setDisplayImage(cur => (cur-1) < 0 ? displayPost?.numberOfImages-1 : (cur-1))
@@ -62,7 +68,6 @@ const SelectModal = ({t, item, openSelectModal, setOpenSelectModal}) => {
     const buySellTradeClass = "desciption-title horizontal-center";
     const colorPriceClass = "price-title horizontal-center "+((displayPost?.type === "Buying") ? "bg" : (displayPost?.type === "Selling") ? "br" : "");
 
-    
     const displaySelectedPost = (
         <Modal open={openSelectModal} className="select-modal">
             <Row>
@@ -149,15 +154,40 @@ const SelectModal = ({t, item, openSelectModal, setOpenSelectModal}) => {
                                                 </Col>
                                             </Row>
                                         </Col>
-                                        
                                     </Row>
                                 </Col>
                             </Row>
-                            {/* <Row>
-                                <Col>
-                                    <Button>Contact</Button>
+                            {!showContact ? <Row>
+                                <Col className="center contact">
+                                    <Button variant="contained" onClick={() => setShowContact(show => !show)}>
+                                        Contact
+                                    </Button>
                                 </Col>
-                            </Row> */}
+                            </Row> : 
+                            <Row className="contact">
+                                <Col className="outer-container" xs={12}>
+                                    <Row className="center social-media-container">
+                                        {userInfo?.instagram && <Col xs={4} md={2}  className="item">
+                                            <SocialIcon target="blank" url={"https://www.instagram.com/"+userInfo?.instagram} />
+                                        </Col>}
+                                        {userInfo?.youtube && <Col xs={4} md={2} className="item">
+                                            <SocialIcon target="blank" url={"https://www.youtube.com/channel/"+userInfo?.youtube} />
+                                        </Col>}
+                                        {userInfo?.twitter && <Col xs={4} md={2} className="item">
+                                            <SocialIcon target="blank" url={"https://www.twitter.com/"+userInfo?.twitter} />
+                                        </Col>}
+                                        {userInfo?.phoneNumber && <Col xs={4} md={2} className="item">
+                                            <SocialIcon target="blank" url={"tel:"+userInfo?.phoneNumber} network="telegram" />
+                                        </Col>}
+                                        {userInfo?.discord && <Col xs={4} md={2} className="item">
+                                            <SocialIcon target="blank" url={"https://www.discord.com/users/"+userInfo?.discord} />
+                                        </Col>}
+                                        {userInfo?.facebook && <Col xs={4} md={2} className="item">
+                                            <SocialIcon target="blank" url={"https://www.facebook.com/"+userInfo?.facebook} />
+                                        </Col>}
+                                    </Row>
+                                </Col>
+                            </Row>}
                         </Col>
                     </Row>
                 </Col>

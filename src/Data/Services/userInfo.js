@@ -61,7 +61,7 @@ export const getUserInfo = async (id) => {
 export const addUserPost = async (postId) => {
     getUserInfo().then(async (userInfo) => {
         const currentUserDoc = doc(db, environment()+"-accounts", uid);
-        const payload = {...userInfo, posts: [...userInfo.posts, postId]}
+        const payload = {...userInfo, posts: [...userInfo?.posts, postId]}
         await setDoc(currentUserDoc, payload);
     });
 }
