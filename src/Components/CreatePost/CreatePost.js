@@ -80,8 +80,8 @@ function CreatePost() {
     // Handle file upload event and update state
     function handlePictureChange(event) {
         if (event.target.files && event.target.files[0]) {
-            setShowFiles(cur => [URL.createObjectURL(event.target.files[0]), ...cur]);
-            setFiles(cur => [event.target.files[0], ...cur]);
+            setShowFiles(cur => [...cur, URL.createObjectURL(event.target.files[0])]);
+            setFiles(cur => [...cur, event.target.files[0]]);
             setNumberOfUploads(numberOfUploads => numberOfUploads+1);
             setValidation(cur => {return {...cur, picture: true}});
         }
