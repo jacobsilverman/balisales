@@ -413,12 +413,12 @@ const Header = ({posts, setShowFilter}) => {
                                 <i className="material-icons">search</i>
                             </Button>
                         </OverlayTrigger>
-                        {isAuth && 
+                        {/* {isAuth && 
                         <OverlayTrigger trigger="focus" placement="bottom-end" show={showNotifications} overlay={notificationPopover}>
                             <Button  onClick={() => {resetAllPopovers("notifications");setShowNotifications(show => !show)}}>
                                 <i className="material-icons">notifications</i>
                             </Button>
-                        </OverlayTrigger>}
+                        </OverlayTrigger>} */}
                         {/* {isAuth && 
                         <OverlayTrigger trigger="focus" placement="bottom-end" show={showInbox} overlay={inboxPopover}>
                             <Button onClick={() => {resetAllPopovers("inbox");setShowInbox(show => !show)}}>

@@ -16,7 +16,6 @@ const SelectModal = ({t, item, openSelectModal, setOpenSelectModal}) => {
     const [profilePic, setProfilePic] = useState();
     const [displayImage, setDisplayImage] = useState(0);
     const [userInfo, setUserInfo] = useState({});
-    const [showContact, setShowContact] = useState(false);
     
     const createdDate = new Date(item?.timeStamp).toLocaleDateString();
     const displayPost = {...item};
@@ -157,13 +156,7 @@ const SelectModal = ({t, item, openSelectModal, setOpenSelectModal}) => {
                                     </Row>
                                 </Col>
                             </Row>
-                            {!showContact ? <Row>
-                                <Col className="center contact">
-                                    <Button variant="contained" onClick={() => setShowContact(show => !show)}>
-                                        Contact
-                                    </Button>
-                                </Col>
-                            </Row> : 
+
                             <Row className="contact">
                                 <Col className="outer-container" xs={12}>
                                     <Row className="center social-media-container">
@@ -187,7 +180,7 @@ const SelectModal = ({t, item, openSelectModal, setOpenSelectModal}) => {
                                         </Col>}
                                     </Row>
                                 </Col>
-                            </Row>}
+                            </Row>
                         </Col>
                     </Row>
                 </Col>
