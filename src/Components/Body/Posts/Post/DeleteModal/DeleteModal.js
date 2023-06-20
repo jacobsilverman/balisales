@@ -7,7 +7,7 @@ const DeleteModal = ({deletePost, item, openDeleteModal, setOpenDeleteModal, set
     return (
         <Modal open={openDeleteModal} id="delete-modal">
             <Row className="modal-dialog delete-modal">
-                <Col xs={5} sm={5} md={2} className="modal-content modal-background center">
+                <Col xs={5} sm={5} md={2} className="modal-content modal-background-edit center">
                     <Row className="modal-header">
                         <Col className="modal-title">{t("Do you want to delete this post?")}</Col>
                     </Row>

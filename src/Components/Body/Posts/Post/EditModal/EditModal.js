@@ -259,7 +259,7 @@ const EditModal = ({item, openEditModal, setOpenEditModal, filterPosts, setFilte
     return (
         <Modal open={openEditModal}>
             <Row className="edit-modal">
-                <Col xs={7} className="modal-background center">
+                <Col xs={7} className="modal-background-edit center">
                     <DeleteModal deletePost={deletePost} item={item} openDeleteModal={openDeleteModal} setOpenDeleteModal={setOpenDeleteModal} setOpenEditModal={setOpenEditModal} />
                     <Row className="edit-input">
                         <Col xs={6} sm={9} className="left">
