@@ -203,6 +203,11 @@
     align-items: center;
 }
 
+.flex-end {
+    display: flex;
+    justify-content: flex-end;
+}
+
 .link .account-profile {
     width: 70px;
     height: 70px;
@@ -221,7 +226,7 @@
 .display-name {
     font-family: "Roboto","Helvetica","Arial",sans-serif;
     font-weight: 500;
-    font-size: 1.675rem;
+    font-size: 1.275rem;
     letter-spacing: 0.02857em;
     color:#1976d2;
 }

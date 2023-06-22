@@ -134,14 +134,14 @@ const SelectModal = ({t, item, openSelectModal, setOpenSelectModal}) => {
                                                 </Col>
                                             </Row>
                                         </Col>
-                                        <Col xs={isMobile ? 12 : 9} md={7}>
+                                        <Col className="flex-end" xs={isMobile ? 12 : 9} md={7}>
                                             <Row className="profile-link">
                                                 <Col xs={3}>
                                                     <Link className="link" to={{pathname: '/profile', search: "id=" + displayPost?.author?.id}}>
                                                         <div className="account-profile" style={{backgroundImage: `url(${profilePic})`}} />
                                                     </Link>
                                                 </Col>
-                                                <Col xs={9}>
+                                                <Col xs={9} className="vertical-center flex-end">
                                                     <Link to={{pathname: '/profile', search: "id=" + displayPost?.author?.id}}>
                                                         <div className="display-name">
                                                             {displayPost?.author?.name}
