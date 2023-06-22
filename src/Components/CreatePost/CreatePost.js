@@ -329,7 +329,7 @@ function CreatePost() {
             <Row>
                 <Col xs="12" className="setting-item center">
                     <label className='profile-label' htmlFor={"inputPicture-default"}>
-                        <span>{t("Upload Image")}</span>
+                        <b>{t("Upload Image")}</b>
                         <input id={"inputPicture-default"} className="profile-input" type="file" onChange={e => handlePictureChange(e)} accept="/image/*" />
                         <br />
                         <FaImage size={70} className="" />

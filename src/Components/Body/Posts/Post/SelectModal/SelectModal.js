@@ -108,12 +108,10 @@ const SelectModal = ({t, item, openSelectModal, setOpenSelectModal}) => {
                                         </Col>
                                     </Row>
                                     <Row>
-                                        <Col xs={12}  className="brand-title">
+                                        <Col xs={6}  className="brand-title">
                                             <h3>{displayPost?.brand}</h3>
                                         </Col>
-                                    </Row>
-                                    <Row>
-                                        <Col xs={12} className="condition-text">
+                                        <Col xs={6} className="condition-text">
                                             {t("Condition")}: {displayPost?.condition}
                                         </Col>
                                     </Row>

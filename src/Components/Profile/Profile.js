@@ -78,11 +78,11 @@ const Profile = () => {
                         </Col>
                     </Row>
                     <Row>
-                        {loggedInUser && <><Col className="center" style={{paddingTop:"10px"}} xs={12} xxl={6}>  
+                        {loggedInUser && <><Col className="center" style={{paddingTop:"10px"}} xs={12} md={6} xxl={6}>  
                             <Button disabled={params?.id === loggedInUser} color="error" onClick={() => handleWriteReference("Report")}>{t("Report")}</Button>
                         </Col>
-                        <Col className="center" style={{paddingTop:"10px"}} xs={12} xxl={6}>  
-                            <Button disabled={params?.id === loggedInUser} onClick={() => handleWriteReference("Reference")}>{t("Write Review")}</Button>
+                        <Col className="center" style={{paddingTop:"10px"}} xs={12} md={6} xxl={6}>  
+                            <Button disabled={params?.id === loggedInUser} onClick={() => handleWriteReference("Reference")}>{t("Review")}</Button>
                         </Col></>}
                     </Row>
                     {/* <Row className="center report-vouch-buttons">
@@ -102,22 +102,22 @@ const Profile = () => {
                     </Row>
                     {(userData?.instagram || userData?.youtube || userData?.twitter || userData?.phoneNumber || userData?.discord || userData?.facebook) ? 
                     <Row className="center social-media-container">
-                        {userData?.instagram && <Col xs={6}  className="item">
+                        {userData?.instagram && <Col xs={6} md={4}  className="item">
                             <SocialIcon target="blank" url={"https://www.instagram.com/"+userData?.instagram} />
                         </Col>}
-                        {userData?.youtube && <Col xs={6}  className="item">
+                        {userData?.youtube && <Col xs={6} md={4}  className="item">
                             <SocialIcon target="blank" url={"https://www.youtube.com/channel/"+userData?.youtube} />
                         </Col>}
-                        {userData?.twitter && <Col xs={6}  className="item">
+                        {userData?.twitter && <Col xs={6} md={4}  className="item">
                             <SocialIcon target="blank" url={"https://www.twitter.com/"+userData?.twitter} />
                         </Col>}
-                        {userData?.phoneNumber && <Col xs={6}className="item">
+                        {userData?.phoneNumber && <Col xs={6} md={4}  className="item">
                             <SocialIcon target="blank" url={"tel:"+userData?.phoneNumber} network="telegram" />
                         </Col>}
-                        {userData?.discord && <Col xs={6} className="item">
+                        {userData?.discord && <Col xs={6} md={4}  className="item">
                             <SocialIcon target="blank" url={"https://www.discord.com/users/"+userData?.discord} />
                         </Col>}
-                        {userData?.facebook && <Col xs={6}  className="item">
+                        {userData?.facebook && <Col xs={6} md={4} className="item">
                             <SocialIcon target="blank" url={"https://www.facebook.com/"+userData?.facebook} />
                         </Col>}
                     </Row>
@@ -151,14 +151,16 @@ const Profile = () => {
                 
             </Row>
             {(reference?.open && <ReportReview t={t} id={params?.id} userData={userData} reference={reference} setReference={setReference} />)}
-            <Col xs={12} className="info-dropdown">
-                <h2 onClick={() => setShowPosts(cur => !cur)}>
-                    Posts&nbsp;&nbsp;
-                    <i size="small" className='material-icons'>{ showPosts ? "visibility_off" : "visibility_on"}</i>
-                </h2>
-            </Col>
-            {showPosts && <Account user={params?.id} settingsPage={false} />}
-            
+            <Row>
+                <Col xs={12} className="info-dropdown">
+                    <h2 onClick={() => setShowPosts(cur => !cur)}>
+                        Posts&nbsp;&nbsp;
+                        <i size="small" className='material-icons'>{ showPosts ? "visibility_off" : "visibility_on"}</i>
+                    </h2>
+                </Col>
+                {showPosts && <Account user={params?.id} settingsPage={false} />}
+            </Row>
+
             {userData?.reviews?.length > 0 && <>
                 <hr style={{margin:"0"}} />
                 <Reviews userData={userData} />

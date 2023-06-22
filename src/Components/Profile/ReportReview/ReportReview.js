@@ -38,7 +38,7 @@ const ReportReview = ({t, id, userData, reference, setReference}) => {
     return (
         <Modal open={reference?.open}>
             <Row className="modal-dialog offset-top">
-                <Col className="modal-content modal-background">
+                <Col className="modal-content review-modal-background ">
                     <Row>
                         <Col xs={9}>
                             <h2>Write a {(reference?.type === "Report") ? "Report" : "Review"}</h2>
