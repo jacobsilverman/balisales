@@ -380,7 +380,7 @@ const SettingsForm = ({id}) => {
                         </Row>
                     </Col>
                     {address && <Col xs={12} md={5} lg={4} className="map-container">
-                        <Map address={address} width="280px"  height="210px" />
+                        <Map address={address} width="280px"  height="210px" className="" />
                     </Col>}
                 </>}
             </Row>

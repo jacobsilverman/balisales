@@ -113,7 +113,7 @@ const AccountOptions = ({uid, isAuth, resetAllPopovers, signInWithGoogle, signUs
     const languagePopover = (
         <Row className={languageCls}>
             <Col xs={12} className="popover-language-container">
-                <Button onClick={() => setShowLanguages(false)}>
+                <Button onClick={(e) => {e.stopPropagation();setShowLanguages(false)}}>
                     <i size="small" className='material-icons'>arrow_back</i>
                     <span>&nbsp;{t("Language")}&nbsp;</span>
                     <i className="material-icons">language</i>
@@ -182,7 +182,7 @@ const AccountOptions = ({uid, isAuth, resetAllPopovers, signInWithGoogle, signUs
     const accountOptionsPopover = (
         <Row className={accountVisibilityCls}>
             <Col xs={12} className="popover-container">
-                <Button onClick={() => {setShowLanguages(true);}}>
+                <Button onClick={(e) => {e.stopPropagation();setShowLanguages(true);}}>
                     <i className="material-icons">language</i>
                     <span>&nbsp;{t("Language")}</span>
                     <i className="material-icons">arrow_forward</i>
@@ -382,7 +382,7 @@ const Header = ({posts, setShowFilter}) => {
                 <PayPalScriptProvider options={initialOptions}>
                     <Donate showDonate={showDonate} setShowDonate={setShowDonate} />
                 </PayPalScriptProvider>
-                <Row>
+                <Row className="between" onClick={() => {resetAllPopovers()}}>
                     <Col xs={3} sm={3} md={3} lg={2} className="login-container-left">
                         <Button href="/" onClick={() =>{resetAllPopovers();setPageTitle("Home")}}>
                             <i className="material-icons">home</i>
@@ -395,7 +395,7 @@ const Header = ({posts, setShowFilter}) => {
                                 {t("Browse")}
                             </Button>}
                         <OverlayTrigger trigger="click" placement="bottom-start" show={showNav} overlay={navPopover}>
-                            <Button onClick={() =>{resetAllPopovers("nav");setShowNav(show => !show)}}>
+                            <Button onClick={(e) =>{e.stopPropagation();resetAllPopovers("nav");setShowNav(show => !show)}}>
                                 <i className="material-icons">format_list_bulleted</i>
                             </Button>
                         </OverlayTrigger>
@@ -407,9 +407,9 @@ const Header = ({posts, setShowFilter}) => {
                             </a>
                         </h1>
                     </Col> : <Col />}
-                    <Col xs={8} sm={5} md={3} lg={2} className="login-container-right">
+                    <Col xs={8} sm={4} md={3} lg={2} className="login-container-right">
                         <OverlayTrigger trigger="click" placement="bottom-end" show={showSearch} overlay={searchPopover}>
-                             <Button  onClick={() => {resetAllPopovers("search");setShowSearch(show => !show)}}>
+                             <Button  onClick={(e) => {e.stopPropagation();resetAllPopovers("search");setShowSearch(show => !show)}}>
                                 <i className="material-icons">search</i>
                             </Button>
                         </OverlayTrigger>
@@ -431,7 +431,7 @@ const Header = ({posts, setShowFilter}) => {
                             <Button variant='contained' size="medium" onClick={signInWithGoogle}  style={{textTransform: 'none', padding:"5px",margin:"5px"}}>{t("Signup")}</Button>
                         </Fragment>}
                         <OverlayTrigger trigger="click" placement="bottom-end" show={showAccount} overlay={accountOptionsPopover}>
-                            <Button onClick={() => {resetAllPopovers("account");setShowAccount(show => !show) }}>
+                            <Button onClick={(e) => {e.stopPropagation();resetAllPopovers("account");setShowAccount(show => !show) }}>
                                 {isAuth ? 
                                 <div className="account-profile" style={{backgroundImage: `url(${profilePic})`}} />
                                 : <i className="material-icons">manage_accounts</i>}

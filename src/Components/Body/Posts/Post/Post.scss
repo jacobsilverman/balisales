@@ -6,9 +6,53 @@
     justify-content: center;
     align-items: center;
     min-width: 100px;
-    box-shadow: rgba(0, 0, 0, 0.15) 0px 14px 28px, rgba(0, 0, 0, 0.12) 0px 10px 10px;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 7px 14px, rgba(0, 0, 0, 0.12) 0px 5px 10px;
     border: .15em solid  rgb(234, 234, 234);
     border-radius: 2px;
+}
+
+.Buying-border {
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 7px 14px, rgba(0, 0, 0, 0.12) 0px 5px 10px;
+    border: .15em solid  rgb(91, 226, 60);
+}
+
+.Buying-border:hover  {
+    box-shadow: -5px 5px rgb(124, 210, 25),
+    -4px 4px rgb(124, 210, 25),
+    -3px 3px rgb(124, 210, 25),
+    -2px 2px rgb(124, 210, 25),
+    -1px 1px rgb(124, 210, 25),
+    -.5px .5px rgb(124, 210, 25), 
+    -1.5px 1.5px rgb(124, 210, 25),
+    -2.5px 2.5px rgb(124, 210, 25),
+    -3.5px 3.5px rgb(124, 210, 25), 
+    -4.5px 4.5px rgb(124, 210, 25) !important;
+    border: none;
+    transition: .75s;
+    translate: 3.5% -2.5%;
+    border: none;
+}
+
+.Selling-border {
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 7px 14px, rgba(0, 0, 0, 0.12) 0px 5px 10px;
+    border: .15em solid rgb(221, 121, 45);
+}
+
+.Selling-border:hover  {
+    box-shadow: -5px 5px rgb(221, 121, 45),
+    -4px 4px rgb(221, 121, 45),
+    -3px 3px rgb(221, 121, 45),
+    -2px 2px rgb(221, 121, 45),
+    -1px 1px rgb(221, 121, 45),
+    -.5px .5px rgb(221, 121, 45), 
+    -1.5px 1.5px rgb(221, 121, 45),
+    -2.5px 2.5px rgb(221, 121, 45),
+    -3.5px 3.5px rgb(221, 121, 45), 
+    -4.5px 4.5px rgb(221, 121, 45) !important;
+    border: none;
+    transition: .75s;
+    translate: 3.5% -2.5%;
+    border: none;
 }
 
 .desktop-hov:hover {
