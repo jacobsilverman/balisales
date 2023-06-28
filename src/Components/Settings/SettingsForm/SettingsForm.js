@@ -338,10 +338,10 @@ const SettingsForm = ({id}) => {
         
                     <Col xs={12} md={5} lg={4} className="setting-item profile-image-update">
                         <label className={(!profilePicture) ? 'profile-label' : ''} htmlFor="inputTag">
+                            <div>Change Profile Picture</div>
                             {(!profilePicture) ? <span style={{color:"black"}}>{t('Profile Picture')}</span> : null}
                             <input id="inputTag" className='profile-input' type="file" onChange={handleProfileChange} accept="image/*" />
                             {(!profilePicture) ? <><br /><FaImage size={40} /></> : <img src={profilePicture} className="upload-image" alt="profile display" />}
-                            <div>Change Profile Picture</div>
                         </label>
                     </Col>
                 </>}
@@ -380,7 +380,7 @@ const SettingsForm = ({id}) => {
                         </Row>
                     </Col>
                     {address && <Col xs={12} md={5} lg={4} className="map-container">
-                        <Map address={address} width="280px"  height="210px" />
+                        <Map address={address} width="280px"  height="210px" className="" />
                     </Col>}
                 </>}
             </Row>
