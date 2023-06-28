@@ -1,4 +1,5 @@
 .create-container {
+    padding-top: 20px;
     & > *{
         padding: 10px 10px 10px 10px;
     }
@@ -55,7 +56,10 @@ img {
     border-radius: .2cm;
     padding: 10px;
     &:hover {
-        background-color: rgba(#1976d2, .3)
+        transition: 1s;
+        color: white;
+        box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+        background-color: rgba(#1976d2, 1)
     }
 }
 

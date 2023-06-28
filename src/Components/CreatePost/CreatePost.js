@@ -78,9 +78,9 @@ function CreatePost() {
     }
 
     // Handle file upload event and update state
-    function handlePictureChange(event, index) {
-        if (event.target.files && event.target.files[0] && index === 0) {
-            setShowFiles([URL.createObjectURL(event.target.files[0]), ...showFiles]);
+    function handlePictureChange(event) {
+        if (event.target.files && event.target.files[0]) {
+            setShowFiles(cur => [...cur, URL.createObjectURL(event.target.files[0])]);
             setFiles(cur => [...cur, event.target.files[0]]);
             setNumberOfUploads(numberOfUploads => numberOfUploads+1);
             setValidation(cur => {return {...cur, picture: true}});
@@ -88,28 +88,33 @@ function CreatePost() {
     }
 
     function removePicture(index) {
-        if (index !== 0) {
-            setShowFiles(showFiles => showFiles.splice(index, 1));
-            setFiles(files => files.splice(index, 1));
-            setNumberOfUploads(numberOfUploads => numberOfUploads-1);
-            if (numberOfUploads-1 === 0){
-                setValidation(cur => {return {...cur, picture: false}});
+
+        let newShowFiles = [];
+        let newFileNames = [];
+        for (let i=0; i<showFiles.length;i++) {
+            if (index!==i){
+                newShowFiles.push(showFiles[i]);
+                newFileNames.push(files[i]);
             }
+        }
+        setShowFiles(newShowFiles);
+        setFiles(newFileNames);
+        setNumberOfUploads(numOfUploads => numOfUploads-1);
+        if (numberOfUploads-1 === 0){
+            setValidation(cur => {return {...cur, picture: false}});
         }
     }
 
     function pictureInputs() {
         let allInputs = [];
-        const divideCols = Math.floor(12/(numberOfUploads+1));
 
-        for (let i = 0; i <= numberOfUploads; i++) {
+        for (let i = 0; i < files.length; i++) {
             allInputs.push(
-                <Col xs="12" sm={(numberOfUploads > 0) ? 6 : 12} lg={(numberOfUploads > 2) ? 4 : divideCols} xxl={(numberOfUploads > 3) ? 3 : divideCols} className="setting-item center" key={i+"+"+numberOfUploads}>
-                    <label className='profile-label' htmlFor={"inputPicture-"+i} onClick={(i !==0)  ? () => removePicture(i) : null}>
-                        <span>{files[numberOfUploads-i]?.name || t("Upload Image")}</span>
-                        {(i===0) && <input id={"inputPicture-"+i} className="profile-input" type="file" onChange={e => handlePictureChange(e, i)} accept="/image/*" />}
+                <Col xs="12" className="setting-item center" key={files[i]?.name}>
+                    <label className='profile-label' htmlFor={"inputPicture-"+files[i]?.name} onClick={() => removePicture(i)}>
+                        <span>{files[i]?.name}</span>
                         <br />
-                        {(i===0) ? <FaImage size={70} className="" /> : <img src={showFiles[numberOfUploads-i]} className="upload-image" alt="preview image" />}
+                        <img id={"inputPicture-"+files[i]?.name} src={showFiles[i]} className="upload-image" alt="preview image" />
                     </label>
                 </Col>
             );
@@ -130,6 +135,7 @@ function CreatePost() {
         
         const postsCollectionRef = collection(db, process.env.REACT_APP_ENVIRONMENT+"-posts");
         await addDoc(postsCollectionRef, {
+            status: "Available",
             title,
             type,
             blade,
@@ -321,6 +327,14 @@ function CreatePost() {
                 </Col>
             </Row>
             <Row>
+                <Col xs="12" className="setting-item center">
+                    <label className='profile-label' htmlFor={"inputPicture-default"}>
+                        <b>{t("Upload Image")}</b>
+                        <input id={"inputPicture-default"} className="profile-input" type="file" onChange={e => handlePictureChange(e)} accept="/image/*" />
+                        <br />
+                        <FaImage size={70} className="" />
+                    </label>
+                </Col>
                 {pictureInputs()}
             </Row>
             <Row>

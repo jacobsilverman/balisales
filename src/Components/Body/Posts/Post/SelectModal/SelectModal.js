@@ -16,7 +16,6 @@ const SelectModal = ({t, item, openSelectModal, setOpenSelectModal}) => {
     const [profilePic, setProfilePic] = useState();
     const [displayImage, setDisplayImage] = useState(0);
     const [userInfo, setUserInfo] = useState({});
-    const [showContact, setShowContact] = useState(false);
     
     const createdDate = new Date(item?.timeStamp).toLocaleDateString();
     const displayPost = {...item};
@@ -109,12 +108,10 @@ const SelectModal = ({t, item, openSelectModal, setOpenSelectModal}) => {
                                         </Col>
                                     </Row>
                                     <Row>
-                                        <Col xs={12}  className="brand-title">
+                                        <Col xs={6}  className="brand-title">
                                             <h3>{displayPost?.brand}</h3>
                                         </Col>
-                                    </Row>
-                                    <Row>
-                                        <Col xs={12} className="condition-text">
+                                        <Col xs={6} className="condition-text">
                                             {t("Condition")}: {displayPost?.condition}
                                         </Col>
                                     </Row>
@@ -135,14 +132,14 @@ const SelectModal = ({t, item, openSelectModal, setOpenSelectModal}) => {
                                                 </Col>
                                             </Row>
                                         </Col>
-                                        <Col xs={isMobile ? 12 : 9} md={7}>
+                                        <Col className="flex-end" xs={isMobile ? 12 : 9} md={7}>
                                             <Row className="profile-link">
                                                 <Col xs={3}>
                                                     <Link className="link" to={{pathname: '/profile', search: "id=" + displayPost?.author?.id}}>
                                                         <div className="account-profile" style={{backgroundImage: `url(${profilePic})`}} />
                                                     </Link>
                                                 </Col>
-                                                <Col xs={9}>
+                                                <Col xs={9} className="vertical-center flex-end">
                                                     <Link to={{pathname: '/profile', search: "id=" + displayPost?.author?.id}}>
                                                         <div className="display-name">
                                                             {displayPost?.author?.name}
@@ -157,37 +154,31 @@ const SelectModal = ({t, item, openSelectModal, setOpenSelectModal}) => {
                                     </Row>
                                 </Col>
                             </Row>
-                            {!showContact ? <Row>
-                                <Col className="center contact">
-                                    <Button variant="contained" onClick={() => setShowContact(show => !show)}>
-                                        Contact
-                                    </Button>
-                                </Col>
-                            </Row> : 
+
                             <Row className="contact">
                                 <Col className="outer-container" xs={12}>
                                     <Row className="center social-media-container">
-                                        {userInfo?.instagram && <Col xs={4} md={2}  className="item">
+                                        {userInfo?.instagram && <Col xs={4} sm={2}  className="item">
                                             <SocialIcon target="blank" url={"https://www.instagram.com/"+userInfo?.instagram} />
                                         </Col>}
-                                        {userInfo?.youtube && <Col xs={4} md={2} className="item">
+                                        {userInfo?.youtube && <Col xs={4} sm={2} className="item">
                                             <SocialIcon target="blank" url={"https://www.youtube.com/channel/"+userInfo?.youtube} />
                                         </Col>}
-                                        {userInfo?.twitter && <Col xs={4} md={2} className="item">
+                                        {userInfo?.twitter && <Col xs={4} sm={2} className="item">
                                             <SocialIcon target="blank" url={"https://www.twitter.com/"+userInfo?.twitter} />
                                         </Col>}
-                                        {userInfo?.phoneNumber && <Col xs={4} md={2} className="item">
+                                        {userInfo?.phoneNumber && <Col xs={4} sm={2} className="item">
                                             <SocialIcon target="blank" url={"tel:"+userInfo?.phoneNumber} network="telegram" />
                                         </Col>}
-                                        {userInfo?.discord && <Col xs={4} md={2} className="item">
+                                        {userInfo?.discord && <Col xs={4} sm={2} className="item">
                                             <SocialIcon target="blank" url={"https://www.discord.com/users/"+userInfo?.discord} />
                                         </Col>}
-                                        {userInfo?.facebook && <Col xs={4} md={2} className="item">
+                                        {userInfo?.facebook && <Col xs={4} sm={2} className="item">
                                             <SocialIcon target="blank" url={"https://www.facebook.com/"+userInfo?.facebook} />
                                         </Col>}
                                     </Row>
                                 </Col>
-                            </Row>}
+                            </Row>
                         </Col>
                     </Row>
                 </Col>
