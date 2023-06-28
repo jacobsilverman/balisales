@@ -80,10 +80,10 @@ var AboutUs = () => {
                         </div>
                         <CardContent>
                             <Typography gutterBottom variant="h5" component="div" className="full-center">
-                                Jacob Silverman
+                                Jacob
                             </Typography>
                             <Typography variant="body2" color="text.secondary" className="full-center">
-                                {t("Founder, Web Developer")}
+                                {t("Web Developer")}
                             </Typography>
                         </CardContent>
                     </Card>
@@ -99,7 +99,7 @@ var AboutUs = () => {
                         </div>
                         <CardContent>
                             <Typography gutterBottom variant="h5" component="div" className="full-center">
-                                Nathan Lewtschuk
+                                Nathan
                             </Typography>
                             <Typography variant="body2" color="text.secondary" className="full-center">
                                 {t("Designer")}
