@@ -6,8 +6,9 @@
     justify-content: center;
     align-items: center;
     min-width: 100px;
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
-    // border: 1px solid  lightgrey;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 14px 28px, rgba(0, 0, 0, 0.12) 0px 10px 10px;
+    border: .15em solid  rgb(234, 234, 234);
+    border-radius: 2px;
 }
 
 .desktop-hov:hover {
@@ -21,6 +22,7 @@
     -2.5px 2.5px rgb(25, 118, 210),
     -3.5px 3.5px rgb(25, 118, 210), 
     -4.5px 4.5px rgb(25, 118, 210);
+    border: none;
     transition: .75s;
     translate: 3.5% -2.5%;
     border: none;

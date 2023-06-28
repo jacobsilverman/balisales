@@ -19,6 +19,7 @@ const SettingsForm = ({id}) => {
     const [discord, setDiscord] = useState('');
     const [youtube, setYoutube] = useState('');
     const [twitter, setTwitter] = useState('');
+    const [referenceUrl, setReferenceUrl] = useState('');
     
     const [address, setAddress] = useState({
         address: '',
@@ -46,6 +47,7 @@ const SettingsForm = ({id}) => {
         discord: true,
         youtube: true,
         twitter: true,
+        referenceUrl: true,
         address: true,
         unit: true,
         city: true,
@@ -71,6 +73,7 @@ const SettingsForm = ({id}) => {
             setDiscord(result.discord);
             setYoutube(result.youtube);
             setTwitter(result.twitter);
+            setReferenceUrl(result.referenceUrl);
             setAddress(result.address);
             setPosts(result.posts || []);
             setValidation({
@@ -83,6 +86,7 @@ const SettingsForm = ({id}) => {
                 discord: true,
                 youtube: true,
                 twitter: true,
+                referenceUrl: true,
                 address: true,
                 unit: true,
                 city: true,
@@ -176,6 +180,15 @@ const SettingsForm = ({id}) => {
         }
 
         setTwitter(newVal);
+    }
+
+    const handleReferenceChange = (event) => {
+        let newVal = event.target.value;
+        if (newVal.match(/['\-"><;\\+{}!@#$%=^*_|[\]]/)) {
+            return
+        }
+
+        setReferenceUrl(newVal);
     }
 
     const handleAddressChange = (event) => {
@@ -316,6 +329,10 @@ const SettingsForm = ({id}) => {
                             <Col xs={12} md={6} className="setting-item">
                                 <TextField fullWidth label={t("www.twitter.com/")} color="" type="url" error={!validation.twitter} onChange={handleTwitterChange} value={twitter} />
                             </Col>
+
+                            <Col xs={12} className="setting-item">
+                                <TextField fullWidth label={t("Reference Url")} color="" type="url" error={!validation.referenceUrl} onChange={handleReferenceChange} value={referenceUrl} />
+                            </Col>
                         </Row>
                     </Col>
         
@@ -369,7 +386,7 @@ const SettingsForm = ({id}) => {
             </Row>
             <Row>
                 <Col xs={12} className="submit-button">
-                    <Button disabled={!isValid} variant="contained" onClick={() => handleSubmit({id, firstName, lastName, displayName, phoneNumber, instagram, facebook, discord, youtube, twitter, address, posts}, file)}>
+                    <Button disabled={!isValid} variant="contained" onClick={() => handleSubmit({id, firstName, lastName, displayName, phoneNumber, instagram, facebook, discord, youtube, twitter, referenceUrl, address, posts}, file)}>
                         {t("Submit")}
                     </Button>
                 </Col>

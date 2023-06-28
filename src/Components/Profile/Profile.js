@@ -10,6 +10,8 @@ import Map from '../Map';
 // import SocialMedia from '../SocialMedia/SocialMedia.js';
 import { SocialIcon } from 'react-social-icons';
 
+import { InstagramEmbed } from 'react-social-media-embed';
+
 import { Container, Col, Row } from 'react-bootstrap';
 import { isMobile } from '../../Data/Constants/index.js';
 import { Button } from '@mui/material';
@@ -134,8 +136,9 @@ const Profile = () => {
                 <Col xs={12} sm={12} md={6} xl={7} className="map-col-container">
                     <div className="user-full-name-loc">
                         <div className="user-full-name">
-                            <h2>{userData?.firstName} {userData?.lastName}</h2>
+                            <h5>{userData?.firstName} {userData?.lastName}</h5>
                         </div>
+                        <hr />
                         {userData?.address && <div className="loc-pin">
                             <FaLocationArrow/>
                             &nbsp;&nbsp;&nbsp;
@@ -169,6 +172,13 @@ const Profile = () => {
                 <hr style={{margin:"0"}} />
                 <Reviews userData={userData} />
             </>}
+
+            {userData?.referenceUrl && 
+            <Row>
+                <Col style={{ display: 'flex', justifyContent: 'center' }}>
+                    <InstagramEmbed url={userData?.referenceUrl} width={"330px"} />
+                </Col>
+            </Row>}
         </Container>
     );
 }
