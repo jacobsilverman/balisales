@@ -13,7 +13,7 @@ import { SocialIcon } from 'react-social-icons';
 import { InstagramEmbed } from 'react-social-media-embed';
 
 import { Container, Col, Row } from 'react-bootstrap';
-import { isMobile } from '../../Data/Constants/index.js';
+// import { isMobile } from '../../Data/Constants/index.js';
 import { Button } from '@mui/material';
 import Reviews from '../Reviews/Reviews.js';
 import ReportReview from './ReportReview/ReportReview.js';
@@ -23,7 +23,6 @@ const Profile = () => {
     const urlSearchParams = new URLSearchParams(window.location.search);
     const params = Object.fromEntries(urlSearchParams.entries());
     const loggedInUser = localStorage.getItem("uid");
-
     const [showPosts, setShowPosts] = useState(true);
     const [userData, setUserData] = useState({});
     const [profilePic, setProfilePic] = useState(null);
@@ -35,8 +34,8 @@ const Profile = () => {
             displayName: localStorage.getItem("displayName")
         }
     });
-
     const { t } = useTranslation();
+
 
     useEffect(() => {
         if (!params?.id) {
@@ -69,7 +68,7 @@ const Profile = () => {
             <Row>
                 <Col xs={12}  md={userData?.referenceUrl ? 6 : 12} className="user-account-profile-col">
                     <Row style={{width:"100%"}}>
-                        <Col xs={12} md={userData?.referenceUrl ? 12 : 6}>
+                        <Col xs={12} md={userData?.referenceUrl || !userData?.address || Object.values(userData?.address).every(x => x === null || x === '') ? 12 : 6}>
                             <Row className="center">
                                 <Col>
                                     <h2>{userData.displayName}</h2>
@@ -92,24 +91,25 @@ const Profile = () => {
                                 </>}
                             </Row>
                         </Col>
-                        <Col xs={12} md={userData?.referenceUrl ? 12 : 6}>
+                        <Col xs={12} md={userData?.referenceUrl  || !userData?.address || Object.values(userData?.address).every(x => x === null || x === '') ? 12 : 6}>
                             <Row>
                                 <Col xs={12} className="map-col-container">
                                     <div className="user-full-name-loc">
                                         <div className="user-full-name">
+                                            {!userData?.address}
                                             <h2>{userData?.firstName} {userData?.lastName}</h2>
                                         </div>
-                                        {/* {userData?.address?.length > 0 && <div className="loc-pin">
-                                            <FaLocationArrow/>
-                                            &nbsp;&nbsp;&nbsp;
-                                            {userData?.address?.city}, {userData?.address?.state}
-                                        </div>} */}
                                     </div>
                                     {userData?.address ?
                                     <Row>
-                                        <Col className="map-container">
+                                        <Col xs={12} className="map-container">
                                             <Map address={userData.address} height="200px" width="400px" border="5px solid black" />
                                         </Col>
+                                        {userData?.address && <Col xs={12} className="loc-pin">
+                                            <FaLocationArrow/>
+                                            &nbsp;&nbsp;&nbsp;
+                                            {userData?.address?.city}, {userData?.address?.state}
+                                        </Col>}
                                     </Row>
                                     : <div className="center">
                                         No address is saved

@@ -152,7 +152,7 @@
 
 .user-account-profile-col {
   padding-top: 20px;
-  box-shadow: rgba(0, 0, 0, 0.05) 0px -50px 36px -28px inset, rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px -30px 36px -28px inset, rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -163,7 +163,7 @@
   border-right: 1px solid black;
   padding-top: 20px;
   padding-bottom: 20px;
-  box-shadow: rgba(0, 0, 0, 0.05) 0px -50px 36px -28px inset, rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px -30px 36px -28px inset, rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em;
   // min-height: 35vh;
   display: flex;
   align-items: center;
@@ -243,8 +243,8 @@
   display: flex;
   flex: 1;
   align-items: center;
-  padding-left: 15px;
-  padding-right: 5px;
+  justify-content: center;
+  padding: 10px;
   color: lightgrey;
   font-size: 16px;
 }

@@ -40,7 +40,7 @@ const SearchBar = ({posts, showSearch, t}) => {
             } else if (post.title.toLowerCase().includes(searchValue)) {
                 return (
                     <OverlayTrigger  trigger="hover" overlay={price} placement="left">
-                        <a className="post-link" key={"search-"+post?.id} onClick={()=>setOpenPost({open:true,post:post})}>{post.title}</a>
+                        <a className="post-link" key={"search-"+post?.id} onClick={(e)=>{e.stopPropagation();setOpenPost({open:true,post:post})}}>{post.title}</a>
                         {/* <a href={"/singlePost?id="+post.id} targe="blank" key={"search-"+post?.id}>{post.title}</a> */}
                     </OverlayTrigger>
                 );
@@ -88,7 +88,7 @@ const SearchBar = ({posts, showSearch, t}) => {
                 setOpenSelectModal={setOpenPost} />
             <Row className={searchCls}>
                 <Col xs={12} className="popover-container">
-                    <TextField autoComplete="off" fullWidth label={t("Search")} color="" type="search" defaultValue={searchValue} onChange={searchAbility} />
+                    <TextField autoComplete="off" fullWidth label={t("Search")} color="" type="search" defaultValue={searchValue} onClick={(event)=>event.stopPropagation()} onChange={searchAbility} />
                 </Col>
             </Row>
             {searchValue !== "" && searchFilter.length > 0 && 
