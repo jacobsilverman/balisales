@@ -74,7 +74,6 @@ const Profile = () => {
                                     <h2>{userData.displayName}</h2>
                                 </Col>
                             </Row>
-
                             <Row>
                                 <Col className="profile-image center">
                                     <div className="user-account-profile center" style={{backgroundImage: `url(${profilePic})`}} />
@@ -145,7 +144,7 @@ const Profile = () => {
                         </Col>
                     </Row>}
                 </Col>
-                {userData?.referenceUrl &&
+                {userData?.referenceUrl.toLowerCase().indexOf("instagram") &&
                 <Col xs={12} md={6} className="contact-outer-container">
                     <Row>
                         <Col style={{ display: 'flex', justifyContent: 'center' }}>

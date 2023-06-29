@@ -3,8 +3,7 @@ import './Post.scss';
 import { isMobile } from '../../../../Data/Constants';
 
 function Post({displayUrl, item, settingsPage, setOpenEditModal, setSelectedPost, setOpenSelectModal=()=>{}}) {
-    const colorBorder = (item?.type === "Selling" || item?.type === "Buying") && `${item?.type}-border`;
-    const containerCls = `post-container ${!isMobile && "desktop-hov" } ${colorBorder}`;
+    const containerCls = `post-container ${!isMobile && "desktop-hov" } ${item?.type}-border`;
     const handleSelectPost = (e) => {
         if (settingsPage) {
             e.preventDefault();
