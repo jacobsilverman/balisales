@@ -24,7 +24,7 @@ const Profile = () => {
     const params = Object.fromEntries(urlSearchParams.entries());
     const loggedInUser = localStorage.getItem("uid");
     const [showPosts, setShowPosts] = useState(true);
-    const [userData, setUserData] = useState({});
+    const [userData, setUserData] = useState();
     const [profilePic, setProfilePic] = useState(null);
     const [reference, setReference] = useState({
         rating: 0,
@@ -61,6 +61,9 @@ const Profile = () => {
                 open: true
             }
         });
+    }
+    if (!userData) {
+        return;
     }
 
     return (
