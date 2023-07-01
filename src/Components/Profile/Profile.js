@@ -96,13 +96,13 @@ const Profile = () => {
                                     <div className="user-full-name-loc">
                                         <div className="user-full-name">
                                             {!userData?.address}
-                                            <h2>{userData?.firstName} {userData?.lastName}</h2>
+                                            <h4>{userData?.firstName} {userData?.lastName}</h4>
                                         </div>
                                     </div>
                                     {userData?.address ?
                                     <Row>
                                         <Col xs={12} className="map-container">
-                                            <Map address={userData.address} height="200px" width="400px" border="5px solid black" />
+                                            <Map address={userData.address} height="200px" width="200px" border="5px solid black" />
                                         </Col>
                                         {userData?.address && <Col xs={12} className="loc-pin">
                                             <FaLocationArrow/>
@@ -134,7 +134,7 @@ const Profile = () => {
                         {userData?.discord && <Col xs={2}  className="item">
                             <SocialIcon target="blank" url={"https://www.discord.com/users/"+userData?.discord} />
                         </Col>}
-                        {userData?.facebook && <Col xs={2} md={2} className="item">
+                        {userData?.facebook && <Col xs={2} className="item">
                             <SocialIcon target="blank" url={"https://www.facebook.com/"+userData?.facebook} />
                         </Col>}
                     </Row>
