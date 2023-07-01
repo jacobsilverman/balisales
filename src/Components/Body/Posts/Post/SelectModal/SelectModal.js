@@ -158,22 +158,22 @@ const SelectModal = ({t, item, openSelectModal, setOpenSelectModal}) => {
                             <Row className="contact">
                                 <Col className="outer-container" xs={12}>
                                     <Row className="center social-media-container">
-                                        {userInfo?.instagram && <Col xs={4} sm={2}  className="item">
+                                        {userInfo?.instagram && <Col xs={2}  className="item">
                                             <SocialIcon target="blank" url={"https://www.instagram.com/"+userInfo?.instagram} />
                                         </Col>}
-                                        {userInfo?.youtube && <Col xs={4} sm={2} className="item">
+                                        {userInfo?.youtube && <Col xs={2} className="item">
                                             <SocialIcon target="blank" url={"https://www.youtube.com/channel/"+userInfo?.youtube} />
                                         </Col>}
-                                        {userInfo?.twitter && <Col xs={4} sm={2} className="item">
+                                        {userInfo?.twitter && <Col xs={2} className="item">
                                             <SocialIcon target="blank" url={"https://www.twitter.com/"+userInfo?.twitter} />
                                         </Col>}
-                                        {userInfo?.phoneNumber && <Col xs={4} sm={2} className="item">
+                                        {userInfo?.phoneNumber && <Col xs={2} className="item">
                                             <SocialIcon target="blank" url={"tel:"+userInfo?.phoneNumber} network="telegram" />
                                         </Col>}
-                                        {userInfo?.discord && <Col xs={4} sm={2} className="item">
+                                        {userInfo?.discord && <Col xs={2} className="item">
                                             <SocialIcon target="blank" url={"https://www.discord.com/users/"+userInfo?.discord} />
                                         </Col>}
-                                        {userInfo?.facebook && <Col xs={4} sm={2} className="item">
+                                        {userInfo?.facebook && <Col xs={2} className="item">
                                             <SocialIcon target="blank" url={"https://www.facebook.com/"+userInfo?.facebook} />
                                         </Col>}
                                     </Row>

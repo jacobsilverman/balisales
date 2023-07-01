@@ -11,67 +11,111 @@
     border-radius: 2px;
 }
 
+.Selling\/Trading-border {
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 7px 14px, rgba(0, 0, 0, 0.12) 0px 5px 10px;
+    border: .15em solid  rgb(236, 84, 249);
+}
+
+.Trading-border {
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 7px 14px, rgba(0, 0, 0, 0.12) 0px 5px 10px;
+    
+    border: .15em solid  rgb(55, 244, 251);
+}
 .Buying-border {
     box-shadow: rgba(0, 0, 0, 0.15) 0px 7px 14px, rgba(0, 0, 0, 0.12) 0px 5px 10px;
     border: .15em solid  rgb(91, 226, 60);
 }
-
-.Buying-border:hover  {
-    box-shadow: -5px 5px rgb(124, 210, 25),
-    -4px 4px rgb(124, 210, 25),
-    -3px 3px rgb(124, 210, 25),
-    -2px 2px rgb(124, 210, 25),
-    -1px 1px rgb(124, 210, 25),
-    -.5px .5px rgb(124, 210, 25), 
-    -1.5px 1.5px rgb(124, 210, 25),
-    -2.5px 2.5px rgb(124, 210, 25),
-    -3.5px 3.5px rgb(124, 210, 25), 
-    -4.5px 4.5px rgb(124, 210, 25) !important;
-    border: none;
-    transition: .75s;
-    translate: 3.5% -2.5%;
-    border: none;
-}
-
 .Selling-border {
     box-shadow: rgba(0, 0, 0, 0.15) 0px 7px 14px, rgba(0, 0, 0, 0.12) 0px 5px 10px;
-    border: .15em solid rgb(221, 121, 45);
+    border: .15em solid #1976d2;
 }
 
-.Selling-border:hover  {
-    box-shadow: -5px 5px rgb(221, 121, 45),
-    -4px 4px rgb(221, 121, 45),
-    -3px 3px rgb(221, 121, 45),
-    -2px 2px rgb(221, 121, 45),
-    -1px 1px rgb(221, 121, 45),
-    -.5px .5px rgb(221, 121, 45), 
-    -1.5px 1.5px rgb(221, 121, 45),
-    -2.5px 2.5px rgb(221, 121, 45),
-    -3.5px 3.5px rgb(221, 121, 45), 
-    -4.5px 4.5px rgb(221, 121, 45) !important;
-    border: none;
-    transition: .75s;
-    translate: 3.5% -2.5%;
-    border: none;
-}
+@media (hover: hover) and (pointer: fine) {
+    .Selling\/Trading-border:hover  {
+        box-shadow: -5px 5px rgb(236, 84, 249),
+        -4px 4px rgb(236, 84, 249),
+        -3px 3px rgb(236, 84, 249),
+        -2px 2px rgb(236, 84, 249),
+        -1px 1px rgb(236, 84, 249),
+        -.5px .5px rgb(236, 84, 249), 
+        -1.5px 1.5px rgb(236, 84, 249),
+        -2.5px 2.5px rgb(236, 84, 249),
+        -3.5px 3.5px rgb(236, 84, 249), 
+        -4.5px 4.5px rgb(236, 84, 249) !important;
+        border: none;
+        transition: .75s;
+        translate: 3.5% -2.5%;
+        border: none;
+    }
 
-.desktop-hov:hover {
-    box-shadow: -5px 5px rgb(25, 118, 210),
-    -4px 4px rgb(25, 118, 210),
-    -3px 3px rgb(25, 118, 210),
-    -2px 2px rgb(25, 118, 210),
-    -1px 1px rgb(25, 118, 210),
-    -.5px .5px rgb(25, 118, 210), 
-    -1.5px 1.5px rgb(25, 118, 210),
-    -2.5px 2.5px rgb(25, 118, 210),
-    -3.5px 3.5px rgb(25, 118, 210), 
-    -4.5px 4.5px rgb(25, 118, 210);
-    border: none;
-    transition: .75s;
-    translate: 3.5% -2.5%;
-    border: none;
-}
+    .Trading-border:hover  {
+        box-shadow: -5px 5px rgb(55, 244, 251),
+        -4px 4px rgb(55, 244, 251),
+        -3px 3px rgb(55, 244, 251),
+        -2px 2px rgb(55, 244, 251),
+        -1px 1px rgb(55, 244, 251),
+        -.5px .5px rgb(55, 244, 251), 
+        -1.5px 1.5px rgb(55, 244, 251),
+        -2.5px 2.5px rgb(55, 244, 251),
+        -3.5px 3.5px rgb(55, 244, 251), 
+        -4.5px 4.5px rgb(55, 244, 251) !important;
+        border: none;
+        transition: .75s;
+        translate: 3.5% -2.5%;
+        border: none;
+    }
 
+    .Buying-border:hover  {
+        box-shadow: -5px 5px rgb(124, 210, 25),
+        -4px 4px rgb(124, 210, 25),
+        -3px 3px rgb(124, 210, 25),
+        -2px 2px rgb(124, 210, 25),
+        -1px 1px rgb(124, 210, 25),
+        -.5px .5px rgb(124, 210, 25), 
+        -1.5px 1.5px rgb(124, 210, 25),
+        -2.5px 2.5px rgb(124, 210, 25),
+        -3.5px 3.5px rgb(124, 210, 25), 
+        -4.5px 4.5px rgb(124, 210, 25) !important;
+        border: none;
+        transition: .75s;
+        translate: 3.5% -2.5%;
+        border: none;
+    }
+
+    .Selling-border:hover  {
+        box-shadow: -5px 5px #1976d2,
+        -4px 4px #1976d2,
+        -3px 3px #1976d2,
+        -2px 2px #1976d2,
+        -1px 1px #1976d2,
+        -.5px .5px #1976d2, 
+        -1.5px 1.5px #1976d2,
+        -2.5px 2.5px #1976d2,
+        -3.5px 3.5px #1976d2, 
+        -4.5px 4.5px #1976d2 !important;
+        border: none;
+        transition: .75s;
+        translate: 3.5% -2.5%;
+        border: none;
+    }
+
+    .desktop-hov:hover {
+        box-shadow: -5px 5px rgb(25, 118, 210),
+        -4px 4px rgb(25, 118, 210),
+        -3px 3px rgb(25, 118, 210),
+        -2px 2px rgb(25, 118, 210),
+        -1px 1px rgb(25, 118, 210),
+        -.5px .5px rgb(25, 118, 210), 
+        -1.5px 1.5px rgb(25, 118, 210),
+        -2.5px 2.5px rgb(25, 118, 210),
+        -3.5px 3.5px rgb(25, 118, 210), 
+        -4.5px 4.5px rgb(25, 118, 210);
+        border: none;
+        transition: .75s;
+        translate: 3.5% -2.5%;
+        border: none;
+    }
+}
 .multi-pic-indicator {
     margin-left: auto;
     margin-right: .5vw;

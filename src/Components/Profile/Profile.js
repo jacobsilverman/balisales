@@ -24,7 +24,7 @@ const Profile = () => {
     const params = Object.fromEntries(urlSearchParams.entries());
     const loggedInUser = localStorage.getItem("uid");
     const [showPosts, setShowPosts] = useState(true);
-    const [userData, setUserData] = useState({});
+    const [userData, setUserData] = useState();
     const [profilePic, setProfilePic] = useState(null);
     const [reference, setReference] = useState({
         rating: 0,
@@ -62,6 +62,9 @@ const Profile = () => {
             }
         });
     }
+    if (!userData) {
+        return;
+    }
 
     return (
         <Container className="user-profile-container">
@@ -74,7 +77,6 @@ const Profile = () => {
                                     <h2>{userData.displayName}</h2>
                                 </Col>
                             </Row>
-
                             <Row>
                                 <Col className="profile-image center">
                                     <div className="user-account-profile center" style={{backgroundImage: `url(${profilePic})`}} />
@@ -97,13 +99,13 @@ const Profile = () => {
                                     <div className="user-full-name-loc">
                                         <div className="user-full-name">
                                             {!userData?.address}
-                                            <h2>{userData?.firstName} {userData?.lastName}</h2>
+                                            <h4>{userData?.firstName} {userData?.lastName}</h4>
                                         </div>
                                     </div>
                                     {userData?.address ?
                                     <Row>
                                         <Col xs={12} className="map-container">
-                                            <Map address={userData.address} height="200px" width="400px" border="5px solid black" />
+                                            <Map address={userData.address} height="200px" width="200px" border="5px solid black" />
                                         </Col>
                                         {userData?.address && <Col xs={12} className="loc-pin">
                                             <FaLocationArrow/>
@@ -135,7 +137,7 @@ const Profile = () => {
                         {userData?.discord && <Col xs={2}  className="item">
                             <SocialIcon target="blank" url={"https://www.discord.com/users/"+userData?.discord} />
                         </Col>}
-                        {userData?.facebook && <Col xs={2} md={2} className="item">
+                        {userData?.facebook && <Col xs={2} className="item">
                             <SocialIcon target="blank" url={"https://www.facebook.com/"+userData?.facebook} />
                         </Col>}
                     </Row>
@@ -145,7 +147,7 @@ const Profile = () => {
                         </Col>
                     </Row>}
                 </Col>
-                {userData?.referenceUrl &&
+                {userData?.referenceUrl.toLowerCase().indexOf("instagram") &&
                 <Col xs={12} md={6} className="contact-outer-container">
                     <Row>
                         <Col style={{ display: 'flex', justifyContent: 'center' }}>
