@@ -335,14 +335,24 @@ const SettingsForm = ({id}) => {
                             </Col>
                         </Row>
                     </Col>
-        
+                    
                     <Col xs={12} md={5} lg={4} className="setting-item profile-image-update">
-                        <label className={(!profilePicture) ? 'profile-label' : ''} htmlFor="inputTag">
-                            <div>Change Profile Picture</div>
-                            {(!profilePicture) ? <span style={{color:"black"}}>{t('Profile Picture')}</span> : null}
-                            <input id="inputTag" className='profile-input' type="file" onChange={handleProfileChange} accept="image/*" />
-                            {(!profilePicture) ? <><br /><FaImage size={40} /></> : <img src={profilePicture} className="upload-image" alt="profile display" />}
-                        </label>
+                        <Row>
+                            <Col xs={12}>
+                                <h5>Change Profile Picture</h5>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col xs={12}>
+                                <label className={(!profilePicture) ? 'profile-label' : ''} htmlFor="inputTag">
+                                
+                                    {(!profilePicture) ? <span style={{color:"black"}}>{t('Profile Picture')}</span> : null}
+                                    <input id="inputTag" className='profile-input' type="file" onChange={handleProfileChange} accept="image/*" />
+                                    {(!profilePicture) ? <><br /><FaImage size={40} /></> : <img src={profilePicture} className="upload-image" alt="profile display" />}
+                                </label>
+                            </Col>
+                        </Row>
+                        
                     </Col>
                 </>}
                 <Col xs={12} className="info-dropdown">
