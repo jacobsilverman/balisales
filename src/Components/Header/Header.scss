@@ -5,7 +5,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  // font-size: calc(10px + 2vmin);
   color: white;
   border-bottom: 3px solid rgba(0, 0, 0, 0.2);
   // box-shadow: 0 1px 2px rgb(0 0 0 / 13%), 0 0px 2px rgb(0 0 0 / 8%);
@@ -190,6 +190,16 @@
   // margin-top: 20px;
 }
 
+input[type="search"] {
+  padding: 10px 3px;
+  width: 350px;
+
+}
+
+label[data-shrink="false"]{
+  transform: translate(14px, 11px) scale(1);
+}
+
 .popover-item {
   border: 1px solid black;
   &:hover {
@@ -267,6 +277,7 @@
 }
 
 .login-container-left {
+  gap: 10px;
   display: flex;
   justify-content: flex-start;
   align-items: center;

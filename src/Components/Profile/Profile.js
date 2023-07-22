@@ -43,13 +43,18 @@ const Profile = () => {
         }
 
         getUserInfo(params?.id).then((result) => {
-            setUserData(result);
+            let parseResult = {...result};
+            if (!parseResult?.referenceUrl) {
+                parseResult.referenceUrl = ''
+            }
+            setUserData(parseResult);
         });
 
         getProfilePicture(params?.id).then((result) => {
             setProfilePic(result);
-        }).catch(() => {
+        }).catch((err) => {
             setProfilePic(defaultProfile);
+            console.error("no picture: ", err);
         });
     }, []);
 
@@ -69,7 +74,7 @@ const Profile = () => {
     return (
         <Container className="user-profile-container">
             <Row>
-                <Col xs={12}  md={userData?.referenceUrl ? 6 : 12} className="user-account-profile-col">
+                <Col xs={12}  md={userData?.referenceUrl ? 6: 12} className="user-account-profile-col">
                     <Row style={{width:"100%"}}>
                         <Col xs={12} md={userData?.referenceUrl || !userData?.address || Object.values(userData?.address).every(x => x === null || x === '') ? 12 : 6}>
                             <Row className="center">
@@ -147,7 +152,7 @@ const Profile = () => {
                         </Col>
                     </Row>}
                 </Col>
-                {userData?.referenceUrl.toLowerCase().indexOf("instagram") &&
+                {userData?.referenceUrl && userData?.referenceUrl?.toLowerCase().indexOf("instagram") &&
                 <Col xs={12} md={6} className="contact-outer-container">
                     <Row>
                         <Col style={{ display: 'flex', justifyContent: 'center' }}>
