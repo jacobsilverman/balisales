@@ -179,11 +179,7 @@ a {
     border-radius: 4px;
     background-color: white;
     @media (pointer:none), (pointer:coarse) {
-        position: absolute;
-        max-height: 85vh;
-        height: 85vh;
-        bottom: 2.5vh;
-        left: 2.5vw;
+        width:100vw;
     }
     :focus {
         outline: none;

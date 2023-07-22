@@ -22,7 +22,7 @@ import SelectModal from '../Body/Posts/Post/SelectModal';
 import Donate from "../Donate";
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 
-const SearchBar = ({posts, showSearch, t}) => {
+const SearchBar = ({posts, showSearch, t, popped}) => {
     const [searchValue, setSearchValue] = useState("");
 
     const searchFilter = useMemo(() => {
@@ -79,6 +79,11 @@ const SearchBar = ({posts, showSearch, t}) => {
         setSearchValue(newValue);
     }
     const [openPost, setOpenPost] = useState(false);
+
+    const resultOfSearch = (
+    <div className="search-results-container">
+        {searchFilter}
+    </div>);
   
     return (
         <Fragment>
@@ -88,13 +93,12 @@ const SearchBar = ({posts, showSearch, t}) => {
                 setOpenSelectModal={setOpenPost} />
             <Row className={searchCls}>
                 <Col xs={12} className="popover-container">
-                    <TextField autoComplete="off" fullWidth label={t("Search")} color="" type="search" defaultValue={searchValue} onClick={(event)=>event.stopPropagation()} onChange={searchAbility} />
-                </Col>
+                    <OverlayTrigger show={searchValue !== "" && searchFilter.length > 0 && !popped } overlay={<Popover>{resultOfSearch}</Popover>} placement='bottom-end'>
+                        <TextField autoComplete="off" fullWidth label={t("Search")} color="" type="search" defaultValue={searchValue} onClick={(event)=>event.stopPropagation()} onChange={searchAbility} />
+                    </OverlayTrigger>
+                </Col> 
             </Row>
-            {searchValue !== "" && searchFilter.length > 0 && 
-            <div className="search-results-container">
-                {searchFilter}
-            </div>}
+            {searchValue !== "" && searchFilter.length > 0 && popped && resultOfSearch}
         </Fragment>
     );
 };
@@ -237,6 +241,20 @@ const Header = ({posts, setShowFilter}) => {
 
     const location = useLocation();
 
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+    useEffect(() => {
+      const handleWindowResize = () => {
+        setWindowWidth(window.innerWidth)
+      };
+  
+      window.addEventListener('resize', handleWindowResize);
+  
+      return () => {
+        window.removeEventListener('resize', handleWindowResize);
+      };
+    },[]);
+
     useEffect(() => {
         getProfilePicture(uid).then((result) => {
             setProfilePic(result);
@@ -326,22 +344,22 @@ const Header = ({posts, setShowFilter}) => {
 
     const searchPopover = (
         <Popover id="popover-search">
-            <SearchBar posts={posts} showSearch={showSearch} t={t} />
+            <SearchBar posts={posts} showSearch={showSearch} t={t} popped={true} />
         </Popover>
     );
 
-    const notificationCls = `account-dropdown ${showNotifications ? "visible" : 'hidden'}`;
+    // const notificationCls = `account-dropdown ${showNotifications ? "visible" : 'hidden'}`;
 
-    const notificationPopover = (
-        <Popover id="popover-notications">
-            <Row className={notificationCls}>
-                <Button xs={3} className="popover-container">
-                    <i className="material-icons">highlight</i>
-                    &nbsp;{t("no new alerts")}
-                </Button>
-            </Row>
-        </Popover>
-    );
+    // const notificationPopover = (
+    //     <Popover id="popover-notications">
+    //         <Row className={notificationCls}>
+    //             <Button xs={3} className="popover-container">
+    //                 <i className="material-icons">highlight</i>
+    //                 &nbsp;{t("no new alerts")}
+    //             </Button>
+    //         </Row>
+    //     </Popover>
+    // );
 
     // const inboxCls = `account-dropdown ${showInbox ? "visible" : 'hidden'}`;
 
@@ -383,36 +401,62 @@ const Header = ({posts, setShowFilter}) => {
                     <Donate showDonate={showDonate} setShowDonate={setShowDonate} />
                 </PayPalScriptProvider>
                 <Row className="between" onClick={() => {resetAllPopovers()}}>
-                    <Col xs={3} sm={3} md={3} lg={2} className="login-container-left">
+                    <Col xs={8} sm={10} md={9} className="login-container-left">
                         <Button href="/" onClick={() =>{resetAllPopovers();setPageTitle("Home")}}>
                             <i className="material-icons">home</i>
                         </Button>
+                        {windowWidth < 750 ? <OverlayTrigger trigger="click" placement="bottom-start" show={showNav} overlay={navPopover}>
+                            <Button onClick={(e) =>{e.stopPropagation();resetAllPopovers("nav");setShowNav(show => !show)}}>
+                                <i className="material-icons">format_list_bulleted</i>
+                            </Button>
+                        </OverlayTrigger>:
+                        <>
+                            {isAuth &&<Link className="white" to={{pathname: '/createPost'}}>
+                                <Button onClick={() =>{resetAllPopovers("create");setPageTitle("Create")}}>
+                                    <i className="material-icons">add</i>
+                                    &nbsp;{t("Create")}
+                                </Button>
+                            </Link>}
+                            <Link className="white" to={{pathname: '/contactUs'}}>
+                                <Button onClick={() =>{resetAllPopovers("contact");setPageTitle("Contact")}}>
+                                    <i className="material-icons">contact_support</i>
+                                    &nbsp;{t("Contact")}
+                                </Button>
+                            </Link>
+                            <Link className="white" to={{pathname: '/aboutUs'}}>
+                                <Button onClick={() =>{resetAllPopovers("about");setPageTitle("About")}}>
+                                    <i className="material-icons">face</i>
+                                    &nbsp;{t("About Us")}
+                                </Button>
+                            </Link>
+                            <Button onClick={() =>{resetAllPopovers();setShowDonate(cur => !cur)}}>
+                                <i className="material-icons">payments</i>
+                                &nbsp;{t("Donate")}
+                            </Button>
+                        </>}
                         {location.pathname==='/' ? 
                             <Button onClick={() =>{resetAllPopovers();setShowFilter(cur => !cur)}}>
+                                {windowWidth>750 && <i className="material-icons">manage_search</i>}
                                 {t("Filter")}
                             </Button>
                             : <Button href="/" onClick={() =>{resetAllPopovers();setPageTitle("Home")}}>
                                 {t("Browse")}
-                            </Button>}
-                        <OverlayTrigger trigger="click" placement="bottom-start" show={showNav} overlay={navPopover}>
-                            <Button onClick={(e) =>{e.stopPropagation();resetAllPopovers("nav");setShowNav(show => !show)}}>
-                                <i className="material-icons">format_list_bulleted</i>
-                            </Button>
-                        </OverlayTrigger>
+                        </Button>}
                     </Col>
-                    {window.innerWidth > 800 ? <Col className="center title">
+                    {/* {window.innerWidth > 800 ? <Col className="center title">
                         <h1 style={{display:"inline-block",fontSize:"40px",fontFamily:"roboto",paddingTop:"10px"}}>
                             <a href="/" style={{color:"black", textDecoration: "none"}}>
                                 {t(pageTitle)}
                             </a>
                         </h1>
-                    </Col> : <Col />}
-                    <Col xs={8} sm={4} md={3} lg={2} className="login-container-right">
-                        <OverlayTrigger trigger="click" placement="bottom-end" show={showSearch} overlay={searchPopover}>
+                    </Col> : <Col />} */}
+                    <Col xs={3} sm={1} md={2} className="login-container-right">
+                        {windowWidth < 1050 ? <OverlayTrigger trigger="click" placement="bottom-end" show={showSearch} overlay={searchPopover}>
                              <Button  onClick={(e) => {e.stopPropagation();resetAllPopovers("search");setShowSearch(show => !show)}}>
                                 <i className="material-icons">search</i>
                             </Button>
-                        </OverlayTrigger>
+                        </OverlayTrigger> :
+                        <SearchBar posts={posts} showSearch={true} t={t} popped={false} />}
                         {/* {isAuth && 
                         <OverlayTrigger trigger="focus" placement="bottom-end" show={showNotifications} overlay={notificationPopover}>
                             <Button  onClick={() => {resetAllPopovers("notifications");setShowNotifications(show => !show)}}>
@@ -441,7 +485,7 @@ const Header = ({posts, setShowFilter}) => {
                 </Row>
             </Container>
         );
-    }, [profilePic, isAuth, showAccount, showDonate, showInbox, showNav, showNotifications, showSearch, pageTitle]);
+    }, [profilePic, isAuth, showAccount, showDonate, showInbox, showNav, showNotifications, showSearch, pageTitle, windowWidth]);
 
     return (
         <nav>

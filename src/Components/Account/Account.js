@@ -26,7 +26,11 @@ function Account({user, settingsPage}) {
 			result.sort((a, b) => {
 				return b.timeStamp-a.timeStamp;
 			});
-            setFilterPosts(result);
+			const filteredResults = result.filter((post) => {
+				return post.author.id === user
+			})
+
+            setFilterPosts(filteredResults);
         }).catch(() => {
             console.error("cant get user posts");
         }).finally(() => {
