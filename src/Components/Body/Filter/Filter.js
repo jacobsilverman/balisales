@@ -16,12 +16,12 @@ function Filter({getOptions, brand, setBrand, max, setMax, min, setMin, type, se
     return (
         <Fragment>
             <Row className='filter-item'>
-                <Col xs={3} className='filter-exit-button'>
-                    <Button variant="contained" color="error" size="small" onClick={() => {setDisplayFilter(false)}}>x</Button>
-                </Col>
                 <Col xs={9}>
                     <Button className="reset-button" variant="contained" onClick={() => {resetFilter()}}>{t("Reset")}</Button>
                 </Col> 
+                <Col xs={3} className='filter-exit-button'>
+                    <Button variant="contained" color="error" size="small" onClick={() => {setDisplayFilter(false)}}>x</Button>
+                </Col>
             </Row>
             <Row>
                 <Col xs={12}>
