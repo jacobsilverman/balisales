@@ -72,16 +72,31 @@ const Profile = () => {
     }
 
     return (
+        <>
+        <Container className="profile-header-container">
+            <Row>
+                <Col className="profile-header">
+                    <h2>{userData.displayName}</h2>
+                </Col>
+            </Row>
+        </Container>
         <Container className="user-profile-container">
             <Row>
                 <Col xs={12}  md={userData?.referenceUrl ? 6: 12} className="user-account-profile-col">
                     <Row style={{width:"100%"}}>
+                        
                         <Col xs={12} md={userData?.referenceUrl || !userData?.address || Object.values(userData?.address).every(x => x === null || x === '') ? 12 : 6}>
-                            <Row className="center">
+                            {/* <Row className="center">
                                 <Col>
                                     <h2>{userData.displayName}</h2>
                                 </Col>
-                            </Row>
+                            </Row> */}
+                            {/* <div className="user-full-name-loc">
+                                <div className="user-full-name">
+                                    {!userData?.address}
+                                    <h4>{userData?.firstName} {userData?.lastName}</h4>
+                                </div>
+                            </div> */}
                             <Row>
                                 <Col className="profile-image center">
                                     <div className="user-account-profile center" style={{backgroundImage: `url(${profilePic})`}} />
@@ -101,16 +116,11 @@ const Profile = () => {
                         <Col xs={12} md={userData?.referenceUrl  || !userData?.address || Object.values(userData?.address).every(x => x === null || x === '') ? 12 : 6}>
                             <Row>
                                 <Col xs={12} className="map-col-container">
-                                    <div className="user-full-name-loc">
-                                        <div className="user-full-name">
-                                            {!userData?.address}
-                                            <h4>{userData?.firstName} {userData?.lastName}</h4>
-                                        </div>
-                                    </div>
+
                                     {userData?.address ?
                                     <Row>
                                         <Col xs={12} className="map-container">
-                                            <Map address={userData.address} height="200px" width="200px" border="5px solid black" />
+                                            <Map address={userData.address} height="200px" width="100%" border="5px solid black" />
                                         </Col>
                                         {userData?.address && <Col xs={12} className="loc-pin">
                                             <FaLocationArrow/>
@@ -176,6 +186,7 @@ const Profile = () => {
                 <Reviews userData={userData} />
             </>}
         </Container>
+        </>
     );
 }
 

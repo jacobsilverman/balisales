@@ -11,14 +11,17 @@ import InputLabel from '@mui/material/InputLabel';
 import Select from '@mui/material/Select';
 import { Button, Col, Row } from 'react-bootstrap';
 
-import { doc, deleteDoc, setDoc } from 'firebase/firestore';
+import { doc, deleteDoc } from 'firebase/firestore';
 import { db } from '../../../../../firebase-config';
 import { deleteUserPost } from '../../../../../Data/Services/userInfo.js';
 
 import { ref, deleteObject, getStorage } from "firebase/storage";
 import { useTranslation } from 'react-i18next';
 
-const EditModal = ({item, openEditModal, setOpenEditModal, filterPosts, setFilterPosts}) => {
+import { editPost } from '../../../../../Data/Services/PostInfo';
+
+const EditModal = ({item, setPosts, openEditModal, setOpenEditModal, filterPosts, setFilterPosts}) => {
+
     const [title, setTitle] = useState(item?.title);
     const [description, setDescription] = useState(item?.description);
     const [type, setType] = useState(item?.type);
@@ -83,12 +86,13 @@ const EditModal = ({item, openEditModal, setOpenEditModal, filterPosts, setFilte
         });
     };
 
-    const editPost = async () => {
+    const handleEditPost = () => {
         if (!isValidated) {
             return
         }
-        const postDocRef = doc(db, "posts", item.id);
-        await setDoc(postDocRef, {
+
+        editPost(
+        {
             title,
             type,
             blade,
@@ -97,18 +101,28 @@ const EditModal = ({item, openEditModal, setOpenEditModal, filterPosts, setFilte
             price,
             description,
             status,
-            timeStamp: Date.now(),
+            timeStamp: item.timeStamp,
+            editTimeStamp: Date.now(),
             numberOfImages: item.numberOfImages,
-            author: {name: item.author.name, id: item.author.id }
-        }).then(() => {
-            const pictureRef = ref(getStorage(), `postImages/${item.id}/image-0`);
-            console.log("pictureRef: ", pictureRef);
-            // uploadBytesResumable(pictureRef, file);
-        }).catch((error) => {
-            console.error("problem: ", error)
-        }).finally(() => {
-            window.location.reload();
-        });
+            author: {
+                name: item.author.name, id: item.author.id
+            }
+        }, item.id).then((res) => {
+            setPosts(cur => [{
+                title,
+                type,
+                blade,
+                brand, 
+                condition,
+                price,
+                description,
+                status,
+                ...item
+            }, ...cur.filter((post) => post.id !== item.id)]);
+            console.log("result: ", res)
+        }).catch((err) => {
+            console.error("problem when saving the edit post: ", err)
+        })
     }
 
     const deletePost = async (item) => {
@@ -243,12 +257,24 @@ const EditModal = ({item, openEditModal, setOpenEditModal, filterPosts, setFilte
             return
         }
         
-        editPost();
+        handleEditPost();
         setOpenEditModal(false);
     }
 
-    const handleCancel = () => {
+    const handleResetPost = () => {
+        setTitle(item?.title);
+        setDescription(item?.description);
+        setType(item?.type);
+        setBlade(item?.blade);
+        setBrand(item?.brand);
+        setCondition(item?.condition);
+        setPrice(item?.price);
+        setStatus(item?.status);
+    }
+
+    const handleCancel = (event) => {
         setOpenEditModal(false);
+        handleResetPost();
     }
 
     const handleDelete = (event) => {

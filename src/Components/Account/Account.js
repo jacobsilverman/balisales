@@ -53,7 +53,8 @@ function Account({user, settingsPage}) {
                         openSelectModal={openSelectModal.show} 
                         setOpenSelectModal={setOpenSelectModal} />}
 				{settingsPage && <EditModal 
-					item={selectedPost} 
+					item={selectedPost}
+					setPosts={setFilterPosts}
 					filterPosts={filterPosts}
 					setFilterPosts={setFilterPosts}
 					openEditModal={openEditModal} 
