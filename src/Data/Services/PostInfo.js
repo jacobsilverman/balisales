@@ -1,4 +1,4 @@
-import { doc, getDoc } from 'firebase/firestore';
+import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { db } from '../../firebase-config';
 import { ref, getDownloadURL, getStorage } from "firebase/storage";
 
@@ -24,4 +24,16 @@ export const getPost = async (id) => {
         return parsedItem;
     });
     return postData;
+}
+
+export const editPost = async (payload, id) => {
+  const postDocRef = doc(db, `${environment()}-posts`, id);
+  await setDoc(postDocRef, payload).then(() => {
+      // const pictureRef = ref(getStorage(), `postImages/${id}/image-0`);
+      console.log("POST EDIT SAVED");
+
+      // uploadBytesResumable(pictureRef, file);
+  }).catch((error) => {
+      console.error("problem: ", error)
+  });
 }

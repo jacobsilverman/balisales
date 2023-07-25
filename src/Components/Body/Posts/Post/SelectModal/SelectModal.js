@@ -10,7 +10,6 @@ import { Col, Row } from 'react-bootstrap';
 import { SocialIcon } from 'react-social-icons';
 
 import { Link } from 'react-router-dom';
-import { isMobile } from '../../../../../Data/Constants/index.js';
 
 const SelectModal = ({t, item, openSelectModal, setOpenSelectModal}) => {
     const [profilePic, setProfilePic] = useState();
@@ -50,7 +49,14 @@ const SelectModal = ({t, item, openSelectModal, setOpenSelectModal}) => {
         const pictureCls = `${index===displayImage ? 'show' : 'hidden'} select-image-container align-items-end`;
 
         return (
-            <Col xs={11} sm={11} md={7} style={{backgroundImage: `url(${image})`}} className={pictureCls} key={"post-"+image} />
+            <Col xs={12} style={{position:"relative",backgroundImage: `url(${image})`}} className={pictureCls} key={"post-"+image}>
+                {displayPost?.numberOfImages > 1 && <Col xs={1} className="traverse-container" style={{position:"absolute",top: "120px", left: "10px"}}>
+                    <Button id="traverse-prev-button" onClick={handlePreviousImage}>{"<"}</Button>
+                </Col>}
+                {displayPost?.numberOfImages > 1 && <Col xs={1} className="traverse-container" style={{position:"absolute",top: "120px", right: "10px"}}>
+                    <Button id="traverse-next-button" onClick={handleNextImage}>{">"}</Button>
+                </Col>}
+            </Col>
         );
     })
 
@@ -58,7 +64,7 @@ const SelectModal = ({t, item, openSelectModal, setOpenSelectModal}) => {
         <Row className='all-pictures'>
             {displayPost?.urls?.map((image, index) => {
                 return (
-                    <Col key={image} className='individual-picture' style={{backgroundImage: `url(${image})`, backgroundSize:'100% 100%', maxWidth: "37.5px", height: "50px", opacity: (displayImage === index) ? '.5': '1'}} onClick={() => handleAssignImage(index)} />
+                    <Col key={image} className='individual-picture' style={{backgroundImage: `url(${image})`, backgroundSize:'100% 100%', maxWidth: "37.5px", height: "50px", opacity: (displayImage !== index) ? '.5': '1'}} onClick={() => handleAssignImage(index)} />
                 );
             })}
         </Row>
@@ -71,58 +77,29 @@ const SelectModal = ({t, item, openSelectModal, setOpenSelectModal}) => {
         <Modal open={openSelectModal} className="select-modal" onClick={() => setOpenSelectModal({show:false})}>
             <Row>
                 <Col className="modal-background" xs={12} onClick={(e) => e.stopPropagation()}>
-                    <Row className="center-start">
-                        <Col xs={12} className="selected-post-image-container">
+                    <Row className='center'>
+                        <Col>
+                            <h1 id="select-modal-title">{displayPost?.title}</h1>
                             <Button id="select-modal-exit-button" color="error" onClick={() => setOpenSelectModal({show:false})}>
                                 X
-                            </Button>  
-
+                            </Button>
+                        </Col>
+                    </Row>
+                    <Row className="center-start">
+                        <Col xs={12} sm={5} className="selected-post-image-container">
                             <Row className="content-container">
-                                {displayPost?.numberOfImages > 1 && <Col xs={1} className="traverse-container">
-                                    <Button id="traverse-prev-button" onClick={handlePreviousImage}>{"<"}</Button>
-                                </Col>}
                                 {displayPost?.urls && postPictures}
-                                {displayPost?.numberOfImages > 1 && <Col xs={1} className="traverse-container">
-                                    <Button id="traverse-next-button" onClick={handleNextImage}>{">"}</Button>
-                                </Col>}
                             </Row>
-                            
                             {displayPost?.numberOfImages > 1 && postBottomPictures}
                         </Col>
-                        
-                            {/* {displayPost?.numberOfImages > 1 &&
-                            <Row>
-                                <Col xs={6} className="previous-image">
-                                    <Button variant="contained" onClick={handlePreviousImage}>{t("Previous")}</Button>
-                                </Col>
-                                <Col xs={6} className="next-image">
-                                    <Button variant="contained" onClick={handleNextImage}>{t("Next")}</Button>
-                                </Col>
-                            </Row>} */}
-                        <Col xs={12} >
+                        <Col xs={12} sm={7} >
                             <Row className="horizontal-center">
                                 <Col xs={12} className="info-container">
                                     <Row>
-                                        <Col xs={12} className="display-title">
-                                            <h1>{displayPost?.title}</h1>
-                                        </Col>
-                                    </Row>
-                                    <Row>
-                                        <Col xs={6}  className="brand-title">
+                                        <Col xs={6}  className="vertical-center brand-title">
                                             <h3>{displayPost?.brand}</h3>
                                         </Col>
-                                        <Col xs={6} className="condition-text">
-                                            {t("Condition")}: {displayPost?.condition}
-                                        </Col>
-                                    </Row>
-                                    <Row className="description-wrapper">
-                                        <Col xs={12}>
-                                            {displayPost?.description}
-                                        </Col>
-                                    </Row>
-                                    <hr />
-                                    <Row>
-                                        <Col xs={isMobile ? 12 : 3} md={5}>
+                                        <Col xs={6}>
                                             <Row className="multi-content selling-price-wrapper">
                                                 <Col xs={12} className={colorPriceClass}>
                                                     ${displayPost?.price}
@@ -132,14 +109,25 @@ const SelectModal = ({t, item, openSelectModal, setOpenSelectModal}) => {
                                                 </Col>
                                             </Row>
                                         </Col>
-                                        <Col className="flex-end" xs={isMobile ? 12 : 9} md={7}>
+                                        {/* <Col xs={6} className="condition-text">
+                                            {t("Condition")}: {displayPost?.condition}
+                                        </Col> */}
+                                    </Row>
+                                    <Row className="description-wrapper">
+                                        <Col xs={12}>
+                                            {displayPost?.description}
+                                        </Col>
+                                    </Row>
+                                    <hr />
+                                    <Row>
+                                        <Col>
                                             <Row className="profile-link">
-                                                <Col xs={3}>
+                                                <Col xs={3} sm={3} className='flex-end'>
                                                     <Link className="link" to={{pathname: '/profile', search: "id=" + displayPost?.author?.id}}>
                                                         <div className="account-profile" style={{backgroundImage: `url(${profilePic})`}} />
                                                     </Link>
                                                 </Col>
-                                                <Col xs={9} className="vertical-center flex-end">
+                                                <Col xs={9} sm={9} className="vertical-center flex-start">
                                                     <Link to={{pathname: '/profile', search: "id=" + displayPost?.author?.id}}>
                                                         <div className="display-name">
                                                             {displayPost?.author?.name}
