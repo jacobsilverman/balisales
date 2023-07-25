@@ -108,17 +108,22 @@ const EditModal = ({item, setPosts, openEditModal, setOpenEditModal, filterPosts
                 name: item.author.name, id: item.author.id
             }
         }, item.id).then((res) => {
-            setPosts(cur => [{
-                title,
-                type,
-                blade,
-                brand, 
-                condition,
-                price,
-                description,
-                status,
-                ...item
-            }, ...cur.filter((post) => post.id !== item.id)]);
+            setPosts(cur => [...cur.map((post) => {
+                if (post.id === item.id) {
+                    return {
+                        ...item,
+                        title,
+                        type,
+                        blade,
+                        brand, 
+                        condition,
+                        price,
+                        description,
+                        status
+                    };
+                }
+                return post;
+            })]);
             console.log("result: ", res)
         }).catch((err) => {
             console.error("problem when saving the edit post: ", err)
