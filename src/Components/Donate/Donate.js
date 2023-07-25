@@ -56,9 +56,9 @@ const Donate = ({showDonate, setShowDonate}) => {
     
 
     return (
-        <Modal open={showDonate}>
+        <Modal open={showDonate} onClick={() => setShowDonate(false)}>
             <Row className="edit-modal">
-                <Col xs={9} className="modal-background-paypal center">
+                <Col xs={6} className="modal-background-paypal center" onClick={(e) => e.stopPropagation()}>
                 {isPending ? <Spinner /> : (
                     <>    
                     <Row>                  
@@ -101,11 +101,13 @@ const Donate = ({showDonate, setShowDonate}) => {
                             </Row>
                         </Col>
                         <Col />
-                        <PayPalButtons 
-                            style={{ layout: "vertical", color: "silver" }}
-                            createOrder={(data, actions) => onCreateOrder(data, actions)}
-                            onApprove={(data, actions) => onApproveOrder(data, actions)}
-                        />
+                        <Col className='horizontal-center'>
+                            <PayPalButtons 
+                                style={{ layout: "vertical", color: "silver" }}
+                                createOrder={(data, actions) => onCreateOrder(data, actions)}
+                                onApprove={(data, actions) => onApproveOrder(data, actions)}
+                            />
+                        </Col>
                     </Row>
                     </>
                 )}

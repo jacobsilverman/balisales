@@ -401,29 +401,31 @@ const Header = ({posts, setShowFilter}) => {
                     <Donate showDonate={showDonate} setShowDonate={setShowDonate} />
                 </PayPalScriptProvider>
                 <Row className="between" onClick={() => {resetAllPopovers()}}>
-                    <Col xs={8} sm={10} md={9} className="login-container-left">
-                        <Button href="/" onClick={() =>{resetAllPopovers();setPageTitle("Home")}}>
-                            <i className="material-icons">home</i>
-                        </Button>
-                        {windowWidth < 750 ? <OverlayTrigger trigger="click" placement="bottom-start" show={showNav} overlay={navPopover}>
+                    <Col xs={5} sm={5} md={9} className="login-container-left">
+                        {/* <Link className="white nav-bar-item" to={{pathname: '/'}}> */}
+                            <Button onClick={() =>{resetAllPopovers();setPageTitle("Home");window.location.href = "/"}}>
+                                <i className="material-icons">home</i>
+                            </Button>
+                        {/* </Link> */}
+                        {windowWidth < 800 ? <OverlayTrigger trigger="click" placement="bottom-start" show={showNav} overlay={navPopover}>
                             <Button onClick={(e) =>{e.stopPropagation();resetAllPopovers("nav");setShowNav(show => !show)}}>
                                 <i className="material-icons">format_list_bulleted</i>
                             </Button>
                         </OverlayTrigger>:
                         <>
-                            {isAuth &&<Link className="white" to={{pathname: '/createPost'}}>
+                            {isAuth &&<Link className="white nav-bar-item" to={{pathname: '/createPost'}}>
                                 <Button onClick={() =>{resetAllPopovers("create");setPageTitle("Create")}}>
                                     <i className="material-icons">add</i>
                                     &nbsp;{t("Create")}
                                 </Button>
                             </Link>}
-                            <Link className="white" to={{pathname: '/contactUs'}}>
+                            <Link className="white nav-bar-item" to={{pathname: '/contactUs'}}>
                                 <Button onClick={() =>{resetAllPopovers("contact");setPageTitle("Contact")}}>
                                     <i className="material-icons">contact_support</i>
                                     &nbsp;{t("Contact")}
                                 </Button>
                             </Link>
-                            <Link className="white" to={{pathname: '/aboutUs'}}>
+                            <Link className="white nav-bar-item" to={{pathname: '/aboutUs'}}>
                                 <Button onClick={() =>{resetAllPopovers("about");setPageTitle("About")}}>
                                     <i className="material-icons">face</i>
                                     &nbsp;{t("About Us")}
@@ -436,7 +438,7 @@ const Header = ({posts, setShowFilter}) => {
                         </>}
                         {location.pathname==='/' ? 
                             <Button onClick={() =>{resetAllPopovers();setShowFilter(cur => !cur)}}>
-                                {windowWidth>750 && <i className="material-icons">manage_search</i>}
+                                {windowWidth>800 && <i className="material-icons">manage_search</i>}
                                 {t("Filter")}
                             </Button>
                             : <Button href="/" onClick={() =>{resetAllPopovers();setPageTitle("Home")}}>
@@ -450,7 +452,7 @@ const Header = ({posts, setShowFilter}) => {
                             </a>
                         </h1>
                     </Col> : <Col />} */}
-                    <Col xs={3} sm={1} md={2} className="login-container-right">
+                    <Col xs={6} sm={6} md={2} className="login-container-right">
                         {windowWidth < 1050 ? <OverlayTrigger trigger="click" placement="bottom-end" show={showSearch} overlay={searchPopover}>
                              <Button  onClick={(e) => {e.stopPropagation();resetAllPopovers("search");setShowSearch(show => !show)}}>
                                 <i className="material-icons">search</i>

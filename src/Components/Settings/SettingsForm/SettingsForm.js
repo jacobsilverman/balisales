@@ -276,7 +276,7 @@ const SettingsForm = ({id}) => {
     return (
         <Col xs={12} className="center settings-container">
             <Row>
-                <Col xs={12} className="info-dropdown">
+                <Col xs={12} className="info-dropdown setting-padding">
                     <h2 onClick={() => setShowRequiredInfo(cur => !cur)}>
                         Basic Info&nbsp;&nbsp;
                         <i size="small" className='material-icons'>{showRequiredInfo ? "visibility_off" : "visibility_on"}</i>
@@ -284,20 +284,24 @@ const SettingsForm = ({id}) => {
                 </Col>
                 <hr />
                 {showRequiredInfo && <>
-                    <Col xs={12} sm={4} className="setting-item">
-                        <TextField fullWidth label={t("First Name")} error={!validation.firstName} type="search" onChange={handleFirstNameChange} value={firstName} />
-                    </Col>
+                    <Col className='setting-padding'>
+                        <Row>
+                            <Col xs={12} sm={4} className="setting-item">
+                                <TextField fullWidth label={t("First Name")} error={!validation.firstName} type="search" onChange={handleFirstNameChange} value={firstName} />
+                            </Col>
 
-                    <Col xs={12} sm={4} className="setting-item">
-                        <TextField fullWidth label={t("Last Name")} error={!validation.lastName} type="search" onChange={handleLastNameChange} value={lastName} />
-                    </Col>
+                            <Col xs={12} sm={4} className="setting-item">
+                                <TextField fullWidth label={t("Last Name")} error={!validation.lastName} type="search" onChange={handleLastNameChange} value={lastName} />
+                            </Col>
 
-                    <Col xs={12} sm={4} className="setting-item">
-                        <TextField fullWidth label={t("Display Name")} error={!validation.displayName} type="search" onChange={handleDisplayNameChange} value={displayName} />
+                            <Col xs={12} sm={4} className="setting-item">
+                                <TextField fullWidth label={t("Display Name")} error={!validation.displayName} type="search" onChange={handleDisplayNameChange} value={displayName} />
+                            </Col>
+                        </Row>
                     </Col>
                 </>}
 
-                <Col xs={12} className="info-dropdown">
+                <Col xs={12} className="info-dropdown setting-padding">
                     <h2 onClick={() => setShowSocialInfo(cur => !cur)}>
                         Social Info&nbsp;&nbsp;
                         <i size="small" className='material-icons'>{ showSocialInfo ? "visibility_off" : "visibility_on"}</i>
@@ -305,57 +309,61 @@ const SettingsForm = ({id}) => {
                 </Col>
                 <hr />
                 {showSocialInfo && <>
-                    <Col xs={12} md={7} lg={8}>
+                    <Col className="setting-padding">
                         <Row>
-                            <Col xs={12} md={6} className="setting-item">
-                                <TextField fullWidth label={t("Phone Number")} error={!validation.phoneNumber} onChange={handlePhoneNumberChange} value={displayNumber(phoneNumber)} inputProps={{ maxLength: 14 }} />
-                            </Col>
-                    
-                            <Col xs={12} md={6} className="setting-item">
-                                <TextField fullWidth label={t("www.instagram.com/")} color="" type="url" error={!validation.instagram} onChange={handleInstagramChange} value={instagram} />
-                            </Col>
+                            <Col xs={12} md={7} lg={8}>
+                                <Row>
+                                    <Col xs={12} md={6} className="setting-item">
+                                        <TextField fullWidth label={t("Phone Number")} error={!validation.phoneNumber} onChange={handlePhoneNumberChange} value={displayNumber(phoneNumber)} inputProps={{ maxLength: 14 }} />
+                                    </Col>
+                            
+                                    <Col xs={12} md={6} className="setting-item">
+                                        <TextField fullWidth label={t("www.instagram.com/")} color="" type="url" error={!validation.instagram} onChange={handleInstagramChange} value={instagram} />
+                                    </Col>
 
-                            <Col xs={12} md={6} className="setting-item">
-                                <TextField fullWidth label={t("www.facebook.com/")} color="" type="url" error={!validation.facebook} onChange={handleFacebookChange} value={facebook} />
-                            </Col>
-                            <Col xs={12} md={6} className="setting-item">
-                                <TextField fullWidth label={t("www.discord.com/channel/")} color="" type="url" error={!validation.discord} onChange={handleDiscordChange} value={discord} />
-                            </Col>
-                    
-                            <Col xs={12} md={6} className="setting-item">
-                                <TextField fullWidth label={t("www.youtube.com/channel/")} color="" type="url" error={!validation.youtube} onChange={handleYoutubeChange} value={youtube} />
-                            </Col>
+                                    <Col xs={12} md={6} className="setting-item">
+                                        <TextField fullWidth label={t("www.facebook.com/")} color="" type="url" error={!validation.facebook} onChange={handleFacebookChange} value={facebook} />
+                                    </Col>
+                                    <Col xs={12} md={6} className="setting-item">
+                                        <TextField fullWidth label={t("www.discord.com/channel/")} color="" type="url" error={!validation.discord} onChange={handleDiscordChange} value={discord} />
+                                    </Col>
+                            
+                                    <Col xs={12} md={6} className="setting-item">
+                                        <TextField fullWidth label={t("www.youtube.com/channel/")} color="" type="url" error={!validation.youtube} onChange={handleYoutubeChange} value={youtube} />
+                                    </Col>
 
-                            <Col xs={12} md={6} className="setting-item">
-                                <TextField fullWidth label={t("www.twitter.com/")} color="" type="url" error={!validation.twitter} onChange={handleTwitterChange} value={twitter} />
-                            </Col>
+                                    <Col xs={12} md={6} className="setting-item">
+                                        <TextField fullWidth label={t("www.twitter.com/")} color="" type="url" error={!validation.twitter} onChange={handleTwitterChange} value={twitter} />
+                                    </Col>
 
-                            <Col xs={12} className="setting-item">
-                                <TextField fullWidth label={t("Reference Url")} color="" type="url" error={!validation.referenceUrl} onChange={handleReferenceChange} value={referenceUrl} />
+                                    <Col xs={12} className="setting-item">
+                                        <TextField fullWidth label={t("Reference Url")} color="" type="url" error={!validation.referenceUrl} onChange={handleReferenceChange} value={referenceUrl} />
+                                    </Col>
+                                </Row>
                             </Col>
-                        </Row>
-                    </Col>
-                    
-                    <Col xs={12} md={5} lg={4} className="setting-item profile-image-update">
-                        <Row>
-                            <Col xs={12}>
-                                <h5>Change Profile Picture</h5>
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col xs={12}>
-                                <label className={(!profilePicture) ? 'profile-label' : ''} htmlFor="inputTag">
+                            
+                            <Col xs={12} md={5} lg={4} className="setting-item profile-image-update">
+                                <Row>
+                                    <Col xs={12}>
+                                        <h5>Change Profile Picture</h5>
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <Col xs={12}>
+                                        <label className={(!profilePicture) ? 'profile-label' : ''} htmlFor="inputTag">
+                                        
+                                            {(!profilePicture) ? <span style={{color:"black"}}>{t('Profile Picture')}</span> : null}
+                                            <input id="inputTag" className='profile-input' type="file" onChange={handleProfileChange} accept="image/*" />
+                                            {(!profilePicture) ? <><br /><FaImage size={40} /></> : <img src={profilePicture} className="upload-image" alt="profile display" />}
+                                        </label>
+                                    </Col>
+                                </Row>
                                 
-                                    {(!profilePicture) ? <span style={{color:"black"}}>{t('Profile Picture')}</span> : null}
-                                    <input id="inputTag" className='profile-input' type="file" onChange={handleProfileChange} accept="image/*" />
-                                    {(!profilePicture) ? <><br /><FaImage size={40} /></> : <img src={profilePicture} className="upload-image" alt="profile display" />}
-                                </label>
                             </Col>
                         </Row>
-                        
                     </Col>
                 </>}
-                <Col xs={12} className="info-dropdown">
+                <Col xs={12} className="info-dropdown setting-padding">
                     <h2 onClick={() => setShowLocationInfo(cur => !cur)}>
                         Location Info&nbsp;&nbsp;
                         <i size="small" className='material-icons'>{ showLocationInfo ? "visibility_off" : "visibility_on"}</i>
@@ -363,35 +371,39 @@ const SettingsForm = ({id}) => {
                 </Col>
                 <hr />
                 {showLocationInfo && <>
-                    <Col xs={12} md={address && 7} lg={address && 8}>
+                    <Col className="setting-padding">
                         <Row>
-                            <Col xs={12} md={6} className="setting-item">
-                                <TextField fullWidth label={t("Address")} error={!validation.address} value={address?.address} onChange={handleAddressChange} />
+                            <Col xs={12} md={address && 7} lg={address && 8}>
+                                <Row>
+                                    <Col xs={12} md={6} className="setting-item">
+                                        <TextField fullWidth label={t("Address")} error={!validation.address} value={address?.address} onChange={handleAddressChange} />
+                                    </Col>
+                                    <Col xs={12} md={6} className="setting-item">
+                                        <TextField fullWidth label={t("Unit")} color="" type="url" error={!validation.unit} value={address?.unit} onChange={handleUnitChange} />
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <Col xs={12} md={6} className="setting-item">
+                                        <TextField fullWidth label={t("City")} color="" type="url" error={!validation.city} value={address?.city} onChange={handleCityChange} />
+                                    </Col>
+                                    <Col xs={12} md={6} className="setting-item">
+                                        <TextField fullWidth label={t("Country")} color="" type="url" error={!validation.country} value={address?.country} onChange={handleCountryChange} />
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <Col xs={12} md={6} className="setting-item">
+                                        <TextField fullWidth label={t("State")} color="" type="url" error={!validation.state}  value={address?.state} onChange={handleStateChange} />
+                                    </Col>
+                                    <Col xs={12} md={6} className="setting-item">
+                                        <TextField fullWidth label={t("Zipcode")} color="" type="url" error={!validation.zipcode} value={address?.zipcode} onChange={handleZipcodeChange} />
+                                    </Col>
+                                </Row>
                             </Col>
-                            <Col xs={12} md={6} className="setting-item">
-                                <TextField fullWidth label={t("Unit")} color="" type="url" error={!validation.unit} value={address?.unit} onChange={handleUnitChange} />
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col xs={12} md={6} className="setting-item">
-                                <TextField fullWidth label={t("City")} color="" type="url" error={!validation.city} value={address?.city} onChange={handleCityChange} />
-                            </Col>
-                            <Col xs={12} md={6} className="setting-item">
-                                <TextField fullWidth label={t("Country")} color="" type="url" error={!validation.country} value={address?.country} onChange={handleCountryChange} />
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col xs={12} md={6} className="setting-item">
-                                <TextField fullWidth label={t("State")} color="" type="url" error={!validation.state}  value={address?.state} onChange={handleStateChange} />
-                            </Col>
-                            <Col xs={12} md={6} className="setting-item">
-                                <TextField fullWidth label={t("Zipcode")} color="" type="url" error={!validation.zipcode} value={address?.zipcode} onChange={handleZipcodeChange} />
-                            </Col>
+                            {address && <Col xs={12} md={5} lg={4} className="map-container">
+                                <Map address={address} width="200px"  height="200px" className="" />
+                            </Col>}
                         </Row>
                     </Col>
-                    {address && <Col xs={12} md={5} lg={4} className="map-container">
-                        <Map address={address} width="200px"  height="200px" className="" />
-                    </Col>}
                 </>}
             </Row>
             <Row>

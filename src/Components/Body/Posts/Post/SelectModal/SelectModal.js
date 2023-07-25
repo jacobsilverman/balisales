@@ -68,9 +68,9 @@ const SelectModal = ({t, item, openSelectModal, setOpenSelectModal}) => {
     const colorPriceClass = "price-title horizontal-center "+((displayPost?.type === "Buying") ? "bg" : (displayPost?.type === "Selling") ? "br" : "");
 
     const displaySelectedPost = (
-        <Modal open={openSelectModal} className="select-modal">
+        <Modal open={openSelectModal} className="select-modal" onClick={() => setOpenSelectModal({show:false})}>
             <Row>
-                <Col className="modal-background" xs={12}>
+                <Col className="modal-background" xs={12} onClick={(e) => e.stopPropagation()}>
                     <Row className="center-start">
                         <Col xs={12} className="selected-post-image-container">
                             <Button id="select-modal-exit-button" color="error" onClick={() => setOpenSelectModal({show:false})}>

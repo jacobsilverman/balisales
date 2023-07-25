@@ -7,9 +7,9 @@
   justify-content: center;
   // font-size: calc(10px + 2vmin);
   color: white;
-  border-bottom: 3px solid rgba(0, 0, 0, 0.2);
+  border-bottom: 3px solid rgba(black, 0.2);
   // box-shadow: 0 1px 2px rgb(0 0 0 / 13%), 0 0px 2px rgb(0 0 0 / 8%);
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+  // box-shadow: rgba(#0d6efd, 0.25) 0px 1px 3px -2px, rgba(#0d6efd, 0.3) 0px 3px 7px -3px;
 }
 
 .between {
@@ -131,9 +131,9 @@
 
 .account-profile {
   background-size: 100% 100%;
-  width: 30px;
-  height: 30px;
-  border: .1em solid rgba(0,0,0,.2);
+  width: 40px;
+  height: 40px;
+  border: .01em solid rgba(0,0,0,.2);
   background-repeat: no-repeat;
   background-position: center;
   box-shadow: 2px 2px 6px rgba(0, 0, 0, .4);
@@ -148,6 +148,10 @@
   background-repeat: no-repeat;
   background-position: center;
   box-shadow: 2px 2px 6px rgba(0, 0, 0, .4);
+}
+
+.nav-bar-item a{
+  height: 65px;
 }
 
 .user-account-profile-col {

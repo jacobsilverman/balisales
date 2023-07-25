@@ -4,6 +4,9 @@ import './AboutUs.scss';
 
 // import assrock from '../../Data/Images/assrock.svg';
 import defaultProfile from '../../Data/Images/default-profile.jpg';
+import andrina from '../../Data/Images/andrina.jpg';
+import jacob from '../../Data/Images/jacob.jpg';
+import nathan from '../../Data/Images/nathan.jpg';
 import { useTranslation } from 'react-i18next';
  
 var AboutUs = () => {
@@ -73,8 +76,8 @@ var AboutUs = () => {
                     <Card>
                         <div className="full-center">
                             <CardMedia
-                                sx={{ height: 200, width:200 }}
-                                image={defaultProfile}
+                                sx={{ height: 200, width:"100%" }}
+                                image={jacob}
                                 title="Jacob's Image"
                                 />
                         </div>
@@ -92,8 +95,27 @@ var AboutUs = () => {
                     <Card>
                         <div className="full-center">
                             <CardMedia
-                                sx={{ height: 200, width:200 }}
-                                image={defaultProfile}
+                                sx={{ height: 200, width:"100%" }}
+                                image={andrina}
+                                title="Andrina's Image"
+                                />
+                        </div>
+                        <CardContent>
+                            <Typography gutterBottom variant="h5" component="div" className="full-center">
+                                Andrina
+                            </Typography>
+                            <Typography variant="body2" color="text.secondary" className="full-center">
+                                {t("Project Manager")}
+                            </Typography>
+                        </CardContent>
+                    </Card>
+                </Col>
+                <Col>
+                    <Card>
+                        <div className="full-center">
+                            <CardMedia
+                                sx={{ height: 200, width:"100%" }}
+                                image={nathan}
                                 title="Nathan's Image"
                                 />
                         </div>

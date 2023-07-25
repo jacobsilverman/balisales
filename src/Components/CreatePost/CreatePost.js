@@ -256,93 +256,102 @@ function CreatePost() {
 
 
     return (
-        <Container className="create-container">
-            <Row>
-                <Col xs={12} md={6} className="create-input">
-                    <TextField fullWidth label={t("Title")} color="" error={validation.title === false && disableSubmit} type="search" value={title} onChange={handleTitleChange} />
-                </Col>
-                <Col xs={12} md={6} className="create-input">
-                    <TextField fullWidth label={t("Price")} color="" error={validation.price === false && disableSubmit} type="number" value={price} onChange={handlePriceChange} />
-                </Col>
-                <Col xs={12} md={6} className="create-input">
-                    <FormControl fullWidth error={validation.brand === false && disableSubmit}>
-                        <InputLabel id="brand-label">{t("Brand")}</InputLabel>
-                        <Select
-                            labelId="brand-label"
-                            id="brand-select"
-                            label="Brand"
-                            defaultValue=""
-                            value={brand}
-                            onChange={handleBrandChange}>
-                            {getOptions(brands, "brand")}
-                        </Select>
-                    </FormControl>
-                </Col>
-                <Col xs={12} md={6} className="create-input">
-                    <FormControl fullWidth error={validation.sale === false && disableSubmit}>
-                        <InputLabel id="sale-type-label">{t("Sale Type")}</InputLabel>
-                        <Select
-                            labelId="sale-type-label"
-                            id="sale-type-select"
-                            label={t("Sale Type")}
-                            defaultValue=""
-                            value={type}
-                            onChange={handleSaleChange}>
-                            {getOptions(types, "type")}
-                        </Select>
-                    </FormControl>
-                </Col>
-                <Col xs={12} md={6} className="create-input">
-                    <FormControl fullWidth error={validation.condition === false && disableSubmit}>
-                        <InputLabel id="condition-label">{t("Condition")}</InputLabel>
-                        <Select
-                            labelId="condition-label"
-                            id="condition-select"
-                            label={t("Condition")}
-                            defaultValue=""
-                            value={condition}
-                            onChange={handleConditionChange}>
-                            {getOptions([1,2,3,4,5,6,7,8,9,10], "condition")}
-                        </Select>
-                    </FormControl>
-                </Col>
-                <Col xs={12} md={6} className="create-input">
-                    <FormControl fullWidth error={validation.blade === false && disableSubmit}>
-                        <InputLabel id="blade-label">{t("Blade")}</InputLabel>
-                        <Select
-                            labelId="blade-label"
-                            id="blade-select"
-                            label={t("Blade")}
-                            defaultValue=""
-                            value={blade}
-                            onChange={handleBladeChange}>
-                            {getOptions(blades, "blade")}
-                        </Select>
-                    </FormControl>
-                </Col>
-            </Row>
-            <Row>
-                <Col xs={12}>
-                    <TextareaAutosize style={{width: "100%"}} minRows={5} value={description} placeholder={t("Description")} label={t("Description")} onChange={handleDescriptionChange} />
-                </Col>
-            </Row>
-            <Row>
-                <Col xs="12" className="setting-item center">
-                    <label className='profile-label' htmlFor={"inputPicture-default"}>
-                        <b>{t("Upload Image")}</b>
-                        <input id={"inputPicture-default"} className="profile-input" type="file" onChange={e => handlePictureChange(e)} accept="/image/*" />
-                        <br />
-                        <FaImage size={70} className="" />
-                    </label>
-                </Col>
-                {pictureInputs()}
-            </Row>
-            <Row>
-                <Col xs={12} className="center">
-                    <Button disabled={disableSubmit} className="submit-button" onClick={createPost}>{t("Submit")}</Button>
-                </Col>
-            </Row>
-        </Container>
+        <>
+            <Container className="create-header-container">
+                <Row>
+                    <Col className="create-header">
+                        <h2>{t("Create Post")}</h2>
+                    </Col>
+                </Row>
+            </Container>
+            <Container className="create-container">
+                <Row>
+                    <Col xs={12} md={6} className="create-input">
+                        <TextField fullWidth label={t("Title")} color="" error={validation.title === false && disableSubmit} type="search" value={title} onChange={handleTitleChange} />
+                    </Col>
+                    <Col xs={12} md={6} className="create-input">
+                        <TextField fullWidth label={t("Price")} color="" error={validation.price === false && disableSubmit} type="number" value={price} onChange={handlePriceChange} />
+                    </Col>
+                    <Col xs={12} md={6} className="create-input">
+                        <FormControl fullWidth error={validation.brand === false && disableSubmit}>
+                            <InputLabel id="brand-label">{t("Brand")}</InputLabel>
+                            <Select
+                                labelId="brand-label"
+                                id="brand-select"
+                                label="Brand"
+                                defaultValue=""
+                                value={brand}
+                                onChange={handleBrandChange}>
+                                {getOptions(brands, "brand")}
+                            </Select>
+                        </FormControl>
+                    </Col>
+                    <Col xs={12} md={6} className="create-input">
+                        <FormControl fullWidth error={validation.sale === false && disableSubmit}>
+                            <InputLabel id="sale-type-label">{t("Sale Type")}</InputLabel>
+                            <Select
+                                labelId="sale-type-label"
+                                id="sale-type-select"
+                                label={t("Sale Type")}
+                                defaultValue=""
+                                value={type}
+                                onChange={handleSaleChange}>
+                                {getOptions(types, "type")}
+                            </Select>
+                        </FormControl>
+                    </Col>
+                    <Col xs={12} md={6} className="create-input">
+                        <FormControl fullWidth error={validation.condition === false && disableSubmit}>
+                            <InputLabel id="condition-label">{t("Condition")}</InputLabel>
+                            <Select
+                                labelId="condition-label"
+                                id="condition-select"
+                                label={t("Condition")}
+                                defaultValue=""
+                                value={condition}
+                                onChange={handleConditionChange}>
+                                {getOptions([1,2,3,4,5,6,7,8,9,10], "condition")}
+                            </Select>
+                        </FormControl>
+                    </Col>
+                    <Col xs={12} md={6} className="create-input">
+                        <FormControl fullWidth error={validation.blade === false && disableSubmit}>
+                            <InputLabel id="blade-label">{t("Blade")}</InputLabel>
+                            <Select
+                                labelId="blade-label"
+                                id="blade-select"
+                                label={t("Blade")}
+                                defaultValue=""
+                                value={blade}
+                                onChange={handleBladeChange}>
+                                {getOptions(blades, "blade")}
+                            </Select>
+                        </FormControl>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col xs={12}>
+                        <TextareaAutosize style={{width: "100%"}} minRows={5} value={description} placeholder={t("Description")} label={t("Description")} onChange={handleDescriptionChange} />
+                    </Col>
+                </Row>
+                <Row>
+                    <Col xs="12" className="setting-item center">
+                        <label className='profile-label' htmlFor={"inputPicture-default"}>
+                            <b>{t("Upload Image")}</b>
+                            <input id={"inputPicture-default"} className="profile-input" type="file" onChange={e => handlePictureChange(e)} accept="/image/*" />
+                            <br />
+                            <FaImage size={70} className="" />
+                        </label>
+                    </Col>
+                    {pictureInputs()}
+                </Row>
+                <Row>
+                    <Col xs={12} className="center">
+                        <Button disabled={disableSubmit} className="submit-button" onClick={createPost}>{t("Submit")}</Button>
+                    </Col>
+                </Row>
+            </Container>
+        </>
     );
 }
 

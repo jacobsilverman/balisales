@@ -11,19 +11,28 @@ function Settings() {
     const [showPosts, setShowPosts] = useState(true);
 
     return (
-        <Container>
-            <Row>
-                <SettingsForm id={id} />
-                <Col xs={12} className="info-dropdown">
-                    <h2 onClick={() => setShowPosts(cur => !cur)}>
-                        Posts&nbsp;&nbsp;
-                        <i size="small" className='material-icons'>{ showPosts ? "visibility_off" : "visibility_on"}</i>
-                    </h2>
-                </Col>
-                <hr />
-                {showPosts && <Account user={id} settingsPage={true} />}
-            </Row>
-        </Container>
+        <>
+            <Container className="setting-header-container">
+                <Row>
+                    <Col className="setting-header">
+                        <h2>Settings</h2>
+                    </Col>
+                </Row>
+            </Container>
+            <Container className='about-container'>
+                <Row>
+                    <SettingsForm id={id} />
+                    <Col xs={12} className="info-dropdown setting-padding">
+                        <h2 onClick={() => setShowPosts(cur => !cur)}>
+                            Posts&nbsp;&nbsp;
+                            <i size="small" className='material-icons'>{ showPosts ? "visibility_off" : "visibility_on"}</i>
+                        </h2>
+                    </Col>
+                    <hr />
+                    {showPosts && <Account user={id} settingsPage={true} />}
+                </Row>
+            </Container>
+        </>
     );
 }
 

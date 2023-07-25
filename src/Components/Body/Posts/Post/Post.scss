@@ -6,28 +6,31 @@
     justify-content: center;
     align-items: center;
     min-width: 100px;
-    box-shadow: rgba(0, 0, 0, 0.15) 0px 7px 14px, rgba(0, 0, 0, 0.12) 0px 5px 10px;
+    box-shadow: rgba(234, 234, 234, 0.15) 0px 7px 14px, rgba(234, 234, 234, 0.12) 0px 5px 10px;
     border: .15em solid  rgb(234, 234, 234);
     border-radius: 2px;
 }
 
 .Selling\/Trading-border {
-    box-shadow: rgba(0, 0, 0, 0.15) 0px 7px 14px, rgba(0, 0, 0, 0.12) 0px 5px 10px;
+    box-shadow: rgba(236, 84, 249, 0.15) 0px 7px 14px, rgba(236, 84, 249, 0.12) 0px 5px 10px;
     border: .15em solid  rgb(236, 84, 249);
+    -webkit-transition: 1s;
 }
 
 .Trading-border {
-    box-shadow: rgba(0, 0, 0, 0.15) 0px 7px 14px, rgba(0, 0, 0, 0.12) 0px 5px 10px;
-    
+    box-shadow: rgba(55, 244, 251, 0.15) 0px 7px 14px, rgba(55, 244, 251, 0.12) 0px 5px 10px;
     border: .15em solid  rgb(55, 244, 251);
+    -webkit-transition: 1s;
 }
 .Buying-border {
-    box-shadow: rgba(0, 0, 0, 0.15) 0px 7px 14px, rgba(0, 0, 0, 0.12) 0px 5px 10px;
+    box-shadow: rgba(91, 226, 60, 0.15) 0px 7px 14px, rgba(91, 226, 60, 0.12) 0px 5px 10px;
     border: .15em solid  rgb(91, 226, 60);
+    -webkit-transition: 1s;
 }
 .Selling-border {
-    box-shadow: rgba(0, 0, 0, 0.15) 0px 7px 14px, rgba(0, 0, 0, 0.12) 0px 5px 10px;
+    box-shadow: rgba(#1976d2, 0.15) 0px 7px 14px, rgba(#1976d2, 0.12) 0px 5px 10px;
     border: .15em solid #1976d2;
+    -webkit-transition: 1s;
 }
 
 @media (hover: hover) and (pointer: fine) {
