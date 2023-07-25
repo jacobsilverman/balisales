@@ -39,7 +39,7 @@ function ContactUs() {
                     </Col>
                 </Row>
             </Container>
-            <Container className="contact-container" style={{backgroundImage: `url(${hands})`, marginTop: '-70px', zIndex:'-5', position: 'relative'}}>
+            <Container className="contact-container" style={{backgroundImage: `url(${hands})`, position: 'relative'}}>
                 {/* <Card className="contact-card"> */}
                     <Row id="contact-header">
                         <Col className="center">

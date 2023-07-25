@@ -401,12 +401,10 @@ const Header = ({posts, setShowFilter}) => {
                     <Donate showDonate={showDonate} setShowDonate={setShowDonate} />
                 </PayPalScriptProvider>
                 <Row className="between" onClick={() => {resetAllPopovers()}}>
-                    <Col xs={5} sm={5} md={9} className="login-container-left">
-                        {/* <Link className="white nav-bar-item" to={{pathname: '/'}}> */}
-                            <Button onClick={() =>{resetAllPopovers();setPageTitle("Home");window.location.href = "/"}}>
-                                <i className="material-icons">home</i>
-                            </Button>
-                        {/* </Link> */}
+                    <Col xs={5} sm={7} md={9} className="login-container-left">
+                        <Button onClick={() =>{resetAllPopovers();setPageTitle("Home");window.location.href = "/"}}>
+                            <i className="material-icons">home</i>
+                        </Button>
                         {windowWidth < 800 ? <OverlayTrigger trigger="click" placement="bottom-start" show={showNav} overlay={navPopover}>
                             <Button onClick={(e) =>{e.stopPropagation();resetAllPopovers("nav");setShowNav(show => !show)}}>
                                 <i className="material-icons">format_list_bulleted</i>
@@ -452,8 +450,8 @@ const Header = ({posts, setShowFilter}) => {
                             </a>
                         </h1>
                     </Col> : <Col />} */}
-                    <Col xs={6} sm={6} md={2} className="login-container-right">
-                        {windowWidth < 1050 ? <OverlayTrigger trigger="click" placement="bottom-end" show={showSearch} overlay={searchPopover}>
+                    <Col xs={6} sm={4} md={2} className="login-container-right">
+                        {windowWidth < 1100 ? <OverlayTrigger trigger="click" placement="bottom-end" show={showSearch} overlay={searchPopover}>
                              <Button  onClick={(e) => {e.stopPropagation();resetAllPopovers("search");setShowSearch(show => !show)}}>
                                 <i className="material-icons">search</i>
                             </Button>
