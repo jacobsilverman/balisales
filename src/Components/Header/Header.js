@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useMemo, useState } from 'react';
+import { lazy, Fragment, useEffect, useMemo, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 import './Header.scss';
@@ -9,8 +9,8 @@ import Companies from '../../Data/Constants/Companies.json';
 import { Col, Container, OverlayTrigger, Popover, Row } from 'react-bootstrap';
 import defaultProfile from '../../Data/Images/default-profile.jpg';
 
-import { auth, provider } from '../../firebase-config';
-import { signInWithPopup, signOut } from 'firebase/auth';
+import { auth, facebookProvider, googleProvider, twitterProvider, yahooProvider } from '../../firebase-config';
+import { sendSignInLinkToEmail, signInWithPopup, signOut } from 'firebase/auth';
 import { useNavigate }   from 'react-router-dom';
 
 import { Button, TextField } from '@mui/material';
@@ -21,6 +21,8 @@ import SelectModal from '../Body/Posts/Post/SelectModal';
 
 import Donate from "../Donate";
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
+
+const LoginModal = lazy(() => import('../Header/Login/LoginModal'));
 
 const SearchBar = ({posts, showSearch, t, popped}) => {
     const [searchValue, setSearchValue] = useState("");
@@ -103,7 +105,7 @@ const SearchBar = ({posts, showSearch, t, popped}) => {
     );
 };
 
-const AccountOptions = ({uid, isAuth, resetAllPopovers, signInWithGoogle, signUserOut, showAccount, setShowAccount, setPageTitle, t}) => {
+const AccountOptions = ({uid, isAuth, resetAllPopovers, signUserOut, showAccount, setOpenLoginModal, setNewAccount, setShowAccount, setPageTitle, t}) => {
     const [showLanguages, setShowLanguages] = useState(false);
 
     const {i18n} = useTranslation();
@@ -212,7 +214,7 @@ const AccountOptions = ({uid, isAuth, resetAllPopovers, signInWithGoogle, signUs
                         <i className="material-icons">logout</i>
                         <span>&nbsp;{t("Logout")}</span>
                     </Button>
-                    :<Button onClick={signInWithGoogle}>
+                    :<Button onClick={() => {setNewAccount(false);setOpenLoginModal(true)}}>
                         <i className="material-icons">login</i>
                         <span>&nbsp;{t("Login")}</span>
                     </Button>}
@@ -226,6 +228,7 @@ const AccountOptions = ({uid, isAuth, resetAllPopovers, signInWithGoogle, signUs
 
 const Header = ({posts, setShowFilter}) => {
     let navigate = useNavigate();
+    const location = useLocation();
     const { t } = useTranslation();
     
     const [isAuth, setIsAuth] = useState(localStorage.getItem("isAuth")==="true");
@@ -238,10 +241,10 @@ const Header = ({posts, setShowFilter}) => {
     const [profilePic, setProfilePic] = useState(localStorage.getItem("profile-picture-"+localStorage.getItem("uid")));
     const [uid, setUid] = useState(localStorage.getItem("uid"));
     const [pageTitle, setPageTitle] = useState(t(pageTitles[window.location.pathname]));
-
-    const location = useLocation();
-
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+    const [newAccount, setNewAccount] = useState(true);
+    const [provider, setProvider] = useState(googleProvider);
+    const [openLoginModal, setOpenLoginModal] = useState(false);
 
     useEffect(() => {
       const handleWindowResize = () => {
@@ -281,7 +284,8 @@ const Header = ({posts, setShowFilter}) => {
     }
 
     const signInWithGoogle = () => {
-        signInWithPopup(auth, provider).then((result) => {
+        setProvider(googleProvider);
+        signInWithPopup(auth, googleProvider).then((result) => {
             setIsAuth(true);
             setUid(result?.user?.uid);
             setUserLogin(result.user);
@@ -298,6 +302,115 @@ const Header = ({posts, setShowFilter}) => {
                 }
             })
         });
+    }
+
+    const signInWithFacebook = () => {
+        setProvider(facebookProvider);
+        signInWithPopup(auth, facebookProvider).then((result) => {
+            // The signed-in user info.
+            const user = result.user;
+        
+            // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+            // const credential = FacebookAuthProvider.credentialFromResult(result);
+            // const accessToken = credential.accessToken;
+
+            console.log("tesult",result);
+        
+            // IdP data available using getAdditionalUserInfo(result)
+            // ...
+          }).catch((error) => {
+            // Handle Errors here.
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            // The email of the user's account used.
+            const email = error.customData.email;
+            // The AuthCredential type that was used.
+            console.log(error);
+            // const credential = FacebookAuthProvider.credentialFromError(error);
+        
+            // ...
+          });
+    }
+
+    const signInWithTwitter = () => {
+        setProvider(twitterProvider);
+        signInWithPopup(auth, twitterProvider).then((result) => {
+            setIsAuth(true);
+            setUid(result?.user?.uid);
+            setUserLogin(result.user);
+
+            localStorage.setItem("isAuth", true);
+            localStorage.setItem("uid", result?.user?.uid);
+            localStorage.setItem("displayName", result?.user?.displayName);
+            console.log(result);
+            return result;
+        }).then((result) => {
+            getUserInfo(result?.user?.uid).then((userInfo) => {
+                if (!userInfo?.firstName || !userInfo?.lastName || !userInfo?.displayName) {
+                    setUserInfo({...userInfo, firstName: result?._tokenResponse?.firstName, lastName: result?._tokenResponse?.lastName, displayName: result?.user?.displayName, posts:[]})
+                }
+            })
+        }).catch((err) => {
+            console.error(err)
+        })
+    }
+
+    const signInWithYahoo = () => {
+        setProvider(yahooProvider);
+        signInWithPopup(auth, yahooProvider).then((result) => {
+            setIsAuth(true);
+            setUid(result?.user?.uid);
+            setUserLogin(result.user);
+
+            localStorage.setItem("isAuth", true);
+            localStorage.setItem("uid", result?.user?.uid);
+            localStorage.setItem("displayName", result?.user?.displayName);
+            console.log(result);
+            return result;
+        }).then((result) => {
+            getUserInfo(result?.user?.uid).then((userInfo) => {
+                if (!userInfo?.firstName || !userInfo?.lastName || !userInfo?.displayName) {
+                    setUserInfo({...userInfo, firstName: result?._tokenResponse?.firstName, lastName: result?._tokenResponse?.lastName, displayName: result?.user?.displayName, posts:[]})
+                }
+            })
+        }).catch((err) => {
+            console.error(err)
+        })
+    }
+
+    const signInWithEmail = (email) => {
+        const actionCodeSettings = {
+            url: 'https://www.balisongsales.com', // Your website URL
+            handleCodeInApp: true, // Open the link in the app
+            dynamicLinkDomain: 'yourcustomdomain.page.link', // Optional: If using Firebase Dynamic Links
+            iOS: {
+              bundleId: 'com.yourapp.ios', // Optional: iOS bundle ID
+            },
+            android: {
+              packageName: 'com.yourapp.android', // Optional: Android package name
+            },
+        };
+        console.log("email :", email);
+        setProvider("email");
+        sendSignInLinkToEmail(auth, email, actionCodeSettings).then((result) => {
+            setIsAuth(true);
+            setUid(result?.user?.uid);
+            setUserLogin(result.user);
+
+            localStorage.setItem("isAuth", true);
+            localStorage.setItem("uid", result?.user?.uid);
+            localStorage.setItem("displayName", result?.user?.displayName);
+            console.log(result);
+            return result;
+        }).then((result) => {
+            // getUserInfo(result?.user?.uid).then((userInfo) => {
+            //     if (!userInfo?.firstName || !userInfo?.lastName || !userInfo?.displayName) {
+            //         setUserInfo({...userInfo, firstName: result?._tokenResponse?.firstName, lastName: result?._tokenResponse?.lastName, displayName: result?.user?.displayName, posts:[]})
+            //     }
+            // })
+        }).catch((err) => {
+            console.error(err)
+        })
     }
 
     const resetAllPopovers = (ignore) => {
@@ -380,23 +493,28 @@ const Header = ({posts, setShowFilter}) => {
                 uid={uid} 
                 isAuth={isAuth} 
                 resetAllPopovers={resetAllPopovers}
-                signInWithGoogle={signInWithGoogle} 
                 signUserOut={signUserOut} 
+                setOpenLoginModal={setOpenLoginModal}
+                setNewAccount={setNewAccount}
                 showAccount={showAccount} 
                 setShowAccount={setShowAccount}
                 setPageTitle={setPageTitle}
                 t={t} />
         </Popover>
     );
+
     const initialOptions = {
         "client-id": "AcDvZSxUTgqvgZJPOiePLTCf8ssTgSE3EMUVK_n_tibgu6lifFz9-6ECtEeUMOIq2F-wMzjlZ47dmcaS",
         currency: "USD",
         intent: "capture",
     };
 
+
     const navBar = useMemo(() => {
         return (
             <Container>
+                <LoginModal openLoginModal={openLoginModal} setOpenLoginModal={setOpenLoginModal} newAccount={newAccount} setNewAccount={setNewAccount} signInWithEmail={signInWithEmail} signInWithGoogle={signInWithGoogle} signInWithFacebook={signInWithFacebook} signInWithTwitter={signInWithTwitter} signInWithYahoo={signInWithYahoo} />
+
                 <PayPalScriptProvider options={initialOptions}>
                     <Donate showDonate={showDonate} setShowDonate={setShowDonate} />
                 </PayPalScriptProvider>
@@ -471,8 +589,8 @@ const Header = ({posts, setShowFilter}) => {
                         </OverlayTrigger>} */}
                         {!isAuth && 
                         <Fragment>
-                            <Button variant='outlined' size="medium" onClick={signInWithGoogle}  style={{textTransform: 'none', padding:"5px",margin:"5px"}}>{t("Login")}</Button>
-                            <Button variant='contained' size="medium" onClick={signInWithGoogle}  style={{textTransform: 'none', padding:"5px",margin:"5px"}}>{t("Signup")}</Button>
+                            <Button variant='outlined' size="medium" onClick={() => {setNewAccount(false);setOpenLoginModal(true)}} style={{textTransform: 'none', padding:"5px",margin:"5px"}}>{t("Login")}</Button>
+                            <Button variant='contained' size="medium" onClick={() => {setNewAccount(true);setOpenLoginModal(true)}} style={{textTransform: 'none', padding:"5px",margin:"5px"}}>{t("Signup")}</Button>
                         </Fragment>}
                         <OverlayTrigger trigger="click" placement="bottom-end" show={showAccount} overlay={accountOptionsPopover}>
                             <Button onClick={(e) => {e.stopPropagation();resetAllPopovers("account");setShowAccount(show => !show) }}>
@@ -485,7 +603,7 @@ const Header = ({posts, setShowFilter}) => {
                 </Row>
             </Container>
         );
-    }, [profilePic, isAuth, showAccount, showDonate, showInbox, showNav, showNotifications, showSearch, pageTitle, windowWidth]);
+    }, [profilePic, isAuth, showAccount, showDonate, showInbox, showNav, showNotifications, showSearch, pageTitle, windowWidth, openLoginModal, newAccount]);
 
     return (
         <nav>

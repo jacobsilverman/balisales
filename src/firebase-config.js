@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
-import { getAuth, GoogleAuthProvider } from "firebase/auth";
+import { getAuth, EmailAuthProvider, FacebookAuthProvider, GoogleAuthProvider, TwitterAuthProvider, OAuthProvider } from "firebase/auth";
 import { getStorage } from "firebase/storage";
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -22,10 +22,16 @@ const app = initializeApp(firebaseConfig);
 
 export const db = getFirestore(app);
 export const auth = getAuth(app);
-export let provider = new GoogleAuthProvider();
-provider.setCustomParameters({
+export let googleProvider = new GoogleAuthProvider();
+export const facebookProvider = new FacebookAuthProvider();
+export const twitterProvider = new TwitterAuthProvider();
+export const yahooProvider = new OAuthProvider('yahoo.com');
+export const emailProvider = new EmailAuthProvider();
+        
+googleProvider.setCustomParameters({
   prompt: 'select_account'
 });
+
 
 // Firebase storage reference
 export const storage = getStorage(app);

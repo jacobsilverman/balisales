@@ -91,8 +91,7 @@ const EditModal = ({item, setPosts, openEditModal, setOpenEditModal, filterPosts
             return
         }
 
-        editPost(
-        {
+        editPost({
             title,
             type,
             blade,
@@ -125,6 +124,7 @@ const EditModal = ({item, setPosts, openEditModal, setOpenEditModal, filterPosts
                 return post;
             })]);
             console.log("result: ", res)
+            
         }).catch((err) => {
             console.error("problem when saving the edit post: ", err)
         })

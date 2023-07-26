@@ -48,17 +48,19 @@ function Account({user, settingsPage}) {
 		return (
 			<div className="grid-container-posts">
 				{openSelectModal.show && 
-                    <SelectModal t={t} 
+                    <SelectModal 
+						t={t} 
                         item={openSelectModal.item} 
                         openSelectModal={openSelectModal.show} 
                         setOpenSelectModal={setOpenSelectModal} />}
-				{settingsPage && <EditModal 
-					item={selectedPost}
-					setPosts={setFilterPosts}
-					filterPosts={filterPosts}
-					setFilterPosts={setFilterPosts}
-					openEditModal={openEditModal} 
-					setOpenEditModal={setOpenEditModal} />}
+				{settingsPage && 
+					<EditModal 
+						item={selectedPost}
+						setPosts={setFilterPosts}
+						filterPosts={filterPosts}
+						setFilterPosts={setFilterPosts}
+						openEditModal={openEditModal} 
+						setOpenEditModal={setOpenEditModal} />}
 				{filterPosts?.map((item) => {
 					const displayUrl =  `url(${item?.urls[0]})`;
 					return <Post 
