@@ -11,7 +11,7 @@ import { SocialIcon } from 'react-social-icons';
 
 import { Link } from 'react-router-dom';
 
-const SelectModal = ({t, item, openSelectModal, setOpenSelectModal}) => {
+const SelectModal = ({t, posts, item, handlePrevPost, handleNextPost,openSelectModal, setOpenSelectModal}) => {
     const [profilePic, setProfilePic] = useState();
     const [displayImage, setDisplayImage] = useState(0);
     const [userInfo, setUserInfo] = useState({});
@@ -85,6 +85,12 @@ const SelectModal = ({t, item, openSelectModal, setOpenSelectModal}) => {
                             </Button>
                         </Col>
                     </Row>
+                    <button onClick={handlePrevPost}>
+                        prev
+                    </button>
+                    <button onClick={handleNextPost}>
+                        next
+                    </button>
                     <Row className="center-start">
                         <Col xs={12} sm={5} className="selected-post-image-container">
                             <Row className="content-container">

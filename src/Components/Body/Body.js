@@ -23,10 +23,8 @@ function Body({posts, loadAllData, loadMoreData, loadingMoreData, showFilter, se
     const [blade, setBlade] = useState('All');
     const [status, setStatus] = useState('All');
 
-    const [postsLength, setPostsLength] = useState(0);
     const [showMoreAllButtons, setShowMoreAllButtons] = useState(true);
-    const [openSelectModal, setOpenSelectModal] = useState({show:false,item:null});
-
+    const [openSelectModal, setOpenSelectModal] = useState({show:false, item:null, nextItem: null, prevItem: null, nextnext: null});
     const {t} = useTranslation();
 
     const resetFilter = () => {
@@ -40,6 +38,29 @@ function Body({posts, loadAllData, loadMoreData, loadingMoreData, showFilter, se
         setCondition('All');
     };
 
+
+    const handlePrevPost = () => {
+        setOpenSelectModal(
+            {
+                ...openSelectModal,
+                nextItem: openSelectModal.item,
+                item: openSelectModal.prevItem,
+                prevItem: posts[openSelectModal.index-2]
+            }
+        );
+    }
+
+    const handleNextPost = () => {
+        setOpenSelectModal(cur => {
+            return {
+                ...cur,
+                prevItem: cur.item,
+                item: cur.nextItem,
+                nextItem: posts[cur.index+2]
+            }
+        });
+    }
+
     const getOptions = (options, option) => {
         return options.map((name) => {
             return <MenuItem key={option+"-"+name} value={name}>{t(name)}</MenuItem>;
@@ -48,7 +69,6 @@ function Body({posts, loadAllData, loadMoreData, loadingMoreData, showFilter, se
 
     const moreButton = () =>{
         loadMoreData(posts.length, setShowMoreAllButtons);
-        setPostsLength(posts.length);
     }
 
     const allButton = () => {
@@ -97,7 +117,10 @@ function Body({posts, loadAllData, loadMoreData, loadingMoreData, showFilter, se
             <Row>
                 {openSelectModal.show && 
                     <SelectModal t={t} 
-                        item={openSelectModal.item} 
+                        posts={posts}
+                        item={openSelectModal.item}
+                        handlePrevPost={handlePrevPost}
+                        handleNextPost={handleNextPost}
                         openSelectModal={openSelectModal.show} 
                         setOpenSelectModal={setOpenSelectModal} />}
                 {(showFilter && filter)}
