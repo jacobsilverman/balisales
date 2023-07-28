@@ -16,6 +16,12 @@ const SelectModal = ({t, item, handlePrevPost, handleNextPost,openSelectModal, s
     const [displayImage, setDisplayImage] = useState(0);
     const [userInfo, setUserInfo] = useState({});
     
+    const [touchStart, setTouchStart] = useState(null)
+    const [touchEnd, setTouchEnd] = useState(null)
+
+    // the required distance between touchStart and touchEnd to be detected as a swipe
+    const minSwipeDistance = 50 
+    
     const createdDate = new Date(item?.timeStamp).toLocaleDateString();
     const displayPost = {...item};
 
@@ -70,17 +76,51 @@ const SelectModal = ({t, item, handlePrevPost, handleNextPost,openSelectModal, s
         </Row>
     )
 
+    const iteratePosts = (e, direction) => {
+        e.stopPropagation();
+        setDisplayImage(0);
+        (direction==="next") ? handleNextPost() : handlePrevPost();
+    }
+
+    const onTouchStart = (e) => {
+        setTouchEnd(null) // otherwise the swipe is fired even with usual touch events
+        setTouchStart(e.targetTouches[0].clientX)
+    }
+
+    const onTouchMove = (e) => {
+        setTouchEnd(e.targetTouches[0].clientX)
+    }
+
+    const onTouchEnd = (e) => {
+        if (!touchStart || !touchEnd) return
+        const distance = touchStart - touchEnd
+        const isLeftSwipe = distance > minSwipeDistance
+        const isRightSwipe = distance < -minSwipeDistance
+        if (isLeftSwipe) {
+
+            iteratePosts(e, "next")
+        }
+        if (isRightSwipe){
+            iteratePosts(e, "prev")
+        }
+    }
+
+
+
+
+
+
     const buySellTradeClass = "desciption-title horizontal-center";
     const colorPriceClass = "price-title horizontal-center "+((displayPost?.type === "Buying") ? "bg" : (displayPost?.type === "Selling") ? "br" : "");
     const colorNextPrevClass = "carousel-post "+((displayPost?.type === "Buying") ? "buy" : (displayPost?.type === "Selling") ? "sell" : "trade");
 
     const displaySelectedPost = (
-        <Modal open={openSelectModal} className="select-modal" onClick={() => setOpenSelectModal(cur => {return {...cur, show: false}})}>
+        <Modal onTouchStart={onTouchStart} onTouchMove={onTouchMove} onTouchEnd={onTouchEnd}     open={openSelectModal} className="select-modal" onClick={() => setOpenSelectModal(cur => {return {...cur, show: false}})}>
             <Row>
-                <span onClick={(e) => { e.stopPropagation();handlePrevPost()}} className={colorNextPrevClass+" prev"}>
+                <span onClick={(e) => {iteratePosts(e, "prev")}} className={colorNextPrevClass+" prev"}>
                     {"<"}
                 </span>
-                <span onClick={(e) => { e.stopPropagation();handleNextPost()}}  className={colorNextPrevClass+" next"}>
+                <span onClick={(e) => {iteratePosts(e, "next")}}  className={colorNextPrevClass+" next"}>
                     {">"}
                 </span>
                 <Col className="modal-background" xs={12} onClick={(e) => e.stopPropagation()}>

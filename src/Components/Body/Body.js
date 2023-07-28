@@ -1,4 +1,4 @@
-import { lazy, useState } from 'react';
+import { lazy, useEffect, useState } from 'react';
 
 import { Col, Container, Row } from 'react-bootstrap';
 // import BuildMocks from './Data/Mocks/BuildMocks.js'
@@ -24,8 +24,15 @@ function Body({posts, loadAllData, loadMoreData, loadingMoreData, showFilter, se
     const [status, setStatus] = useState('All');
 
     const [showMoreAllButtons, setShowMoreAllButtons] = useState(true);
-    const [openSelectModal, setOpenSelectModal] = useState({show:false, item:null, index:0, posts: posts});
+    const [openSelectModal, setOpenSelectModal] = useState({show:false});
     const {t} = useTranslation();
+
+    useEffect(() => {
+        if (!posts){
+            return
+        }
+        setOpenSelectModal(cur => {return {...cur, posts: posts}})
+    }, [posts])
 
     const resetFilter = () => {
         setMin(0);
@@ -42,7 +49,7 @@ function Body({posts, loadAllData, loadMoreData, loadingMoreData, showFilter, se
     const handlePrevPost = () => {
         setOpenSelectModal(cur => {
             let prevItem = cur.posts[cur.index-1] ?? cur.posts[cur.posts.length-1];
-            let index = cur.posts[cur.index-1] ? cur.index-1 : cur.posts.length-1;
+            let index = (typeof cur.posts[cur.index-1] !== "undefined") ? cur.index-1 : cur.posts.length-1;
             return {
                 ...cur,
                 item: prevItem,
@@ -55,7 +62,7 @@ function Body({posts, loadAllData, loadMoreData, loadingMoreData, showFilter, se
     const handleNextPost = () => {
         setOpenSelectModal(cur => {
             let nextItem = cur.posts[cur.index+1] ?? cur.posts[0];
-            let index = cur.posts[cur.index+1] ? cur.index+1 : 0;
+            let index = (typeof cur.posts[cur.index+1] !== "undefined") ? cur.index+1 : 0;
             return {
                 ...cur,
                 index: index,
