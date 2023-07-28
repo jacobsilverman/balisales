@@ -304,34 +304,6 @@ const Header = ({posts, setShowFilter}) => {
         });
     }
 
-    const signInWithFacebook = () => {
-        setProvider(facebookProvider);
-        signInWithPopup(auth, facebookProvider).then((result) => {
-            // The signed-in user info.
-            const user = result.user;
-        
-            // This gives you a Facebook Access Token. You can use it to access the Facebook API.
-            // const credential = FacebookAuthProvider.credentialFromResult(result);
-            // const accessToken = credential.accessToken;
-
-            console.log("tesult",result);
-        
-            // IdP data available using getAdditionalUserInfo(result)
-            // ...
-          }).catch((error) => {
-            // Handle Errors here.
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            // The email of the user's account used.
-            const email = error.customData.email;
-            // The AuthCredential type that was used.
-            console.log(error);
-            // const credential = FacebookAuthProvider.credentialFromError(error);
-        
-            // ...
-          });
-    }
-
     const signInWithTwitter = () => {
         setProvider(twitterProvider);
         signInWithPopup(auth, twitterProvider).then((result) => {
@@ -411,6 +383,34 @@ const Header = ({posts, setShowFilter}) => {
         }).catch((err) => {
             console.error(err)
         })
+    }
+
+    const signInWithFacebook = () => {
+        setProvider(facebookProvider);
+        signInWithPopup(auth, facebookProvider).then((result) => {
+            // The signed-in user info.
+            const user = result.user;
+        
+            // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+            // const credential = FacebookAuthProvider.credentialFromResult(result);
+            // const accessToken = credential.accessToken;
+
+            console.log("tesult",result);
+        
+            // IdP data available using getAdditionalUserInfo(result)
+            // ...
+          }).catch((error) => {
+            // Handle Errors here.
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            // The email of the user's account used.
+            const email = error.customData.email;
+            // The AuthCredential type that was used.
+            console.log(error);
+            // const credential = FacebookAuthProvider.credentialFromError(error);
+        
+            // ...
+          });
     }
 
     const resetAllPopovers = (ignore) => {

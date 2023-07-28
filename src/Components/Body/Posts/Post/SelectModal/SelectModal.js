@@ -20,12 +20,14 @@ const SelectModal = ({t, item, handlePrevPost, handleNextPost,openSelectModal, s
     const [touchEnd, setTouchEnd] = useState(null)
 
     // the required distance between touchStart and touchEnd to be detected as a swipe
-    const minSwipeDistance = 50 
-    
+    const minSwipeDistance = 30 
     const createdDate = new Date(item?.timeStamp).toLocaleDateString();
     const displayPost = {...item};
 
     useEffect(() => {
+        if (!displayPost?.author?.id){
+            return
+        }
         getProfilePicture(displayPost?.author?.id).then((result) => {
             setProfilePic(result);
         }).catch(() => {
@@ -37,7 +39,7 @@ const SelectModal = ({t, item, handlePrevPost, handleNextPost,openSelectModal, s
         }).catch((err) => {
             console.log(err);
         })
-    }, []);
+    }, [displayPost?.author?.id]);
 
     const handlePreviousImage = () => {
         setDisplayImage(cur => (cur-1) < 0 ? displayPost?.numberOfImages-1 : (cur-1))
@@ -106,14 +108,16 @@ const SelectModal = ({t, item, handlePrevPost, handleNextPost,openSelectModal, s
         const distance = touchStart - touchEnd
         const isLeftSwipe = distance > minSwipeDistance
         const isRightSwipe = distance < -minSwipeDistance
-        if (isLeftSwipe) {
-            iteratePosts(e, "next")
-        }
-        if (isRightSwipe){
-            
-            iteratePosts(e, "prev")
-        }
-        setVanish("")
+        setTimeout(() => {
+            if (isLeftSwipe) {
+                iteratePosts(e, "next")
+            }
+            if (isRightSwipe){
+                iteratePosts(e, "prev")
+            }
+            setVanish("")
+        }, 300)
+        
     }
 
     const [vanish, setVanish] = useState();
@@ -123,7 +127,7 @@ const SelectModal = ({t, item, handlePrevPost, handleNextPost,openSelectModal, s
     const colorNextPrevClass = "carousel-post "+((displayPost?.type === "Buying") ? "buy" : (displayPost?.type === "Selling") ? "sell" : "trade");
 
     const displaySelectedPost = (
-        <Modal onTouchStart={onTouchStart} onTouchMove={onTouchMove} onTouchEnd={onTouchEnd} open={openSelectModal} className="select-modal" onClick={() => setOpenSelectModal(cur => {return {...cur, show: false}})}>
+        <Modal  open={openSelectModal} className="select-modal"  onTouchStart={onTouchStart} onTouchMove={onTouchMove} onTouchEnd={onTouchEnd} onClick={() => setOpenSelectModal(cur => {return {...cur, show: false}})}>
             <Row>
                 <span onClick={(e) => {iteratePosts(e, "prev")}} className={colorNextPrevClass+" prev"}>
                     {"<"}
@@ -131,7 +135,7 @@ const SelectModal = ({t, item, handlePrevPost, handleNextPost,openSelectModal, s
                 <span onClick={(e) => {iteratePosts(e, "next")}}  className={colorNextPrevClass+" next"}>
                     {">"}
                 </span>
-                <Col key={openSelectModal.index} className={"modal-background "+vanish} xs={12} onClick={(e) => e.stopPropagation()}>
+                <Col key={openSelectModal?.index} className={"modal-background "+vanish} xs={12} onClick={(e) => e.stopPropagation()}>
                     <Row className='center'>
                         <Col>
                             <h1 id="select-modal-title">{displayPost?.title}</h1>
