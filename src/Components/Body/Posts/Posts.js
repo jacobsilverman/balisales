@@ -41,11 +41,12 @@ const Posts = ({min, max, brand, condition, posts, type, sort, blade, status, se
 
         return (
             <div className="grid-container-posts">
-                {allValidPostsSorted.map((item) => {
+                {allValidPostsSorted.map((item, index) => {
                     const displayUrl =  `url(${item?.urls[0]})`;
                     return <Post 
                         displayUrl={displayUrl} 
                         item={item} 
+                        index={index}
                         key={item.id}
                         setOpenSelectModal={setOpenSelectModal} />
                 })}
