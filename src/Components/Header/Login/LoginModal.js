@@ -92,17 +92,17 @@ const LoginModal = ({openLoginModal, setOpenLoginModal, newAccount, setNewAccoun
                             Or Continue with:
                         </Col>
                     </Row>
-                    <Row onClick={signInWithGoogle}>
+                    <Row onClick={() => {signInWithGoogle();setOpenLoginModal(false)}}>
                         <Col>
                             <GoogleLoginButton />
                         </Col>
                     </Row>
-                    <Row onClick={signInWithYahoo}>
+                    <Row onClick={() => {signInWithYahoo();setOpenLoginModal(false)}}>
                         <Col>
                             <YahooLoginButton />
                         </Col>
                     </Row>
-                    <Row  onClick={signInWithTwitter}>
+                    <Row  onClick={() => {signInWithTwitter();setOpenLoginModal(false)}}>
                         <Col>
                             <TwitterLoginButton />
                         </Col>
