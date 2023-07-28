@@ -2,7 +2,7 @@ import './Post.scss';
  
 import { isMobile } from '../../../../Data/Constants';
 
-function Post({displayUrl, item, settingsPage, setOpenEditModal, setSelectedPost, setOpenSelectModal=()=>{}}) {
+function Post({displayUrl, item, index, settingsPage, setOpenEditModal, setSelectedPost, setOpenSelectModal=()=>{}}) {
     const containerCls = `post-container ${!isMobile && "desktop-hov" } ${item?.type}-border`;
     const handleSelectPost = (e) => {
         if (settingsPage) {
@@ -10,7 +10,7 @@ function Post({displayUrl, item, settingsPage, setOpenEditModal, setSelectedPost
             setSelectedPost(item);
             setOpenEditModal(true);
         }else {
-            setOpenSelectModal({show:true,item:item})
+            setOpenSelectModal(cur => {return {...cur, show:true, index: index, item:item}})
         }
     }
     
