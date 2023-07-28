@@ -310,20 +310,45 @@
     }
 }
 
-.vanish {
-    animation: vanish .5s;
+.vanish-left {
+    animation: vanish-left .5s;
+    animation-fill-mode: forwards;
 }
 
-@keyframes vanish{
+.vanish-right {
+    animation: vanish-right .5s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes vanish-right{
     0%{
         opacity: 1;
-        left: 50px;
-    }
-    5% {
-        opacity: 0;
         left: 0px;
     }
-    100% {
+    50% {
+        left: 200px;
+        
+    }
+    80%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 0;
+    }
+}
+
+@keyframes vanish-left{
+    0%{
         opacity: 1;
+        right: 0px;
+    }
+    50%{
+        right: 200px;
+    }
+    80%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 0;
     }
 }
