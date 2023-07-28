@@ -45,10 +45,7 @@ const Posts = ({min, max, brand, condition, posts, type, sort, blade, status, se
                     const displayUrl =  `url(${item?.urls[0]})`;
                     return <Post 
                         displayUrl={displayUrl} 
-                        posts={posts}
-                        prevItem={allValidPostsSorted[index-1]}
                         item={item} 
-                        nextItem={allValidPostsSorted[index+1]}
                         index={index}
                         key={item.id}
                         setOpenSelectModal={setOpenSelectModal} />

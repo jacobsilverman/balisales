@@ -11,7 +11,7 @@ import { SocialIcon } from 'react-social-icons';
 
 import { Link } from 'react-router-dom';
 
-const SelectModal = ({t, posts, item, handlePrevPost, handleNextPost,openSelectModal, setOpenSelectModal}) => {
+const SelectModal = ({t, item, handlePrevPost, handleNextPost,openSelectModal, setOpenSelectModal}) => {
     const [profilePic, setProfilePic] = useState();
     const [displayImage, setDisplayImage] = useState(0);
     const [userInfo, setUserInfo] = useState({});
@@ -72,25 +72,27 @@ const SelectModal = ({t, posts, item, handlePrevPost, handleNextPost,openSelectM
 
     const buySellTradeClass = "desciption-title horizontal-center";
     const colorPriceClass = "price-title horizontal-center "+((displayPost?.type === "Buying") ? "bg" : (displayPost?.type === "Selling") ? "br" : "");
+    const colorNextPrevClass = "carousel-post "+((displayPost?.type === "Buying") ? "buy" : (displayPost?.type === "Selling") ? "sell" : "trade");
 
     const displaySelectedPost = (
-        <Modal open={openSelectModal} className="select-modal" onClick={() => setOpenSelectModal({show:false})}>
+        <Modal open={openSelectModal} className="select-modal" onClick={() => setOpenSelectModal(cur => {return {...cur, show: false}})}>
             <Row>
+                <span onClick={(e) => { e.stopPropagation();handlePrevPost()}} className={colorNextPrevClass+" prev"}>
+                    {"<"}
+                </span>
+                <span onClick={(e) => { e.stopPropagation();handleNextPost()}}  className={colorNextPrevClass+" next"}>
+                    {">"}
+                </span>
                 <Col className="modal-background" xs={12} onClick={(e) => e.stopPropagation()}>
                     <Row className='center'>
                         <Col>
                             <h1 id="select-modal-title">{displayPost?.title}</h1>
-                            <Button id="select-modal-exit-button" color="error" onClick={() => setOpenSelectModal({show:false})}>
+                            <Button id="select-modal-exit-button" color="error" onClick={() => setOpenSelectModal(cur => {return {...cur, show:false}})}>
                                 X
                             </Button>
                         </Col>
                     </Row>
-                    <button onClick={handlePrevPost}>
-                        prev
-                    </button>
-                    <button onClick={handleNextPost}>
-                        next
-                    </button>
+                   
                     <Row className="center-start">
                         <Col xs={12} sm={5} className="selected-post-image-container">
                             <Row className="content-container">

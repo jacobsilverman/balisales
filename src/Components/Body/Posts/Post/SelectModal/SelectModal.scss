@@ -182,11 +182,11 @@
 }
 
 .selling-price-wrapper .br {
-    color: red;
+    color: rgb(236, 84, 249);
 }
 
 .selling-price-wrapper .bg {
-   color: green;
+   color: rgb(124, 210, 25);
 }
 
 .link-wrapper {
@@ -276,4 +276,33 @@
 
 .contact {
     margin: 10px;
+}
+
+.carousel-post {
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    position: absolute;
+    height: 80%;
+    top: 10%;
+    z-index: 100;
+    border-radius: 2px;
+    color:white;
+    cursor: pointer;
+    &.next {
+        right: 0px;
+    }
+    &.prev {
+        left: 0px;
+    }
+    &.buy {
+        background-color: rgb(91, 226, 60);
+    }
+    &.sell {
+        background-color: rgb(236, 84, 249);
+    }
+    &.trade {
+        background-color: rgb(55, 244, 251);
+    }
 }

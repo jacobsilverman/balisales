@@ -11,11 +11,6 @@
     border-radius: 2px;
 }
 
-.Selling\/Trading-border {
-    box-shadow: rgba(236, 84, 249, 0.15) 0px 7px 14px, rgba(236, 84, 249, 0.12) 0px 5px 10px;
-    border: .15em solid  rgb(236, 84, 249);
-    -webkit-transition: 1s;
-}
 
 .Trading-border {
     box-shadow: rgba(55, 244, 251, 0.15) 0px 7px 14px, rgba(55, 244, 251, 0.12) 0px 5px 10px;
@@ -27,14 +22,20 @@
     border: .15em solid  rgb(91, 226, 60);
     -webkit-transition: 1s;
 }
-.Selling-border {
+.Selling\/Trading-border {
     box-shadow: rgba(#1976d2, 0.15) 0px 7px 14px, rgba(#1976d2, 0.12) 0px 5px 10px;
     border: .15em solid #1976d2;
     -webkit-transition: 1s;
 }
 
+.Selling-border {
+    box-shadow: rgba(236, 84, 249, 0.15) 0px 7px 14px, rgba(236, 84, 249, 0.12) 0px 5px 10px;
+    border: .15em solid  rgb(236, 84, 249);
+    -webkit-transition: 1s;
+}
+
 @media (hover: hover) and (pointer: fine) {
-    .Selling\/Trading-border:hover  {
+    .Selling-border:hover  {
         box-shadow: -5px 5px rgb(236, 84, 249),
         -4px 4px rgb(236, 84, 249),
         -3px 3px rgb(236, 84, 249),
@@ -85,7 +86,7 @@
         border: none;
     }
 
-    .Selling-border:hover  {
+    .Selling\/Trading-border:hover  {
         box-shadow: -5px 5px #1976d2,
         -4px 4px #1976d2,
         -3px 3px #1976d2,
