@@ -135,7 +135,7 @@ const SelectModal = ({t, item, handlePrevPost, handleNextPost,openSelectModal, s
                 <span onClick={(e) => {iteratePosts(e, "next")}}  className={colorNextPrevClass+" next"}>
                     {">"}
                 </span>
-                <Col key={openSelectModal?.index} className={"modal-background "+vanish} xs={12} onClick={(e) => e.stopPropagation()}>
+                <Col className={"modal-background "+vanish} xs={12} onClick={(e) => e.stopPropagation()}>
                     <Row className='center'>
                         <Col>
                             <h1 id="select-modal-title">{displayPost?.title}</h1>
