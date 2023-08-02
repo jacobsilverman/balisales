@@ -40,6 +40,10 @@ img {
 .create-input {
     padding-bottom: 10px;
     padding-top: 10px;
+    & input[type="search"]{
+        min-height: 36px;
+    }
+    
 }
 
 .upload-image {
