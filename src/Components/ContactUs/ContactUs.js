@@ -43,7 +43,7 @@ function ContactUs() {
                 {/* <Card className="contact-card"> */}
                     <Row id="contact-header">
                         <Col className="center">
-                            <h3  style={{marginTop: "70px"}}>{t("Please feel free to send us a message for any reason")}</h3>
+                            <h3>{t("Please feel free to send us a message for any reason")}</h3>
                         </Col>
                     </Row>
                     <Row id="contact-title-input">
