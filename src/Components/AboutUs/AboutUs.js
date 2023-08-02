@@ -17,19 +17,13 @@ var AboutUs = () => {
     const address = {
         address: "2 new york",
         city: " new york",
-        state: " new york",
-        userInfo: {
-
-        }
+        state: " new york"
     }
 
     const address2 = {
         address: "571 hidden ridge court",
         city: " encinitas",
-        state: " california",
-        userInfo: {
-            
-        }
+        state: " california"
     }
 
     return (
@@ -152,7 +146,7 @@ var AboutUs = () => {
             </Row>
             <Row>
                 <Col xs={12}>
-                    <Map addresses={[address, address2]} height="200px" width="100%" zoom={3} border="5px solid black" />
+                    <Map addresses={[address, address2]} height="400px" width="100%" zoom={4} border="5px solid black" />
                 </Col>
             </Row>
         </Container>

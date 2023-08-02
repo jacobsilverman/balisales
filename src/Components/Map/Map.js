@@ -1,18 +1,26 @@
 /*global google*/
 import React, { useEffect, useMemo, useState } from 'react';
-import { GoogleMap, Marker, InfoWindow } from '@react-google-maps/api';
+import { GoogleMap, Marker, OverlayView } from '@react-google-maps/api';
 import { getLongitudeLatitude } from '../../Data/Services/geocode';
-
 import defaultProfile from "../../Data/Images/default-profile.jpg"
+
+import "./Map.scss";
 
 const Map = ({addresses, width, height, zoom}) => {
     const [initial, setInitial] = useState(true);
     const [longitudeLatitude, setLongitudeLatitude] = useState([]);
-
+    const [userHovered, setUserHovered] = useState({show: false, position: {}});
+ 
     const mapStyles = {
         height: height,
         width: width
     };
+
+    const getPixelPositionOffset = (width, height) => ({
+        x: -(width / 2),
+        y: -(height / 2),
+    })
+
 
     useEffect(() => {
         if (initial) {
@@ -35,26 +43,43 @@ const Map = ({addresses, width, height, zoom}) => {
             setInitial(false);
             return
         }
+
         return (
             <GoogleMap
                 icon="here"
                 mapContainerStyle={mapStyles}
                 zoom={zoom}
-                center={longitudeLatitude[0]}>
+                center={{lat: 38.1355772, lng: -96.135829}}>
                     {longitudeLatitude.map((position) => {
-                        return (
+                        return (<>
                             <Marker 
                                 position={position} 
                                 icon={{url: defaultProfile, scaledSize: new google.maps.Size(25, 25)}} 
-                                onMouseOver={(e) => {
-                                    alert(JSON.stringify(e))
-                                }} >
+                                onMouseOver={() => {
+                                    setUserHovered({show: true, position: position})
+                                }}
+                                onMouseOut={() => {
+                                    setUserHovered({show: false, position: {}})
+                                }}>
+                                
                             </Marker>
+                            {userHovered?.show && <OverlayView
+                                position={userHovered?.position}
+                                mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}
+                                getPixelPositionOffset={getPixelPositionOffset}>
+                                <div className="info-window-container">
+                                    <div>user</div>
+                                    <button>
+                                        profile
+                                    </button>
+                                </div>
+                            </OverlayView>}
+                        </>
                         );
                     })}
             </GoogleMap>
         )
-    }, [longitudeLatitude]);
+    }, [longitudeLatitude, userHovered]);
 
     return render;
 }
