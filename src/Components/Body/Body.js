@@ -95,14 +95,16 @@ function Body({posts, loadAllData, loadMoreData, loadingMoreData, showFilter, se
             return;
         }
 
-        return (<Row>
-            <Col xs={6} className="center">
-                <Button onClick={moreButton}>{t("More")}</Button>
-            </Col>
-            <Col xs={6} className="center">
-                <Button onClick={allButton}>{t("All")}</Button>
-            </Col>
-        </Row>);
+        return (
+            <Row className="pagnation-buttons">
+                <Col xs={6} className="center">
+                    <Button variant="contained" className="full-width" onClick={moreButton}>{t("More")}</Button>
+                </Col>
+                <Col xs={6} className="center">
+                    <Button variant="contained" className="full-width" onClick={allButton}>{t("All")}</Button>
+                </Col>
+            </Row>
+        );
     }
 
     const filter = (

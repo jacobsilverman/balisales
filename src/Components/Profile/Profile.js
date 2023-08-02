@@ -121,7 +121,7 @@ const Profile = () => {
                                     {userData?.address ?
                                     <Row>
                                         <Col xs={12} className="map-container">
-                                            <Map addresses={[userData.address]} height="200px" width="100%" border="5px solid black" />
+                                            <Map addresses={[userData?.address]} height="200px" width="75%" zoom={10} border="5px solid black" />
                                         </Col>
                                         {userData?.address && <Col xs={12} className="loc-pin">
                                             <FaLocationArrow/>

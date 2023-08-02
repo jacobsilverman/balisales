@@ -40,12 +40,23 @@
     padding-right: 0px !important;
 }
 
+.pagnation-buttons{
+  position: fixed;
+  bottom: 0px;
+  right: 12px;
+}
+
+.full-width {
+  width: 100%;
+}
+
 .post-margin {
     margin-top: 38vh;
 }
 
 .grid-container-posts {
     padding: 20px;
+    padding-bottom: 46px;
     display: grid;
     gap: 10px;
     grid-auto-rows: 170px;
