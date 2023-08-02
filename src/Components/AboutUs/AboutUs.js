@@ -2,6 +2,8 @@ import { Col, Container, Row } from 'react-bootstrap';
 import { Card, CardContent, CardMedia, Typography } from "@mui/material";
 import './AboutUs.scss';
 
+import Map from "../Map";
+
 // import assrock from '../../Data/Images/assrock.svg';
 import defaultProfile from '../../Data/Images/default-profile.jpg';
 import andrina from '../../Data/Images/andrina.jpg';
@@ -11,6 +13,24 @@ import { useTranslation } from 'react-i18next';
  
 var AboutUs = () => {
     const { t } = useTranslation();
+
+    const address = {
+        address: "2 new york",
+        city: " new york",
+        state: " new york",
+        userInfo: {
+
+        }
+    }
+
+    const address2 = {
+        address: "571 hidden ridge court",
+        city: " encinitas",
+        state: " california",
+        userInfo: {
+            
+        }
+    }
 
     return (
         <>
@@ -129,7 +149,12 @@ var AboutUs = () => {
                         </CardContent>
                     </Card>
                 </Col>
-           </Row>
+            </Row>
+            <Row>
+                <Col xs={12}>
+                    <Map addresses={[address, address2]} height="200px" width="100%" zoom={3} border="5px solid black" />
+                </Col>
+            </Row>
         </Container>
         </>
     );
