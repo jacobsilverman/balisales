@@ -120,7 +120,7 @@ const Profile = () => {
                                     {userData?.address ?
                                     <Row>
                                         <Col xs={12} className="map-container">
-                                            <Map addresses={[{...userData?.address, userInfo: {displayName: userData?.displayName, id: userData?.id, icon: profilePic}}]} height="200px" width="75%" zoom={5} border="5px solid black" userInfo={{displayName: userData?.displayName, id: userData?.id, icon: profilePic}} />
+                                            <Map addresses={[{...userData?.address, userInfo: {displayName: userData?.displayName, id: params?.id, icon: profilePic}}]} height="200px" width="75%" zoom={5} border="5px solid black" userInfo={{displayName: userData?.displayName, id: userData?.id, icon: profilePic}} />
                                         </Col>
                                         {userData?.address && <Col xs={12} className="loc-pin">
                                             <FaLocationArrow/>
