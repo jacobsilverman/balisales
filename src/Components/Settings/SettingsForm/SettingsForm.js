@@ -20,6 +20,7 @@ const SettingsForm = ({id}) => {
     const [youtube, setYoutube] = useState('');
     const [twitter, setTwitter] = useState('');
     const [referenceUrl, setReferenceUrl] = useState('');
+    const [ip, setIp] = useState('');
     
     const [address, setAddress] = useState({
         address: '',
@@ -75,6 +76,7 @@ const SettingsForm = ({id}) => {
             setTwitter(result.twitter);
             setReferenceUrl(result.referenceUrl);
             setAddress(result.address);
+            setIp(result.ip);
             setPosts(result.posts || []);
             setValidation({
                 firstName: result.firstName.length > 0,
@@ -155,23 +157,23 @@ const SettingsForm = ({id}) => {
     }
 
 
-    const handleDiscordChange = (event) => {
-        let newVal = event.target.value;
-        if (newVal.match(/['\-"><;.\\+/{}!@$%=^*_|[\]]/)) {
-            return
-        }
+    // const handleDiscordChange = (event) => {
+    //     let newVal = event.target.value;
+    //     if (newVal.match(/['\-"><;.\\+/{}!@$%=^*_|[\]]/)) {
+    //         return
+    //     }
 
-        setDiscord(newVal);
-    }
+    //     setDiscord(newVal);
+    // }
 
-    const handleYoutubeChange = (event) => {
-        let newVal = event.target.value;
-        if (newVal.match(/['\-"><;.\\+/{}!@#$%=^*_|[\]]/)) {
-            return
-        }
+    // const handleYoutubeChange = (event) => {
+    //     let newVal = event.target.value;
+    //     if (newVal.match(/['\-"><;.\\+/{}!@#$%=^*_|[\]]/)) {
+    //         return
+    //     }
 
-        setYoutube(newVal);
-    }
+    //     setYoutube(newVal);
+    // }
 
     const handleTwitterChange = (event) => {
         let newVal = event.target.value;
@@ -405,7 +407,7 @@ const SettingsForm = ({id}) => {
             </Row>
             {(showLocationInfo ||showRequiredInfo || showSocialInfo) && <Row>
                 <Col xs={12} className="submit-button">
-                    <Button disabled={!isValid} variant="contained" onClick={() => handleSubmit({id, firstName, lastName, displayName, phoneNumber, instagram, facebook, discord, youtube, twitter, referenceUrl, address, posts}, file)}>
+                    <Button disabled={!isValid} variant="contained" onClick={() => handleSubmit({id, ip: ip, firstName, lastName, displayName, phoneNumber, instagram, facebook, discord, youtube, twitter, referenceUrl, address, posts}, file)}>
                         {t("Submit")}
                     </Button>
                 </Col>
