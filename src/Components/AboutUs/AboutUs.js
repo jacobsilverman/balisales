@@ -1,6 +1,9 @@
+import { useEffect, useState } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import { Card, CardContent, CardMedia, Typography } from "@mui/material";
 import './AboutUs.scss';
+
+import Map from "../Map";
 
 // import assrock from '../../Data/Images/assrock.svg';
 import defaultProfile from '../../Data/Images/default-profile.jpg';
@@ -8,9 +11,42 @@ import andrina from '../../Data/Images/andrina.jpg';
 import jacob from '../../Data/Images/jacob.jpg';
 import nathan from '../../Data/Images/nathan.jpg';
 import { useTranslation } from 'react-i18next';
+
+import { getUsersMapQuery } from '../../Data/Services/MapInfo';
  
 var AboutUs = () => {
     const { t } = useTranslation();
+    const [addresses, setAddresses] = useState([])
+
+    useEffect(() => {
+        getUsersMapQuery().then((res) => {
+            setAddresses(res)
+        }).catch((er) => {
+            console.log("hit:",er)
+        })
+    }, [])
+
+    const address = {
+        address: "2 new york",
+        city: " new york",
+        state: " new york",
+        userInfo: {
+            displayName: "",
+            id: "",
+            icon: "",
+        }
+    }
+
+    const address2 = {
+        address: "571 hidden ridge court",
+        city: " encinitas",
+        state: " california",
+        userInfo: {
+            displayName: "Jacob Silv",
+            id: "",
+            icon: "",
+        }
+    }
 
     return (
         <>
@@ -129,7 +165,18 @@ var AboutUs = () => {
                         </CardContent>
                     </Card>
                 </Col>
-           </Row>
+            </Row>
+            
+            <Row>
+                <Col xs={12}>
+                    <Row className="team-container">
+                        <Col>
+                            <h3>{t("Meet our Users")}</h3>
+                        </Col>
+                    </Row>   
+                    <Map addresses={addresses} height="400px" width="100%" zoom={4} border="5px solid black" />
+                </Col>
+            </Row>
         </Container>
         </>
     );

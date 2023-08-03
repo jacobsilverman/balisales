@@ -1,0 +1,29 @@
+.info-window-container {
+    position: relative;
+    left: -50%;
+    background: white;
+    padding: 3px;
+    max-height: 35px;
+    top: -60px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-weight: 300;
+    color:white;
+    background-color: rgba(red, .3);
+}
+
+.static {
+    margin: auto;
+    background-image: repeating-radial-gradient(circle at 17% 32%, white, black 0.00085px);
+    background-position: center;
+    animation: back 5s linear infinite;
+}
+  
+@keyframes back {
+    from {
+        background-size: 100% 100%;
+    }
+    to {
+        background-size: 200% 200%;
+    }
+}

@@ -1,28 +1,46 @@
+/*global google*/
 import React, { useEffect, useMemo, useState } from 'react';
-import { GoogleMap, Marker } from '@react-google-maps/api';
+import { GoogleMap, Marker, OverlayView } from '@react-google-maps/api';
 import { getLongitudeLatitude } from '../../Data/Services/geocode';
+import defaultProfile from "../../Data/Images/default-profile.jpg"
 
-const Map = ({address, width, height}) => {
+import "./Map.scss";
+
+const Map = ({addresses, width, height, zoom, center={lat: 38.1355772, lng: -96.135829}}) => {
     const [initial, setInitial] = useState(true);
-    const [longitudeLatitude, setLongitudeLatitude] = useState([]);
-
+    const [parsedUserData, setParsedUserData] = useState([]);
+    const [userHovered, setUserHovered] = useState({show: false, position: {}});
+    const c = addresses.length === 1 ? true : false;
     const mapStyles = {
         height: height,
         width: width
     };
+
+    const getPixelPositionOffset = (width, height) => ({
+        x: -(width / 2),
+        y: -(height / 2),
+    })
 
     useEffect(() => {
         if (initial) {
             setInitial(false);
             return;
         }
-        if (address?.address && address?.city){
-            const location = `${address?.address} ${address?.unit} ${address?.city} ${address?.state} ${address?.country} ${address?.zipcode}`;
-            getLongitudeLatitude(location).then((result) => {
-                setLongitudeLatitude(result);
-            });
+        setParsedUserData([]);
+        for (let index in addresses) {
+            if (addresses[index]?.address && addresses[index]?.city){
+                const location = `${addresses[index]?.address} ${addresses[index]?.unit} ${addresses[index]?.city} ${addresses[index]?.state} ${addresses[index]?.country} ${addresses[index]?.zipcode}`;
+                getLongitudeLatitude(location).then((result) => {
+                    const newData = {
+                        address: result,
+                        userInfo: addresses[index]?.userInfo
+                    }
+                    setParsedUserData(cur => [newData, ...cur]);
+                });
+            }
         }
-    }, [address]);
+
+    }, [addresses]);
 
     const render = useMemo(() => {
         if (initial) {
@@ -34,12 +52,37 @@ const Map = ({address, width, height}) => {
             <GoogleMap
                 icon="here"
                 mapContainerStyle={mapStyles}
-                zoom={10}
-                center={longitudeLatitude}>
-                    <Marker key="5" position={longitudeLatitude} />
+                zoom={zoom}
+                center={c ? parsedUserData[0]?.address : center}>
+                    {parsedUserData.map((position) => {
+                        return (
+                        <>
+                            <Marker 
+                                position={position?.address} 
+                                icon={{url: position?.userInfo?.icon || defaultProfile, scaledSize: new google.maps.Size(25, 25)}} 
+                                onClick={()=>window.location.href= "/profile?id="+position?.userInfo?.id}
+                                onMouseOver={() => {
+                                    setUserHovered({show: true, position: position})
+                                }}
+                                onMouseOut={() => {
+                                    setUserHovered({show: false, position: {}})
+                                }}>
+                                
+                            </Marker>
+                            {userHovered?.show && <OverlayView
+                                position={userHovered?.position?.address}
+                                mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}
+                                getPixelPositionOffset={getPixelPositionOffset}>
+                                <div className="info-window-container static">
+                                    <h5>{userHovered?.position?.userInfo?.displayName || "Default Profile"}</h5>
+                                </div>
+                            </OverlayView>}
+                        </>
+                        );
+                    })}
             </GoogleMap>
         )
-    }, [longitudeLatitude]);
+    }, [parsedUserData, userHovered]);
 
     return render;
 }

@@ -19,7 +19,7 @@ function Settings() {
                     </Col>
                 </Row>
             </Container>
-            <Container className='about-container'>
+            <Container>
                 <Row>
                     <SettingsForm id={id} />
                     <Col xs={12} className="info-dropdown setting-padding">
