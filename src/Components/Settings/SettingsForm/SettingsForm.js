@@ -399,7 +399,7 @@ const SettingsForm = ({id}) => {
                                 </Row>
                             </Col>
                             {address && <Col xs={12} md={5} lg={4} className="map-container">
-                                <Map addresses={[address]} width="200px"  height="200px" zoom={10} className="" />
+                                <Map addresses={[{...address, userInfo: {displayName: displayName, icon: profilePicture, id: id}}]} width="200px"  height="200px" zoom={10} className="" />
                             </Col>}
                         </Row>
                     </Col>

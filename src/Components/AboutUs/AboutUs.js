@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import { Card, CardContent, CardMedia, Typography } from "@mui/material";
 import './AboutUs.scss';
@@ -10,20 +11,41 @@ import andrina from '../../Data/Images/andrina.jpg';
 import jacob from '../../Data/Images/jacob.jpg';
 import nathan from '../../Data/Images/nathan.jpg';
 import { useTranslation } from 'react-i18next';
+
+import { getUsersMapQuery } from '../../Data/Services/MapInfo';
  
 var AboutUs = () => {
     const { t } = useTranslation();
+    const [addresses, setAddresses] = useState([])
+
+    useEffect(() => {
+        getUsersMapQuery().then((res) => {
+            setAddresses(res)
+        }).catch((er) => {
+            console.log("hit:",er)
+        })
+    }, [])
 
     const address = {
         address: "2 new york",
         city: " new york",
-        state: " new york"
+        state: " new york",
+        userInfo: {
+            displayName: "",
+            id: "",
+            icon: "",
+        }
     }
 
     const address2 = {
         address: "571 hidden ridge court",
         city: " encinitas",
-        state: " california"
+        state: " california",
+        userInfo: {
+            displayName: "Jacob Silv",
+            id: "",
+            icon: "",
+        }
     }
 
     return (
@@ -146,7 +168,7 @@ var AboutUs = () => {
             </Row>
             <Row>
                 <Col xs={12}>
-                    <Map addresses={[address, address2]} height="400px" width="100%" zoom={4} border="5px solid black" />
+                    <Map addresses={addresses} height="400px" width="100%" zoom={4} border="5px solid black" />
                 </Col>
             </Row>
         </Container>

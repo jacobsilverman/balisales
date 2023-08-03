@@ -117,11 +117,10 @@ const Profile = () => {
                         <Col xs={12} md={userData?.referenceUrl  || !userData?.address || Object.values(userData?.address).every(x => x === null || x === '') ? 12 : 6}>
                             <Row>
                                 <Col xs={12} className="map-col-container">
-
                                     {userData?.address ?
                                     <Row>
                                         <Col xs={12} className="map-container">
-                                            <Map addresses={[userData?.address]} height="200px" width="75%" zoom={10} border="5px solid black" />
+                                            <Map addresses={[{...userData?.address, userInfo: {displayName: userData?.displayName, id: userData?.id, icon: profilePic}}]} height="200px" width="75%" zoom={5} border="5px solid black" userInfo={{displayName: userData?.displayName, id: userData?.id, icon: profilePic}} />
                                         </Col>
                                         {userData?.address && <Col xs={12} className="loc-pin">
                                             <FaLocationArrow/>
