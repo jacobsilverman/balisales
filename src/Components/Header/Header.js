@@ -300,14 +300,14 @@ const Header = ({posts, setShowFilter}) => {
                 if (!userInfo?.firstName || !userInfo?.lastName || !userInfo?.displayName || !userInfo?.ip) {
                     getIp().then((ip)=>{
                         const info = {
-                            ...userInfo,
+                            ip: ip,
                             firstName: result?._tokenResponse?.firstName,
                             lastName: result?._tokenResponse?.lastName,
                             displayName: result?.user?.displayName,
                             posts: [],
-                            ip: ip
+                            ...userInfo
                         };
-                        setUserInfo(info).then((res) => console.log(res)).catch((err)=> console.log("cant save: ", err))
+                        setUserInfo(info).then((res) => console.log("saved: ", res)).catch((err)=> console.log("cant save: ", err))
 
                     }).catch((er)=>er)
                 }
