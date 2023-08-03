@@ -2,7 +2,7 @@ import { lazy, Fragment, useEffect, useMemo, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 import './Header.scss';
-import { getUserInfo, setUserLogin, setUserInfo, getProfilePicture } from '../../Data/Services/userInfo.js';
+import { getIp, getUserInfo, setUserLogin, setUserInfo, getProfilePicture } from '../../Data/Services/userInfo.js';
 import { pageTitles } from '../../Data/Constants';
 import Companies from '../../Data/Constants/Companies.json';
 
@@ -297,8 +297,19 @@ const Header = ({posts, setShowFilter}) => {
             return result;
         }).then((result) => {
             getUserInfo(result?.user?.uid).then((userInfo) => {
-                if (!userInfo?.firstName || !userInfo?.lastName || !userInfo?.displayName) {
-                    setUserInfo({...userInfo, firstName: result?._tokenResponse?.firstName, lastName: result?._tokenResponse?.lastName, displayName: result?.user?.displayName, posts:[]})
+                if (!userInfo?.firstName || !userInfo?.lastName || !userInfo?.displayName || !userInfo?.ip) {
+                    getIp().then((ip)=>{
+                        const info = {
+                            ...userInfo,
+                            firstName: result?._tokenResponse?.firstName,
+                            lastName: result?._tokenResponse?.lastName,
+                            displayName: result?.user?.displayName,
+                            posts: [],
+                            ip: ip
+                        };
+                        setUserInfo(info).then((res) => console.log(res)).catch((err)=> console.log("cant save: ", err))
+
+                    }).catch((er)=>er)
                 }
             })
         });
@@ -318,8 +329,19 @@ const Header = ({posts, setShowFilter}) => {
             return result;
         }).then((result) => {
             getUserInfo(result?.user?.uid).then((userInfo) => {
-                if (!userInfo?.firstName || !userInfo?.lastName || !userInfo?.displayName) {
-                    setUserInfo({...userInfo, firstName: result?._tokenResponse?.firstName, lastName: result?._tokenResponse?.lastName, displayName: result?.user?.displayName, posts:[]})
+                if (!userInfo?.firstName || !userInfo?.lastName || !userInfo?.displayName || !userInfo?.ip) {
+                    getIp().then((ip)=>{
+                        const info = {
+                            ...userInfo,
+                            firstName: result?._tokenResponse?.firstName,
+                            lastName: result?._tokenResponse?.lastName,
+                            displayName: result?.user?.displayName,
+                            posts:[],
+                            ip: ip
+                        };
+                        setUserInfo(info).then((res) => console.log(res)).catch((err)=> console.log("cant save: ", err))
+
+                    }).catch((er)=>er)
                 }
             })
         }).catch((err) => {
@@ -337,12 +359,23 @@ const Header = ({posts, setShowFilter}) => {
             localStorage.setItem("isAuth", true);
             localStorage.setItem("uid", result?.user?.uid);
             localStorage.setItem("displayName", result?.user?.displayName);
-            console.log(result);
+
             return result;
         }).then((result) => {
             getUserInfo(result?.user?.uid).then((userInfo) => {
-                if (!userInfo?.firstName || !userInfo?.lastName || !userInfo?.displayName) {
-                    setUserInfo({...userInfo, firstName: result?._tokenResponse?.firstName, lastName: result?._tokenResponse?.lastName, displayName: result?.user?.displayName, posts:[]})
+                if (!userInfo?.firstName || !userInfo?.lastName || !userInfo?.displayName || !userInfo?.ip) {
+                    getIp().then((ip)=>{
+                        const info = {
+                            ...userInfo,
+                            firstName: result?._tokenResponse?.firstName,
+                            lastName: result?._tokenResponse?.lastName,
+                            displayName: result?.user?.displayName,
+                            posts:[],
+                            ip: ip
+                        };
+                        setUserInfo(info).then((res) => console.log(res)).catch((err)=> console.log("cant save: ", err))
+
+                    }).catch((er)=>er)
                 }
             })
         }).catch((err) => {

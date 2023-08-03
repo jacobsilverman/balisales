@@ -26,6 +26,9 @@
 
 .setting-item {
     padding-bottom: 20px;
+    & div {
+        min-height: 55px;
+    }
 }
 
 .info-dropdown {

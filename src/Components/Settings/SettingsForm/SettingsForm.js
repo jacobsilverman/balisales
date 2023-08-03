@@ -286,12 +286,15 @@ const SettingsForm = ({id}) => {
                 {showRequiredInfo && <>
                     <Col className='setting-padding'>
                         <Row>
-                            <Col xs={12} sm={6} className="setting-item">
+                            <Col xs={12} sm={4} className="setting-item">
                                 <TextField fullWidth label={t("First Name")} error={!validation.firstName} type="search" onChange={handleFirstNameChange} value={firstName} />
                             </Col>
 
-                            <Col xs={12} sm={6} className="setting-item">
+                            <Col xs={12} sm={4} className="setting-item">
                                 <TextField fullWidth label={t("Last Name")} error={!validation.lastName} type="search" onChange={handleLastNameChange} value={lastName} />
+                            </Col>
+                            <Col xs={12} sm={4} className="setting-item">
+                                <TextField fullWidth label={t("Display Name")} error={!validation.displayName} onChange={handleDisplayNameChange} value={displayName} />
                             </Col>
                         </Row>
                     </Col>
@@ -312,27 +315,22 @@ const SettingsForm = ({id}) => {
                                     <Col xs={12} md={6} className="setting-item">
                                         <TextField fullWidth label={t("Phone Number")} error={!validation.phoneNumber} onChange={handlePhoneNumberChange} value={displayNumber(phoneNumber)} inputProps={{ maxLength: 14 }} />
                                     </Col>
-                                    <Col xs={12} sm={6} className="setting-item">
-                                        <TextField fullWidth label={t("Display Name")} error={!validation.displayName} onChange={handleDisplayNameChange} value={displayName} />
+                                    <Col xs={12} md={6} className="setting-item">
+                                        <TextField fullWidth label={t("www.instagram.com/")} color="" type="url" error={!validation.instagram} onChange={handleInstagramChange} value={instagram} />
                                     </Col>
                                     <Col xs={12} md={6} className="setting-item">
                                         <TextField fullWidth label={t("www.facebook.com/")} color="" type="url" error={!validation.facebook} onChange={handleFacebookChange} value={facebook} />
                                     </Col>
                                     <Col xs={12} md={6} className="setting-item">
-                                        <TextField fullWidth label={t("www.instagram.com/")} color="" type="url" error={!validation.instagram} onChange={handleInstagramChange} value={instagram} />
+                                        <TextField fullWidth label={t("www.twitter.com/")} color="" type="url" error={!validation.twitter} onChange={handleTwitterChange} value={twitter} />
                                     </Col>
-
-
+                                    
                                     {/* <Col xs={12} md={6} className="setting-item">
                                         <TextField fullWidth label={t("www.discord.com/channel/")} color="" type="url" error={!validation.discord} onChange={handleDiscordChange} value={discord} />
                                     </Col>
                             
                                     <Col xs={12} md={6} className="setting-item">
                                         <TextField fullWidth label={t("www.youtube.com/channel/")} color="" type="url" error={!validation.youtube} onChange={handleYoutubeChange} value={youtube} />
-                                    </Col>
-
-                                    <Col xs={12} md={6} className="setting-item">
-                                        <TextField fullWidth label={t("www.twitter.com/")} color="" type="url" error={!validation.twitter} onChange={handleTwitterChange} value={twitter} />
                                     </Col> */}
 
                                     <Col xs={12} className="setting-item">

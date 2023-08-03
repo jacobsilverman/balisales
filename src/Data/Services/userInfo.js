@@ -1,6 +1,7 @@
 import { doc, getDoc, setDoc, updateDoc } from 'firebase/firestore';
 import { db, storage } from '../../firebase-config';
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import axios from "axios";
 
 import { environment } from '../../Data/Constants/index';
 
@@ -87,7 +88,7 @@ export const setUserInfo = async (payload, file) => {
         window.location.reload(false);
     }
     catch (error) {
-        console.error("Error getting profile pic: ", error);
+        console.error("Error setting profile: ", error);
     }
 
 }
@@ -114,3 +115,8 @@ export const updateUser = async (id, payload) => {
         console.error("Error adding review: ", error);
     }
 }
+
+export const getIp = async () => {
+    const res = await axios.get("https://api.ipify.org/?format=json");
+    return res.data.ip;
+};
