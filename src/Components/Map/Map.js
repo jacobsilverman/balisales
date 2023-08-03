@@ -60,6 +60,7 @@ const Map = ({addresses, width, height, zoom, center={lat: 38.1355772, lng: -96.
                             <Marker 
                                 position={position?.address} 
                                 icon={{url: position?.userInfo?.icon || defaultProfile, scaledSize: new google.maps.Size(25, 25)}} 
+                                onClick={()=>window.location.href= "/profile?id="+position?.userInfo?.id}
                                 onMouseOver={() => {
                                     setUserHovered({show: true, position: position})
                                 }}

@@ -166,8 +166,14 @@ var AboutUs = () => {
                     </Card>
                 </Col>
             </Row>
+            
             <Row>
                 <Col xs={12}>
+                    <Row className="team-container">
+                        <Col>
+                            <h3>{t("Meet our Users")}</h3>
+                        </Col>
+                    </Row>   
                     <Map addresses={addresses} height="400px" width="100%" zoom={4} border="5px solid black" />
                 </Col>
             </Row>
