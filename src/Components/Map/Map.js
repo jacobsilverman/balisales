@@ -73,7 +73,7 @@ const Map = ({addresses, width, height, zoom, center={lat: 38.1355772, lng: -96.
                                 position={userHovered?.position?.address}
                                 mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}
                                 getPixelPositionOffset={getPixelPositionOffset}>
-                                <div className="info-window-container">
+                                <div className="info-window-container static">
                                     <h5>{userHovered?.position?.userInfo?.displayName || "Default Profile"}</h5>
                                 </div>
                             </OverlayView>}
