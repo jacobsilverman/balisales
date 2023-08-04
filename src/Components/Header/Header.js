@@ -288,12 +288,12 @@ const Header = ({posts, setShowFilter}) => {
             if (!userInfo?.firstName || !userInfo?.lastName || !userInfo?.displayName || !userInfo?.ip) {
                 getIp().then((ip)=>{
                     const info = {
+                        ...userInfo,
                         ip: ip,
                         firstName: result?._tokenResponse?.firstName,
                         lastName: result?._tokenResponse?.lastName,
                         displayName: result?.user?.displayName,
-                        posts: [],
-                        ...userInfo
+                        posts: []
                     };
                     setUserInfo(info).then((res) => console.log("saved: ", res)).catch((err)=> console.log("cant save: ", err))
                 }).catch((er)=>er)
@@ -311,12 +311,11 @@ const Header = ({posts, setShowFilter}) => {
             localStorage.setItem("isAuth", true);
             localStorage.setItem("uid", result?.user?.uid);
             localStorage.setItem("displayName", result?.user?.displayName);
-
             return result;
         }).then((result) => {
             saveInitialUserValues(result)
         }).catch((err) => {
-            console.error(err)
+            console.error("google failed to sign in: ", err)
         })
     }
 
@@ -368,16 +367,14 @@ const Header = ({posts, setShowFilter}) => {
             
             localStorage.setItem("isAuth", true);
             localStorage.setItem("uid", result?.user?.uid);
-            localStorage.setItem("displayName", result?.user?.displayName);
+            localStorage.setItem("displayName", email);
 
             return result;
         }).then((result) => {
             setOpenLoginModal(false);
             saveInitialUserValues(result)
         }).catch((err) => {
-            // "login already exists, can not create a new account with that email"
             let errorMessage;
-
 
             if (newAccount) {
                 if (err.code === "auth/weak-password") {
