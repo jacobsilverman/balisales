@@ -131,13 +131,13 @@ const LoginModal = ({openLoginModal, setOpenLoginModal, newAccount, setNewAccoun
                     </Row>
                     <Row>
                         <Col className="horizontal-center">
-                            <TextField className="modal-input" error={!validate.password} label={"Password"} color="" type="text" onChange={handlePasswordChange} value={password} />
+                            <TextField className="modal-input password" error={!validate.password} label={"Password"} color="" type="password" onChange={handlePasswordChange} value={password} />
                         </Col>
                     </Row>
                     {newAccount===true &&
                     <Row>
                         <Col className="horizontal-center">
-                            <TextField className="modal-input" error={!validate.repassword} label={"Retype Password"} color="" type="text" onChange={handleRepasswordChange} value={repassword} />
+                            <TextField className="modal-input password" error={!validate.repassword} label={"Retype Password"} color="" type="password" onChange={handleRepasswordChange} value={repassword} />
                         </Col>
                     </Row>}
                     {validate.error &&
