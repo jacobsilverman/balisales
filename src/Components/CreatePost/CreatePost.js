@@ -349,7 +349,7 @@ function CreatePost() {
                 </Row>
                 <Row>
                     <Col xs={12} className="center">
-                        <Button disabled={disableSubmit} className="submit-button" onClick={createPost}>{t("Submit")}</Button>
+                        <Button disabled={disableSubmit} className="create-submit-button" onClick={createPost}>{t("Submit")}</Button>
                     </Col>
                 </Row>
             </Container>

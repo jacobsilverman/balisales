@@ -341,7 +341,7 @@ const SettingsForm = ({id}) => {
                                 </Row>
                             </Col>
                             
-                            <Col xs={12} md={5} lg={4} className="setting-item profile-image-update">
+                            <Col xs={12} md={5} lg={4} className="profile-image-update">
                                 <Row>
                                     <Col xs={12}>
                                         <h5>Change Profile Picture</h5>
