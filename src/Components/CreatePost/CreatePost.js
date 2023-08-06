@@ -23,6 +23,8 @@ import './CreatePost.scss';
 import { useTranslation } from 'react-i18next';
 
 function CreatePost() {
+    const isAuth = useState(localStorage.getItem("isAuth"));
+
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [type, setType] = useState("");
@@ -255,7 +257,7 @@ function CreatePost() {
     }
 
 
-    return (
+    const mainPage = (
         <>
             <Container className="create-header-container">
                 <Row>
@@ -353,6 +355,32 @@ function CreatePost() {
             </Container>
         </>
     );
+    
+    const disabledPage = (
+        <>
+            <Container className="create-header-container">
+                <Row>
+                    <Col className="create-header">
+                        <h2>{t("Information Missing")}</h2>
+                    </Col>
+                </Row>
+            </Container>
+            <Container className="create-container">
+                <Row>
+                    <Col xs={12}>
+                        <h3>
+                            { !isAuth[0] ?
+                             "Please login before trying to create a post.":
+                             "Please go to the <a href='/settings'>Settings Page</a> to make sure you have a first name, last name and display name saved before trying to create a post."}
+                        </h3>
+                    </Col>
+                </Row>
+            </Container>
+        </>
+    );
+
+
+    return  isAuth[0] ? mainPage : disabledPage;
 }
 
 export default CreatePost;
