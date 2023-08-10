@@ -156,7 +156,7 @@ const EditModal = ({item, setPosts, openEditModal, setOpenEditModal, filterPosts
                 }
             }
             catch{
-                console.log("nah")
+                console.log("can't look through images")
             }
 		}
 
@@ -164,10 +164,9 @@ const EditModal = ({item, setPosts, openEditModal, setOpenEditModal, filterPosts
 
         for (let i = 0; i < images.length; i++){
             //these are file objects
+            const picRef = ref(storage, `/${environment()}-postImages/${item.id}/image-${i}`);
             if (typeof images[i]!=="string"){
-                console.log("newpic: ", images[i])
-                const storageRef = ref(storage, `/${environment()}-postImages/${item.id}/image-${i}`);
-                const uploadTask = uploadBytesResumable(storageRef, images[i]);
+                const uploadTask = uploadBytesResumable(picRef, images[i]);
                 promises.push(uploadTask)
             } else {
                 let xhr = new XMLHttpRequest();
@@ -175,12 +174,8 @@ const EditModal = ({item, setPosts, openEditModal, setOpenEditModal, filterPosts
                 xhr.responseType = 'blob';
                 xhr.onload = function(event) {
                     let blob = xhr.response;
-                    if (blob){
-                        const newPictureRef = ref(storage, `/${environment()}-postImages/${item.id}/image-${i}`);
-                        console.log(`/${environment()}-postImages/${item.id}/image-${i}`)
-                        console.log("blobL: ",blob)
-                        
-                        const uploadTask = uploadBytesResumable(newPictureRef, blob).then((res)=>console.log(res))
+                    if (blob){                        
+                        const uploadTask = uploadBytesResumable(picRef, blob)
                         promises.push(uploadTask)
                     }
                 };
@@ -191,12 +186,11 @@ const EditModal = ({item, setPosts, openEditModal, setOpenEditModal, filterPosts
         
         Promise.all(promises).then((res) => {
             console.log(res)
-            window.location.reload()
         }).catch((err) => {
             console.error(err)
+        }).finally(() => {
+            window.location.reload()
         })
-
-		
     }
 
     const handleImagePrev = (index) => {
@@ -395,10 +389,16 @@ const EditModal = ({item, setPosts, openEditModal, setOpenEditModal, filterPosts
                     </Button>
                     <DeleteModal deletePost={deletePost} item={item} openDeleteModal={openDeleteModal} setOpenDeleteModal={setOpenDeleteModal} setOpenEditModal={setOpenEditModal} />
                     <Row className="edit-input">
-                        <Col xs={6} className="left">
+                        <Col xs={4} className="left">
                             <h2>{t('Edit')}</h2>
                         </Col>
-                        <Col xs={6}>
+                        <Col>
+                            <TextField error={!validation.title} fullWidth size="small" value={title} label={t("Title")} className="input-width" onChange={handleTitleChange} />
+                        </Col>
+                    </Row>
+                    <Row className="edit-input">
+
+                        <Col xs={4}>
                             <FormControl fullWidth>
                                 <InputLabel error={validation.status === false && disableSubmit} size="small" id="status-edit-label">{t("Status")}</InputLabel>
                                 <Select
@@ -413,10 +413,20 @@ const EditModal = ({item, setPosts, openEditModal, setOpenEditModal, filterPosts
                                 </Select>
                             </FormControl>
                         </Col>
-                    </Row>
-                    <Row className="edit-input">
                         <Col>
-                            <TextField error={!validation.title} fullWidth size="small" value={title} label={t("Title")} className="input-width" onChange={handleTitleChange} />
+                            <FormControl fullWidth>
+                                <InputLabel error={validation.type === false && disableSubmit} size="small" id="business-edit-label">{t("Sale Type")}</InputLabel>
+                                <Select
+                                    labelId="business-edit-label"
+                                    id="business-edit-select"
+                                    size="small"
+                                    defaultValue={item?.type}
+                                    value={type}
+                                    label={t("Sale Type")}
+                                    onChange={handleTypeChange}>
+                                    {getOptions(types, "type")}
+                                </Select>
+                            </FormControl>
                         </Col>
                         <Col>
                             <TextField fullWidth size="small" value={price} type="number" label={t("Price")} className="input-width" onChange={handlePriceChange} />
@@ -454,23 +464,7 @@ const EditModal = ({item, setPosts, openEditModal, setOpenEditModal, filterPosts
                                 </Select>
                             </FormControl>
                         </Col>
-                    </Row>
-                    <Row className="edit-input">
-                        <Col>
-                            <FormControl fullWidth>
-                                <InputLabel error={validation.type === false && disableSubmit} size="small" id="business-edit-label">{t("Sale Type")}</InputLabel>
-                                <Select
-                                    labelId="business-edit-label"
-                                    id="business-edit-select"
-                                    size="small"
-                                    defaultValue={item?.type}
-                                    value={type}
-                                    label={t("Sale Type")}
-                                    onChange={handleTypeChange}>
-                                    {getOptions(types, "type")}
-                                </Select>
-                            </FormControl>
-                        </Col>
+                        
                         <Col>
                             <FormControl fullWidth>
                                 <InputLabel error={validation.condition === false && disableSubmit} size="small" id="condition-edit-label">{t("Condition")}</InputLabel>
@@ -486,6 +480,9 @@ const EditModal = ({item, setPosts, openEditModal, setOpenEditModal, filterPosts
                                 </Select>
                             </FormControl>
                         </Col>
+                    </Row>
+                    <Row className="edit-input">
+
                     </Row>
                     <Row className="edit-input">
                         <Col xs={12}>
