@@ -98,7 +98,7 @@ const EditModal = ({item, setPosts, openEditModal, setOpenEditModal, filterPosts
             status,
             timeStamp: item.timeStamp,
             editTimeStamp: Date.now(),
-            numberOfImages: item.numberOfImages,
+            numberOfImages: images.length,
             author: {
                 name: item.author.name, id: item.author.id
             }
@@ -191,18 +191,12 @@ const EditModal = ({item, setPosts, openEditModal, setOpenEditModal, filterPosts
         
         Promise.all(promises).then((res) => {
             console.log(res)
-            getUserInfo(item?.id).then((r) =>{
-                console.log("r : ",r)
-            })
+            window.location.reload()
         }).catch((err) => {
             console.error(err)
         })
 
-		setFilterPosts(
-			filterPosts?.filter((ele) => {
-				return ele.id !== item.id;
-			})
-		)
+		
     }
 
     const handleImagePrev = (index) => {
@@ -364,8 +358,9 @@ const EditModal = ({item, setPosts, openEditModal, setOpenEditModal, filterPosts
             setDisableSubmit(true);
             return
         }
-        
+
         handleEditPost();
+        editPostImages(images);
         setOpenEditModal(false);
     }
 
@@ -500,14 +495,10 @@ const EditModal = ({item, setPosts, openEditModal, setOpenEditModal, filterPosts
                     {addPicture}
                     {pictures}
                     <Row className="edit-input">
-                        <Col xs={4}>
+                        <Col xs={6}>
                             <Button variant="danger" onClick={handleDelete}>{t("Delete")}</Button>
                         </Col>
-                        <Col xs={4}>
-                            <Button disabled={disableSubmit} onClick={() => {editPostImages(images)}}>{t("Edit")}</Button>
-                        </Col>
-                        
-                        <Col xs={4}>
+                        <Col xs={6}>
                             <Button disabled={disableSubmit} onClick={handleSubmit}>{t("Submit")}</Button>
                         </Col>
                     </Row>
