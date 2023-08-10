@@ -397,8 +397,7 @@ const EditModal = ({item, setPosts, openEditModal, setOpenEditModal, filterPosts
                         </Col>
                     </Row>
                     <Row className="edit-input">
-
-                        <Col xs={4}>
+                        <Col sm={4}>
                             <FormControl fullWidth>
                                 <InputLabel error={validation.status === false && disableSubmit} size="small" id="status-edit-label">{t("Status")}</InputLabel>
                                 <Select
@@ -413,7 +412,7 @@ const EditModal = ({item, setPosts, openEditModal, setOpenEditModal, filterPosts
                                 </Select>
                             </FormControl>
                         </Col>
-                        <Col>
+                        <Col sm={4}>
                             <FormControl fullWidth>
                                 <InputLabel error={validation.type === false && disableSubmit} size="small" id="business-edit-label">{t("Sale Type")}</InputLabel>
                                 <Select
@@ -428,12 +427,12 @@ const EditModal = ({item, setPosts, openEditModal, setOpenEditModal, filterPosts
                                 </Select>
                             </FormControl>
                         </Col>
-                        <Col>
+                        <Col sm={4}>
                             <TextField fullWidth size="small" value={price} type="number" label={t("Price")} className="input-width" onChange={handlePriceChange} />
                         </Col>
                     </Row>
                     <Row className="edit-input">
-                        <Col>
+                        <Col sm={4}>
                             <FormControl fullWidth>
                                 <InputLabel error={validation.brand === false && disableSubmit} size="small" id="brand-edit-label">{t("Brand")}</InputLabel>
                                 <Select
@@ -448,8 +447,7 @@ const EditModal = ({item, setPosts, openEditModal, setOpenEditModal, filterPosts
                                 </Select>
                             </FormControl>
                         </Col>
-                        <Col>
-
+                        <Col sm={4}>
                             <FormControl fullWidth error={validation.blade === false && disableSubmit}>
                                 <InputLabel id="blade-edit-label" size="small">{t("Blade")}</InputLabel>
                                 <Select
@@ -464,8 +462,7 @@ const EditModal = ({item, setPosts, openEditModal, setOpenEditModal, filterPosts
                                 </Select>
                             </FormControl>
                         </Col>
-                        
-                        <Col>
+                        <Col sm={4}>
                             <FormControl fullWidth>
                                 <InputLabel error={validation.condition === false && disableSubmit} size="small" id="condition-edit-label">{t("Condition")}</InputLabel>
                                 <Select
@@ -480,9 +477,6 @@ const EditModal = ({item, setPosts, openEditModal, setOpenEditModal, filterPosts
                                 </Select>
                             </FormControl>
                         </Col>
-                    </Row>
-                    <Row className="edit-input">
-
                     </Row>
                     <Row className="edit-input">
                         <Col xs={12}>
