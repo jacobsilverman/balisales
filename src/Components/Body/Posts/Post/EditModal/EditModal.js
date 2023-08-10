@@ -1,10 +1,10 @@
 import { useEffect, useMemo, useState } from 'react';
 
-import { blades, brands, environment, statuses, types } from '../../../../../Data/Constants';
+import { blades, brands, environment, isMobile, statuses, types } from '../../../../../Data/Constants';
 
 import DeleteModal from '../DeleteModal';
 
-import { MenuItem, Modal, TextareaAutosize } from '@mui/material';
+import { Card, Grid, MenuItem, Modal, TextareaAutosize } from '@mui/material';
 import TextField from '@mui/material/TextField';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
@@ -13,15 +13,16 @@ import { Button, Col, Row } from 'react-bootstrap';
 
 import { doc, deleteDoc } from 'firebase/firestore';
 import { db } from '../../../../../firebase-config';
-import { deleteUserPost } from '../../../../../Data/Services/userInfo.js';
+import { deleteUserPost, getUserInfo } from '../../../../../Data/Services/userInfo.js';
 
-import { ref, deleteObject, getStorage } from "firebase/storage";
+import { FaImage } from "react-icons/fa";
+
+import { ref, deleteObject, getStorage, uploadBytesResumable } from "firebase/storage";
 import { useTranslation } from 'react-i18next';
 
 import { editPost } from '../../../../../Data/Services/PostInfo';
 
 const EditModal = ({item, setPosts, openEditModal, setOpenEditModal, filterPosts, setFilterPosts}) => {
-
     const [title, setTitle] = useState(item?.title);
     const [description, setDescription] = useState(item?.description);
     const [type, setType] = useState(item?.type);
@@ -31,15 +32,8 @@ const EditModal = ({item, setPosts, openEditModal, setOpenEditModal, filterPosts
     const [price, setPrice] = useState(item?.price);
     const [status, setStatus] = useState(item?.status);
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
-    // const [removedImages, setRemovedImages] = useState({});
-    // State to store uploaded file
-    // const [file, setFile] = useState("");
-    
-    // // Handle file upload event and update state
-    // function handleChange(event) {
-    //     setFile(event.target.files[0]);
-    // }
     const [disableSubmit, setDisableSubmit] = useState(false);
+    const [images, setImages] = useState(item?.urls);
 
     const [validation, setValidation] = useState({
         title: true,
@@ -65,6 +59,7 @@ const EditModal = ({item, setPosts, openEditModal, setOpenEditModal, filterPosts
             setCondition(item?.condition)
             setPrice(item?.price)
             setStatus(item?.status)
+            setImages(item?.urls)
         }
 
         return () => ignore = true;
@@ -85,6 +80,7 @@ const EditModal = ({item, setPosts, openEditModal, setOpenEditModal, filterPosts
             return <MenuItem key={key+"-"+name} value={name}>{t(name)}</MenuItem>;
         });
     };
+
 
     const handleEditPost = () => {
         if (!isValidated) {
@@ -147,40 +143,147 @@ const EditModal = ({item, setPosts, openEditModal, setOpenEditModal, filterPosts
 		)
     }
 
-    // const handleImageClick = (url) => {
-    //     setRemovedImages(cur => {
-    //         cur[url] = !cur[url] ?? true
-    //         return cur;
-    //     });
-    //     console.log(removedImages);
-    // }
+    const editPostImages = async () => {
+        const storage = getStorage();
+		for (var i = 0; i < filterPosts.length; i++) {
+            try{
+                let saveImage = images.some((ele) => ele.indexOf("-"+i) > -1)
+                //removed images
+                if (!saveImage){
+                    const pictureReference = ref(storage, `${environment()}-postImages/${item.id}/image-${i}`);
+                    
+                    await deleteObject(pictureReference);
+                }
+            }
+            catch{
+                console.log("nah")
+            }
+		}
 
-    // const pictures = (
-    //     <Grid container>
-    //         {item.urls.map((url) => {
-    //             return (
-    //                 <Grid item key={url} className="center" style={{backgroundImage: `url(${url})`, backgroundSize: "100% 100%", width: "100px", height: "100px"}} onClick={() => handleImageClick(url)} >
-    //                     {removedImages[url]}
-    //                 </Grid>
-    //             )})}
-    //     </Grid>
-    // );
+        let promises = [];
 
-    // const addPicture = (
-    //     <Row className="edit-input">    
-    //         {/* <Col className="center">
-    //             <input type="file" onChange={handleChange} accept="/image/*" />
-    //         </Col> */}
-    //         <Col xs={12} className="setting-item">
-    //             <label className='profile-label' htmlFor="inputTag">
-    //                 <span style={{color:"black"}}>Add Picture</span>
-    //                 <input id="inputTag" className='profile-input' type="file" onChange={handleChange} accept="/image/*" />
-    //                 <br />
-    //                 {<FaImage size={40}  />}
-    //             </label>
-    //         </Col>
-    //     </Row>
-    // );
+        for (let i = 0; i < images.length; i++){
+            //these are file objects
+            if (typeof images[i]!=="string"){
+                console.log("newpic: ", images[i])
+                const storageRef = ref(storage, `/${environment()}-postImages/${item.id}/image-${i}`);
+                const uploadTask = uploadBytesResumable(storageRef, images[i]);
+                promises.push(uploadTask)
+            } else {
+                let xhr = new XMLHttpRequest();
+                
+                xhr.responseType = 'blob';
+                xhr.onload = function(event) {
+                    let blob = xhr.response;
+                    if (blob){
+                        const newPictureRef = ref(storage, `/${environment()}-postImages/${item.id}/image-${i}`);
+                        console.log(`/${environment()}-postImages/${item.id}/image-${i}`)
+                        console.log("blobL: ",blob)
+                        
+                        const uploadTask = uploadBytesResumable(newPictureRef, blob).then((res)=>console.log(res))
+                        promises.push(uploadTask)
+                    }
+                };
+                xhr.open('GET', images[i]);
+                xhr.send();
+            }
+        }
+        
+        Promise.all(promises).then((res) => {
+            console.log(res)
+            getUserInfo(item?.id).then((r) =>{
+                console.log("r : ",r)
+            })
+        }).catch((err) => {
+            console.error(err)
+        })
+
+		setFilterPosts(
+			filterPosts?.filter((ele) => {
+				return ele.id !== item.id;
+			})
+		)
+    }
+
+    const handleImagePrev = (index) => {
+        if (index<=0) {
+            return 
+        }
+        setImages(cur => {
+            let result = [...cur];
+        
+            const temp =result[index-1];
+            result[index-1] = result[index];
+            result[index] = temp;
+            return result;
+        })
+    }
+    
+    const handleImageNext = (index) => {
+        if (index>=images?.length-1) {
+            return 
+        }
+
+        setImages(cur => {
+            let result = [...cur];
+            const temp =result[index+1];
+            result[index+1] = result[index];
+            result[index] = temp;
+            return result;
+        })
+    }
+
+    const handleRemoveImage = (i) => {
+        let newItem = images?.filter((ele, index) => {
+            return index !== i
+        })
+        setImages(newItem);
+       
+    }
+
+    const handleAddingImage = (event) => {
+        setImages(cur => {
+            return [...cur, event.target.files[0]]
+        });
+    }
+
+    const extraSize = (images?.length <= 1) ? "200px": "100px";
+
+    const pictures = (
+        <Grid justifyContent="center" container spacing={3}>
+            {images?.map((rawUrl, index) => {
+                const url = (typeof rawUrl !== "string") ? URL.createObjectURL(rawUrl) : rawUrl;
+                const space = index === 0 ? "flex-end" : index !== images.length-1 ? "space-between" : "flex-start";
+                return (
+                    <Grid Container item spacing={3}>
+                        <Card key={url}>
+                            {images?.length > 1 && <Button variant="danger" style={{width: "100%", borderRadius: "0px"}} onClick={() => handleRemoveImage(index)}>remove</Button>}
+                            <Grid item key={url} className="center" style={{backgroundImage: `url(${url})`, backgroundSize: "100% 100%", width: extraSize, height: extraSize}}  >
+                                
+                            </Grid>
+                            <div style={{display:"flex", justifyContent: space}}>
+                                {index > 0 && <Button variant={"outlined"} onClick={() => handleImagePrev(index)}>{(!isMobile) ? "<" : "^"}</Button>}
+                                {index < images.length-1 && <Button variant={"outlined"} onClick={() => handleImageNext(index)}>{(!isMobile) ? ">" : "v"}</Button>}
+                            </div>
+                        </Card>
+                    </Grid>
+                )})}
+        </Grid>
+    );
+
+    const addPicture = (
+        <Row className="edit-input">    
+            <Col xs={12} className="setting-item">
+                <label className='profile-label' htmlFor="add-post-image">
+                    <input id="add-post-image" className='profile-input' type="file" onChange={handleAddingImage} accept="image/*"  />
+
+                    <span style={{color:"black"}}>Add Picture</span>
+                    <br />
+                    {<FaImage size={40}  />}
+                </label>
+            </Col>
+        </Row>
+    );
 
 
     const handleTitleChange = (event) => {
@@ -275,6 +378,7 @@ const EditModal = ({item, setPosts, openEditModal, setOpenEditModal, filterPosts
         setCondition(item?.condition);
         setPrice(item?.price);
         setStatus(item?.status);
+        setImages(item?.urls)
     }
 
     const handleCancel = (event) => {
@@ -288,109 +392,122 @@ const EditModal = ({item, setPosts, openEditModal, setOpenEditModal, filterPosts
     }
 
     return (
-        <Modal open={openEditModal}>
+        <Modal open={openEditModal} onClick={() => setOpenEditModal(false)}>
             <Row className="edit-modal">
-                <Col xs={7} className="modal-background-edit center">
+                <Col xs={7} className="modal-background-edit center" onClick={(e) => e.stopPropagation()}>
+                    <Button variant="outlined" id="select-modal-exit-button" color="error" onClick={handleCancel}>
+                        X
+                    </Button>
                     <DeleteModal deletePost={deletePost} item={item} openDeleteModal={openDeleteModal} setOpenDeleteModal={setOpenDeleteModal} setOpenEditModal={setOpenEditModal} />
                     <Row className="edit-input">
-                        <Col xs={6} sm={9} className="left">
+                        <Col xs={6} className="left">
                             <h2>{t('Edit')}</h2>
                         </Col>
-                        <Col xs={6} sm={3}>
+                        <Col xs={6}>
+                            <FormControl fullWidth>
+                                <InputLabel error={validation.status === false && disableSubmit} size="small" id="status-edit-label">{t("Status")}</InputLabel>
+                                <Select
+                                    labelId="status-edit-label"
+                                    id="status-edit-select"
+                                    size="small"
+                                    defaultValue={item?.status}
+                                    value={status}
+                                    label={t("Status")}
+                                    onChange={handleStatusChange}>
+                                    {getOptions(statuses, "status")}
+                                </Select>
+                            </FormControl>
+                        </Col>
+                    </Row>
+                    <Row className="edit-input">
+                        <Col>
+                            <TextField error={!validation.title} fullWidth size="small" value={title} label={t("Title")} className="input-width" onChange={handleTitleChange} />
+                        </Col>
+                        <Col>
+                            <TextField fullWidth size="small" value={price} type="number" label={t("Price")} className="input-width" onChange={handlePriceChange} />
+                        </Col>
+                    </Row>
+                    <Row className="edit-input">
+                        <Col>
+                            <FormControl fullWidth>
+                                <InputLabel error={validation.brand === false && disableSubmit} size="small" id="brand-edit-label">{t("Brand")}</InputLabel>
+                                <Select
+                                    labelId="brand-edit-label"
+                                    id="brand-edit-select"
+                                    size="small"
+                                    defaultValue={item?.brand}
+                                    value={brand}
+                                    label={t("Brand")}
+                                    onChange={handleBrandChange}>
+                                    {getOptions(brands, "brand")}
+                                </Select>
+                            </FormControl>
+                        </Col>
+                        <Col>
+
+                            <FormControl fullWidth error={validation.blade === false && disableSubmit}>
+                                <InputLabel id="blade-edit-label" size="small">{t("Blade")}</InputLabel>
+                                <Select
+                                    labelId="blade-edit-label"
+                                    id="blade-edit-select"
+                                    size="small"
+                                    defaultValue={item?.blade}
+                                    value={blade}
+                                    label={t("Blade")}
+                                    onChange={handleBladeChange}>
+                                    {getOptions(blades, "blade")}
+                                </Select>
+                            </FormControl>
+                        </Col>
+                    </Row>
+                    <Row className="edit-input">
+                        <Col>
+                            <FormControl fullWidth>
+                                <InputLabel error={validation.type === false && disableSubmit} size="small" id="business-edit-label">{t("Sale Type")}</InputLabel>
+                                <Select
+                                    labelId="business-edit-label"
+                                    id="business-edit-select"
+                                    size="small"
+                                    defaultValue={item?.type}
+                                    value={type}
+                                    label={t("Sale Type")}
+                                    onChange={handleTypeChange}>
+                                    {getOptions(types, "type")}
+                                </Select>
+                            </FormControl>
+                        </Col>
+                        <Col>
+                            <FormControl fullWidth>
+                                <InputLabel error={validation.condition === false && disableSubmit} size="small" id="condition-edit-label">{t("Condition")}</InputLabel>
+                                <Select
+                                    labelId="condition-edit-label"
+                                    id="condition-edit-select"
+                                    size="small"
+                                    defaultValue={item?.condition}
+                                    value={condition}
+                                    label={t("Condition")}
+                                    onChange={handleConditionChange}>
+                                    {getOptions([1,2,3,4,5,6,7,8,9,10], "condition")}
+                                </Select>
+                            </FormControl>
+                        </Col>
+                    </Row>
+                    <Row className="edit-input">
+                        <Col xs={12}>
+                            <TextareaAutosize style={{width: "100%"}} minRows={3} value={description} placeholder={t("Description")} label={t("Description")} onChange={handleDescriptionChange} />
+                        </Col>
+                    </Row>
+                    {addPicture}
+                    {pictures}
+                    <Row className="edit-input">
+                        <Col xs={4}>
                             <Button variant="danger" onClick={handleDelete}>{t("Delete")}</Button>
                         </Col>
-                    </Row>
-                    <Row className="edit-input">
-                        <TextField error={!validation.title} fullWidth size="small" value={title} label={t("Title")} className="input-width" onChange={handleTitleChange} />
-                    </Row>
-                    <Row className="edit-input">
-                        <TextField fullWidth size="small" value={price} type="number" label={t("Price")} className="input-width" onChange={handlePriceChange} />
-                    </Row>
-                    <Row className="edit-input">
-                        <FormControl fullWidth>
-                            <InputLabel error={validation.brand === false && disableSubmit} size="small" id="brand-edit-label">{t("Brand")}</InputLabel>
-                            <Select
-                                labelId="brand-edit-label"
-                                id="brand-edit-select"
-                                size="small"
-                                defaultValue={item?.brand}
-                                value={brand}
-                                label={t("Brand")}
-                                onChange={handleBrandChange}>
-                                {getOptions(brands, "brand")}
-                            </Select>
-                        </FormControl>
-                    </Row>
-                    <Row className="edit-input">
-                        <FormControl fullWidth error={validation.blade === false && disableSubmit}>
-                            <InputLabel id="blade-edit-label" size="small">{t("Blade")}</InputLabel>
-                            <Select
-                                labelId="blade-edit-label"
-                                id="blade-edit-select"
-                                size="small"
-                                defaultValue={item?.blade}
-                                value={blade}
-                                label={t("Blade")}
-                                onChange={handleBladeChange}>
-                                {getOptions(blades, "blade")}
-                            </Select>
-                        </FormControl>
-                    </Row>
-                    <Row className="edit-input">
-                        <FormControl fullWidth>
-                            <InputLabel error={validation.type === false && disableSubmit} size="small" id="business-edit-label">{t("Sale Type")}</InputLabel>
-                            <Select
-                                labelId="business-edit-label"
-                                id="business-edit-select"
-                                size="small"
-                                defaultValue={item?.type}
-                                value={type}
-                                label={t("Sale Type")}
-                                onChange={handleTypeChange}>
-                                {getOptions(types, "type")}
-                            </Select>
-                        </FormControl>
-                    </Row>
-                    <Row className="edit-input">
-                        <FormControl fullWidth>
-                            <InputLabel error={validation.condition === false && disableSubmit} size="small" id="condition-edit-label">{t("Condition")}</InputLabel>
-                            <Select
-                                labelId="condition-edit-label"
-                                id="condition-edit-select"
-                                size="small"
-                                defaultValue={item?.condition}
-                                value={condition}
-                                label={t("Condition")}
-                                onChange={handleConditionChange}>
-                                {getOptions([1,2,3,4,5,6,7,8,9,10], "condition")}
-                            </Select>
-                        </FormControl>
-                    </Row>
-                    <Row className="edit-input">
-                        <FormControl fullWidth>
-                            <InputLabel error={validation.status === false && disableSubmit} size="small" id="status-edit-label">{t("Status")}</InputLabel>
-                            <Select
-                                labelId="status-edit-label"
-                                id="status-edit-select"
-                                size="small"
-                                defaultValue={item?.status}
-                                value={status}
-                                label={t("Status")}
-                                onChange={handleStatusChange}>
-                                {getOptions(statuses, "status")}
-                            </Select>
-                        </FormControl>
-                    </Row>
-                    <Row className="edit-input">
-                        <TextareaAutosize fullwidth="true" minRows={3} value={description} placeholder={t("Description")} label={t("Description")} onChange={handleDescriptionChange} />
-                    </Row>
-                    {/* {addPicture}
-                    {pictures} */}
-                    <Row className="edit-input">
-                        <Col xs={6}>
-                            <Button onClick={handleCancel}>{t("Cancel")}</Button>
+                        <Col xs={4}>
+                            <Button disabled={disableSubmit} onClick={() => {editPostImages(images)}}>{t("Edit")}</Button>
                         </Col>
-                        <Col xs={6}>
+                        
+                        <Col xs={4}>
                             <Button disabled={disableSubmit} onClick={handleSubmit}>{t("Submit")}</Button>
                         </Col>
                     </Row>
