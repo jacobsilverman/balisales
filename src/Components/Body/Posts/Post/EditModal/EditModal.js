@@ -161,7 +161,6 @@ const EditModal = ({item, setPosts, openEditModal, setOpenEditModal, filterPosts
 		}
 
         let promises = [];
-
         for (let i = 0; i < images.length; i++){
             //these are file objects
             const picRef = ref(storage, `/${environment()}-postImages/${item.id}/image-${i}`);
@@ -222,11 +221,10 @@ const EditModal = ({item, setPosts, openEditModal, setOpenEditModal, filterPosts
     }
 
     const handleRemoveImage = (i) => {
-        let newItem = images?.filter((ele, index) => {
+        let newItems = images?.filter((ele, index) => {
             return index !== i
         })
-        setImages(newItem);
-       
+        setImages(newItems);
     }
 
     const handleAddingImage = (event) => {
@@ -243,8 +241,8 @@ const EditModal = ({item, setPosts, openEditModal, setOpenEditModal, filterPosts
                 const url = (typeof rawUrl !== "string") ? URL.createObjectURL(rawUrl) : rawUrl;
                 const space = index === 0 ? "flex-end" : index !== images.length-1 ? "space-between" : "flex-start";
                 return (
-                    <Grid Container item spacing={3}>
-                        <Card key={url}>
+                    <Grid Container item spacing={3} key={url}>
+                        <Card>
                             {images?.length > 1 && <Button variant="danger" style={{width: "100%", borderRadius: "0px"}} onClick={() => handleRemoveImage(index)}>remove</Button>}
                             <Grid item key={url} className="center" style={{backgroundImage: `url(${url})`, backgroundSize: "100% 100%", width: extraSize, height: extraSize}}  >
                                 
@@ -267,7 +265,7 @@ const EditModal = ({item, setPosts, openEditModal, setOpenEditModal, filterPosts
 
                     <span style={{color:"black"}}>Add Picture</span>
                     <br />
-                    {<FaImage size={40}  />}
+                    {<FaImage size={40} />}
                 </label>
             </Col>
         </Row>
