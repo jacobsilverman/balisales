@@ -1,7 +1,7 @@
 import { Button, Modal, TextField } from "@mui/material";
 import { Col, Row } from "react-bootstrap";
 
-import silver_eye from "../../../Data/Images/silver_eye.png";
+// import silver_eye from "../../../Data/Images/silver_eye.png";
 
 import "./LoginModal.scss";
 
@@ -11,32 +11,84 @@ import { useState } from "react";
 const LoginModal = ({openLoginModal, setOpenLoginModal, newAccount, setNewAccount, signInWithEmail, 
     signInWithGoogle, signInWithFacebook, signInWithTwitter, signInWithYahoo}) => {
     const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [repassword, setRepassword] = useState("");
     const [showAllOptions, setShowAllOptions] = useState(false);
-    const [validate, setValidate] = useState({email: true})
+    const [validate, setValidate] = useState({email: true, password: true, repassword: true, error: ""})
     
-    const handleEmailChange = (e) => {
-        const newVal = e.target.value;
-        if (!newVal) {
-            setValidate({email: false})
-        } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(newVal)) {
-            setValidate({email: false})
-        }else {
-            setValidate({email: true})
-        }
-        setEmail(newVal)
-    }
-
     const handleEmailValidate = () => {
         if (!email) {
-            setValidate({email: false})
+            setValidate(cur => {return{...cur, email: false}})
         } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email)) {
-            setValidate({email: false})
+            setValidate(cur => {return{...cur, email: false}})
         }else {
-            setValidate({email: true})
+            setValidate(cur => {return{...cur, email: true}})
             return true;
         }
         return false;
     }
+
+    const handlePasswordValidate = () => {
+        if (!password) {
+            setValidate(cur => {return{...cur, password: false}})
+        } else {
+            setValidate(cur => {return{...cur, password: true}})
+            return true;
+        }
+
+        return false;
+    }
+
+    const handleRepasswordValidate =() => {
+        if (!repassword || repassword !== password) {
+            setValidate(cur => {return{...cur, repassword: false, error: repassword !== password && "please make sure you retype your password correctly."}})
+        } else {
+            setValidate(cur => {return{...cur, repassword: true}})
+            return true;
+        }
+
+        return false;
+    }
+
+    const handleEmailChange = (e) => {
+        const newVal = e.target.value;
+        if (!newVal) {
+            setValidate(cur => {return{...cur, email: false}})
+        } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(newVal)) {
+            setValidate(cur => {return{...cur, email: false}})
+        }else {
+            setValidate(cur => {return{...cur, email: true}})
+        }
+        setEmail(newVal)
+    }
+
+    const handlePasswordChange = (e) => {
+        const newVal = e.target.value;
+        if (!newVal) {
+            setValidate(cur => {return{...cur, password: false}})
+        } else {
+            setValidate(cur => {return{...cur, password: true}})
+        }
+        setPassword(newVal)
+    }
+
+    const handleRepasswordChange = (e) => {
+        const newVal = e.target.value;
+        if (!newVal) {
+            setValidate(cur => {return{...cur, repassword: false}})
+        } else {
+            setValidate(cur => {return{...cur, repassword: true}})
+        }
+        setRepassword(newVal)
+    }
+
+    const handleContinueButton = () => {
+        const emailValid = handleEmailValidate();
+        const passValid = handlePasswordValidate();
+        const repassValid = newAccount ? handleRepasswordValidate() : true;
+        return emailValid && passValid && repassValid && signInWithEmail(email, password, newAccount, setValidate);
+    }
+
 
     return (
         <Modal open={openLoginModal} onClick={() => setOpenLoginModal(false)}>
@@ -74,17 +126,37 @@ const LoginModal = ({openLoginModal, setOpenLoginModal, newAccount, setNewAccoun
                     }
                     <Row>
                         <Col className="horizontal-center">
-                            <TextField className="email-input" error={!validate.email} label={"Email"} color="" type="url" onChange={handleEmailChange} value={email} />
+                            <TextField className="modal-input" error={!validate.email} label={"Email"} color="" type="url" onChange={handleEmailChange} value={email} />
                         </Col>
                     </Row>
-                    {newAccount===true && <Row>
+                    <Row>
+                        <Col className="horizontal-center">
+                            <TextField className="modal-input password" error={!validate.password} label={"Password"} color="" type="password" onChange={handlePasswordChange} value={password} />
+                        </Col>
+                    </Row>
+                    {newAccount===true &&
+                    <Row>
+                        <Col className="horizontal-center">
+                            <TextField className="modal-input password" error={!validate.repassword} label={"Retype Password"} color="" type="password" onChange={handleRepasswordChange} value={repassword} />
+                        </Col>
+                    </Row>}
+                    {validate.error &&
+                    <Row>
+                        <Col style={{color:"red"}} className="center terms-conditions-txt">
+                            <b>{validate.error}</b>
+                        </Col>
+                    </Row>}
+
+                    {newAccount===true &&
+                    <Row>
                         <Col className="center terms-conditions-txt">
                             By signing up, I accept the <a className="general-link">Terms of Service</a> and acknowledge the <a className="general-link">Privacy Policy</a>.
                         </Col>
                     </Row>}
+                
                     <Row>
                         <Col className="horizontal-center">
-                            <Button disabled={!validate.email} className="continue-button" onClick={() => {handleEmailValidate() && signInWithEmail(email)}}>Contine</Button>
+                            <Button disabled={!validate.email || !validate.password || (newAccount && !validate.repassword)} className="continue-button" onClick={handleContinueButton}>Contine</Button>
                         </Col>
                     </Row>
                     <Row>

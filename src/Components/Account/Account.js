@@ -14,7 +14,7 @@ const SelectModal  = React.lazy(() => import('../../Components/Body/Posts/Post/S
 function Account({user, settingsPage}) {
 	const [filterPosts, setFilterPosts] = useState([]);
 	const [openEditModal, setOpenEditModal] = useState(false);
-	const [openSelectModal, setOpenSelectModal] = useState({show: false, item: null});
+	const [openSelectModal, setOpenSelectModal] = useState({show: false, item: null, index: 0});
 
 	const [selectedPost, setSelectedPost] = useState({});
 
@@ -31,12 +31,39 @@ function Account({user, settingsPage}) {
 			})
 
             setFilterPosts(filteredResults);
+			setOpenSelectModal(cur => {return {...cur, posts: filteredResults}})
         }).catch(() => {
             console.error("cant get user posts");
         }).finally(() => {
 			setLoaded(true);
 		});
 	}, []);
+
+	const handlePrevPost = () => {
+        setOpenSelectModal(cur => {
+            let prevItem = cur.posts[cur.index-1] ?? cur.posts[cur.posts.length-1];
+            let index = (typeof cur.posts[cur.index-1] !== "undefined") ? cur.index-1 : cur.posts.length-1;
+            return {
+                ...cur,
+                item: prevItem,
+                index: index,
+                posts: filterPosts
+            }
+        });
+    }
+
+    const handleNextPost = () => {
+        setOpenSelectModal(cur => {
+            let nextItem = cur.posts[cur.index+1] ?? cur.posts[0];
+            let index = (typeof cur.posts[cur.index+1] !== "undefined") ? cur.index+1 : 0;
+            return {
+                ...cur,
+                index: index,
+                item: nextItem,
+                posts: filterPosts
+            }
+        });
+    }
 	
 	const setAccountData = () => {
 		if (filterPosts?.length === 0) {
@@ -51,6 +78,8 @@ function Account({user, settingsPage}) {
                     <SelectModal 
 						t={t} 
                         item={openSelectModal.item} 
+						handlePrevPost={handlePrevPost}
+						handleNextPost={handleNextPost}
                         openSelectModal={openSelectModal.show} 
                         setOpenSelectModal={setOpenSelectModal} />}
 				{settingsPage && 

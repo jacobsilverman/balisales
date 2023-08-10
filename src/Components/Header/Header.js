@@ -10,7 +10,7 @@ import { Col, Container, OverlayTrigger, Popover, Row } from 'react-bootstrap';
 import defaultProfile from '../../Data/Images/default-profile.jpg';
 
 import { auth, facebookProvider, googleProvider, twitterProvider, yahooProvider } from '../../firebase-config';
-import { sendSignInLinkToEmail, signInWithPopup, signOut } from 'firebase/auth';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, signOut } from 'firebase/auth';
 import { useNavigate }   from 'react-router-dom';
 
 import { Button, TextField } from '@mui/material';
@@ -283,6 +283,24 @@ const Header = ({posts, setShowFilter}) => {
         })
     }
 
+    const saveInitialUserValues = (result) => {
+        getUserInfo(result?.user?.uid).then((userInfo) => {
+            if (!userInfo?.firstName || !userInfo?.lastName || !userInfo?.displayName || !userInfo?.ip) {
+                getIp().then((ip)=>{
+                    const info = {
+                        ...userInfo,
+                        ip: ip,
+                        firstName: result?._tokenResponse?.firstName,
+                        lastName: result?._tokenResponse?.lastName,
+                        displayName: result?.user?.displayName,
+                        posts: []
+                    };
+                    setUserInfo(info).then((res) => console.log("saved: ", res)).catch((err)=> console.log("cant save: ", err))
+                }).catch((er)=>er)
+            }
+        })
+    }
+
     const signInWithGoogle = () => {
         setProvider(googleProvider);
         signInWithPopup(auth, googleProvider).then((result) => {
@@ -293,26 +311,12 @@ const Header = ({posts, setShowFilter}) => {
             localStorage.setItem("isAuth", true);
             localStorage.setItem("uid", result?.user?.uid);
             localStorage.setItem("displayName", result?.user?.displayName);
-
             return result;
         }).then((result) => {
-            getUserInfo(result?.user?.uid).then((userInfo) => {
-                if (!userInfo?.firstName || !userInfo?.lastName || !userInfo?.displayName || !userInfo?.ip) {
-                    getIp().then((ip)=>{
-                        const info = {
-                            ip: ip,
-                            firstName: result?._tokenResponse?.firstName,
-                            lastName: result?._tokenResponse?.lastName,
-                            displayName: result?.user?.displayName,
-                            posts: [],
-                            ...userInfo
-                        };
-                        setUserInfo(info).then((res) => console.log("saved: ", res)).catch((err)=> console.log("cant save: ", err))
-
-                    }).catch((er)=>er)
-                }
-            })
-        });
+            saveInitialUserValues(result)
+        }).catch((err) => {
+            console.error("google failed to sign in: ", err)
+        })
     }
 
     const signInWithTwitter = () => {
@@ -328,22 +332,7 @@ const Header = ({posts, setShowFilter}) => {
             console.log(result);
             return result;
         }).then((result) => {
-            getUserInfo(result?.user?.uid).then((userInfo) => {
-                if (!userInfo?.firstName || !userInfo?.lastName || !userInfo?.displayName || !userInfo?.ip) {
-                    getIp().then((ip)=>{
-                        const info = {
-                            ...userInfo,
-                            firstName: result?._tokenResponse?.firstName,
-                            lastName: result?._tokenResponse?.lastName,
-                            displayName: result?.user?.displayName,
-                            posts:[],
-                            ip: ip
-                        };
-                        setUserInfo(info).then((res) => console.log(res)).catch((err)=> console.log("cant save: ", err))
-
-                    }).catch((er)=>er)
-                }
-            })
+            saveInitialUserValues(result)
         }).catch((err) => {
             console.error(err)
         })
@@ -362,58 +351,47 @@ const Header = ({posts, setShowFilter}) => {
 
             return result;
         }).then((result) => {
-            getUserInfo(result?.user?.uid).then((userInfo) => {
-                if (!userInfo?.firstName || !userInfo?.lastName || !userInfo?.displayName || !userInfo?.ip) {
-                    getIp().then((ip)=>{
-                        const info = {
-                            ...userInfo,
-                            firstName: result?._tokenResponse?.firstName,
-                            lastName: result?._tokenResponse?.lastName,
-                            displayName: result?.user?.displayName,
-                            posts:[],
-                            ip: ip
-                        };
-                        setUserInfo(info).then((res) => console.log(res)).catch((err)=> console.log("cant save: ", err))
-
-                    }).catch((er)=>er)
-                }
-            })
+            saveInitialUserValues(result)
         }).catch((err) => {
             console.error(err)
         })
     }
 
-    const signInWithEmail = (email) => {
-        const actionCodeSettings = {
-            url: 'https://www.balisongsales.com', // Your website URL
-            handleCodeInApp: true, // Open the link in the app
-            dynamicLinkDomain: 'yourcustomdomain.page.link', // Optional: If using Firebase Dynamic Links
-            iOS: {
-              bundleId: 'com.yourapp.ios', // Optional: iOS bundle ID
-            },
-            android: {
-              packageName: 'com.yourapp.android', // Optional: Android package name
-            },
-        };
-        console.log("email :", email);
-        setProvider("email");
-        sendSignInLinkToEmail(auth, email, actionCodeSettings).then((result) => {
+    const signInWithEmail = (email, password, newAccount, setValidate) => {
+        const loginPromise = newAccount ? createUserWithEmailAndPassword(auth, email, password) : signInWithEmailAndPassword(auth, email, password);
+
+        loginPromise.then((result) => {
             setIsAuth(true);
             setUid(result?.user?.uid);
             setUserLogin(result.user);
-
+            
             localStorage.setItem("isAuth", true);
             localStorage.setItem("uid", result?.user?.uid);
-            localStorage.setItem("displayName", result?.user?.displayName);
-            console.log(result);
+            localStorage.setItem("displayName", email);
+
             return result;
         }).then((result) => {
-            // getUserInfo(result?.user?.uid).then((userInfo) => {
-            //     if (!userInfo?.firstName || !userInfo?.lastName || !userInfo?.displayName) {
-            //         setUserInfo({...userInfo, firstName: result?._tokenResponse?.firstName, lastName: result?._tokenResponse?.lastName, displayName: result?.user?.displayName, posts:[]})
-            //     }
-            // })
+            setOpenLoginModal(false);
+            saveInitialUserValues(result)
         }).catch((err) => {
+            let errorMessage;
+
+            if (newAccount) {
+                if (err.code === "auth/weak-password") {
+                    errorMessage = "Weak passwork please make sure it's at least 6 characters.";
+                }else{  
+                    errorMessage = "Login already exists, can not create a new account with that email.";
+                }
+            } else{
+                errorMessage = "Email or Password is incorrect, please try again.";
+            }
+
+            if (err.code === "auth/too-many-requests"){
+                errorMessage = "Access to this account has been temporarily disabled due to many failed login attempts. You can immediately restore it by resetting your password or you can try again later.";
+            }
+            
+
+            setValidate(cur => {return {...cur, error: errorMessage}})
             console.error(err)
         })
     }

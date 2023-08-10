@@ -170,7 +170,9 @@ a {
 }
 
 .edit-input {
-    margin: 10px;
+    >div {
+        padding: 10px;
+    }
 }
 
 .modal-background-edit {
