@@ -120,6 +120,8 @@ const SelectModal = ({t, item, handlePrevPost, handleNextPost,openSelectModal, s
         
     }
 
+    const scrollingAbility = handleNextPost && handlePrevPost;
+
     const [vanish, setVanish] = useState();
 
     const buySellTradeClass = "desciption-title horizontal-center";
@@ -129,12 +131,12 @@ const SelectModal = ({t, item, handlePrevPost, handleNextPost,openSelectModal, s
     const displaySelectedPost = (
         <Modal  open={openSelectModal} className="select-modal"  onTouchStart={onTouchStart} onTouchMove={onTouchMove} onTouchEnd={onTouchEnd} onClick={() => setOpenSelectModal(cur => {return {...cur, show: false}})}>
             <Row>
-                <span onClick={(e) => {iteratePosts(e, "prev")}} className={colorNextPrevClass+" prev"}>
+                {scrollingAbility && <><span onClick={(e) => {iteratePosts(e, "prev")}} className={colorNextPrevClass+" prev"}>
                     {"<"}
                 </span>
                 <span onClick={(e) => {iteratePosts(e, "next")}}  className={colorNextPrevClass+" next"}>
                     {">"}
-                </span>
+                </span></>}
                 <Col className={"modal-background "+vanish} xs={12} onClick={(e) => e.stopPropagation()}>
                     <Row className='center'>
                         <Col>
