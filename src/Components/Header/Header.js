@@ -30,38 +30,47 @@ const SearchBar = ({posts, showSearch, t, popped}) => {
     const searchFilter = useMemo(() => {
         let cache = {}
         let result = posts.map((post) => {
-            const price = (<Popover>${post?.price}</Popover>);
             const name = post.author.name.toLowerCase();
+
             if (!cache[name] && name.includes(searchValue.toLowerCase())){
                 cache[name] = true;
                 return (
-                    <OverlayTrigger  trigger="hover" overlay={<Popover>User Info</Popover>} placement="left">
+                    <OverlayTrigger key={post?.id} trigger="focus" overlay={<Popover>User Info</Popover>} placement="left">
                         <a href={"/profile?id="+post?.author?.id} targe="blank" key={"search-"+post?.id}>{post?.author.name}</a>
                     </OverlayTrigger>
                 );
-            } else if (post.title.toLowerCase().includes(searchValue)) {
+            } 
+            return;
+        });
+
+        result = [...result, posts.map((post) => {
+            const price = (<Popover>${post?.price}</Popover>);
+            const title = post.title.toLowerCase()
+            
+            if (title.includes(searchValue.toLowerCase())) {
                 return (
-                    <OverlayTrigger  trigger="hover" overlay={price} placement="left">
-                        <a className="post-link" key={"search-"+post?.id} onClick={(e)=>{e.stopPropagation();setOpenPost({open:true,post:post})}}>{post.title}</a>
+                    <OverlayTrigger key={post?.id}  trigger="focus" overlay={price} placement="left">
+                        <a className="post-link" key={"search-"+post?.id} onClick={(e)=>{e.stopPropagation();setOpenPost({show:true,post:post})}}>{post.title}</a>
                         {/* <a href={"/singlePost?id="+post.id} targe="blank" key={"search-"+post?.id}>{post.title}</a> */}
                     </OverlayTrigger>
                 );
             }
             return;
-        });
+        })]
 
         result = [...result, ...Object.keys(Companies).map((company) => {
             let val = [];
-            if (company.toLowerCase().includes(searchValue.toLowerCase())){
-                val.push((<div>{company}</div>))
-            }
+            // if (company.toLowerCase().includes(searchValue.toLowerCase())){
+            //     val.push((<div>{company}</div>))
+            // }
             Companies[company].forEach((bali) => {
-                if (typeof bali === 'string' && bali.toLowerCase().includes(searchValue.toLowerCase())){
-                    val.push((<div>{bali+": "+company}</div>))
-                } else if (bali !== 'string' && (bali?.blade?.toLowerCase().includes(searchValue.toLowerCase()) || company.toLowerCase().includes(searchValue.toLowerCase()))) {
+                // if (typeof bali === 'string' && bali.toLowerCase().includes(searchValue.toLowerCase())){
+                //     val.push((<div>{bali+": "+company}</div>))
+                // } else 
+                if (bali !== 'string' && (bali?.blade?.toLowerCase().includes(searchValue.toLowerCase()) || company.toLowerCase().includes(searchValue.toLowerCase()))) {
                     const price = (<Popover>${bali?.price}</Popover>);
                     val.push((
-                        <OverlayTrigger trigger="hover" overlay={price} placement="left">
+                        <OverlayTrigger key={bali?.url + bali?.blade} trigger="focus" overlay={price} placement="left">
                             <a href={bali?.url} target="blank">{bali?.blade+": "+company}</a>
                         </OverlayTrigger>
                     ))
@@ -80,7 +89,7 @@ const SearchBar = ({posts, showSearch, t, popped}) => {
         let newValue = event.target.value;
         setSearchValue(newValue);
     }
-    const [openPost, setOpenPost] = useState(false);
+    const [openPost, setOpenPost] = useState({show:false, posts: posts});
 
     const resultOfSearch = (
     <div className="search-results-container">
@@ -91,11 +100,11 @@ const SearchBar = ({posts, showSearch, t, popped}) => {
         <Fragment>
             <SelectModal t={t} 
                 item={openPost.post} 
-                openSelectModal={openPost.open} 
+                openSelectModal={openPost.show} 
                 setOpenSelectModal={setOpenPost} />
             <Row className={searchCls}>
                 <Col xs={12} className="popover-container">
-                    <OverlayTrigger show={searchValue !== "" && searchFilter.length > 0 && !popped } overlay={<Popover>{resultOfSearch}</Popover>} placement='bottom-end'>
+                    <OverlayTrigger show={searchValue !== "" && searchFilter.length > 0 && !popped } overlay={<Popover>{resultOfSearch}</Popover>} placement='bottom'>
                         <TextField autoComplete="off" fullWidth label={t("Search")} color="" type="search" defaultValue={searchValue} onClick={(event)=>event.stopPropagation()} onChange={searchAbility} />
                     </OverlayTrigger>
                 </Col> 
@@ -614,7 +623,7 @@ const Header = ({posts, setShowFilter}) => {
                 </Row>
             </Container>
         );
-    }, [profilePic, isAuth, showAccount, showDonate, showInbox, showNav, showNotifications, showSearch, pageTitle, windowWidth, openLoginModal, newAccount]);
+    }, [profilePic, isAuth, showAccount, showDonate, showInbox, showNav, showNotifications, showSearch, pageTitle, windowWidth, openLoginModal, newAccount, posts]);
 
     return (
         <nav>
