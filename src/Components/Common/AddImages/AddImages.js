@@ -7,7 +7,7 @@ import { Button, Col, Row } from 'react-bootstrap'
 
 import { Card, Grid } from '@mui/material';
 
-export const AddImages = ({files, setFiles, setValidation}) => {
+export const AddImages = ({files, setFiles, validation, setValidation, disableSubmit}) => {
     const extraSize = (files?.length <= 1) ? "200px": "100px";
         
     const handleImagePrev = (index) => {
@@ -55,6 +55,20 @@ export const AddImages = ({files, setFiles, setValidation}) => {
             return [...cur, event.target.files[0]]
         });
     }
+    
+    const addPicture = (
+        <Row className="edit-input">    
+            <Col xs={12} className="setting-item">
+                <label className='profile-label center' htmlFor="add-post-image">
+                    <input id="add-post-image" className='profile-input' type="file" onChange={handleAddingImage} accept="image/*"  />
+
+                    <span style={{color: (validation.picture===false && disableSubmit) ? "red" : "black"}}>Add Picture</span>
+                    <br />
+                    {<FaImage size={40} />}
+                </label>
+            </Col>
+        </Row>
+    );
 
     const pictures = (
         <Grid justifyContent="center" container spacing={3}>
@@ -64,7 +78,7 @@ export const AddImages = ({files, setFiles, setValidation}) => {
                 return (
                     <Grid item key={url}>
                         <Card>
-                            {files?.length > 1 && <Button variant="danger" style={{width: "100%", borderRadius: "0px"}} onClick={() => handleRemoveImage(index)}>remove</Button>}
+                            <Button variant="danger" style={{width: "100%", borderRadius: "0px"}} onClick={() => handleRemoveImage(index)}>remove</Button>
                             <Grid item key={url} className="center" style={{backgroundImage: `url(${url})`, backgroundSize: "100% 100%", width: extraSize, height: extraSize}}  >
                                 
                             </Grid>
@@ -76,20 +90,6 @@ export const AddImages = ({files, setFiles, setValidation}) => {
                     </Grid>
                 )})}
         </Grid>
-    );
-
-    const addPicture = (
-        <Row className="edit-input">    
-            <Col xs={12} className="setting-item">
-                <label className='profile-label' htmlFor="add-post-image">
-                    <input id="add-post-image" className='profile-input' type="file" onChange={handleAddingImage} accept="image/*"  />
-
-                    <span style={{color:"black"}}>Add Picture</span>
-                    <br />
-                    {<FaImage size={40} />}
-                </label>
-            </Col>
-        </Row>
     );
 
     return (

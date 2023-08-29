@@ -401,7 +401,7 @@ const EditModal = ({item, setPosts, openEditModal, setOpenEditModal, filterPosts
                             <TextareaAutosize style={{width: "100%"}} minRows={3} value={description} placeholder={t("Description")} label={t("Description")} onChange={handleDescriptionChange} />
                         </Col>
                     </Row>
-                    <AddImages files={images} setFiles={setImages} setValidation={setValidation} />
+                    <AddImages files={images} setFiles={setImages} validation={validation} setValidation={setValidation} disableSubmit={disableSubmit} />
                     <Row className="edit-input">
                         <Col xs={6}>
                             <Button variant="danger" onClick={handleDelete}>{t("Delete")}</Button>

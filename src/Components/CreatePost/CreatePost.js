@@ -346,7 +346,7 @@ function CreatePost() {
                         </label>
                     </Col>
                     {pictureInputs()} */}
-                    <AddImages files={files} setFiles={setFiles} setValidation={setValidation} />
+                    <AddImages files={files} setFiles={setFiles} validation={validation} setValidation={setValidation} disableSubmit={disableSubmit} />
                 </Row>
                 <Row>
                     <Col xs={12} className="center">
