@@ -14,6 +14,7 @@ import { InstagramEmbed } from 'react-social-media-embed';
 
 import { Container, Col, Row } from 'react-bootstrap';
 // import { isMobile } from '../../Data/Constants/index.js';
+import './Profile.scss';
 import { Button } from '@mui/material';
 import Reviews from '../Reviews/Reviews.js';
 import ReportReview from './ReportReview/ReportReview.js';
@@ -25,6 +26,7 @@ const Profile = () => {
     const loggedId = localStorage.getItem("uid")
     const [loggedInUserData, setLoggedInUserData] = useState(loggedId);
     const [showPosts, setShowPosts] = useState(true);
+    const [editPosts, setEditPosts] = useState(false);
     const [userData, setUserData] = useState();
     const [profilePic, setProfilePic] = useState(null);
     const [reference, setReference] = useState({
@@ -70,6 +72,9 @@ const Profile = () => {
             }
         });
     }
+
+    const editToggle = `material-icons ${(editPosts)? 'green' : ''}`;
+
     if (!userData) {
         return;
     }
@@ -131,7 +136,7 @@ const Profile = () => {
                                         </Col>}
                                     </Row>
                                     : <div className="center">
-                                        No address is saved
+                                        {t('No address is saved')}
                                     </div>}
                                 </Col>
                             </Row>
@@ -160,7 +165,7 @@ const Profile = () => {
                     </Row>
                     : <Row>
                         <Col className="center social-media-container">
-                            No Contact Method is Saved
+                            {t('No Contact Method is Saved')}
                         </Col>
                     </Row>}
                 </Col>
@@ -175,13 +180,19 @@ const Profile = () => {
             </Row>
             {(reference?.open && <ReportReview t={t} id={params?.id} userData={userData} reference={reference} setReference={setReference} />)}
             <Row>
-                <Col xs={12} className="info-dropdown">
+                <Col xs={6} className="info-dropdown">
                     <h2 onClick={() => setShowPosts(cur => !cur)}>
-                        Posts&nbsp;&nbsp;
+                        {t('Posts')}&nbsp;&nbsp;
                         <i size="small" className='material-icons'>{ showPosts ? "visibility_off" : "visibility_on"}</i>
                     </h2>
                 </Col>
-                {showPosts && <Account user={params?.id} settingsPage={false} />}
+                {params?.id === loggedId && <Col xs={6} className="info-dropdown right">
+                    <h4 onClick={() => setEditPosts(cur => !cur)}>
+                        {t('Edit')}&nbsp;&nbsp;
+                        <i size="small" className={editToggle}>{ !editPosts ? "toggle_off" : "toggle_on"}</i>
+                    </h4>
+                </Col>}
+                {showPosts && <Account user={params?.id} settingsPage={editPosts} />}
             </Row>
             {userData?.reviews?.length > 0 && <>
                 <hr style={{margin:"0"}} />

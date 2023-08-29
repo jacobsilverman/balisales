@@ -1,0 +1,26 @@
+.profile-label {
+    cursor: pointer;
+    border: .5px solid grey;
+    border-radius: .2cm;
+    padding: 10px;
+    &:hover {
+        transition: 1s;
+        color: white;
+        box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+        background-color: rgba(#1976d2, 1)
+    }
+}
+
+.info-dropdown {
+    display: flex;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 30px;
+    h4 {
+        cursor: pointer;
+    }
+}
+
+.green  {
+    color:green;
+}

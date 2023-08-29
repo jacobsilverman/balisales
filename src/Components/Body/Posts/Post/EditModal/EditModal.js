@@ -241,7 +241,7 @@ const EditModal = ({item, setPosts, openEditModal, setOpenEditModal, filterPosts
                 const url = (typeof rawUrl !== "string") ? URL.createObjectURL(rawUrl) : rawUrl;
                 const space = index === 0 ? "flex-end" : index !== images.length-1 ? "space-between" : "flex-start";
                 return (
-                    <Grid Container item spacing={3} key={url}>
+                    <Grid item key={url}>
                         <Card>
                             {images?.length > 1 && <Button variant="danger" style={{width: "100%", borderRadius: "0px"}} onClick={() => handleRemoveImage(index)}>remove</Button>}
                             <Grid item key={url} className="center" style={{backgroundImage: `url(${url})`, backgroundSize: "100% 100%", width: extraSize, height: extraSize}}  >
