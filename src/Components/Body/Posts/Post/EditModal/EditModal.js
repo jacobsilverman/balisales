@@ -1,10 +1,11 @@
 import { useEffect, useMemo, useState } from 'react';
 
-import { blades, brands, environment, isMobile, statuses, types } from '../../../../../Data/Constants';
+import { blades, brands, environment, statuses, types } from '../../../../../Data/Constants';
 
 import DeleteModal from '../DeleteModal';
+import { AddImages } from '../../../../Common/AddImages/AddImages';
 
-import { Card, Grid, MenuItem, Modal, TextareaAutosize } from '@mui/material';
+import { MenuItem, Modal, TextareaAutosize } from '@mui/material';
 import TextField from '@mui/material/TextField';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
@@ -13,9 +14,7 @@ import { Button, Col, Row } from 'react-bootstrap';
 
 import { doc, deleteDoc } from 'firebase/firestore';
 import { db } from '../../../../../firebase-config';
-import { deleteUserPost, getUserInfo } from '../../../../../Data/Services/userInfo.js';
-
-import { FaImage } from "react-icons/fa";
+import { deleteUserPost } from '../../../../../Data/Services/userInfo.js';
 
 import { ref, deleteObject, getStorage, uploadBytesResumable } from "firebase/storage";
 import { useTranslation } from 'react-i18next';
@@ -42,6 +41,7 @@ const EditModal = ({item, setPosts, openEditModal, setOpenEditModal, filterPosts
         brand: true,
         condition: true,
         price: true,
+        picture: true,
         status: true
     });
 
@@ -191,86 +191,6 @@ const EditModal = ({item, setPosts, openEditModal, setOpenEditModal, filterPosts
             window.location.reload()
         })
     }
-
-    const handleImagePrev = (index) => {
-        if (index<=0) {
-            return 
-        }
-        setImages(cur => {
-            let result = [...cur];
-        
-            const temp =result[index-1];
-            result[index-1] = result[index];
-            result[index] = temp;
-            return result;
-        })
-    }
-    
-    const handleImageNext = (index) => {
-        if (index>=images?.length-1) {
-            return 
-        }
-
-        setImages(cur => {
-            let result = [...cur];
-            const temp =result[index+1];
-            result[index+1] = result[index];
-            result[index] = temp;
-            return result;
-        })
-    }
-
-    const handleRemoveImage = (i) => {
-        let newItems = images?.filter((ele, index) => {
-            return index !== i
-        })
-        setImages(newItems);
-    }
-
-    const handleAddingImage = (event) => {
-        setImages(cur => {
-            return [...cur, event.target.files[0]]
-        });
-    }
-
-    const extraSize = (images?.length <= 1) ? "200px": "100px";
-
-    const pictures = (
-        <Grid justifyContent="center" container spacing={3}>
-            {images?.map((rawUrl, index) => {
-                const url = (typeof rawUrl !== "string") ? URL.createObjectURL(rawUrl) : rawUrl;
-                const space = index === 0 ? "flex-end" : index !== images.length-1 ? "space-between" : "flex-start";
-                return (
-                    <Grid item key={url}>
-                        <Card>
-                            {images?.length > 1 && <Button variant="danger" style={{width: "100%", borderRadius: "0px"}} onClick={() => handleRemoveImage(index)}>remove</Button>}
-                            <Grid item key={url} className="center" style={{backgroundImage: `url(${url})`, backgroundSize: "100% 100%", width: extraSize, height: extraSize}}  >
-                                
-                            </Grid>
-                            <div style={{display:"flex", justifyContent: space}}>
-                                {index > 0 && <Button variant={"outlined"} onClick={() => handleImagePrev(index)}>{(!isMobile) ? "<" : "^"}</Button>}
-                                {index < images.length-1 && <Button variant={"outlined"} onClick={() => handleImageNext(index)}>{(!isMobile) ? ">" : "v"}</Button>}
-                            </div>
-                        </Card>
-                    </Grid>
-                )})}
-        </Grid>
-    );
-
-    const addPicture = (
-        <Row className="edit-input">    
-            <Col xs={12} className="setting-item">
-                <label className='profile-label' htmlFor="add-post-image">
-                    <input id="add-post-image" className='profile-input' type="file" onChange={handleAddingImage} accept="image/*"  />
-
-                    <span style={{color:"black"}}>Add Picture</span>
-                    <br />
-                    {<FaImage size={40} />}
-                </label>
-            </Col>
-        </Row>
-    );
-
 
     const handleTitleChange = (event) => {
         let newValue = event.target.value;
@@ -481,8 +401,7 @@ const EditModal = ({item, setPosts, openEditModal, setOpenEditModal, filterPosts
                             <TextareaAutosize style={{width: "100%"}} minRows={3} value={description} placeholder={t("Description")} label={t("Description")} onChange={handleDescriptionChange} />
                         </Col>
                     </Row>
-                    {addPicture}
-                    {pictures}
+                    <AddImages files={images} setFiles={setImages} setValidation={setValidation} />
                     <Row className="edit-input">
                         <Col xs={6}>
                             <Button variant="danger" onClick={handleDelete}>{t("Delete")}</Button>

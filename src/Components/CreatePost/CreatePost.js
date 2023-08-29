@@ -4,13 +4,12 @@ import { Button, Col, Container, Row } from 'react-bootstrap';
 import { brands, blades, environment, types } from '../../Data/Constants';
 
 import { addUserPost } from '../../Data/Services/userInfo';
+import { AddImages } from '../Common/AddImages/AddImages';
 
 import { addDoc, collection } from 'firebase/firestore';
 
 import { auth, db, storage } from "../../firebase-config.js";
 import { ref, uploadBytesResumable } from "firebase/storage";
-
-import { FaImage } from "react-icons/fa";
 
 import TextField from '@mui/material/TextField';
 import FormControl from '@mui/material/FormControl';
@@ -127,9 +126,11 @@ function CreatePost() {
 
     const createPost = async () => {
         setDisableSubmit(true);
+
         if (!isValidated) {
             return
         }
+
         if (!files[0]) {
             alert("Please upload an image first!");
             return
@@ -256,7 +257,6 @@ function CreatePost() {
         setDescription(newValue);
     }
 
-
     const mainPage = (
         <>
             <Container className="create-header-container">
@@ -337,7 +337,7 @@ function CreatePost() {
                     </Col>
                 </Row>
                 <Row>
-                    <Col xs="12" className="setting-item center">
+                    {/* <Col xs="12" className="setting-item center">
                         <label className='profile-label' htmlFor={"inputPicture-default"}>
                             <b>{t("Upload Image")}</b>
                             <input id={"inputPicture-default"} className="profile-input" type="file" onChange={e => handlePictureChange(e)} accept="/image/*" />
@@ -345,7 +345,8 @@ function CreatePost() {
                             <FaImage size={70} className="" />
                         </label>
                     </Col>
-                    {pictureInputs()}
+                    {pictureInputs()} */}
+                    <AddImages files={files} setFiles={setFiles} setValidation={setValidation} />
                 </Row>
                 <Row>
                     <Col xs={12} className="center">
