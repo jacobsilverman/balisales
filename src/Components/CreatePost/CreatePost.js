@@ -36,12 +36,12 @@ function CreatePost() {
 
     // State to store uploaded file
     const [files, setFiles] = useState([]);
-    const [showFiles, setShowFiles] = useState([]);
+    // const [showFiles, setShowFiles] = useState([]);
 
     // progress
     const [percent, setPercent] = useState(0);
 
-    const [numberOfUploads, setNumberOfUploads] = useState(0);
+    // const [numberOfUploads, setNumberOfUploads] = useState(0);
     const [validation, setValidation] = useState({
         title: false,
         price: false,
@@ -72,57 +72,57 @@ function CreatePost() {
         setCondition("");
         setPrice("");
         setBlade("");
-        setNumberOfUploads(0);
+        // setNumberOfUploads(0);
+        // setShowFiles([]);
         setFiles([]);
-        setShowFiles([]);
         setDisableSubmit(false);
     }
 
     // Handle file upload event and update state
-    function handlePictureChange(event) {
-        if (event.target.files && event.target.files[0]) {
-            setShowFiles(cur => [...cur, URL.createObjectURL(event.target.files[0])]);
-            setFiles(cur => [...cur, event.target.files[0]]);
-            setNumberOfUploads(numberOfUploads => numberOfUploads+1);
-            setValidation(cur => {return {...cur, picture: true}});
-        }
-    }
+    // function handlePictureChange(event) {
+    //     if (event.target.files && event.target.files[0]) {
+    //         setShowFiles(cur => [...cur, URL.createObjectURL(event.target.files[0])]);
+    //         setFiles(cur => [...cur, event.target.files[0]]);
+    //         setNumberOfUploads(numberOfUploads => numberOfUploads+1);
+    //         setValidation(cur => {return {...cur, picture: true}});
+    //     }
+    // }
 
-    function removePicture(index) {
+    // function removePicture(index) {
 
-        let newShowFiles = [];
-        let newFileNames = [];
-        for (let i=0; i<showFiles.length;i++) {
-            if (index!==i){
-                newShowFiles.push(showFiles[i]);
-                newFileNames.push(files[i]);
-            }
-        }
-        setShowFiles(newShowFiles);
-        setFiles(newFileNames);
-        setNumberOfUploads(numOfUploads => numOfUploads-1);
-        if (numberOfUploads-1 === 0){
-            setValidation(cur => {return {...cur, picture: false}});
-        }
-    }
+    //     let newShowFiles = [];
+    //     let newFileNames = [];
+    //     for (let i=0; i<showFiles.length;i++) {
+    //         if (index!==i){
+    //             newShowFiles.push(showFiles[i]);
+    //             newFileNames.push(files[i]);
+    //         }
+    //     }
+    //     setShowFiles(newShowFiles);
+    //     setFiles(newFileNames);
+    //     setNumberOfUploads(numOfUploads => numOfUploads-1);
+    //     if (numberOfUploads-1 === 0){
+    //         setValidation(cur => {return {...cur, picture: false}});
+    //     }
+    // }
 
-    function pictureInputs() {
-        let allInputs = [];
+    // function pictureInputs() {
+    //     let allInputs = [];
 
-        for (let i = 0; i < files.length; i++) {
-            allInputs.push(
-                <Col xs="12" className="setting-item center" key={files[i]?.name}>
-                    <label className='profile-label' htmlFor={"inputPicture-"+files[i]?.name} onClick={() => removePicture(i)}>
-                        <span>{files[i]?.name}</span>
-                        <br />
-                        <img id={"inputPicture-"+files[i]?.name} src={showFiles[i]} className="upload-image" alt="preview image" />
-                    </label>
-                </Col>
-            );
-        }
+    //     for (let i = 0; i < files.length; i++) {
+    //         allInputs.push(
+    //             <Col xs="12" className="setting-item center" key={files[i]?.name}>
+    //                 <label className='profile-label' htmlFor={"inputPicture-"+files[i]?.name} onClick={() => removePicture(i)}>
+    //                     <span>{files[i]?.name}</span>
+    //                     <br />
+    //                     <img id={"inputPicture-"+files[i]?.name} src={showFiles[i]} className="upload-image" alt="preview image" />
+    //                 </label>
+    //             </Col>
+    //         );
+    //     }
 
-        return allInputs;
-    }
+    //     return allInputs;
+    // }
 
     const createPost = async () => {
         setDisableSubmit(true);
