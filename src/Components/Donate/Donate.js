@@ -101,6 +101,8 @@ const Donate = ({showDonate, setShowDonate}) => {
                             </Row>
                         </Col>
                         <Col />
+                    </Row>
+                    <Row>
                         <Col className='horizontal-center'>
                             <PayPalButtons 
                                 style={{ layout: "vertical", color: "silver" }}
