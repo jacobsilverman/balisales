@@ -74,7 +74,7 @@ function Account({user, settingsPage}) {
 
 		return (
 			<div className="grid-container-posts">
-				{openSelectModal.show && 
+				{openSelectModal.show &&
                     <SelectModal 
 						t={t} 
                         item={openSelectModal.item} 
@@ -82,7 +82,7 @@ function Account({user, settingsPage}) {
 						handleNextPost={handleNextPost}
                         openSelectModal={openSelectModal.show} 
                         setOpenSelectModal={setOpenSelectModal} />}
-				{settingsPage && 
+				{openEditModal &&
 					<EditModal 
 						item={selectedPost}
 						setPosts={setFilterPosts}
