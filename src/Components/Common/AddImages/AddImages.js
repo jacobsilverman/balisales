@@ -59,10 +59,9 @@ export const AddImages = ({files, setFiles, validation, setValidation, disableSu
     const addPicture = (
         <Row className="edit-input">    
             <Col xs={12} className="setting-item">
-                <label className='profile-label center' htmlFor="add-post-image">
+                <label className='profile-label center' style={{color: (validation.picture===false && disableSubmit) ? "red" : "black"}} htmlFor="add-post-image">
                     <input id="add-post-image" className='profile-input' type="file" onChange={handleAddingImage} accept="image/*"  />
-
-                    <span style={{color: (validation.picture===false && disableSubmit) ? "red" : "black"}}>Add Picture</span>
+                    <span>Add Picture</span>
                     <br />
                     {<FaImage size={40} />}
                 </label>
