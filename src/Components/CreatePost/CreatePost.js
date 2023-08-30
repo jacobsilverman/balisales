@@ -370,9 +370,7 @@ function CreatePost() {
                 <Row>
                     <Col xs={12}>
                         <h3>
-                            { !isAuth[0] ?
-                             "Please login before trying to create a post.":
-                             "Please go to the <a href='/settings'>Settings Page</a> to make sure you have a first name, last name and display name saved before trying to create a post."}
+                            Please login before trying to create a post.
                         </h3>
                     </Col>
                 </Row>
@@ -380,8 +378,9 @@ function CreatePost() {
         </>
     );
 
+    
 
-    return  isAuth[0] ? mainPage : disabledPage;
+    return  isAuth[0]==='true' ? mainPage : disabledPage;
 }
 
 export default CreatePost;
