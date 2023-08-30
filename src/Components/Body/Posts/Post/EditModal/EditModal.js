@@ -346,7 +346,7 @@ const EditModal = ({item, setPosts, openEditModal, setOpenEditModal, filterPosts
                             </FormControl>
                         </Col>
                         <Col sm={4}>
-                            <TextField fullWidth size="small" value={price} type="number" label={t("Price")} className="input-width" onChange={handlePriceChange} />
+                            <TextField fullWidth size="small" value={price} type="number" label={t("Price")} onChange={handlePriceChange} />
                         </Col>
                     </Row>
                     <Row className="edit-input">
