@@ -22,8 +22,7 @@ function Routing() {
   const [posts, setPosts] = useState([]);
   const [showFilter, setShowFilter] = useState(false);
   const [loadingMoreData, setLoadingMoreData] = useState(false);
-
-  const isAuth = useState(localStorage.getItem("isAuth"));
+  
   // function loadWarning(){                
   //   var ua = navigator.userAgent.toLowerCase();
   //   if (ua.indexOf('safari') != -1 && !(ua.indexOf('chrome') > -1)){
@@ -70,8 +69,8 @@ function Routing() {
     })
   }
 
-  const ProtectedRoute = ({ isAuth, redirectPath = '/' }) => {
-    if (!isAuth) {
+  const ProtectedRoute = ({ redirectPath = '/' }) => {
+    if (localStorage.getItem('isAuth')==='false') {
       return <Navigate to={redirectPath} replace />;
     }
   
@@ -88,8 +87,8 @@ function Routing() {
                   <Route path="/aboutUs" element={<AboutUs />} />
                   <Route path="/discuss" element={<Discuss />} />
                   <Route path="/profile" element={<Profile />} />
-                  <Route element={<ProtectedRoute isAuth={isAuth[0]==='true'} />}>
-                  <Route path='/createPost' element={<CreatePost />} />
+                  <Route element={<ProtectedRoute />}>
+                    <Route path='/createPost' element={<CreatePost />} />
                     <Route path="/settings" element={<Settings />} />
                   </Route>
                   <Route path="/login" element={<LoginRequired />} />
