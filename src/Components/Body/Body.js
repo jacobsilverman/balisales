@@ -1,4 +1,4 @@
-import { lazy, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { Col, Container, Row } from 'react-bootstrap';
 // import BuildMocks from './Data/Mocks/BuildMocks.js'

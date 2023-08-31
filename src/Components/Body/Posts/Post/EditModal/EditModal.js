@@ -360,7 +360,7 @@ const EditModal = ({item, setPosts, openEditModal, setOpenEditModal, filterPosts
         }
 
         handleEditPost();
-        editPostImages(images);
+        editPostImages();
         setOpenEditModal(false);
     }
 
