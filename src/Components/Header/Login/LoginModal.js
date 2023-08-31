@@ -14,6 +14,8 @@ const LoginModal = ({openLoginModal, setOpenLoginModal, newAccount, setNewAccoun
     const [password, setPassword] = useState("");
     const [repassword, setRepassword] = useState("");
     const [showAllOptions, setShowAllOptions] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
+    const [showRepassword, setShowRepassword] = useState(false);
     const [validate, setValidate] = useState({email: true, password: true, repassword: true, error: ""})
     
     const handleEmailValidate = () => {
@@ -130,14 +132,21 @@ const LoginModal = ({openLoginModal, setOpenLoginModal, newAccount, setNewAccoun
                         </Col>
                     </Row>
                     <Row>
-                        <Col className="horizontal-center">
-                            <TextField className="modal-input password" error={!validate.password} label={"Password"} color="" type="password" onChange={handlePasswordChange} value={password} />
+                        <Col className="horizontal-center relative">
+                            <TextField className="modal-input password" error={!validate.password} label={"Password"} color="" type={showPassword ? "" : "password"} onChange={handlePasswordChange} value={password} />
+                            <span className="password-eye">
+                                <i class="material-icons"  onClick={() => setShowPassword(cur => !cur)}>{(showPassword) ? "visibility_on" : "visibility_off"}</i>
+                            </span>
                         </Col>
                     </Row>
                     {newAccount===true &&
                     <Row>
-                        <Col className="horizontal-center">
-                            <TextField className="modal-input password" error={!validate.repassword} label={"Retype Password"} color="" type="password" onChange={handleRepasswordChange} value={repassword} />
+                        <Col className="horizontal-center relative">
+                            <TextField className="modal-input password" error={!validate.repassword} label={"Retype Password"} color="" type={showRepassword ? "" : "password"} onChange={handleRepasswordChange} value={repassword} />
+
+                            <span className="password-eye">
+                                <i class="material-icons"  onClick={() => setShowRepassword(cur => !cur)}>{(showRepassword) ? "visibility_on" : "visibility_off"}</i>
+                            </span>
                         </Col>
                     </Row>}
                     {validate.error &&
