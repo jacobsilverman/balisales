@@ -9,29 +9,31 @@ import { Card, Grid } from '@mui/material';
 
 export const AddImages = ({files, setFiles, validation, setValidation, disableSubmit}) => {
     const extraSize = (files?.length <= 1) ? "200px": "100px";
-        
+    
     const handleImagePrev = (index) => {
-        if (index<=0) {
+        if (index <= 0) {
             return 
         }
         setFiles(cur => {
             let result = [...cur];
-        
             const temp =result[index-1];
+
             result[index-1] = result[index];
             result[index] = temp;
+
             return result;
         })
     }
     
     const handleImageNext = (index) => {
-        if (index>=files?.length-1) {
+        if (index >= files?.length-1) {
             return 
         }
 
         setFiles(cur => {
             let result = [...cur];
-            const temp =result[index+1];
+            const temp = result[index+1];
+
             result[index+1] = result[index];
             result[index] = temp;
             return result;
