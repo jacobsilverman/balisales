@@ -135,7 +135,7 @@ const LoginModal = ({openLoginModal, setOpenLoginModal, newAccount, setNewAccoun
                         <Col className="horizontal-center relative">
                             <TextField className="modal-input password" error={!validate.password} label={"Password"} color="" type={showPassword ? "" : "password"} onChange={handlePasswordChange} value={password} />
                             <span className="password-eye">
-                                <i class="material-icons"  onClick={() => setShowPassword(cur => !cur)}>{(showPassword) ? "visibility_on" : "visibility_off"}</i>
+                                <i className="material-icons"  onClick={() => setShowPassword(cur => !cur)}>{(showPassword) ? "visibility_on" : "visibility_off"}</i>
                             </span>
                         </Col>
                     </Row>
@@ -145,7 +145,7 @@ const LoginModal = ({openLoginModal, setOpenLoginModal, newAccount, setNewAccoun
                             <TextField className="modal-input password" error={!validate.repassword} label={"Retype Password"} color="" type={showRepassword ? "" : "password"} onChange={handleRepasswordChange} value={repassword} />
 
                             <span className="password-eye">
-                                <i class="material-icons"  onClick={() => setShowRepassword(cur => !cur)}>{(showRepassword) ? "visibility_on" : "visibility_off"}</i>
+                                <i className="material-icons"  onClick={() => setShowRepassword(cur => !cur)}>{(showRepassword) ? "visibility_on" : "visibility_off"}</i>
                             </span>
                         </Col>
                     </Row>}
@@ -159,7 +159,7 @@ const LoginModal = ({openLoginModal, setOpenLoginModal, newAccount, setNewAccoun
                     {newAccount===true &&
                     <Row>
                         <Col className="center terms-conditions-txt">
-                            By signing up, I accept the <a className="general-link">Terms of Service</a> and acknowledge the <a className="general-link">Privacy Policy</a>.
+                            By signing up, I accept the <a className="general-link"  href="/contactus">Terms of Service</a> and acknowledge the <a className="general-link" href="/contactus">Privacy Policy</a>.
                         </Col>
                     </Row>}
                 
@@ -216,7 +216,7 @@ const LoginModal = ({openLoginModal, setOpenLoginModal, newAccount, setNewAccoun
                     </>}
                     <Row>
                         <Col className="horizontal-center">
-                            <a className="general-link" onClick={() => {setNewAccount(cur => !cur)}}>{(!newAccount) ? "Create an account" : "Already have an account? Log in"}</a>
+                            <span className="general-link" onClick={() => {setNewAccount(cur => !cur)}}>{(!newAccount) ? "Create an account" : "Already have an account? Log in"}</span>
                         </Col>
                     </Row>
                 </Col>

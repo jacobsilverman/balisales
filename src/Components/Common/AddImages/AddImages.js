@@ -7,8 +7,11 @@ import { Button, Col, Row } from 'react-bootstrap'
 
 import { Card, Grid } from '@mui/material';
 
+import { useTranslation } from "react-i18next";
+
 export const AddImages = ({files, setFiles, validation, setValidation, disableSubmit}) => {
     const extraSize = (files?.length <= 1) ? "200px": "100px";
+    const { t } = useTranslation();
     
     const handleImagePrev = (index) => {
         if (index <= 0) {
@@ -63,7 +66,7 @@ export const AddImages = ({files, setFiles, validation, setValidation, disableSu
             <Col xs={12} className="setting-item">
                 <label className='profile-label center' style={{color: (validation.picture===false && disableSubmit) ? "red" : "black"}} htmlFor="add-post-image">
                     <input id="add-post-image" className='profile-input' type="file" onChange={handleAddingImage} accept="image/*"  />
-                    <span>Add Picture</span>
+                    <span>{t('Add Picture')}</span>
                     <br />
                     {<FaImage size={40} />}
                 </label>
@@ -79,7 +82,7 @@ export const AddImages = ({files, setFiles, validation, setValidation, disableSu
                 return (
                     <Grid item key={url}>
                         <Card>
-                            <Button variant="danger" style={{width: "100%", borderRadius: "0px"}} onClick={() => handleRemoveImage(index)}>remove</Button>
+                            <Button variant="danger" style={{width: "100%", borderRadius: "0px"}} onClick={() => handleRemoveImage(index)}>{t('Remove')}</Button>
                             <Grid item key={url} className="center" style={{backgroundImage: `url(${url})`, backgroundSize: "100% 100%", width: extraSize, height: extraSize}}  >
                                 
                             </Grid>
