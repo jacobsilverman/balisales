@@ -5,10 +5,12 @@ import SettingsForm from './SettingsForm';
 import Account from '../Account';
 
 import './Settings.scss';
+import { useTranslation } from 'react-i18next';
 
 function Settings() {
     const id = localStorage.getItem("uid");
     const [showPosts, setShowPosts] = useState(true);
+    const { t } = useTranslation();
 
     return (
         <>
@@ -24,7 +26,7 @@ function Settings() {
                     <SettingsForm id={id} />
                     <Col xs={12} className="info-dropdown setting-padding">
                         <h2 onClick={() => setShowPosts(cur => !cur)}>
-                            Posts&nbsp;&nbsp;
+                            {t('Posts')}&nbsp;&nbsp;
                             <i size="small" className='material-icons'>{ showPosts ? "visibility_off" : "visibility_on"}</i>
                         </h2>
                     </Col>

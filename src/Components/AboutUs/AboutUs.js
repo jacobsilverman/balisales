@@ -79,25 +79,22 @@ var AboutUs = () => {
            </Row> */}
             <Row>
                 <Col>
-                    Please check out the <a href="/contactUs">Contact Us Page</a> to offer suggestions, advise, help contribute to the growth of this website, or for any reason you might see fit!
+                    {t('Please check out the')} <a href="/contactUs">{t('Contact Us Page')}</a> {t('to offer suggestions, advise, help contribute to the growth of this website, or for any reason you might see fit!')}
                 </Col>
             </Row>
             <Row>
                 <Col>
-                    Our mission is to enable balisong enthusiasts to buy, sell and trade their balisongs. The ultimate goal is to 
-                    reduce the risk involved and cut out all potential scammers or potential sour transactions. This website is an ongoing effort that 
-                    utilizes user feedback to continuously improve.
+                    {t('Our mission is to enable balisong enthusiasts to buy, sell and trade their balisongs. The ultimate goal is to reduce the risk involved and cut out all potential scammers or potential sour transactions. This website is an ongoing effort that utilizes user feedback to continuously improve.')}
                 </Col>
             </Row>
             <Row>
                 <Col>
-                    To access all aspects of this website please make sure to log in or sign up. Once you are logged in you will be able to create posts
-                    and write reviews on other peoples accounts.
+                    {t('To access all aspects of this website please make sure to log in or sign up. Once you are logged in you will be able to create posts and write reviews on other peoples accounts.')}'
                 </Col>
             </Row>
             <Row>
                 <Col>
-                We want to thank you for using this website and hope you are actively enjoying it, along with finding/making deals with ease. Anyways, we hope you have a wonderful day and take care. <span className="waving-hand">👋</span>
+                    {t('We want to thank you for using this website and hope you are actively enjoying it, along with finding/making deals with ease. Anyways, we hope you have a wonderful day and take care.')} <span className="waving-hand">👋</span>
                 </Col>
             </Row>
            {/* <img src={assrock} className="rocket" /> */}

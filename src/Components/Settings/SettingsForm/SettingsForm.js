@@ -280,7 +280,7 @@ const SettingsForm = ({id}) => {
             <Row>
                 <Col xs={12} className="info-dropdown setting-padding">
                     <h2 onClick={() => setShowRequiredInfo(cur => !cur)}>
-                        Basic Info&nbsp;&nbsp;
+                        {t('Basic Info')}&nbsp;&nbsp;
                         <i size="small" className='material-icons'>{showRequiredInfo ? "visibility_off" : "visibility_on"}</i>
                     </h2>
                 </Col>
@@ -304,7 +304,7 @@ const SettingsForm = ({id}) => {
 
                 <Col xs={12} className="info-dropdown setting-padding">
                     <h2 onClick={() => setShowSocialInfo(cur => !cur)}>
-                        Social Info&nbsp;&nbsp;
+                        {t('Social Info')}&nbsp;&nbsp;
                         <i size="small" className='material-icons'>{ showSocialInfo ? "visibility_off" : "visibility_on"}</i>
                     </h2>
                 </Col>
@@ -344,7 +344,7 @@ const SettingsForm = ({id}) => {
                             <Col xs={12} md={5} lg={4} className="profile-image-update">
                                 <Row>
                                     <Col xs={12}>
-                                        <h5>Change Profile Picture</h5>
+                                        <h5>{t('Change Profile Picture')}</h5>
                                     </Col>
                                 </Row>
                                 <Row>
@@ -364,7 +364,7 @@ const SettingsForm = ({id}) => {
                 </>}
                 <Col xs={12} className="info-dropdown setting-padding">
                     <h2 onClick={() => setShowLocationInfo(cur => !cur)}>
-                        Location Info&nbsp;&nbsp;
+                        {t('Location Info')}&nbsp;&nbsp;
                         <i size="small" className='material-icons'>{ showLocationInfo ? "visibility_off" : "visibility_on"}</i>
                     </h2>
                 </Col>
