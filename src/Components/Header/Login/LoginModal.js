@@ -8,7 +8,7 @@ import "./LoginModal.scss";
 import { GoogleLoginButton, InstagramLoginButton, FacebookLoginButton, YahooLoginButton, TwitterLoginButton, MicrosoftLoginButton, AppleLoginButton } from "react-social-login-buttons";
 import { useState } from "react";
 
-const LoginModal = ({openLoginModal, setOpenLoginModal, newAccount, setNewAccount, signInWithEmail, 
+const LoginModal = ({t, openLoginModal, setOpenLoginModal, newAccount, setNewAccount, signInWithEmail, 
     signInWithGoogle, signInWithFacebook, signInWithTwitter, signInWithYahoo}) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -107,7 +107,7 @@ const LoginModal = ({openLoginModal, setOpenLoginModal, newAccount, setNewAccoun
                                         <img src={silver_eye} width="100%" height="100%" />
                                     </Col>
                                     <Col style={{textAlign: 'left'}}> */}
-                                        Balisong Sales
+                                        {t('Balisong Sales')}
                                     {/* </Col>
                                 </Row> */}
                             </h1>
@@ -117,23 +117,23 @@ const LoginModal = ({openLoginModal, setOpenLoginModal, newAccount, setNewAccoun
                     {(!newAccount===true) ?
                     <Row>
                         <Col className="center">
-                            <h6>Please Login to Continue</h6>
+                            <h6>{t('Please Login to Continue')}</h6>
                         </Col>
                     </Row> :
                     <Row>
                         <Col className="center">
-                            <h6>Please Sign up to Continue</h6>
+                            <h6>{t('Please Sign up to Continue')}</h6>
                         </Col>
                     </Row> 
                     }
                     <Row>
                         <Col className="horizontal-center">
-                            <TextField className="modal-input" error={!validate.email} label={"Email"} color="" type="url" onChange={handleEmailChange} value={email} />
+                            <TextField className="modal-input" error={!validate.email} label={t('Email')} color="" type="url" onChange={handleEmailChange} value={email} />
                         </Col>
                     </Row>
                     <Row>
                         <Col className="horizontal-center relative">
-                            <TextField className="modal-input password" error={!validate.password} label={"Password"} color="" type={showPassword ? "" : "password"} onChange={handlePasswordChange} value={password} />
+                            <TextField className="modal-input password" error={!validate.password} label={t('Password')} color="" type={showPassword ? "" : "password"} onChange={handlePasswordChange} value={password} />
                             <span className="password-eye">
                                 <i className="material-icons"  onClick={() => setShowPassword(cur => !cur)}>{(showPassword) ? "visibility_on" : "visibility_off"}</i>
                             </span>
@@ -159,18 +159,18 @@ const LoginModal = ({openLoginModal, setOpenLoginModal, newAccount, setNewAccoun
                     {newAccount===true &&
                     <Row>
                         <Col className="center terms-conditions-txt">
-                            By signing up, I accept the <a className="general-link"  href="/contactus">Terms of Service</a> and acknowledge the <a className="general-link" href="/contactus">Privacy Policy</a>.
+                            {t('By signing up, I accept the')} <a className="general-link"  href="/contactus">{t('Terms of Service')}</a> {t('and acknowledge the')} <a className="general-link" href="/contactus">{t('Privacy Policy')}</a>.
                         </Col>
                     </Row>}
                 
                     <Row>
                         <Col className="horizontal-center">
-                            <Button disabled={!validate.email || !validate.password || (newAccount && !validate.repassword)} className="continue-button" onClick={handleContinueButton}>Contine</Button>
+                            <Button disabled={!validate.email || !validate.password || (newAccount && !validate.repassword)} className="continue-button" onClick={handleContinueButton}>{t('Contine')}</Button>
                         </Col>
                     </Row>
                     <Row>
                         <Col className="horizontal-center">
-                            Or Continue with:
+                            {t('Or Continue with')}:
                         </Col>
                     </Row>
                     <Row onClick={() => {signInWithGoogle();setOpenLoginModal(false)}}>
@@ -189,7 +189,7 @@ const LoginModal = ({openLoginModal, setOpenLoginModal, newAccount, setNewAccoun
                         </Col>
                     </Row>
                     {!showAllOptions ?
-                        <Button className="continue-button" onClick={() => setShowAllOptions(cur => !cur)}>show more login options</Button>
+                        <Button className="continue-button" onClick={() => setShowAllOptions(cur => !cur)}>{t('show more login options')}</Button>
                     : <>
 
                         <Row>
@@ -216,7 +216,7 @@ const LoginModal = ({openLoginModal, setOpenLoginModal, newAccount, setNewAccoun
                     </>}
                     <Row>
                         <Col className="horizontal-center">
-                            <span className="general-link" onClick={() => {setNewAccount(cur => !cur)}}>{(!newAccount) ? "Create an account" : "Already have an account? Log in"}</span>
+                            <span className="general-link" onClick={() => {setNewAccount(cur => !cur)}}>{(!newAccount) ? t("Create an account") : t("Already have an account? Log in")}</span>
                         </Col>
                     </Row>
                 </Col>

@@ -533,7 +533,7 @@ const Header = ({posts, setShowFilter}) => {
     const navBar = useMemo(() => {
         return (
             <Container>
-                <LoginModal openLoginModal={openLoginModal} setOpenLoginModal={setOpenLoginModal} newAccount={newAccount} setNewAccount={setNewAccount} signInWithEmail={signInWithEmail} signInWithGoogle={signInWithGoogle} signInWithFacebook={signInWithFacebook} signInWithTwitter={signInWithTwitter} signInWithYahoo={signInWithYahoo} />
+                <LoginModal t={t} openLoginModal={openLoginModal} setOpenLoginModal={setOpenLoginModal} newAccount={newAccount} setNewAccount={setNewAccount} signInWithEmail={signInWithEmail} signInWithGoogle={signInWithGoogle} signInWithFacebook={signInWithFacebook} signInWithTwitter={signInWithTwitter} signInWithYahoo={signInWithYahoo} />
 
                 <PayPalScriptProvider options={initialOptions}>
                     <Donate showDonate={showDonate} setShowDonate={setShowDonate} />
