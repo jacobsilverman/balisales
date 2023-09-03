@@ -425,7 +425,7 @@ const t =(() => {
             acc[en[index]] = word;
             return acc;
         }, {})
-        result += JSON.stringify(language)+'-';
+        result += JSON.stringify(language)+';';
     }
 
     console.log(result);
