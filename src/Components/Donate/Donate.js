@@ -63,7 +63,7 @@ const Donate = ({showDonate, setShowDonate}) => {
                     <>    
                     <Row>                  
                         <Col>
-                            <h2 className="donate-title">Donate</h2>
+                            <h2 className="donate-title">{t('Donate')}</h2>
                         </Col>
                         <Col>
                             <Button size="small" color="error" variant="contained" id="paypal-exit-button" onClick={() => setShowDonate(false)}>
