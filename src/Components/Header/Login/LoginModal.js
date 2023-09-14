@@ -9,7 +9,7 @@ import { GoogleLoginButton, InstagramLoginButton, FacebookLoginButton, YahooLogi
 import { useState } from "react";
 
 const LoginModal = ({t, openLoginModal, setOpenLoginModal, newAccount, setNewAccount, signInWithEmail, 
-    signInWithGoogle, signInWithFacebook, signInWithTwitter, signInWithYahoo}) => {
+    signInWithGoogle, signInWithFacebook, signInWithTwitter, signInWithYahoo, resetEmailPassword}) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [repassword, setRepassword] = useState("");
@@ -91,14 +91,29 @@ const LoginModal = ({t, openLoginModal, setOpenLoginModal, newAccount, setNewAcc
         return emailValid && passValid && repassValid && signInWithEmail(email, password, newAccount, setValidate);
     }
 
+    const forgotPasswordButton = () => {
+        if (!email) {
+            setValidate(cur => {return{...cur, email: false}})
+        } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email)) {
+            setValidate(cur => {return{...cur, email: false}})
+        }else {
+            setValidate(cur => {return{...cur, email: true}})
+            resetEmailPassword(email)
+        }
+    }
+
+    const closeModal = () => {
+        setValidate(cur => {return{...cur, error: ""}})
+        setOpenLoginModal(false)
+    }
 
     return (
-        <Modal open={openLoginModal} onClick={() => setOpenLoginModal(false)}>
+        <Modal open={openLoginModal} onClick={closeModal}>
             <Row className="login-modal">
                 <Col xs={8} className="login-background-edit"  onClick={(e) => e.stopPropagation()}>
                     <Row>
                         <Col className="center">
-                            <Button id="select-modal-exit-button" color="error" onClick={() => setOpenLoginModal(false)}>
+                            <Button id="select-modal-exit-button" color="error" onClick={closeModal}>
                                 X
                             </Button>
                             <h1>
@@ -217,6 +232,11 @@ const LoginModal = ({t, openLoginModal, setOpenLoginModal, newAccount, setNewAcc
                     <Row>
                         <Col className="horizontal-center">
                             <span className="general-link" onClick={() => {setNewAccount(cur => !cur)}}>{(!newAccount) ? t("Create an account") : t("Already have an account? Log in")}</span>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col className="horizontal-center">
+                            <span className="general-link" onClick={() => forgotPasswordButton()}>{t("Forgot Password?")}</span>
                         </Col>
                     </Row>
                 </Col>

@@ -71,7 +71,8 @@ let en = [
     'To access all aspects of this website please make sure to log in or sign up. Once you are logged in you will be able to create posts and write reviews on other peoples accounts.',
     'We want to thank you for using this website and hope you are actively enjoying it, along with finding/making deals with ease. Anyways, we hope you have a wonderful day and take care.',
     'Balisong Sales', 'Please Login to Continue', 'Please Sign up to Continue', 'Email', 'Password', 'Contine', 'By signing up, I accept the', 
-    'Terms of Service', 'and acknowledge the', 'Privacy Policy', 'Or Continue with', 'Create an account', 'Already have an account? Log in'
+    'Terms of Service', 'and acknowledge the', 'Privacy Policy', 'Or Continue with', 'Create an account', 'Already have an account? Log in',
+    'Password reset email was successfully sent!', 'Password reset email failed!', 'Forgot Password?'
 ];
 
 let es = [
