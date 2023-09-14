@@ -22,6 +22,7 @@ function Body({posts, loadAllData, loadMoreData, loadingMoreData, showFilter, se
     const [condition, setCondition] = useState('All');
     const [blade, setBlade] = useState('All');
     const [status, setStatus] = useState('All');
+    const [view, setView] = useState(0);
 
     const [showMoreAllButtons, setShowMoreAllButtons] = useState(true);
     const [openSelectModal, setOpenSelectModal] = useState({show:false});
@@ -121,6 +122,7 @@ function Body({posts, loadAllData, loadMoreData, loadingMoreData, showFilter, se
                 condition={condition} setCondition={setCondition}
                 blade={blade} setBlade={setBlade}
                 status={status} setStatus={setStatus}
+                view={view} setView={setView}
                 t={t} />
         </Col>
     );
@@ -146,6 +148,8 @@ function Body({posts, loadAllData, loadMoreData, loadingMoreData, showFilter, se
                     sort={sort}
                     blade={blade}
                     status={status}
+                    view={view}
+                    t={t}
                     setOpenSelectModal={setOpenSelectModal} />
                 {postAmountSelectors()}
             </Row>

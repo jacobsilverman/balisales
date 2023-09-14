@@ -11,6 +11,28 @@
     border-radius: 2px;
 }
 
+.outer-post-container-1{
+    border: 1px solid black;
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+
+}
+
+.post-container-1 {
+    display: flex;
+    height:167.5px;
+    background-size: 100% 100%;
+    padding: 0px !important;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    box-shadow: rgba(234, 234, 234, 0.15) 0px 7px 14px, rgba(234, 234, 234, 0.12) 0px 5px 10px;
+    border: .15em solid  rgb(234, 234, 234);
+    border-radius: 2px;
+}
+
 
 .Trading-border {
     box-shadow: rgba(55, 244, 251, 0.15) 0px 7px 14px, rgba(55, 244, 251, 0.12) 0px 5px 10px;

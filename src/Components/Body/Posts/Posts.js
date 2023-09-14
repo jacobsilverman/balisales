@@ -5,8 +5,9 @@ import { Col } from 'react-bootstrap';
 import Spinner from '../../../Data/Constants/Spinner';
 
 import Post from './Post';
+import { SinglePost } from './Post/Post.js';
 
-const Posts = ({min, max, brand, condition, posts, type, sort, blade, status, setOpenSelectModal}) => {
+const Posts = ({min, max, brand, condition, posts, type, sort, blade, status, view, t, setOpenSelectModal}) => {
     const sortData = (data) => {
         const sortedByTime = [...data];
         if (sort === "Old" || sort === "New") {
@@ -42,21 +43,33 @@ const Posts = ({min, max, brand, condition, posts, type, sort, blade, status, se
         }
 
         let allValidPostsSorted = sortData(posts.filter((post) => validFilter(post)));
-
+        const cls = (view > 0) ? `grid-container-posts-${view}` : "grid-container-posts";
+        
         return (
-            <div className="grid-container-posts">
+            <div className={cls}>
                 {allValidPostsSorted.map((item, index) => {
                     const displayUrl =  `url(${item?.urls[0]})`;
-                    return <Post 
+
+                    const post = (view !== 0) 
+                    ? <SinglePost 
                         displayUrl={displayUrl} 
                         item={item} 
                         index={index}
                         key={item.id}
+                        t={t}
                         setOpenSelectModal={setOpenSelectModal} />
+                    : <Post 
+                        displayUrl={displayUrl} 
+                        item={item}
+                        index={index}
+                        key={item.id}
+                        setOpenSelectModal={setOpenSelectModal} />
+
+                    return post;
                 })}
             </div>
         );
-    }, [min, max, brand, condition, type, sort, blade, status, posts])
+    }, [min, max, brand, condition, type, sort, blade, status, posts, view])
 
 
     return (
