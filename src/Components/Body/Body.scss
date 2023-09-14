@@ -54,12 +54,20 @@
     margin-top: 38vh;
 }
 
+.grid-container-posts-1 {
+  padding: 20px;
+  padding-bottom: 46px;
+  display: grid;
+  gap: 10px;
+  grid-auto-rows: 170px;
+}
+
 .grid-container-posts {
-    padding: 20px;
-    padding-bottom: 46px;
-    display: grid;
-    gap: 10px;
-    grid-auto-rows: 170px;
+  padding: 20px;
+  padding-bottom: 46px;
+  display: grid;
+  gap: 10px;
+  grid-auto-rows: 170px;
 }
 
 @media screen and (max-width:450px) {

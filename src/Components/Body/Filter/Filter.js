@@ -12,13 +12,26 @@ import Select from '@mui/material/Select';
 
 import './Filter.scss';
 
-function Filter({getOptions, brand, setBrand, max, setMax, min, setMin, type, setType, setDisplayFilter, resetFilter, sort, setSort, condition, setCondition, blade, setBlade, status, setStatus, t}) {
+function Filter({getOptions, brand, setBrand, max, setMax, min, setMin, type, setType, setDisplayFilter, resetFilter, sort, setSort, condition, setCondition, blade, setBlade, status, setStatus, view, setView, t}) {
     return (
         <Fragment>
             <Row className='filter-item'>
-                <Col xs={9}>
+                <Col xs={6}>
                     <Button className="reset-button" variant="contained" onClick={() => {resetFilter()}}>{t("Reset")}</Button>
                 </Col> 
+                <Col xs={3}>
+                    <FormControl fullWidth>
+                        <InputLabel id="filter-view-select-label">{t("View")}</InputLabel>
+                        <Select
+                            labelId="filter-view-select-label"
+                            id="filter-view-select"
+                            value={view}
+                            label={t("View")}
+                            onChange={(event) => setView(event.target.value)}>
+                            {[getOptions([0,1,2,3], "view")]}
+                        </Select>
+                    </FormControl>
+                </Col>
                 <Col xs={3} className='filter-exit-button'>
                     <Button variant="contained" color="error" size="small" onClick={() => {setDisplayFilter(false)}}>x</Button>
                 </Col>
