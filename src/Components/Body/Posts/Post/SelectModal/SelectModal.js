@@ -20,7 +20,7 @@ const SelectModal = ({t, item, handlePrevPost, handleNextPost,openSelectModal, s
     const [touchEnd, setTouchEnd] = useState(null)
 
     // the required distance between touchStart and touchEnd to be detected as a swipe
-    const minSwipeDistance = 30 
+    const minSwipeDistance = 30;
     const createdDate = new Date(item?.timeStamp).toLocaleDateString();
     const displayPost = {...item};
 
@@ -131,12 +131,14 @@ const SelectModal = ({t, item, handlePrevPost, handleNextPost,openSelectModal, s
     const displaySelectedPost = (
         <Modal  open={openSelectModal} className="select-modal"  onTouchStart={onTouchStart} onTouchMove={onTouchMove} onTouchEnd={onTouchEnd} onClick={() => setOpenSelectModal(cur => {return {...cur, show: false}})}>
             <Row>
-                {scrollingAbility && <><span onClick={(e) => {iteratePosts(e, "prev")}} className={colorNextPrevClass+" prev"}>
-                    {"<"}
-                </span>
-                <span onClick={(e) => {iteratePosts(e, "next")}}  className={colorNextPrevClass+" next"}>
-                    {">"}
-                </span></>}
+                {scrollingAbility && <>
+                    <span onClick={(e) => {iteratePosts(e, "prev")}} className={colorNextPrevClass+" prev"}>
+                        {"<"}
+                    </span>
+                    <span onClick={(e) => {iteratePosts(e, "next")}}  className={colorNextPrevClass+" next"}>
+                        {">"}
+                    </span>
+                </>}
                 <Col className={"modal-background "+vanish} xs={12} onClick={(e) => e.stopPropagation()}>
                     <Row className='center'>
                         <Col>

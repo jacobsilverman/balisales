@@ -42,6 +42,7 @@ const Posts = ({min, max, brand, condition, posts, type, sort, blade, status, se
         }
 
         let allValidPostsSorted = sortData(posts.filter((post) => validFilter(post)));
+        setOpenSelectModal(cur => {return {...cur, posts: allValidPostsSorted}})
 
         return (
             <div className="grid-container-posts">

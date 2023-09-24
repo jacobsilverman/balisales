@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import { Col, Container, Row } from 'react-bootstrap';
 // import BuildMocks from './Data/Mocks/BuildMocks.js'
@@ -27,13 +27,6 @@ function Body({posts, loadAllData, loadMoreData, loadingMoreData, showFilter, se
     const [openSelectModal, setOpenSelectModal] = useState({show:false});
     const {t} = useTranslation();
 
-    useEffect(() => {
-        if (!posts){
-            return
-        }
-        setOpenSelectModal(cur => {return {...cur, posts: posts}})
-    }, [posts])
-
     const resetFilter = () => {
         setMin(0);
         setMax(10000000000);
@@ -53,8 +46,7 @@ function Body({posts, loadAllData, loadMoreData, loadingMoreData, showFilter, se
             return {
                 ...cur,
                 item: prevItem,
-                index: index,
-                posts: posts
+                index: index
             }
         });
     }
@@ -66,11 +58,10 @@ function Body({posts, loadAllData, loadMoreData, loadingMoreData, showFilter, se
             return {
                 ...cur,
                 index: index,
-                item: nextItem,
-                posts: posts
+                item: nextItem
             }
         });
-    }
+    };
 
     const getOptions = (options, option) => {
         return options.map((name) => {
