@@ -15,7 +15,7 @@ function Post({displayUrl, item, index, settingsPage, setOpenEditModal, setSelec
     }
     
     return (
-        <div className={containerCls} style={{backgroundImage: displayUrl}} key={"post-"+item?.id}>
+        <div className={containerCls} style={{backgroundImage: displayUrl}} id={"post-"+item?.id} key={"post-"+item?.id}>
             <a className="link" 
                 onClick={handleSelectPost}>
                 {item?.numberOfImages>1 && 

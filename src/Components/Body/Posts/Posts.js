@@ -8,16 +8,20 @@ import Post from './Post';
 
 const Posts = ({min, max, brand, condition, posts, type, sort, blade, status, setOpenSelectModal}) => {
     const sortData = (data) => {
-        const sortedByTime = [...data].sort((a, b) => {
-            if (sort === "Old") return (b.timeStamp < a.timeStamp) ? 1 : -1;
-            else return (a.timeStamp <= b.timeStamp) ? 1 : -1;
-        })
+        const sortedByTime = [...data];
+        if (sort === "Old" || sort === "New") {
+            sortedByTime.sort((a, b) => {
+                if (sort === "Old") return (b.timeStamp < a.timeStamp) ? 1 : -1;
+                else return (a.timeStamp <= b.timeStamp) ? 1 : -1;
+            })
+            return sortedByTime;
+        }
 
         if (sort === 'All') return sortedByTime;
 
         return sortedByTime.sort((prev, next) => {
-            if (sort === 'Maximum') return (prev.price <= next.price) ? 1 : -1;
-            return (prev.price >= next.price) ? 1 : -1;
+            if (sort === 'Maximum') return (+prev.price <= +next.price) ? 1 : -1;
+            return (+prev.price >= +next.price) ? 1 : -1;
         });
     };
     
@@ -38,6 +42,7 @@ const Posts = ({min, max, brand, condition, posts, type, sort, blade, status, se
         }
 
         let allValidPostsSorted = sortData(posts.filter((post) => validFilter(post)));
+        setOpenSelectModal(cur => {return {...cur, posts: allValidPostsSorted}})
 
         return (
             <div className="grid-container-posts">

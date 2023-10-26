@@ -1,0 +1,19 @@
+
+.profile-label {
+    cursor: pointer;
+    border: .5px solid grey;
+    border-radius: .2cm;
+    padding: 10px;
+    -webkit-transition: 2s;
+    justify-content: center;
+    &:hover {
+        transition: 1s;
+        color: white;
+        box-shadow: rgba(13, 110, 253, 0.3) 0px 19px 38px, rgba(13, 110, 253, 0.22) 0px 15px 12px;
+        background-color: rgb(13, 110, 253);
+    }
+}
+
+.profile-input {
+    display: none;
+}

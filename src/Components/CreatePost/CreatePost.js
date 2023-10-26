@@ -4,13 +4,12 @@ import { Button, Col, Container, Row } from 'react-bootstrap';
 import { brands, blades, environment, types } from '../../Data/Constants';
 
 import { addUserPost } from '../../Data/Services/userInfo';
+import { AddImages } from '../Common/AddImages/AddImages';
 
 import { addDoc, collection } from 'firebase/firestore';
 
 import { auth, db, storage } from "../../firebase-config.js";
 import { ref, uploadBytesResumable } from "firebase/storage";
-
-import { FaImage } from "react-icons/fa";
 
 import TextField from '@mui/material/TextField';
 import FormControl from '@mui/material/FormControl';
@@ -37,12 +36,12 @@ function CreatePost() {
 
     // State to store uploaded file
     const [files, setFiles] = useState([]);
-    const [showFiles, setShowFiles] = useState([]);
+    // const [showFiles, setShowFiles] = useState([]);
 
     // progress
     const [percent, setPercent] = useState(0);
 
-    const [numberOfUploads, setNumberOfUploads] = useState(0);
+    // const [numberOfUploads, setNumberOfUploads] = useState(0);
     const [validation, setValidation] = useState({
         title: false,
         price: false,
@@ -73,63 +72,65 @@ function CreatePost() {
         setCondition("");
         setPrice("");
         setBlade("");
-        setNumberOfUploads(0);
+        // setNumberOfUploads(0);
+        // setShowFiles([]);
         setFiles([]);
-        setShowFiles([]);
         setDisableSubmit(false);
     }
 
     // Handle file upload event and update state
-    function handlePictureChange(event) {
-        if (event.target.files && event.target.files[0]) {
-            setShowFiles(cur => [...cur, URL.createObjectURL(event.target.files[0])]);
-            setFiles(cur => [...cur, event.target.files[0]]);
-            setNumberOfUploads(numberOfUploads => numberOfUploads+1);
-            setValidation(cur => {return {...cur, picture: true}});
-        }
-    }
+    // function handlePictureChange(event) {
+    //     if (event.target.files && event.target.files[0]) {
+    //         setShowFiles(cur => [...cur, URL.createObjectURL(event.target.files[0])]);
+    //         setFiles(cur => [...cur, event.target.files[0]]);
+    //         setNumberOfUploads(numberOfUploads => numberOfUploads+1);
+    //         setValidation(cur => {return {...cur, picture: true}});
+    //     }
+    // }
 
-    function removePicture(index) {
+    // function removePicture(index) {
 
-        let newShowFiles = [];
-        let newFileNames = [];
-        for (let i=0; i<showFiles.length;i++) {
-            if (index!==i){
-                newShowFiles.push(showFiles[i]);
-                newFileNames.push(files[i]);
-            }
-        }
-        setShowFiles(newShowFiles);
-        setFiles(newFileNames);
-        setNumberOfUploads(numOfUploads => numOfUploads-1);
-        if (numberOfUploads-1 === 0){
-            setValidation(cur => {return {...cur, picture: false}});
-        }
-    }
+    //     let newShowFiles = [];
+    //     let newFileNames = [];
+    //     for (let i=0; i<showFiles.length;i++) {
+    //         if (index!==i){
+    //             newShowFiles.push(showFiles[i]);
+    //             newFileNames.push(files[i]);
+    //         }
+    //     }
+    //     setShowFiles(newShowFiles);
+    //     setFiles(newFileNames);
+    //     setNumberOfUploads(numOfUploads => numOfUploads-1);
+    //     if (numberOfUploads-1 === 0){
+    //         setValidation(cur => {return {...cur, picture: false}});
+    //     }
+    // }
 
-    function pictureInputs() {
-        let allInputs = [];
+    // function pictureInputs() {
+    //     let allInputs = [];
 
-        for (let i = 0; i < files.length; i++) {
-            allInputs.push(
-                <Col xs="12" className="setting-item center" key={files[i]?.name}>
-                    <label className='profile-label' htmlFor={"inputPicture-"+files[i]?.name} onClick={() => removePicture(i)}>
-                        <span>{files[i]?.name}</span>
-                        <br />
-                        <img id={"inputPicture-"+files[i]?.name} src={showFiles[i]} className="upload-image" alt="preview image" />
-                    </label>
-                </Col>
-            );
-        }
+    //     for (let i = 0; i < files.length; i++) {
+    //         allInputs.push(
+    //             <Col xs="12" className="setting-item center" key={files[i]?.name}>
+    //                 <label className='profile-label' htmlFor={"inputPicture-"+files[i]?.name} onClick={() => removePicture(i)}>
+    //                     <span>{files[i]?.name}</span>
+    //                     <br />
+    //                     <img id={"inputPicture-"+files[i]?.name} src={showFiles[i]} className="upload-image" alt="preview image" />
+    //                 </label>
+    //             </Col>
+    //         );
+    //     }
 
-        return allInputs;
-    }
+    //     return allInputs;
+    // }
 
     const createPost = async () => {
         setDisableSubmit(true);
+
         if (!isValidated) {
             return
         }
+
         if (!files[0]) {
             alert("Please upload an image first!");
             return
@@ -256,7 +257,6 @@ function CreatePost() {
         setDescription(newValue);
     }
 
-
     const mainPage = (
         <>
             <Container className="create-header-container">
@@ -337,7 +337,7 @@ function CreatePost() {
                     </Col>
                 </Row>
                 <Row>
-                    <Col xs="12" className="setting-item center">
+                    {/* <Col xs="12" className="setting-item center">
                         <label className='profile-label' htmlFor={"inputPicture-default"}>
                             <b>{t("Upload Image")}</b>
                             <input id={"inputPicture-default"} className="profile-input" type="file" onChange={e => handlePictureChange(e)} accept="/image/*" />
@@ -345,7 +345,8 @@ function CreatePost() {
                             <FaImage size={70} className="" />
                         </label>
                     </Col>
-                    {pictureInputs()}
+                    {pictureInputs()} */}
+                    <AddImages files={files} setFiles={setFiles} validation={validation} setValidation={setValidation} disableSubmit={disableSubmit} />
                 </Row>
                 <Row>
                     <Col xs={12} className="center">
@@ -369,9 +370,7 @@ function CreatePost() {
                 <Row>
                     <Col xs={12}>
                         <h3>
-                            { !isAuth[0] ?
-                             "Please login before trying to create a post.":
-                             "Please go to the <a href='/settings'>Settings Page</a> to make sure you have a first name, last name and display name saved before trying to create a post."}
+                            Please login before trying to create a post.
                         </h3>
                     </Col>
                 </Row>
@@ -379,8 +378,9 @@ function CreatePost() {
         </>
     );
 
+    
 
-    return  isAuth[0] ? mainPage : disabledPage;
+    return  isAuth[0]==='true' ? mainPage : disabledPage;
 }
 
 export default CreatePost;

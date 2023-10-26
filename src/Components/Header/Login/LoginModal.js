@@ -8,12 +8,14 @@ import "./LoginModal.scss";
 import { GoogleLoginButton, InstagramLoginButton, FacebookLoginButton, YahooLoginButton, TwitterLoginButton, MicrosoftLoginButton, AppleLoginButton } from "react-social-login-buttons";
 import { useState } from "react";
 
-const LoginModal = ({openLoginModal, setOpenLoginModal, newAccount, setNewAccount, signInWithEmail, 
-    signInWithGoogle, signInWithFacebook, signInWithTwitter, signInWithYahoo}) => {
+const LoginModal = ({t, openLoginModal, setOpenLoginModal, newAccount, setNewAccount, signInWithEmail, 
+    signInWithGoogle, signInWithFacebook, signInWithTwitter, signInWithYahoo, resetEmailPassword}) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [repassword, setRepassword] = useState("");
     const [showAllOptions, setShowAllOptions] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
+    const [showRepassword, setShowRepassword] = useState(false);
     const [validate, setValidate] = useState({email: true, password: true, repassword: true, error: ""})
     
     const handleEmailValidate = () => {
@@ -89,14 +91,29 @@ const LoginModal = ({openLoginModal, setOpenLoginModal, newAccount, setNewAccoun
         return emailValid && passValid && repassValid && signInWithEmail(email, password, newAccount, setValidate);
     }
 
+    const forgotPasswordButton = () => {
+        if (!email) {
+            setValidate(cur => {return{...cur, email: false}})
+        } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email)) {
+            setValidate(cur => {return{...cur, email: false}})
+        }else {
+            setValidate(cur => {return{...cur, email: true}})
+            resetEmailPassword(email)
+        }
+    }
+
+    const closeModal = () => {
+        setValidate(cur => {return{...cur, error: ""}})
+        setOpenLoginModal(false)
+    }
 
     return (
-        <Modal open={openLoginModal} onClick={() => setOpenLoginModal(false)}>
+        <Modal open={openLoginModal} onClick={closeModal}>
             <Row className="login-modal">
                 <Col xs={8} className="login-background-edit"  onClick={(e) => e.stopPropagation()}>
                     <Row>
                         <Col className="center">
-                            <Button id="select-modal-exit-button" color="error" onClick={() => setOpenLoginModal(false)}>
+                            <Button id="select-modal-exit-button" color="error" onClick={closeModal}>
                                 X
                             </Button>
                             <h1>
@@ -105,7 +122,7 @@ const LoginModal = ({openLoginModal, setOpenLoginModal, newAccount, setNewAccoun
                                         <img src={silver_eye} width="100%" height="100%" />
                                     </Col>
                                     <Col style={{textAlign: 'left'}}> */}
-                                        Balisong Sales
+                                        {t('Balisong Sales')}
                                     {/* </Col>
                                 </Row> */}
                             </h1>
@@ -115,29 +132,36 @@ const LoginModal = ({openLoginModal, setOpenLoginModal, newAccount, setNewAccoun
                     {(!newAccount===true) ?
                     <Row>
                         <Col className="center">
-                            <h6>Please Login to Continue</h6>
+                            <h6>{t('Please Login to Continue')}</h6>
                         </Col>
                     </Row> :
                     <Row>
                         <Col className="center">
-                            <h6>Please Sign up to Continue</h6>
+                            <h6>{t('Please Sign up to Continue')}</h6>
                         </Col>
                     </Row> 
                     }
                     <Row>
                         <Col className="horizontal-center">
-                            <TextField className="modal-input" error={!validate.email} label={"Email"} color="" type="url" onChange={handleEmailChange} value={email} />
+                            <TextField className="modal-input" error={!validate.email} label={t('Email')} color="" type="url" onChange={handleEmailChange} value={email} />
                         </Col>
                     </Row>
                     <Row>
-                        <Col className="horizontal-center">
-                            <TextField className="modal-input password" error={!validate.password} label={"Password"} color="" type="password" onChange={handlePasswordChange} value={password} />
+                        <Col className="horizontal-center relative">
+                            <TextField className="modal-input password" error={!validate.password} label={t('Password')} color="" type={showPassword ? "" : "password"} onChange={handlePasswordChange} value={password} />
+                            <span className="password-eye">
+                                <i className="material-icons"  onClick={() => setShowPassword(cur => !cur)}>{(showPassword) ? "visibility_on" : "visibility_off"}</i>
+                            </span>
                         </Col>
                     </Row>
                     {newAccount===true &&
                     <Row>
-                        <Col className="horizontal-center">
-                            <TextField className="modal-input password" error={!validate.repassword} label={"Retype Password"} color="" type="password" onChange={handleRepasswordChange} value={repassword} />
+                        <Col className="horizontal-center relative">
+                            <TextField className="modal-input password" error={!validate.repassword} label={"Retype Password"} color="" type={showRepassword ? "" : "password"} onChange={handleRepasswordChange} value={repassword} />
+
+                            <span className="password-eye">
+                                <i className="material-icons"  onClick={() => setShowRepassword(cur => !cur)}>{(showRepassword) ? "visibility_on" : "visibility_off"}</i>
+                            </span>
                         </Col>
                     </Row>}
                     {validate.error &&
@@ -150,18 +174,18 @@ const LoginModal = ({openLoginModal, setOpenLoginModal, newAccount, setNewAccoun
                     {newAccount===true &&
                     <Row>
                         <Col className="center terms-conditions-txt">
-                            By signing up, I accept the <a className="general-link">Terms of Service</a> and acknowledge the <a className="general-link">Privacy Policy</a>.
+                            {t('By signing up, I accept the')} <a className="general-link"  href="/contactus">{t('Terms of Service')}</a> {t('and acknowledge the')} <a className="general-link" href="/contactus">{t('Privacy Policy')}</a>.
                         </Col>
                     </Row>}
                 
                     <Row>
                         <Col className="horizontal-center">
-                            <Button disabled={!validate.email || !validate.password || (newAccount && !validate.repassword)} className="continue-button" onClick={handleContinueButton}>Contine</Button>
+                            <Button disabled={!validate.email || !validate.password || (newAccount && !validate.repassword)} className="continue-button" onClick={handleContinueButton}>{t('Contine')}</Button>
                         </Col>
                     </Row>
                     <Row>
                         <Col className="horizontal-center">
-                            Or Continue with:
+                            {t('Or Continue with')}:
                         </Col>
                     </Row>
                     <Row onClick={() => {signInWithGoogle();setOpenLoginModal(false)}}>
@@ -180,7 +204,7 @@ const LoginModal = ({openLoginModal, setOpenLoginModal, newAccount, setNewAccoun
                         </Col>
                     </Row>
                     {!showAllOptions ?
-                        <Button className="continue-button" onClick={() => setShowAllOptions(cur => !cur)}>show more login options</Button>
+                        <Button className="continue-button" onClick={() => setShowAllOptions(cur => !cur)}>{t('show more login options')}</Button>
                     : <>
 
                         <Row>
@@ -207,7 +231,12 @@ const LoginModal = ({openLoginModal, setOpenLoginModal, newAccount, setNewAccoun
                     </>}
                     <Row>
                         <Col className="horizontal-center">
-                            <a className="general-link" onClick={() => {setNewAccount(cur => !cur)}}>{(!newAccount) ? "Create an account" : "Already have an account? Log in"}</a>
+                            <span className="general-link" onClick={() => {setNewAccount(cur => !cur)}}>{(!newAccount) ? t("Create an account") : t("Already have an account? Log in")}</span>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col className="horizontal-center">
+                            <span className="general-link" onClick={() => forgotPasswordButton()}>{t("Forgot Password?")}</span>
                         </Col>
                     </Row>
                 </Col>

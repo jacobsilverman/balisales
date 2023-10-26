@@ -1,10 +1,11 @@
 import { useEffect, useMemo, useState } from 'react';
 
-import { blades, brands, environment, isMobile, statuses, types } from '../../../../../Data/Constants';
+import { blades, brands, environment, statuses, types } from '../../../../../Data/Constants';
 
 import DeleteModal from '../DeleteModal';
+import { AddImages } from '../../../../Common/AddImages/AddImages';
 
-import { Card, Grid, MenuItem, Modal, TextareaAutosize } from '@mui/material';
+import { MenuItem, Modal, TextareaAutosize } from '@mui/material';
 import TextField from '@mui/material/TextField';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
@@ -13,11 +14,9 @@ import { Button, Col, Row } from 'react-bootstrap';
 
 import { doc, deleteDoc } from 'firebase/firestore';
 import { db } from '../../../../../firebase-config';
-import { deleteUserPost, getUserInfo } from '../../../../../Data/Services/userInfo.js';
+import { deleteUserPost } from '../../../../../Data/Services/userInfo.js';
 
-import { FaImage } from "react-icons/fa";
-
-import { ref, deleteObject, getStorage, uploadBytesResumable } from "firebase/storage";
+import { ref, deleteObject, getStorage, uploadBytesResumable, listAll } from "firebase/storage";
 import { useTranslation } from 'react-i18next';
 
 import { editPost } from '../../../../../Data/Services/PostInfo';
@@ -42,6 +41,7 @@ const EditModal = ({item, setPosts, openEditModal, setOpenEditModal, filterPosts
         brand: true,
         condition: true,
         price: true,
+        picture: true,
         status: true
     });
 
@@ -143,134 +143,142 @@ const EditModal = ({item, setPosts, openEditModal, setOpenEditModal, filterPosts
 		)
     }
 
+    // const editPostImages = () => {
+    //     const storage = getStorage();
+    //     let promises = [];
+    //     let blobMap = {};
+      
+    //     for (let i = 0; i < images.length; i++) {
+    //         if (typeof images[i] !== "string") {
+    //             // If it's not a string, assume it's a file object and store it directly in blobMap
+    //             blobMap[i] = images[i];
+    //         } else {
+    //             let xhr = new XMLHttpRequest();
+    //             xhr.responseType = 'blob';
+        
+    //             // Create a function that captures the current value of i
+    //             function createXhrPromise(i) {
+    //                 return new Promise((resolve, reject) => {
+    //                     xhr.onload = function (event) {
+    //                         let blob = xhr.response;
+    //                         if (blob) {
+    //                             blobMap[i] = blob;
+    //                             resolve();
+    //                         } else {
+    //                             reject(new Error('Failed to fetch blob'));
+    //                         }
+    //                     };
+    //                     xhr.onerror = function (event) {
+    //                         reject(new Error('XHR request failed'));
+    //                     };
+    //                 });
+    //             }
+        
+    //             xhr.open('GET', images[i]);
+    //             xhr.send();
+    //             promises.push(createXhrPromise(i));
+    //         }
+    //     }
+      
+    //     Promise.all(promises).then(() => {
+    //         console.log("images: ", blobMap);
+    //         // You can further process blobMap here
+    //         const imagesFolderRef = ref(storage, `${environment()}-postImages/${item.id}`);
+    //         // List all items in the reference
+    //         listAll(imagesFolderRef).then((result) => {
+    //             // Loop through each item and delete it
+    //             result.items.forEach((itemRef) => {
+    //                 deleteObject(itemRef).then(() => {
+    //                     console.log(`Deleted ${itemRef.fullPath}`);
+    //                 }).catch((error) => {
+    //                     console.error(`Error deleting ${itemRef.fullPath}: ${error.message}`);
+    //                 });
+    //             });
+    //         }).then(() => {
+    //             let uploadPromises = Object.keys(blobMap).map((key) => {
+    //                 const picRef = ref(storage, `${environment()}-postImages/${item.id}/image-${key}`);
+    //                 const uploadTask = uploadBytesResumable(picRef, blobMap[key]);
+    //                 return uploadTask;
+    //             });
+
+    //             return uploadPromises;
+    //         }).then((proms) => {
+    //             Promise.all(proms).then((res) => {
+    //                 console.log("blobMap uploaded: ", res)
+    //             }).catch((err) => {
+    //                 console.log("failed to upload blobMap: ", err)
+    //             }).finally(() => {
+    //                 window.location.reload()
+    //             })
+    //         }).catch((error) => {
+    //             console.error(`Error listing items: ${error.message}`);
+    //         })
+    //     }).catch((err) => {
+    //         console.error(err);
+    //     })
+    // };
+
     const editPostImages = async () => {
-        const storage = getStorage();
-		for (var i = 0; i < filterPosts.length; i++) {
-            try{
-                let saveImage = images.some((ele) => ele.indexOf("-"+i) > -1)
-                //removed images
-                if (!saveImage){
-                    const pictureReference = ref(storage, `${environment()}-postImages/${item.id}/image-${i}`);
-                    
-                    await deleteObject(pictureReference);
+        try {
+            const storage = getStorage();
+            const imagesFolderRef = ref(storage, `${environment()}-postImages/${item.id}`);
+            const blobMap = {};
+        
+            // Fetch and populate blobMap
+            await Promise.all(
+                images.map(async (image, index) => {
+                if (typeof image !== "string") {
+                    blobMap[index] = image;
+                } else {
+                    const xhr = new XMLHttpRequest();
+                    xhr.responseType = 'blob';
+        
+                    blobMap[index] = await new Promise((resolve, reject) => {
+                        xhr.onload = function (event) {
+                            const blob = xhr.response;
+                            if (blob) {
+                            resolve(blob);
+                            } else {
+                            reject(new Error('Failed to fetch blob'));
+                            }
+                        };
+                        xhr.onerror = function (event) {
+                            reject(new Error('XHR request failed'));
+                        };
+                        xhr.open('GET', image);
+                        xhr.send();
+                    });
                 }
-            }
-            catch{
-                console.log("can't look through images")
-            }
-		}
-
-        let promises = [];
-        for (let i = 0; i < images.length; i++){
-            //these are file objects
-            const picRef = ref(storage, `/${environment()}-postImages/${item.id}/image-${i}`);
-            if (typeof images[i]!=="string"){
-                const uploadTask = uploadBytesResumable(picRef, images[i]);
-                promises.push(uploadTask)
-            } else {
-                let xhr = new XMLHttpRequest();
-                
-                xhr.responseType = 'blob';
-                xhr.onload = function(event) {
-                    let blob = xhr.response;
-                    if (blob){                        
-                        const uploadTask = uploadBytesResumable(picRef, blob)
-                        promises.push(uploadTask)
+                })
+            );
+      
+            // Delete existing items in the reference
+            const result = await listAll(imagesFolderRef);
+            await Promise.all(
+                result.items.map(async (itemRef) => {
+                    try {
+                        await deleteObject(itemRef);
+                        console.log(`Deleted ${itemRef.fullPath}`);
+                    } catch (error) {
+                        console.error(`Error deleting ${itemRef.fullPath}: ${error.message}`);
                     }
-                };
-                xhr.open('GET', images[i]);
-                xhr.send();
-            }
+                })
+            );
+      
+            // Upload new items
+            const uploadPromises = Object.keys(blobMap).map(async (key) => {
+                const picRef = ref(storage, `${environment()}-postImages/${item.id}/image-${key}`);
+                return uploadBytesResumable(picRef, blobMap[key]);
+            });
+      
+            const uploadResults = await Promise.all(uploadPromises);
+            console.log("blobMap uploaded: ", uploadResults);
+            window.location.reload();
+        } catch (error) {
+            console.error(error);
         }
-        
-        Promise.all(promises).then((res) => {
-            console.log(res)
-        }).catch((err) => {
-            console.error(err)
-        }).finally(() => {
-            window.location.reload()
-        })
-    }
-
-    const handleImagePrev = (index) => {
-        if (index<=0) {
-            return 
-        }
-        setImages(cur => {
-            let result = [...cur];
-        
-            const temp =result[index-1];
-            result[index-1] = result[index];
-            result[index] = temp;
-            return result;
-        })
-    }
-    
-    const handleImageNext = (index) => {
-        if (index>=images?.length-1) {
-            return 
-        }
-
-        setImages(cur => {
-            let result = [...cur];
-            const temp =result[index+1];
-            result[index+1] = result[index];
-            result[index] = temp;
-            return result;
-        })
-    }
-
-    const handleRemoveImage = (i) => {
-        let newItems = images?.filter((ele, index) => {
-            return index !== i
-        })
-        setImages(newItems);
-    }
-
-    const handleAddingImage = (event) => {
-        setImages(cur => {
-            return [...cur, event.target.files[0]]
-        });
-    }
-
-    const extraSize = (images?.length <= 1) ? "200px": "100px";
-
-    const pictures = (
-        <Grid justifyContent="center" container spacing={3}>
-            {images?.map((rawUrl, index) => {
-                const url = (typeof rawUrl !== "string") ? URL.createObjectURL(rawUrl) : rawUrl;
-                const space = index === 0 ? "flex-end" : index !== images.length-1 ? "space-between" : "flex-start";
-                return (
-                    <Grid Container item spacing={3} key={url}>
-                        <Card>
-                            {images?.length > 1 && <Button variant="danger" style={{width: "100%", borderRadius: "0px"}} onClick={() => handleRemoveImage(index)}>remove</Button>}
-                            <Grid item key={url} className="center" style={{backgroundImage: `url(${url})`, backgroundSize: "100% 100%", width: extraSize, height: extraSize}}  >
-                                
-                            </Grid>
-                            <div style={{display:"flex", justifyContent: space}}>
-                                {index > 0 && <Button variant={"outlined"} onClick={() => handleImagePrev(index)}>{(!isMobile) ? "<" : "^"}</Button>}
-                                {index < images.length-1 && <Button variant={"outlined"} onClick={() => handleImageNext(index)}>{(!isMobile) ? ">" : "v"}</Button>}
-                            </div>
-                        </Card>
-                    </Grid>
-                )})}
-        </Grid>
-    );
-
-    const addPicture = (
-        <Row className="edit-input">    
-            <Col xs={12} className="setting-item">
-                <label className='profile-label' htmlFor="add-post-image">
-                    <input id="add-post-image" className='profile-input' type="file" onChange={handleAddingImage} accept="image/*"  />
-
-                    <span style={{color:"black"}}>Add Picture</span>
-                    <br />
-                    {<FaImage size={40} />}
-                </label>
-            </Col>
-        </Row>
-    );
-
+    };
+      
 
     const handleTitleChange = (event) => {
         let newValue = event.target.value;
@@ -352,7 +360,7 @@ const EditModal = ({item, setPosts, openEditModal, setOpenEditModal, filterPosts
         }
 
         handleEditPost();
-        editPostImages(images);
+        editPostImages();
         setOpenEditModal(false);
     }
 
@@ -426,7 +434,7 @@ const EditModal = ({item, setPosts, openEditModal, setOpenEditModal, filterPosts
                             </FormControl>
                         </Col>
                         <Col sm={4}>
-                            <TextField fullWidth size="small" value={price} type="number" label={t("Price")} className="input-width" onChange={handlePriceChange} />
+                            <TextField fullWidth size="small" value={price} type="number" label={t("Price")} onChange={handlePriceChange} />
                         </Col>
                     </Row>
                     <Row className="edit-input">
@@ -481,8 +489,7 @@ const EditModal = ({item, setPosts, openEditModal, setOpenEditModal, filterPosts
                             <TextareaAutosize style={{width: "100%"}} minRows={3} value={description} placeholder={t("Description")} label={t("Description")} onChange={handleDescriptionChange} />
                         </Col>
                     </Row>
-                    {addPicture}
-                    {pictures}
+                    <AddImages files={images} setFiles={setImages} validation={validation} setValidation={setValidation} disableSubmit={disableSubmit} />
                     <Row className="edit-input">
                         <Col xs={6}>
                             <Button variant="danger" onClick={handleDelete}>{t("Delete")}</Button>

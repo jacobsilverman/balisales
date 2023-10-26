@@ -303,6 +303,9 @@
     &.trade {
         background-color: rgb(55, 244, 251);
     }
+    &:hover{
+        width: 35px;
+    }
 
     @media only screen and (min-width: 575px) {
         height: 53%;

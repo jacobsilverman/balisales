@@ -2,7 +2,7 @@ export languages=$(node ./generate-languages.js);
 # echo $languages
 # var1=${PS1%-*}
 # var2=${PS1#*-}
-IFS="-"
+IFS=";"
 read -a strarr <<< "$languages"
 # echo ${strarr[0]} > ./src/Data/Assets/i18n/translations/en.json
 # echo ${strarr[1]} > ./src/Data/Assets/i18n/translations/es.json

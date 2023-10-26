@@ -16,6 +16,7 @@
     max-width: 550px;
     max-height: 95vh;
     border-radius: 1px;
+    overflow-x: hidden;
     background-color: white;
     @media (pointer:none), (pointer:coarse) {
         width:100vw;
@@ -57,4 +58,17 @@
     &:hover {
         text-decoration: underline;
     }
+}
+
+.relative {
+    position: relative;
+}
+
+.password-eye {
+    cursor: pointer;
+    position: absolute;
+    right: 10%;
+    top: 30%;
+    height: 100%;
+    width: 0px;
 }

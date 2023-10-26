@@ -6,11 +6,12 @@ import { getIp, getUserInfo, setUserLogin, setUserInfo, getProfilePicture } from
 import { pageTitles } from '../../Data/Constants';
 import Companies from '../../Data/Constants/Companies.json';
 
+
 import { Col, Container, OverlayTrigger, Popover, Row } from 'react-bootstrap';
 import defaultProfile from '../../Data/Images/default-profile.jpg';
 
 import { auth, facebookProvider, googleProvider, twitterProvider, yahooProvider } from '../../firebase-config';
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, signOut } from 'firebase/auth';
+import { sendPasswordResetEmail, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, signOut } from 'firebase/auth';
 import { useNavigate }   from 'react-router-dom';
 
 import { Button, TextField } from '@mui/material';
@@ -310,6 +311,15 @@ const Header = ({posts, setShowFilter}) => {
         })
     }
 
+    const resetEmailPassword = (userEmail) => {
+        sendPasswordResetEmail(auth, userEmail).then(() => {
+            alert(t('Password reset email was successfully sent!'), userEmail);
+            console.log(userEmail)
+        }).catch((error) => {
+            alert(t('Password reset email failed! '), error);
+        });
+    }
+
     const signInWithGoogle = () => {
         setProvider(googleProvider);
         signInWithPopup(auth, googleProvider).then((result) => {
@@ -533,7 +543,7 @@ const Header = ({posts, setShowFilter}) => {
     const navBar = useMemo(() => {
         return (
             <Container>
-                <LoginModal openLoginModal={openLoginModal} setOpenLoginModal={setOpenLoginModal} newAccount={newAccount} setNewAccount={setNewAccount} signInWithEmail={signInWithEmail} signInWithGoogle={signInWithGoogle} signInWithFacebook={signInWithFacebook} signInWithTwitter={signInWithTwitter} signInWithYahoo={signInWithYahoo} />
+                <LoginModal t={t} openLoginModal={openLoginModal} setOpenLoginModal={setOpenLoginModal} newAccount={newAccount} setNewAccount={setNewAccount} signInWithEmail={signInWithEmail} signInWithGoogle={signInWithGoogle} signInWithFacebook={signInWithFacebook} signInWithTwitter={signInWithTwitter} signInWithYahoo={signInWithYahoo} resetEmailPassword={resetEmailPassword} />
 
                 <PayPalScriptProvider options={initialOptions}>
                     <Donate showDonate={showDonate} setShowDonate={setShowDonate} />

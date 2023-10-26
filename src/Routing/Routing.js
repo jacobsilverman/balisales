@@ -1,6 +1,6 @@
 import React, { useEffect, useState, Suspense } from 'react';
 
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Outlet, Navigate, Route, Routes } from 'react-router-dom';
 
 import { getAllPosts, getPostsQuery, getPostsQueryStart } from '../Data/Services/Home.js';
 
@@ -8,6 +8,8 @@ import Spinner from '../Data/Constants/Spinner';
 
 import Header from '../Components/Header';
 import Body from '../Components/Body';
+
+import { LoginRequired } from '../Components/Common/LoginRequired/LoginRequired.js';
 
 const CreatePost = React.lazy(() => import('../Components/CreatePost'));
 const Settings = React.lazy(() => import('../Components/Settings'));
@@ -20,7 +22,7 @@ function Routing() {
   const [posts, setPosts] = useState([]);
   const [showFilter, setShowFilter] = useState(false);
   const [loadingMoreData, setLoadingMoreData] = useState(false);
-
+  
   // function loadWarning(){                
   //   var ua = navigator.userAgent.toLowerCase();
   //   if (ua.indexOf('safari') != -1 && !(ua.indexOf('chrome') > -1)){
@@ -67,18 +69,30 @@ function Routing() {
     })
   }
 
+  const ProtectedRoute = ({ redirectPath = '/' }) => {
+    if (localStorage.getItem('isAuth')==='false') {
+      return <Navigate to={redirectPath} replace />;
+    }
+  
+    return <Outlet />;
+  };
+
   return (
       <BrowserRouter>
           <Header posts={posts} setShowFilter={setShowFilter} />
           <Suspense fallback={<Spinner />}>
               <Routes>
                   <Route path='/' element={<Body posts={posts} loadAllData={loadAllData} loadMoreData={loadMoreData} loadingMoreData={loadingMoreData} showFilter={showFilter} setShowFilter={setShowFilter} />} />
-                  <Route path='/createPost' element={<CreatePost />} />
-                  <Route path="/settings" element={<Settings />} />
-                  <Route path="/profile" element={<Profile />} />
                   <Route path="/contactUs" element={<ContactUs />} />
                   <Route path="/aboutUs" element={<AboutUs />} />
                   <Route path="/discuss" element={<Discuss />} />
+                  <Route path="/profile" element={<Profile />} />
+                  <Route element={<ProtectedRoute />}>
+                    <Route path='/createPost' element={<CreatePost />} />
+                    <Route path="/settings" element={<Settings />} />
+                  </Route>
+                  <Route path="/login" element={<LoginRequired />} />
+                  <Route path="*" element={<h2 className='center'>404 Page Not Found</h2>} />
               </Routes>
           </Suspense>
       </BrowserRouter>
