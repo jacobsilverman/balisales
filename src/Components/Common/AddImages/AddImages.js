@@ -3,15 +3,22 @@ import { FaImage } from "react-icons/fa";
 import { isMobile } from "../../../Data/Constants";
 import './AddImages.scss'
 
+import { useState } from "react";
+
 import { Button, Col, Row } from 'react-bootstrap'
 
 import { Card, Grid } from '@mui/material';
 
 import { useTranslation } from "react-i18next";
+import { CropModal } from "./CropModal.js";
 
-export const AddImages = ({files, setFiles, validation, setValidation, disableSubmit}) => {
+export const AddImages = ({files, setFiles, validation, setValidation, disableSubmit, setDisplay}) => {
     const extraSize = (files?.length <= 1) ? "200px": "100px";
     const { t } = useTranslation();
+
+    const [imageToCrop, setImageToCrop] = useState();
+    const [showCropModal, setShowCropModal] = useState(false);
+
     
     const handleImagePrev = (index) => {
         if (index <= 0) {
@@ -55,10 +62,12 @@ export const AddImages = ({files, setFiles, validation, setValidation, disableSu
     }
 
     const handleAddingImage = (event) => {
-        setValidation(cur => {return {...cur, picture: true}});
-        setFiles(cur => {
-            return [...cur, event.target.files[0]]
-        });
+        if (setDisplay){
+            setDisplay({display:"none"});
+        }
+        setImageToCrop(event.target.files[0]);
+        setShowCropModal(true);
+        setImageLoaded(false);
     }
     
     const addPicture = (
@@ -83,7 +92,7 @@ export const AddImages = ({files, setFiles, validation, setValidation, disableSu
                     <Grid item key={url}>
                         <Card>
                             <Button variant="danger" style={{width: "100%", borderRadius: "0px"}} onClick={() => handleRemoveImage(index)}>{t('Remove')}</Button>
-                            <Grid item key={url} className="center" style={{backgroundImage: `url(${url})`, backgroundSize: "100% 100%", width: extraSize, height: extraSize}}  >
+                            <Grid item key={url+"item"} className="center" style={{backgroundImage: `url(${url})`, backgroundSize: "100% 100%", width: extraSize, height: extraSize}}  >
                                 
                             </Grid>
                             <div style={{display:"flex", justifyContent: space}}>
@@ -96,8 +105,11 @@ export const AddImages = ({files, setFiles, validation, setValidation, disableSu
         </Grid>
     );
 
+    const [imageLoaded, setImageLoaded] = useState(false);
+
     return (
         <>
+            <CropModal imageLoaded={imageLoaded} setImageLoaded={setImageLoaded} imageToCrop={imageToCrop} showCropModal={showCropModal} setShowCropModal={setShowCropModal} setValidation={setValidation} setFiles={setFiles} setDisplay={setDisplay} />
             {addPicture}
             {pictures}
         </>
