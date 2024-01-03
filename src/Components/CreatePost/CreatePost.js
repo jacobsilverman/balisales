@@ -256,6 +256,7 @@ function CreatePost() {
         }
         setDescription(newValue);
     }
+    
 
     const mainPage = (
         <>

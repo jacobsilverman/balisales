@@ -80,7 +80,15 @@ const SearchBar = ({posts, showSearch, t, popped}) => {
 
             return val;
         })]
-        result = result.filter(element => element !== undefined && element.length !== 0);
+        result = result.filter(element => {
+            if (typeof element === "object" && element.length > 0) {
+                element = element.filter(ele => ele !== undefined && ele.length !== 0)
+            }
+            
+            return element !== undefined && element.length !== 0;
+        });
+
+        console.log(result);
 
         return result.length > 0 ? result : "No Results Found";
     }, [searchValue])

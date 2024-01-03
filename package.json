@@ -26,6 +26,7 @@
     "react-geocode": "^0.2.3",
     "react-i18next": "^12.1.5",
     "react-icons": "^4.7.1",
+    "react-image-crop": "^11.0.1",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
     "react-social-icons": "^5.15.0",

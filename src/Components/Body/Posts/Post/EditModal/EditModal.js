@@ -386,8 +386,10 @@ const EditModal = ({item, setPosts, openEditModal, setOpenEditModal, filterPosts
         setOpenDeleteModal(true);
     }
 
+    const [display, setDisplay] = useState({display:"block"});
+
     return (
-        <Modal open={openEditModal} onClick={() => setOpenEditModal(false)}>
+        <Modal style={display} open={openEditModal} onClick={() => setOpenEditModal(false)}>
             <Row className="edit-modal">
                 <Col xs={7} className="modal-background-edit center" onClick={(e) => e.stopPropagation()}>
                     <Button variant="outlined" id="select-modal-exit-button" color="error" onClick={handleCancel}>
@@ -489,7 +491,7 @@ const EditModal = ({item, setPosts, openEditModal, setOpenEditModal, filterPosts
                             <TextareaAutosize style={{width: "100%"}} minRows={3} value={description} placeholder={t("Description")} label={t("Description")} onChange={handleDescriptionChange} />
                         </Col>
                     </Row>
-                    <AddImages files={images} setFiles={setImages} validation={validation} setValidation={setValidation} disableSubmit={disableSubmit} />
+                    <AddImages files={images} setFiles={setImages} validation={validation} setValidation={setValidation} disableSubmit={disableSubmit} setDisplay={setDisplay} />
                     <Row className="edit-input">
                         <Col xs={6}>
                             <Button variant="danger" onClick={handleDelete}>{t("Delete")}</Button>
