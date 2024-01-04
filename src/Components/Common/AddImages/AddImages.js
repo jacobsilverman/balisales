@@ -65,6 +65,7 @@ export const AddImages = ({files, setFiles, validation, setValidation, disableSu
         if (setDisplay){
             setDisplay({display:"none"});
         }
+
         setImageToCrop(event.target.files[0]);
         setShowCropModal(true);
         setImageLoaded(false);
