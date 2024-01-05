@@ -12,7 +12,7 @@ export const CropModal = ({imageLoaded, setImageLoaded, imageToCrop, showCropMod
     const [output, setOutput] = useState(null);
     const [blob, setBlob] = useState(null);
     const imageUrl = (imageToCrop) ? URL.createObjectURL(imageToCrop) : null;
-
+    
     const onImageLoad = (e) => {
         setImage(e.currentTarget);
         if (imageToCrop && !imageLoaded) {
@@ -94,17 +94,17 @@ export const CropModal = ({imageLoaded, setImageLoaded, imageToCrop, showCropMod
             <div style={{display:"flex",justifyContent:"flex-end", padding:"5px"}}>
                 <Button onClick={reset} color="error">close</Button>
             </div>
-            <div>
-                Please accommodate resizing images to fit the 250px 300px dimensions
+            <div className="center">
+                Resizing image to fit the 250px 300px dimensions
             </div>
             {imageToCrop && <ReactCrop crop={crop} onChange={c => setCrop(c)}>
                 <img src={imageUrl} onLoad={onImageLoad} />
             </ReactCrop>}
-            <Button variant="outlined" onClick={() => {cropImageNow()}}>Preview</Button>
+            <Button variant="outlined" onClick={() => cropImageNow()}>Preview</Button>
             {output && <>
                 <div className="center">
-                        <div>Here is a preview of how your image will display</div>
-                        <img src={output} style={{height:"300px",width: "250px"}} />
+                    {/* <div>Here is a preview of how your image will display</div> */}
+                    <img src={output} style={{height:"300px",width: "250px"}} />
                 </div>
                 <Button 
                     variant="contained"

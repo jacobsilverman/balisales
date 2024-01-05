@@ -22,6 +22,7 @@ function Body({posts, loadAllData, loadMoreData, loadingMoreData, showFilter, se
     const [condition, setCondition] = useState('All');
     const [blade, setBlade] = useState('All');
     const [status, setStatus] = useState('All');
+    const [divideData, setDivideData] = useState();
 
     const [showMoreAllButtons, setShowMoreAllButtons] = useState(true);
     const [openSelectModal, setOpenSelectModal] = useState({show:false});
@@ -37,7 +38,6 @@ function Body({posts, loadAllData, loadMoreData, loadingMoreData, showFilter, se
         setStatus('All');
         setCondition('All');
     };
-
 
     const handlePrevPost = () => {
         setOpenSelectModal(cur => {
@@ -137,6 +137,8 @@ function Body({posts, loadAllData, loadMoreData, loadingMoreData, showFilter, se
                     sort={sort}
                     blade={blade}
                     status={status}
+                    divideData={divideData}
+                    setDivideData={setDivideData}
                     setOpenSelectModal={setOpenSelectModal} />
                 {postAmountSelectors()}
             </Row>

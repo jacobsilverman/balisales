@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useEffect } from 'react';
 
 import { Col } from 'react-bootstrap';
 
@@ -6,7 +6,7 @@ import Spinner from '../../../Data/Constants/Spinner';
 
 import Post from './Post';
 
-const Posts = ({min, max, brand, condition, posts, type, sort, blade, status, setOpenSelectModal}) => {
+const Posts = ({min, max, brand, condition, posts, type, sort, blade, status, divideData, setDivideData, setOpenSelectModal}) => {
     const sortData = (data) => {
         const sortedByTime = [...data];
         if (sort === "Old" || sort === "New") {
@@ -36,15 +36,15 @@ const Posts = ({min, max, brand, condition, posts, type, sort, blade, status, se
             && (post?.status?.toLowerCase() === status?.toLowerCase() || status === 'All');
     };
 
-    const divideData = useMemo(() => {
+    useEffect(() => {
         if (posts.length === 0) {
-            return (<Spinner />);
+            return setDivideData(<Spinner />);
         }
 
         let allValidPostsSorted = sortData(posts.filter((post) => validFilter(post)));
-        setOpenSelectModal(cur => {return {...cur, posts: allValidPostsSorted}})
+        setOpenSelectModal(cur => {return {...cur, posts: allValidPostsSorted}});
 
-        return (
+        return setDivideData(
             <div className="grid-container-posts">
                 {allValidPostsSorted.map((item, index) => {
                     const displayUrl =  `url(${item?.urls[0]})`;
@@ -57,8 +57,7 @@ const Posts = ({min, max, brand, condition, posts, type, sort, blade, status, se
                 })}
             </div>
         );
-    }, [min, max, brand, condition, type, sort, blade, status, posts])
-
+    }, [min, max, brand, condition, type, sort, blade, status, posts]);
 
     return (
         <Col xs={12} className="remove-padding">

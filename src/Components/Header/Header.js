@@ -88,8 +88,6 @@ const SearchBar = ({posts, showSearch, t, popped}) => {
             return element !== undefined && element.length !== 0;
         });
 
-        console.log(result);
-
         return result.length > 0 ? result : "No Results Found";
     }, [searchValue])
     
@@ -356,7 +354,6 @@ const Header = ({posts, setShowFilter}) => {
             localStorage.setItem("isAuth", true);
             localStorage.setItem("uid", result?.user?.uid);
             localStorage.setItem("displayName", result?.user?.displayName);
-            console.log(result);
             return result;
         }).then((result) => {
             saveInitialUserValues(result)
@@ -416,7 +413,6 @@ const Header = ({posts, setShowFilter}) => {
             if (err.code === "auth/too-many-requests"){
                 errorMessage = "Access to this account has been temporarily disabled due to many failed login attempts. You can immediately restore it by resetting your password or you can try again later.";
             }
-            
 
             setValidate(cur => {return {...cur, error: errorMessage}})
             console.error(err)
@@ -432,8 +428,6 @@ const Header = ({posts, setShowFilter}) => {
             // This gives you a Facebook Access Token. You can use it to access the Facebook API.
             // const credential = FacebookAuthProvider.credentialFromResult(result);
             // const accessToken = credential.accessToken;
-
-            console.log("tesult",result);
         
             // IdP data available using getAdditionalUserInfo(result)
             // ...
