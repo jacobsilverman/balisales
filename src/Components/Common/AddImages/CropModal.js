@@ -76,7 +76,10 @@ export const CropModal = ({imageLoaded, setImageLoaded, imageToCrop, showCropMod
         setOutput(base64Image);
         canvas.toBlob(function(blob){
             setBlob(blob);
+            const ele = document.getElementById("croppingModal");
+            ele.parentElement.scrollTo({ left: 0, top: ele.scrollHeight, behavior: "smooth" });
         });
+        
     };
 
     const reset = () => {
@@ -90,7 +93,7 @@ export const CropModal = ({imageLoaded, setImageLoaded, imageToCrop, showCropMod
     }
 
     return ( 
-        <Modal show={showCropModal} onBackdropClick={() => reset()}>
+        <Modal id="croppingModal" show={showCropModal} onBackdropClick={() => reset()}>
             <div style={{display:"flex",justifyContent:"flex-end", padding:"5px"}}>
                 <Button onClick={reset} color="error">close</Button>
             </div>
