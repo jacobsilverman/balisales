@@ -22,7 +22,6 @@ const Map = ({addresses, width, height, zoom, center={lat: 38.1355772, lng: -96.
     })
 
     useEffect(() => {
-        console.log("render")
         if (initial.current) {
             initial.current = false;
             return;
