@@ -25,11 +25,9 @@ export const CropModal = ({imageLoaded, setImageLoaded, imageToCrop, showCropMod
             if (heightDiff < widthDiff){
                 const centered = (width - height*.83)/2;
                 width = height*.83;
-                height = height;
                 x = centered;
             } else if (heightDiff > widthDiff) {
-                const centered = (height - (width + (width*.17)))/2
-                width = width;
+                const centered = (height - (width + (width*.17)))/2;
                 height = width + (width*.17);
                 y = centered;
             }
@@ -101,13 +99,13 @@ export const CropModal = ({imageLoaded, setImageLoaded, imageToCrop, showCropMod
                 Resizing image to fit the 250px 300px dimensions
             </div>
             {imageToCrop && <ReactCrop crop={crop} onChange={c => setCrop(c)}>
-                <img src={imageUrl} onLoad={onImageLoad} />
+                <img src={imageUrl} onLoad={onImageLoad} alt="Crop upload" />
             </ReactCrop>}
             <Button variant="outlined" onClick={() => cropImageNow()}>Preview</Button>
             {output && <>
                 <div className="center">
                     {/* <div>Here is a preview of how your image will display</div> */}
-                    <img src={output} style={{height:"300px",width: "250px"}} />
+                    <img src={output} style={{height:"300px",width: "250px"}} alt="Finalized upload" />
                 </div>
                 <Button 
                     variant="contained"

@@ -50,8 +50,8 @@ const SearchBar = ({posts, showSearch, t, popped}) => {
             
             if (title.includes(searchValue.toLowerCase())) {
                 return (
-                    <OverlayTrigger key={post?.id}  trigger="focus" overlay={price} placement="left">
-                        <a className="post-link" key={"search-"+post?.id} onClick={(e)=>{e.stopPropagation();setOpenPost({show:true,post:post})}}>{post.title}</a>
+                    <OverlayTrigger key={post?.id}  trigger="hover" overlay={price} placement="left">
+                        <div className="post-link" key={"search-"+post?.id} onClick={(e)=>{e.stopPropagation();setOpenPost({show:true,post:post})}}>{post.title}</div>
                         {/* <a href={"/singlePost?id="+post.id} targe="blank" key={"search-"+post?.id}>{post.title}</a> */}
                     </OverlayTrigger>
                 );
@@ -71,7 +71,7 @@ const SearchBar = ({posts, showSearch, t, popped}) => {
                 if (bali !== 'string' && (bali?.blade?.toLowerCase().includes(searchValue.toLowerCase()) || company.toLowerCase().includes(searchValue.toLowerCase()))) {
                     const price = (<Popover>${bali?.price}</Popover>);
                     val.push((
-                        <OverlayTrigger key={bali?.url + bali?.blade} trigger="focus" overlay={price} placement="left">
+                        <OverlayTrigger key={bali?.url + bali?.blade} trigger="hover" overlay={price} placement="left">
                             <a href={bali?.url} target="blank">{bali?.blade+": "+company}</a>
                         </OverlayTrigger>
                     ))
@@ -423,7 +423,7 @@ const Header = ({posts, setShowFilter}) => {
         setProvider(facebookProvider);
         signInWithPopup(auth, facebookProvider).then((result) => {
             // The signed-in user info.
-            const user = result.user;
+            // const user = result.user;
         
             // This gives you a Facebook Access Token. You can use it to access the Facebook API.
             // const credential = FacebookAuthProvider.credentialFromResult(result);
@@ -433,10 +433,10 @@ const Header = ({posts, setShowFilter}) => {
             // ...
           }).catch((error) => {
             // Handle Errors here.
-            const errorCode = error.code;
-            const errorMessage = error.message;
+            // const errorCode = error.code;
+            // const errorMessage = error.message;
             // The email of the user's account used.
-            const email = error.customData.email;
+            // const email = error.customData.email;
             // The AuthCredential type that was used.
             console.log(error);
             // const credential = FacebookAuthProvider.credentialFromError(error);

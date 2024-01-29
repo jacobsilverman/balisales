@@ -1,5 +1,4 @@
 import './LoginRequired.scss';
-import { useEffect } from 'react';
 import { Container , Col, Row} from "react-bootstrap";
 
 import { useTranslation } from "react-i18next";

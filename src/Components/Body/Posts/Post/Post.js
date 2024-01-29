@@ -51,7 +51,7 @@ function Post({displayUrl, item, index, settingsPage, setOpenEditModal, setSelec
                     {item?.title.toUpperCase()}
                 </div>
                 <div className={imgContainerCls}>
-                    <img src={url} className={imgCls} ref={imgRef} onLoad={rotateVerticalImage} />
+                    <img src={url} className={imgCls} ref={imgRef} onLoad={rotateVerticalImage} alt="User Post" />
                 </div>
                 <div>
                     <span className='tag-box'>{item?.brand}</span>

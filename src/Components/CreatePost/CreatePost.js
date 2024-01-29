@@ -170,6 +170,7 @@ function CreatePost() {
                         console.log(storageRef);
                     }
                 );
+                return null;
             });
 
             Promise.all(promises).then(() => {
