@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 
 import './Header.scss';
 import { getIp, getUserInfo, setUserLogin, setUserInfo, getProfilePicture } from '../../Data/Services/userInfo.js';
-import { pageTitles } from '../../Data/Constants';
+// import { pageTitles } from '../../Data/Constants';
 import Companies from '../../Data/Constants/Companies.json';
 
 
@@ -250,13 +250,13 @@ const Header = ({posts, setShowFilter}) => {
     const [isAuth, setIsAuth] = useState(localStorage.getItem("isAuth")==="true");
     const [showAccount, setShowAccount] = useState(false);
     const [showDonate, setShowDonate] = useState(false);
-    const [showInbox, setShowInbox] = useState(false);
+    // const [showInbox, setShowInbox] = useState(false);
     const [showNav, setShowNav] = useState(false);
-    const [showNotifications, setShowNotifications] = useState(false);
+    // const [showNotifications, setShowNotifications] = useState(false);
     const [showSearch, setShowSearch] = useState(false);
     const [profilePic, setProfilePic] = useState(localStorage.getItem("profile-picture-"+localStorage.getItem("uid")));
     const [uid, setUid] = useState(localStorage.getItem("uid"));
-    const [pageTitle, setPageTitle] = useState(t(pageTitles[window.location.pathname]));
+    // const [pageTitle, setPageTitle] = useState(t(pageTitles[window.location.pathname]));
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
     const [newAccount, setNewAccount] = useState(true);
     const [provider, setProvider] = useState(googleProvider);
@@ -446,9 +446,9 @@ const Header = ({posts, setShowFilter}) => {
     }
 
     const resetAllPopovers = (ignore) => {
-        ignore !== "inbox" && setShowInbox(false);
+        // ignore !== "inbox" && setShowInbox(false);
         ignore !== "account" && setShowAccount(false);
-        ignore !== "notifications" && setShowNotifications(false);
+        // ignore !== "notifications" && setShowNotifications(false);
         ignore !== "search" && setShowSearch(false);
         ignore !== "nav" && setShowNav(false);
     }
@@ -460,20 +460,20 @@ const Header = ({posts, setShowFilter}) => {
             <Row className={navCls}>
                 <Col xs={12} className="popover-container">
                     {isAuth && <><Link className="white" to={{pathname: '/createPost'}}>
-                        <Button onClick={() =>{resetAllPopovers("create");setPageTitle("Create")}}>
+                        <Button onClick={() =>{resetAllPopovers("create")}}>
                             <i className="material-icons">add</i>
                             &nbsp;{t("Create")}
                         </Button>
                     </Link> 
                     <hr /></>}
                     <Link className="white" to={{pathname: '/contactUs'}}>
-                        <Button onClick={() =>{resetAllPopovers("contact");setPageTitle("Contact")}}>
+                        <Button onClick={() =>{resetAllPopovers("contact")}}>
                             <i className="material-icons">contact_support</i>
                             &nbsp;{t("Contact Support")}
                         </Button>
                     </Link>
                     <Link className="white" to={{pathname: '/aboutUs'}}>
-                        <Button onClick={() =>{resetAllPopovers("about");setPageTitle("About")}}>
+                        <Button onClick={() =>{resetAllPopovers("about")}}>
                             <i className="material-icons">face</i>
                             &nbsp;{t("About Us")}
                         </Button>
@@ -530,7 +530,6 @@ const Header = ({posts, setShowFilter}) => {
                 setNewAccount={setNewAccount}
                 showAccount={showAccount} 
                 setShowAccount={setShowAccount}
-                setPageTitle={setPageTitle}
                 t={t} />
         </Popover>
     );
@@ -542,100 +541,98 @@ const Header = ({posts, setShowFilter}) => {
     };
 
 
-    const navBar = useMemo(() => {
-        return (
-            <Container>
-                <LoginModal t={t} openLoginModal={openLoginModal} setOpenLoginModal={setOpenLoginModal} newAccount={newAccount} setNewAccount={setNewAccount} signInWithEmail={signInWithEmail} signInWithGoogle={signInWithGoogle} signInWithFacebook={signInWithFacebook} signInWithTwitter={signInWithTwitter} signInWithYahoo={signInWithYahoo} resetEmailPassword={resetEmailPassword} />
+    const navBar = (
+        <Container>
+            <LoginModal t={t} openLoginModal={openLoginModal} setOpenLoginModal={setOpenLoginModal} newAccount={newAccount} setNewAccount={setNewAccount} signInWithEmail={signInWithEmail} signInWithGoogle={signInWithGoogle} signInWithFacebook={signInWithFacebook} signInWithTwitter={signInWithTwitter} signInWithYahoo={signInWithYahoo} resetEmailPassword={resetEmailPassword} />
 
-                <PayPalScriptProvider options={initialOptions}>
-                    <Donate showDonate={showDonate} setShowDonate={setShowDonate} />
-                </PayPalScriptProvider>
-                <Row className="between" onClick={() => {resetAllPopovers()}}>
-                    <Col xs={5} sm={7} md={9} className="login-container-left">
-                        <Button onClick={() =>{resetAllPopovers();setPageTitle("Home");window.location.href = "/"}}>
-                            <i className="material-icons">home</i>
+            <PayPalScriptProvider options={initialOptions}>
+                <Donate showDonate={showDonate} setShowDonate={setShowDonate} />
+            </PayPalScriptProvider>
+            <Row className="between" onClick={() => {resetAllPopovers()}}>
+                <Col xs={5} sm={7} md={9} className="login-container-left">
+                    <Button onClick={() =>{resetAllPopovers();window.location.href = "/"}}>
+                        <i className="material-icons">home</i>
+                    </Button>
+                    {windowWidth < 800 ? <OverlayTrigger trigger="click" placement="bottom-start" show={showNav} overlay={navPopover}>
+                        <Button onClick={(e) =>{e.stopPropagation();resetAllPopovers("nav");setShowNav(show => !show)}}>
+                            <i className="material-icons">format_list_bulleted</i>
                         </Button>
-                        {windowWidth < 800 ? <OverlayTrigger trigger="click" placement="bottom-start" show={showNav} overlay={navPopover}>
-                            <Button onClick={(e) =>{e.stopPropagation();resetAllPopovers("nav");setShowNav(show => !show)}}>
-                                <i className="material-icons">format_list_bulleted</i>
+                    </OverlayTrigger>:
+                    <>
+                        {isAuth &&<Link className="white nav-bar-item" to={{pathname: '/createPost'}}>
+                            <Button onClick={() =>{resetAllPopovers("create")}}>
+                                <i className="material-icons">add</i>
+                                &nbsp;{t("Create")}
                             </Button>
-                        </OverlayTrigger>:
-                        <>
-                            {isAuth &&<Link className="white nav-bar-item" to={{pathname: '/createPost'}}>
-                                <Button onClick={() =>{resetAllPopovers("create");setPageTitle("Create")}}>
-                                    <i className="material-icons">add</i>
-                                    &nbsp;{t("Create")}
-                                </Button>
-                            </Link>}
-                            <Link className="white nav-bar-item" to={{pathname: '/contactUs'}}>
-                                <Button onClick={() =>{resetAllPopovers("contact");setPageTitle("Contact")}}>
-                                    <i className="material-icons">contact_support</i>
-                                    &nbsp;{t("Contact")}
-                                </Button>
-                            </Link>
-                            <Link className="white nav-bar-item" to={{pathname: '/aboutUs'}}>
-                                <Button onClick={() =>{resetAllPopovers("about");setPageTitle("About")}}>
-                                    <i className="material-icons">face</i>
-                                    &nbsp;{t("About Us")}
-                                </Button>
-                            </Link>
-                            <Button onClick={() =>{resetAllPopovers();setShowDonate(cur => !cur)}}>
-                                <i className="material-icons">payments</i>
-                                &nbsp;{t("Donate")}
+                        </Link>}
+                        <Link className="white nav-bar-item" to={{pathname: '/contactUs'}}>
+                            <Button onClick={() =>{resetAllPopovers("contact")}}>
+                                <i className="material-icons">contact_support</i>
+                                &nbsp;{t("Contact")}
                             </Button>
-                        </>}
-                        {location.pathname==='/' ? 
-                            <Button onClick={() =>{resetAllPopovers();setShowFilter(cur => !cur)}}>
-                                {windowWidth>800 && <i className="material-icons">manage_search</i>}
-                                {t("Filter")}
+                        </Link>
+                        <Link className="white nav-bar-item" to={{pathname: '/aboutUs'}}>
+                            <Button onClick={() =>{resetAllPopovers("about")}}>
+                                <i className="material-icons">face</i>
+                                &nbsp;{t("About Us")}
                             </Button>
-                            : <Button href="/" onClick={() =>{resetAllPopovers();setPageTitle("Home")}}>
-                                {t("Browse")}
-                        </Button>}
-                    </Col>
-                    {/* {window.innerWidth > 800 ? <Col className="center title">
-                        <h1 style={{display:"inline-block",fontSize:"40px",fontFamily:"roboto",paddingTop:"10px"}}>
-                            <a href="/" style={{color:"black", textDecoration: "none"}}>
-                                {t(pageTitle)}
-                            </a>
-                        </h1>
-                    </Col> : <Col />} */}
-                    <Col xs={6} sm={4} md={2} className="login-container-right">
-                        {windowWidth < 1100 ? <OverlayTrigger trigger="click" placement="bottom-end" show={showSearch} overlay={searchPopover}>
-                             <Button  onClick={(e) => {e.stopPropagation();resetAllPopovers("search");setShowSearch(show => !show)}}>
-                                <i className="material-icons">search</i>
-                            </Button>
-                        </OverlayTrigger> :
-                        <SearchBar posts={posts} showSearch={true} t={t} popped={false} />}
-                        {/* {isAuth && 
-                        <OverlayTrigger trigger="focus" placement="bottom-end" show={showNotifications} overlay={notificationPopover}>
-                            <Button  onClick={() => {resetAllPopovers("notifications");setShowNotifications(show => !show)}}>
-                                <i className="material-icons">notifications</i>
-                            </Button>
-                        </OverlayTrigger>} */}
-                        {/* {isAuth && 
-                        <OverlayTrigger trigger="focus" placement="bottom-end" show={showInbox} overlay={inboxPopover}>
-                            <Button onClick={() => {resetAllPopovers("inbox");setShowInbox(show => !show)}}>
-                                <i className="material-icons">inbox</i>
-                            </Button>
-                        </OverlayTrigger>} */}
-                        {!isAuth && 
-                        <Fragment>
-                            <Button variant='outlined' size="medium" onClick={() => {setNewAccount(false);setOpenLoginModal(true)}} style={{textTransform: 'none', padding:"5px",margin:"5px"}}>{t("Login")}</Button>
-                            <Button variant='contained' size="medium" onClick={() => {setNewAccount(true);setOpenLoginModal(true)}} style={{textTransform: 'none', padding:"5px",margin:"5px"}}>{t("Signup")}</Button>
-                        </Fragment>}
-                        <OverlayTrigger trigger="click" placement="bottom-end" show={showAccount} overlay={accountOptionsPopover}>
-                            <Button onClick={(e) => {e.stopPropagation();resetAllPopovers("account");setShowAccount(show => !show) }}>
-                                {isAuth ? 
-                                <div className="account-profile" style={{backgroundImage: `url(${profilePic})`}} />
-                                : <i className="material-icons">manage_accounts</i>}
-                            </Button>
-                        </OverlayTrigger>
-                    </Col>
-                </Row>
-            </Container>
-        );
-    }, [profilePic, isAuth, showAccount, showDonate, showInbox, showNav, showNotifications, showSearch, pageTitle, windowWidth, openLoginModal, newAccount, posts]);
+                        </Link>
+                        <Button onClick={() =>{resetAllPopovers();setShowDonate(cur => !cur)}}>
+                            <i className="material-icons">payments</i>
+                            &nbsp;{t("Donate")}
+                        </Button>
+                    </>}
+                    {location.pathname==='/' ? 
+                        <Button onClick={() =>{resetAllPopovers();setShowFilter(cur => !cur)}}>
+                            {windowWidth>800 && <i className="material-icons">manage_search</i>}
+                            {t("Filter")}
+                        </Button>
+                        : <Button href="/" onClick={() =>{resetAllPopovers()}}>
+                            {t("Browse")}
+                    </Button>}
+                </Col>
+                {/* {window.innerWidth > 800 ? <Col className="center title">
+                    <h1 style={{display:"inline-block",fontSize:"40px",fontFamily:"roboto",paddingTop:"10px"}}>
+                        <a href="/" style={{color:"black", textDecoration: "none"}}>
+                            {t(pageTitle)}
+                        </a>
+                    </h1>
+                </Col> : <Col />} */}
+                <Col xs={6} sm={4} md={2} className="login-container-right">
+                    {windowWidth < 1100 ? <OverlayTrigger trigger="click" placement="bottom-end" show={showSearch} overlay={searchPopover}>
+                            <Button  onClick={(e) => {e.stopPropagation();resetAllPopovers("search");setShowSearch(show => !show)}}>
+                            <i className="material-icons">search</i>
+                        </Button>
+                    </OverlayTrigger> :
+                    <SearchBar posts={posts} showSearch={true} t={t} popped={false} />}
+                    {/* {isAuth && 
+                    <OverlayTrigger trigger="focus" placement="bottom-end" show={showNotifications} overlay={notificationPopover}>
+                        <Button  onClick={() => {resetAllPopovers("notifications");setShowNotifications(show => !show)}}>
+                            <i className="material-icons">notifications</i>
+                        </Button>
+                    </OverlayTrigger>} */}
+                    {/* {isAuth && 
+                    <OverlayTrigger trigger="focus" placement="bottom-end" show={showInbox} overlay={inboxPopover}>
+                        <Button onClick={() => {resetAllPopovers("inbox");setShowInbox(show => !show)}}>
+                            <i className="material-icons">inbox</i>
+                        </Button>
+                    </OverlayTrigger>} */}
+                    {!isAuth && 
+                    <Fragment>
+                        <Button variant='outlined' size="medium" onClick={() => {setNewAccount(false);setOpenLoginModal(true)}} style={{textTransform: 'none', padding:"5px",margin:"5px"}}>{t("Login")}</Button>
+                        <Button variant='contained' size="medium" onClick={() => {setNewAccount(true);setOpenLoginModal(true)}} style={{textTransform: 'none', padding:"5px",margin:"5px"}}>{t("Signup")}</Button>
+                    </Fragment>}
+                    <OverlayTrigger trigger="click" placement="bottom-end" show={showAccount} overlay={accountOptionsPopover}>
+                        <Button onClick={(e) => {e.stopPropagation();resetAllPopovers("account");setShowAccount(show => !show) }}>
+                            {isAuth ? 
+                            <div className="account-profile" style={{backgroundImage: `url(${profilePic})`}} />
+                            : <i className="material-icons">manage_accounts</i>}
+                        </Button>
+                    </OverlayTrigger>
+                </Col>
+            </Row>
+        </Container>
+    );
 
     return (
         <nav>

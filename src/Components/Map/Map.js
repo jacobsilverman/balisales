@@ -1,5 +1,5 @@
 /*global google*/
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { GoogleMap, Marker, OverlayView } from '@react-google-maps/api';
 import { getLongitudeLatitude } from '../../Data/Services/geocode';
 import defaultProfile from "../../Data/Images/default-profile.jpg"
@@ -7,7 +7,7 @@ import defaultProfile from "../../Data/Images/default-profile.jpg"
 import "./Map.scss";
 
 const Map = ({addresses, width, height, zoom, center={lat: 38.1355772, lng: -96.135829}}) => {
-    const [initial, setInitial] = useState(true);
+    const initial = useRef(true);
     const [parsedUserData, setParsedUserData] = useState([]);
     const [userHovered, setUserHovered] = useState({show: false, position: {}});
     const c = addresses.length === 1 ? true : false;
@@ -22,8 +22,9 @@ const Map = ({addresses, width, height, zoom, center={lat: 38.1355772, lng: -96.
     })
 
     useEffect(() => {
-        if (initial) {
-            setInitial(false);
+        console.log("render")
+        if (initial.current) {
+            initial.current = false;
             return;
         }
         setParsedUserData([]);
@@ -39,52 +40,48 @@ const Map = ({addresses, width, height, zoom, center={lat: 38.1355772, lng: -96.
                 });
             }
         }
-
+        return () => {initial.current = true}
     }, [addresses]);
 
-    const render = useMemo(() => {
-        if (initial) {
-            setInitial(false);
-            return
-        }
+    if (initial.current) {
+        initial.current = false;
+        return null;
+    }
 
-        return (
-            <GoogleMap
-                icon="here"
-                mapContainerStyle={mapStyles}
-                zoom={zoom}
-                center={c ? parsedUserData[0]?.address : center}>
-                    {parsedUserData.map((position) => {
-                        return (
-                        <>
-                            <Marker 
-                                position={position?.address} 
-                                icon={{url: position?.userInfo?.icon || defaultProfile, scaledSize: new google.maps.Size(25, 25)}} 
-                                onClick={()=>window.location.href= "/profile?id="+position?.userInfo?.id}
-                                onMouseOver={() => {
-                                    setUserHovered({show: true, position: position})
-                                }}
-                                onMouseOut={() => {
-                                    setUserHovered({show: false, position: {}})
-                                }}>
-                                
-                            </Marker>
-                            {userHovered?.show && <OverlayView
-                                position={userHovered?.position?.address}
-                                mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}
-                                getPixelPositionOffset={getPixelPositionOffset}>
-                                <div className="info-window-container static">
-                                    <h5>{userHovered?.position?.userInfo?.displayName || "Default Profile"}</h5>
-                                </div>
-                            </OverlayView>}
-                        </>
-                        );
-                    })}
-            </GoogleMap>
-        )
-    }, [parsedUserData, userHovered]);
-
-    return render;
+    return (
+        <GoogleMap
+            icon="here"
+            mapContainerStyle={mapStyles}
+            zoom={zoom}
+            center={c ? parsedUserData[0]?.address : center}>
+                {parsedUserData.map((position) => {
+                    return (
+                    <div key={position?.address}>
+                        <Marker 
+                            position={position?.address} 
+                            icon={{url: position?.userInfo?.icon || defaultProfile, scaledSize: new google.maps.Size(25, 25)}} 
+                            onClick={()=>window.location.href= "/profile?id="+position?.userInfo?.id}
+                            onMouseOver={() => {
+                                setUserHovered({show: true, position: position})
+                            }}
+                            onMouseOut={() => {
+                                setUserHovered({show: false, position: {}})
+                            }}>
+                            
+                        </Marker>
+                        {userHovered?.show && <OverlayView
+                            position={userHovered?.position?.address}
+                            mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}
+                            getPixelPositionOffset={getPixelPositionOffset}>
+                            <div className="info-window-container static">
+                                <h5>{userHovered?.position?.userInfo?.displayName || "Default Profile"}</h5>
+                            </div>
+                        </OverlayView>}
+                    </div>
+                    );
+                })}
+        </GoogleMap>
+    )
 }
 
 export default Map;
