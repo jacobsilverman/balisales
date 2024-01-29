@@ -50,3 +50,35 @@ export const priceColors = (type) => {
             return 'black';
     };
 };
+
+export const dateFormatter = (startDate) => {
+    const difference = new Date() - startDate
+
+    //Arrange the difference of date in days, hours, minutes, and seconds format
+    let days = Math.floor(difference / (1000 * 60 * 60 * 24));
+    let hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    let minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+    let seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+    if (days > 0) {
+        return days + " days"
+    } else if (hours > 0) {
+        return hours + " hours"
+    } else if (minutes > 0) {
+        return minutes + " minutes"
+    }
+    return seconds + " seconds"
+}
+
+export const stringToColour = (str) => {
+    let hash = 0;
+    str.split('').forEach(char => {
+      hash = char.charCodeAt(0) + ((hash << 5) - hash)
+    })
+    let colour = '#'
+    for (let i = 0; i < 3; i++) {
+      const value = (hash >> (i * 8)) & 0xff
+      colour += value.toString(16).padStart(2, '0')
+    }
+    return colour
+  }

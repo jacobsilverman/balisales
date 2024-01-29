@@ -135,7 +135,7 @@ function CreatePost() {
             alert("Please upload an image first!");
             return
         }
-        
+
         const postsCollectionRef = collection(db, process.env.REACT_APP_ENVIRONMENT+"-posts");
         await addDoc(postsCollectionRef, {
             status: "Available",
