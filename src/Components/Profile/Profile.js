@@ -61,7 +61,7 @@ const Profile = () => {
             setProfilePic(defaultProfile);
             console.error("no picture: ", err);
         });
-    }, []);
+    }, [params?.id, loggedId]);
 
     const handleWriteReference = (type) => {
         setReference(cur => {

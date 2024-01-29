@@ -41,7 +41,7 @@ const SearchBar = ({posts, showSearch, t, popped}) => {
                     </OverlayTrigger>
                 );
             } 
-            return;
+            return "";
         });
 
         result = [...result, posts.map((post) => {
@@ -50,13 +50,13 @@ const SearchBar = ({posts, showSearch, t, popped}) => {
             
             if (title.includes(searchValue.toLowerCase())) {
                 return (
-                    <OverlayTrigger key={post?.id}  trigger="hover" overlay={price} placement="left">
+                    <OverlayTrigger key={post?.id} triggers={['hover', 'focus']} overlay={price} placement="left">
                         <div className="post-link" key={"search-"+post?.id} onClick={(e)=>{e.stopPropagation();setOpenPost({show:true,post:post})}}>{post.title}</div>
                         {/* <a href={"/singlePost?id="+post.id} targe="blank" key={"search-"+post?.id}>{post.title}</a> */}
                     </OverlayTrigger>
                 );
             }
-            return;
+            return "";
         })]
 
         result = [...result, ...Object.keys(Companies).map((company) => {
@@ -71,7 +71,7 @@ const SearchBar = ({posts, showSearch, t, popped}) => {
                 if (bali !== 'string' && (bali?.blade?.toLowerCase().includes(searchValue.toLowerCase()) || company.toLowerCase().includes(searchValue.toLowerCase()))) {
                     const price = (<Popover>${bali?.price}</Popover>);
                     val.push((
-                        <OverlayTrigger key={bali?.url + bali?.blade} trigger="hover" overlay={price} placement="left">
+                        <OverlayTrigger key={bali?.url + bali?.blade} triggers={['hover', 'focus']} overlay={price} placement="left">
                             <a href={bali?.url} target="blank">{bali?.blade+": "+company}</a>
                         </OverlayTrigger>
                     ))
@@ -89,7 +89,7 @@ const SearchBar = ({posts, showSearch, t, popped}) => {
         });
 
         return result.length > 0 ? result : "No Results Found";
-    }, [searchValue])
+    }, [searchValue, posts])
     
     const searchCls = `account-dropdown ${showSearch ? "visible" : 'hidden'}`;
     const searchAbility = (event) => {
