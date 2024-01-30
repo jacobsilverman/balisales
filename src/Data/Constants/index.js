@@ -59,8 +59,10 @@ export const dateFormatter = (startDate) => {
     let hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     let minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
     let seconds = Math.floor((difference % (1000 * 60)) / 1000);
-
-    if (days > 0) {
+    
+    if (days > 45){
+        return "more than 45 days"
+    } else if (days > 0) {
         return days + " days"
     } else if (hours > 0) {
         return hours + " hours"

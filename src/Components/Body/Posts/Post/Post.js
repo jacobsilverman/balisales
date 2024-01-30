@@ -7,17 +7,21 @@ function Post({displayUrl, item, index, settingsPage, setOpenEditModal, setSelec
     // const containerCls = `post-container ${!isMobile && "desktop-hov" } ${item?.type}-border`;
     let imgRef = useRef(null);
     const [imgCls, setImgCls] = useState("hide");
+    const [imgHeightCls, setImgHeightCls] = useState({height: "220px" });
     const [imgContainerCls, setImgContainerCls] = useState("default-image-container");
     const url = displayUrl.split("(")[1].split(")")[0]
 
     const rotateVerticalImage = () =>{
-        setImgCls("image-size")
+        setImgCls("image-size");
         if (imgRef?.current?.naturalHeight > imgRef?.current?.naturalWidth) {
-            setImgCls(cur => cur + " rotate-image")
-            setImgContainerCls("rotate-image-container")
+            setImgCls(cur => cur + " rotate-image");
+            setImgContainerCls("rotate-image-container");
+            let ratio = imgRef?.current?.naturalHeight / imgRef?.current?.naturalWidth;
+            ratio = Math.min(ratio, 1.55)
+            setImgHeightCls({height: ratio*220})
         }
-        setImgCls(cur => cur + " show")
-    }
+        setImgCls(cur => cur + " show");
+    };
 
     const handleSelectPost = (e) => {
         if (settingsPage) {
@@ -25,7 +29,7 @@ function Post({displayUrl, item, index, settingsPage, setOpenEditModal, setSelec
             setSelectedPost(item);
             setOpenEditModal(true);
         }else {
-            setOpenSelectModal(cur => {return {...cur, show:true, index: index, item:item}})
+            setOpenSelectModal(cur => {return {...cur, show:true, index: index, item:item}});
         }
     }
 
@@ -51,9 +55,9 @@ function Post({displayUrl, item, index, settingsPage, setOpenEditModal, setSelec
                     {item?.title.toUpperCase()}
                 </div>
                 <div className={imgContainerCls}>
-                    <img src={url} className={imgCls} ref={imgRef} onLoad={rotateVerticalImage} alt="User Post" />
+                    <img src={url} className={imgCls} style={imgHeightCls} ref={imgRef} onLoad={rotateVerticalImage} alt="User Post" />
                 </div>
-                <div>
+                <div className='tags'>
                     <span className='tag-box'>{item?.brand}</span>
                     <span className='tag-box'>{item?.type}</span>
                     <span className='tag-box'>{item?.status}</span>
