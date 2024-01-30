@@ -17,8 +17,13 @@ function Post({displayUrl, item, index, settingsPage, setOpenEditModal, setSelec
             setImgCls(cur => cur + " rotate-image");
             setImgContainerCls("rotate-image-container");
             let ratio = imgRef?.current?.naturalHeight / imgRef?.current?.naturalWidth;
-            ratio = Math.min(ratio, 1.55)
-            setImgHeightCls({height: ratio*220})
+            let h;
+            if (ratio > 2){
+                h = 500;
+            }else {
+                h = 400;
+            } 
+            setImgHeightCls({height: h})
         }
         setImgCls(cur => cur + " show");
     };
@@ -54,9 +59,11 @@ function Post({displayUrl, item, index, settingsPage, setOpenEditModal, setSelec
                 <div className='post-title'>
                     {item?.title.toUpperCase()}
                 </div>
+                
                 <div className={imgContainerCls}>
                     <img src={url} className={imgCls} style={imgHeightCls} ref={imgRef} onLoad={rotateVerticalImage} alt="User Post" />
                 </div>
+
                 <div className='tags'>
                     <span className='tag-box'>{item?.brand}</span>
                     <span className='tag-box'>{item?.type}</span>
