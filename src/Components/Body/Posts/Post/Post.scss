@@ -1,128 +1,63 @@
-.post-container {
+.new-post-container {
+    cursor: pointer;
+    position: relative;
     display: flex;
-    // max-height: 200px;
+    height: 330px;
     background-size: cover;
-    // -ms-background-size: cover;
-    // -o-background-size: cover;
-    // -moz-background-size: cover;
-    // -webkit-background-size: cover; 
     padding: 0px !important;
-    justify-content: center;
-    align-items: center;
     box-shadow: rgba(234, 234, 234, 0.15) 0px 7px 14px, rgba(234, 234, 234, 0.12) 0px 5px 10px;
     border: .15em solid  rgb(234, 234, 234);
-    border-radius: 2px;
+    border-radius: 10px;
 }
 
-
-.Trading-border {
-    box-shadow: rgba(55, 244, 251, 0.15) 0px 7px 14px, rgba(55, 244, 251, 0.12) 0px 5px 10px;
-    border: .15em solid  rgb(55, 244, 251);
-    -webkit-transition: 1s;
-}
-.Buying-border {
-    box-shadow: rgba(91, 226, 60, 0.15) 0px 7px 14px, rgba(91, 226, 60, 0.12) 0px 5px 10px;
-    border: .15em solid  rgb(91, 226, 60);
-    -webkit-transition: 1s;
-}
-.Selling\/Trading-border {
-    box-shadow: rgba(#1976d2, 0.15) 0px 7px 14px, rgba(#1976d2, 0.12) 0px 5px 10px;
-    border: .15em solid #1976d2;
-    -webkit-transition: 1s;
+.desktop-hov:hover {
+    background-color: rgba(234, 234, 234, 1);
+    border: .15em solid  #1976d2;
 }
 
-.Selling-border {
-    box-shadow: rgba(236, 84, 249, 0.15) 0px 7px 14px, rgba(236, 84, 249, 0.12) 0px 5px 10px;
-    border: .15em solid  rgb(236, 84, 249);
-    -webkit-transition: 1s;
+.image-size {
+    object-fit: scale-down;
+    height: 220px;
+    width: auto;
+    border-radius: 10px;
+  }
+
+.new-post-inner-container {
+    padding: 10px;
+    width: 100%;
 }
 
-@media (hover: hover) and (pointer: fine) {
-    .Selling-border:hover  {
-        box-shadow: -5px 5px rgb(236, 84, 249),
-        -4px 4px rgb(236, 84, 249),
-        -3px 3px rgb(236, 84, 249),
-        -2px 2px rgb(236, 84, 249),
-        -1px 1px rgb(236, 84, 249),
-        -.5px .5px rgb(236, 84, 249), 
-        -1.5px 1.5px rgb(236, 84, 249),
-        -2.5px 2.5px rgb(236, 84, 249),
-        -3.5px 3.5px rgb(236, 84, 249), 
-        -4.5px 4.5px rgb(236, 84, 249) !important;
-        border: none;
-        transition: .75s;
-        translate: 3.5% -2.5%;
-        border: none;
-    }
-
-    .Trading-border:hover  {
-        box-shadow: -5px 5px rgb(55, 244, 251),
-        -4px 4px rgb(55, 244, 251),
-        -3px 3px rgb(55, 244, 251),
-        -2px 2px rgb(55, 244, 251),
-        -1px 1px rgb(55, 244, 251),
-        -.5px .5px rgb(55, 244, 251), 
-        -1.5px 1.5px rgb(55, 244, 251),
-        -2.5px 2.5px rgb(55, 244, 251),
-        -3.5px 3.5px rgb(55, 244, 251), 
-        -4.5px 4.5px rgb(55, 244, 251) !important;
-        border: none;
-        transition: .75s;
-        translate: 3.5% -2.5%;
-        border: none;
-    }
-
-    .Buying-border:hover  {
-        box-shadow: -5px 5px rgb(124, 210, 25),
-        -4px 4px rgb(124, 210, 25),
-        -3px 3px rgb(124, 210, 25),
-        -2px 2px rgb(124, 210, 25),
-        -1px 1px rgb(124, 210, 25),
-        -.5px .5px rgb(124, 210, 25), 
-        -1.5px 1.5px rgb(124, 210, 25),
-        -2.5px 2.5px rgb(124, 210, 25),
-        -3.5px 3.5px rgb(124, 210, 25), 
-        -4.5px 4.5px rgb(124, 210, 25) !important;
-        border: none;
-        transition: .75s;
-        translate: 3.5% -2.5%;
-        border: none;
-    }
-
-    .Selling\/Trading-border:hover  {
-        box-shadow: -5px 5px #1976d2,
-        -4px 4px #1976d2,
-        -3px 3px #1976d2,
-        -2px 2px #1976d2,
-        -1px 1px #1976d2,
-        -.5px .5px #1976d2, 
-        -1.5px 1.5px #1976d2,
-        -2.5px 2.5px #1976d2,
-        -3.5px 3.5px #1976d2, 
-        -4.5px 4.5px #1976d2 !important;
-        border: none;
-        transition: .75s;
-        translate: 3.5% -2.5%;
-        border: none;
-    }
-
-    .desktop-hov:hover {
-        box-shadow: -5px 5px rgb(25, 118, 210),
-        -4px 4px rgb(25, 118, 210),
-        -3px 3px rgb(25, 118, 210),
-        -2px 2px rgb(25, 118, 210),
-        -1px 1px rgb(25, 118, 210),
-        -.5px .5px rgb(25, 118, 210), 
-        -1.5px 1.5px rgb(25, 118, 210),
-        -2.5px 2.5px rgb(25, 118, 210),
-        -3.5px 3.5px rgb(25, 118, 210), 
-        -4.5px 4.5px rgb(25, 118, 210);
-        border: none;
-        transition: .75s;
-        translate: 3.5% -2.5%;
-        border: none;
-    }
+.author-text {
+    display: inline-block;
+    font-size: 12px;
+    margin-right: 10px; 
+    font-weight: 750;
 }
+
+.date-text {
+    font-size: 10px;
+}
+
+.post-title {
+    font-size: 20px;
+    font-weight: 300;
+    color: darkgrey;
+    font-family: Garamond;
+}
+
+.tags{
+    margin-top: 10px;
+}
+
+.tag-box {
+    background-color: grey;
+    font-size: 11px;
+    color: white;
+    border-radius: 10px;
+    margin-right: 10px;
+    padding: 5px;
+}
+
 .multi-pic-indicator {
     position: absolute;
     top: 10px;
@@ -131,6 +66,163 @@
     height: 30px;
     color: white;
 }
+
+.hide {
+    display: none;
+}
+
+.show {
+    display: block;
+}
+
+.default-image-container {
+    position: relative;
+    display: grid;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+.rotate-image-container {
+    position: relative;
+    // width: 100%;
+    height: 220px;
+}
+
+.rotate-image {
+    object-fit: contain;
+    position: absolute;
+    transform: translate(-50%, -50%) rotate(90deg);
+    left: 50%;
+    top: 50%;
+}
+
+// .post-container {
+//     display: flex;
+//     // max-height: 200px;
+//     background-size: cover;
+//     // -ms-background-size: cover;
+//     // -o-background-size: cover;
+//     // -moz-background-size: cover;
+//     // -webkit-background-size: cover; 
+//     padding: 0px !important;
+//     justify-content: center;
+//     align-items: center;
+//     box-shadow: rgba(234, 234, 234, 0.15) 0px 7px 14px, rgba(234, 234, 234, 0.12) 0px 5px 10px;
+//     border: .15em solid  rgb(234, 234, 234);
+//     border-radius: 2px;
+// }
+
+
+// .Trading-border {
+//     box-shadow: rgba(55, 244, 251, 0.15) 0px 7px 14px, rgba(55, 244, 251, 0.12) 0px 5px 10px;
+//     border: .15em solid  rgb(55, 244, 251);
+//     -webkit-transition: 1s;
+// }
+// .Buying-border {
+//     box-shadow: rgba(91, 226, 60, 0.15) 0px 7px 14px, rgba(91, 226, 60, 0.12) 0px 5px 10px;
+//     border: .15em solid  rgb(91, 226, 60);
+//     -webkit-transition: 1s;
+// }
+// .Selling\/Trading-border {
+//     box-shadow: rgba(#1976d2, 0.15) 0px 7px 14px, rgba(#1976d2, 0.12) 0px 5px 10px;
+//     border: .15em solid #1976d2;
+//     -webkit-transition: 1s;
+// }
+
+// .Selling-border {
+//     box-shadow: rgba(236, 84, 249, 0.15) 0px 7px 14px, rgba(236, 84, 249, 0.12) 0px 5px 10px;
+//     border: .15em solid  rgb(236, 84, 249);
+//     -webkit-transition: 1s;
+// }
+
+// @media (hover: hover) and (pointer: fine) {
+//     .Selling-border:hover  {
+//         box-shadow: -5px 5px rgb(236, 84, 249),
+//         -4px 4px rgb(236, 84, 249),
+//         -3px 3px rgb(236, 84, 249),
+//         -2px 2px rgb(236, 84, 249),
+//         -1px 1px rgb(236, 84, 249),
+//         -.5px .5px rgb(236, 84, 249), 
+//         -1.5px 1.5px rgb(236, 84, 249),
+//         -2.5px 2.5px rgb(236, 84, 249),
+//         -3.5px 3.5px rgb(236, 84, 249), 
+//         -4.5px 4.5px rgb(236, 84, 249) !important;
+//         border: none;
+//         transition: .75s;
+//         translate: 3.5% -2.5%;
+//         border: none;
+//     }
+
+//     .Trading-border:hover  {
+//         box-shadow: -5px 5px rgb(55, 244, 251),
+//         -4px 4px rgb(55, 244, 251),
+//         -3px 3px rgb(55, 244, 251),
+//         -2px 2px rgb(55, 244, 251),
+//         -1px 1px rgb(55, 244, 251),
+//         -.5px .5px rgb(55, 244, 251), 
+//         -1.5px 1.5px rgb(55, 244, 251),
+//         -2.5px 2.5px rgb(55, 244, 251),
+//         -3.5px 3.5px rgb(55, 244, 251), 
+//         -4.5px 4.5px rgb(55, 244, 251) !important;
+//         border: none;
+//         transition: .75s;
+//         translate: 3.5% -2.5%;
+//         border: none;
+//     }
+
+//     .Buying-border:hover  {
+//         box-shadow: -5px 5px rgb(124, 210, 25),
+//         -4px 4px rgb(124, 210, 25),
+//         -3px 3px rgb(124, 210, 25),
+//         -2px 2px rgb(124, 210, 25),
+//         -1px 1px rgb(124, 210, 25),
+//         -.5px .5px rgb(124, 210, 25), 
+//         -1.5px 1.5px rgb(124, 210, 25),
+//         -2.5px 2.5px rgb(124, 210, 25),
+//         -3.5px 3.5px rgb(124, 210, 25), 
+//         -4.5px 4.5px rgb(124, 210, 25) !important;
+//         border: none;
+//         transition: .75s;
+//         translate: 3.5% -2.5%;
+//         border: none;
+//     }
+
+//     .Selling\/Trading-border:hover  {
+//         box-shadow: -5px 5px #1976d2,
+//         -4px 4px #1976d2,
+//         -3px 3px #1976d2,
+//         -2px 2px #1976d2,
+//         -1px 1px #1976d2,
+//         -.5px .5px #1976d2, 
+//         -1.5px 1.5px #1976d2,
+//         -2.5px 2.5px #1976d2,
+//         -3.5px 3.5px #1976d2, 
+//         -4.5px 4.5px #1976d2 !important;
+//         border: none;
+//         transition: .75s;
+//         translate: 3.5% -2.5%;
+//         border: none;
+//     }
+
+//     .desktop-hov:hover {
+//         box-shadow: -5px 5px rgb(25, 118, 210),
+//         -4px 4px rgb(25, 118, 210),
+//         -3px 3px rgb(25, 118, 210),
+//         -2px 2px rgb(25, 118, 210),
+//         -1px 1px rgb(25, 118, 210),
+//         -.5px .5px rgb(25, 118, 210), 
+//         -1.5px 1.5px rgb(25, 118, 210),
+//         -2.5px 2.5px rgb(25, 118, 210),
+//         -3.5px 3.5px rgb(25, 118, 210), 
+//         -4.5px 4.5px rgb(25, 118, 210);
+//         border: none;
+//         transition: .75s;
+//         translate: 3.5% -2.5%;
+//         border: none;
+//     }
+// }
+
+
 
 // .fake-background {
 //     height: 100%;
@@ -150,10 +242,10 @@ a {
     display: block;
 }
 
-.post-container a {
-    width: 100%;
-    height: 100%;
-}
+// .post-container a {
+//     width: 100%;
+//     height: 100%;
+// }
 
 .delete-modal {
     width: 100%;

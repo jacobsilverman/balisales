@@ -39,7 +39,7 @@ function CreatePost() {
     // const [showFiles, setShowFiles] = useState([]);
 
     // progress
-    const [percent, setPercent] = useState(0);
+    // const [percent, setPercent] = useState(0);
 
     // const [numberOfUploads, setNumberOfUploads] = useState(0);
     const [validation, setValidation] = useState({
@@ -135,7 +135,7 @@ function CreatePost() {
             alert("Please upload an image first!");
             return
         }
-        
+
         const postsCollectionRef = collection(db, process.env.REACT_APP_ENVIRONMENT+"-posts");
         await addDoc(postsCollectionRef, {
             status: "Available",
@@ -160,16 +160,17 @@ function CreatePost() {
                 uploadTask.on(
                     "state_changed",
                     (snapshot) => {
-                        const percent = Math.round(
-                            (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-                        );
-                        setPercent(percent);
+                        // const percent = Math.round(
+                        //     (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+                        // );
+                        // setPercent(percent);
                     },
                     (err) => console.log(err),
                     () => {
                         console.log(storageRef);
                     }
                 );
+                return null;
             });
 
             Promise.all(promises).then(() => {
@@ -251,7 +252,7 @@ function CreatePost() {
 
     const handleDescriptionChange = (event) => {
         let newValue = event.target.value;
-        if (newValue.length > 425 || newValue.match(/[\-><;:\\+{}@%=^*_|[\]]/)) {
+        if (newValue.length > 425 || newValue.match(/[-><;:\\+{}@%=^*_|[\]]/)) {
             return;
         }
         setDescription(newValue);

@@ -37,7 +37,7 @@ function Account({user, settingsPage}) {
         }).finally(() => {
 			setLoaded(true);
 		});
-	}, []);
+	}, [user]);
 
 	const handlePrevPost = () => {
         setOpenSelectModal(cur => {
